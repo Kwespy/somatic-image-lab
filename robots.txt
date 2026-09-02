@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://somatic.kurtwespyianatos.com/sitemap.xml

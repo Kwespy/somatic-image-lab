@@ -1,0 +1,22 @@
+THE SOMATIC IMAGE LAB
+
+PRIMERA VEZ
+1. Crea en GitHub un repositorio vacío llamado: somatic-image-lab
+2. Ejecuta PUBLICAR_PRIMERA_VEZ.command
+3. Pega la URL HTTPS del repositorio
+4. En GitHub: Settings > Pages > Deploy from a branch > main / root
+5. Custom domain: somatic.kurtwespyianatos.com
+
+PRÓXIMOS POSTS
+ChatGPT te entrega un ZIP con:
+- manifest.json
+- index.html
+
+Arrastras el ZIP encima de AGREGAR_POST.command.
+
+El script:
+- crea 002, 003...
+- agrega el post
+- actualiza la home
+- actualiza sitemap.xml
+- hace commit y push

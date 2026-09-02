@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import zipfile, tempfile, shutil, json, sys, re, subprocess, html
+
+ROOT = Path(__file__).resolve().parents[1]
+READINGS = ROOT / "readings"
+DATA = ROOT / "data" / "readings.json"
+HOME = ROOT / "index.html"
+SITEMAP = ROOT / "sitemap.xml"
+DOMAIN = "https://somatic.kurtwespyianatos.com"
+
+def die(msg):
+    print("\nERROR:", msg)
+    raise SystemExit(1)
+
+def slugify(s):
+    trans = str.maketrans("áéíóúüñÁÉÍÓÚÜÑ", "aeiouunAEIOUUN")
+    s = s.translate(trans).lower().strip()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    return re.sub(r"-+", "-", s).strip("-")
+
+def unpack(source):
+    p = Path(source).expanduser().resolve()
+    if not p.exists():
+        die("No encuentro: " + str(p))
+    if p.is_dir():
+        return p, None
+    if p.suffix.lower() != ".zip":
+        die("Arrastra un ZIP o una carpeta.")
+    temp = Path(tempfile.mkdtemp(prefix="tsil_post_"))
+    with zipfile.ZipFile(p) as z:
+        z.extractall(temp)
+    manifests = list(temp.rglob("manifest.json"))
+    if not manifests:
+        die("El ZIP no contiene manifest.json")
+    return manifests[0].parent, temp
+
+def render_card(it):
+    n = f'{it["number"]:03d}'
+    return (
+        '<a class="post-card" href="readings/{slug}/index.html">\n'
+        '  <div class="post-number">{n}</div>\n'
+        '  <div>\n'
+        '    <h2 class="post-title" data-copy="es">{tes}</h2>\n'
+        '    <h2 class="post-title" data-copy="en">{ten}</h2>\n'
+        '    <div class="post-author">{author}</div>\n'
+        '    <div class="post-meta">\n'
+        '      <span data-inline="es">lectura / umbral /</span>\n'
+        '      <span data-inline="en">reading / threshold /</span>\n'
+        '      <span class="error-pill" data-inline="es">error forzado: {ees}</span>\n'
+        '      <span class="error-pill" data-inline="en">forced error: {een}</span>\n'
+        '    </div>\n'
+        '  </div>\n'
+        '  <div class="post-arrow">→</div>\n'
+        '</a>'
+    ).format(
+        slug=html.escape(it["slug"]), n=n,
+        tes=html.escape(it["title_es"]), ten=html.escape(it["title_en"]),
+        author=html.escape(it["author"]),
+        ees=html.escape(it["error_es"]), een=html.escape(it["error_en"])
+    )
+
+def update_home(items):
+    text = HOME.read_text(encoding="utf-8")
+    cards = "\n".join(render_card(it) for it in sorted(items, key=lambda x: x["number"], reverse=True))
+    text = re.sub(
+        r'<!-- POSTS_START -->.*?<!-- POSTS_END -->',
+        '<!-- POSTS_START -->\n' + cards + '\n<!-- POSTS_END -->',
+        text, flags=re.S
+    )
+    HOME.write_text(text, encoding="utf-8")
+
+def update_sitemap(items):
+    urls = [DOMAIN + "/"] + [DOMAIN + "/readings/" + it["slug"] + "/" for it in items]
+    body = "\n".join("  <url><loc>" + u + "</loc></url>" for u in urls)
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + '\n</urlset>\n'
+    SITEMAP.write_text(xml, encoding="utf-8")
+
+def git_push(title):
+    if not (ROOT / ".git").exists():
+        print("\nPOST AGREGADO LOCALMENTE. Ejecuta primero PUBLICAR_PRIMERA_VEZ.command.")
+        return
+    subprocess.run(["git","add","-A"], cwd=ROOT)
+    subprocess.run(["git","commit","-m","Add reading: " + title], cwd=ROOT)
+    r = subprocess.run(["git","push"], cwd=ROOT)
+    if r.returncode == 0:
+        print("\n✓ GITHUB ACTUALIZADO")
+    else:
+        print("\nEl post quedó instalado, pero git push falló.")
+
+def main():
+    source = sys.argv[1] if len(sys.argv) > 1 else input("Arrastra el ZIP del post:\n> ").strip().strip("'\"")
+    pkg, temp = unpack(source)
+    try:
+        mf = pkg / "manifest.json"
+        hp = pkg / "index.html"
+        if not mf.exists() or not hp.exists():
+            die("El paquete necesita manifest.json e index.html")
+        m = json.loads(mf.read_text(encoding="utf-8"))
+        required = ["author","title_es","title_en","date","slug","error_es","error_en"]
+        for key in required:
+            if not m.get(key):
+                die("Falta " + key + " en manifest.json")
+
+        items = json.loads(DATA.read_text(encoding="utf-8")) if DATA.exists() else []
+        num = max([x["number"] for x in items], default=0) + 1
+        slug = f"{num:03d}-{slugify(m['slug'])}"
+        dest = READINGS / slug
+        if dest.exists():
+            die("Ya existe " + slug)
+        dest.mkdir(parents=True)
+        shutil.copy2(hp, dest/"index.html")
+
+        rec = {
+            "number": num,
+            "slug": slug,
+            "author": m["author"],
+            "title_es": m["title_es"],
+            "title_en": m["title_en"],
+            "date": m["date"],
+            "error_es": m["error_es"],
+            "error_en": m["error_en"]
+        }
+        items.append(rec)
+        DATA.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+        update_home(items)
+        update_sitemap(items)
+        git_push(m["title_en"])
+
+        print("\nPOST %03d ✓" % num)
+        print(m["author"] + " — " + m["title_es"])
+        print("HOME ✓")
+        print("SITEMAP ✓")
+    finally:
+        if temp:
+            shutil.rmtree(temp, ignore_errors=True)
+
+if __name__ == "__main__":
+    main()
