@@ -5,7 +5,7 @@ PRIMERA VEZ
 2. Ejecuta PUBLICAR_PRIMERA_VEZ.command
 3. Pega la URL HTTPS del repositorio
 4. En GitHub: Settings > Pages > Deploy from a branch > main / root
-5. Custom domain: somatic.kurtwespyianatos.com
+5. Custom domain: thesomaticimagelab.kurtwespyianatos.com
 
 PRÓXIMOS POSTS
 ChatGPT te entrega un ZIP con:

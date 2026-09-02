@@ -7,7 +7,7 @@ READINGS = ROOT / "readings"
 DATA = ROOT / "data" / "readings.json"
 HOME = ROOT / "index.html"
 SITEMAP = ROOT / "sitemap.xml"
-DOMAIN = "https://somatic.kurtwespyianatos.com"
+DOMAIN = "https://thesomaticimagelab.kurtwespyianatos.com"
 
 def die(msg):
     print("\nERROR:", msg)

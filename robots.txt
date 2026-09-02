@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://somatic.kurtwespyianatos.com/sitemap.xml
+Sitemap: https://thesomaticimagelab.kurtwespyianatos.com/sitemap.xml

@@ -35,7 +35,7 @@ if [ $? -eq 0 ]; then
   echo
   echo "Ahora: GitHub > Settings > Pages"
   echo "Deploy from a branch > main / root"
-  echo "Custom domain: somatic.kurtwespyianatos.com"
+  echo "Custom domain: thesomaticimagelab.kurtwespyianatos.com"
 else
   echo "ERROR: git push falló."
 fi
