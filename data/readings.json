@@ -78,5 +78,15 @@
     "date": "2026-09-03",
     "error_es": "aduana",
     "error_en": "customs"
+  },
+  {
+    "number": 9,
+    "slug": "009-n-katherine-hayles-my-mother-was-a-computer",
+    "author": "N. Katherine Hayles",
+    "title_es": "My Mother Was a Computer",
+    "title_en": "My Mother Was a Computer",
+    "date": "2026-09-03",
+    "error_es": "injerto",
+    "error_en": "graft"
   }
 ]
