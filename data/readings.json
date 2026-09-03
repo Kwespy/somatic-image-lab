@@ -38,5 +38,15 @@
     "date": "2026-09-03",
     "error_es": "injerto",
     "error_en": "graft"
+  },
+  {
+    "number": 5,
+    "slug": "005-vilem-flusser-hacia-una-filosofia-de-la-fotografia",
+    "author": "Vilém Flusser",
+    "title_es": "Hacia una filosofía de la fotografía",
+    "title_en": "Towards a Philosophy of Photography",
+    "date": "2026-09-03",
+    "error_es": "jurisdicción",
+    "error_en": "jurisdiction"
   }
 ]

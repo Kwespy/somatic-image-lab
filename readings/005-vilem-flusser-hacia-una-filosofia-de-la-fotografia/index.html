@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vilém Flusser — Hacia una filosofía de la fotografía | The Somatic Image Lab | Kurt Wesp Yianatos</title>
+<meta name="description" content="AI-assisted research reading by Kurt Wesp Yianatos on Vilém Flusser's Hacia una filosofía de la fotografía: technical image, apparatus, program, information and deliberate error.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Vilém Flusser — Hacia una filosofía de la fotografía">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:type" content="article">
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hacia una filosofía de la fotografía — Vilém Flusser","author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab"},"about":["Vilém Flusser","Hacia una filosofía de la fotografía","technical image","apparatus","program","information","photography","artistic research","deliberate AI error"],"inLanguage":["es","en"]}</script>
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],
+html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],
+html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.topbar{
+  min-height:58px;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;border-bottom:1px solid var(--line);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase
+}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
+
+.misregister{position:relative;display:inline-block;isolation:isolate}
+.misregister::after{
+  content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);
+  color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none
+}
+
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(48px,8.8vw,112px);line-height:.84;letter-spacing:-.067em;font-weight:800}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{
+  max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);
+  line-height:1.2;letter-spacing:-.02em
+}
+
+.motion-line{
+  position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);overflow:hidden
+}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
+.motion-line .text::after{
+  content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);
+  clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none
+}
+
+.grid{
+  display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;
+  padding:25px 0 34px;border-top:1px solid var(--line)
+}
+.eyebrow,.section-title{
+  padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase
+}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
+
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-card{padding:22px;background:var(--ink);color:#fff}
+.error-card .eyebrow{color:#aaa}
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+
+.carry{padding:18px;border:2px solid var(--ink);font-size:clamp(24px,2.8vw,36px);line-height:1.16;letter-spacing:-.028em}
+.carry-rule{margin:10px 0 18px;max-width:720px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{
+  min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;
+  display:flex;flex-direction:column;justify-content:space-between
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
+.identity{
+  display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--line);color:var(--muted);font-size:11px
+}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+
+@media(max-width:760px){
+  .shell{width:min(var(--max),calc(100% - 24px))}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .branches{grid-template-columns:1fr}
+  .article-hero{padding:46px 0 38px}
+}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.carry-source{display:none!important}
+.carry-flow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  grid-column:1 / -1;
+}
+.carry-card{
+  min-height:220px;
+  padding:22px;
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:inherit;
+  text-decoration:none;
+  transition:border-color .15s ease;
+}
+a.carry-card:hover{border-color:var(--orange)}
+.carry-card.current{border-color:var(--ink)}
+.carry-direction{
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:36px;
+}
+.carry-question{
+  font-size:clamp(22px,2.5vw,38px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.carry-card.start .carry-question{
+  font-size:14px;
+  line-height:1.4;
+  letter-spacing:0;
+  color:var(--muted);
+}
+.carry-card.waiting .carry-direction::after{
+  content:"";
+}
+@media(max-width:760px){
+  .carry-flow{grid-template-columns:1fr}
+  .carry-card{min-height:180px}
+}
+
+</style>
+<script>
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.switch===lang);
+    });
+  }
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
+})();
+</script>
+</head>
+<body>
+<div class="shell">
+
+<header class="topbar">
+  <div><a href="../../index.html">The Somatic Image Lab</a></div>
+  <div class="lang-switch">
+    <a href="../../index.html" data-inline="es">inicio</a>
+    <a href="../../index.html" data-inline="en">home</a>
+    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
+    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
+  </div>
+</header>
+
+<main>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 005</div>
+  <div class="article-kicker" data-copy="en">reading / 005</div>
+
+  <h1 class="article-title" data-copy="es">
+    <span class="misregister" data-text="HACIA UNA">HACIA UNA</span><br>FILOSOFÍA DE LA<br>FOTOGRAFÍA
+  </h1>
+  <h1 class="article-title" data-copy="en">
+    <span class="misregister" data-text="TOWARDS A">TOWARDS A</span><br>PHILOSOPHY OF<br>PHOTOGRAPHY
+  </h1>
+
+  <div class="article-author">Vilém Flusser</div>
+
+  <div class="article-lead" data-copy="es">
+    Flusser toma la fotografía como modelo para pensar las imágenes técnicas. La cámara no aparece como una herramienta neutral: es un aparato programado que organiza posibilidades, condiciona la acción del fotógrafo y continúa operando cuando la imagen entra en circuitos de distribución.
+  </div>
+  <div class="article-lead" data-copy="en">
+    Flusser uses photography as a model for thinking about technical images. The camera does not appear as a neutral tool: it is a programmed apparatus that organizes possibilities, conditions the photographer's action, and continues to operate when the image enters channels of distribution.
+  </div>
+</section>
+
+<div class="motion-line">
+  <div class="text" data-text="imagen técnica → aparato → programa → información" data-copy="es">imagen técnica → aparato → programa → información</div>
+  <div class="text" data-text="technical image → apparatus → program → information" data-copy="en">technical image → apparatus → program → information</div>
+</div>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">en 1 minuto</div>
+  <div class="section-title" data-copy="en">in 1 minute</div>
+
+  <div class="large-copy" data-copy="es">
+    <p>Las imágenes técnicas son producidas por aparatos. Para Flusser, analizar la cámara permite pensar una forma más amplia de aparato: una caja cuyo interior permanece opaco mientras sus entradas y salidas pueden ser operadas.</p>
+    <p>El programa de la cámara contiene muchas posibilidades, pero no infinitas. Cada fotografía realiza una de esas virtualidades. El fotógrafo explora, combina y busca posibilidades todavía no agotadas, aunque su libertad ocurre dentro de categorías que el aparato ya organiza.</p>
+    <p>La imagen no termina en el momento de la toma. Los aparatos de distribución la conducen por distintos canales y esos cambios de canal pueden recodificar su significado para quien la recibe.</p>
+  </div>
+
+  <div class="large-copy" data-copy="en">
+    <p>Technical images are produced by apparatuses. For Flusser, analyzing the camera makes it possible to think about a broader form of apparatus: a box whose interior remains opaque while its inputs and outputs can be operated.</p>
+    <p>The camera's program contains many possibilities, but not infinitely many. Each photograph realizes one of these virtualities. The photographer explores, combines, and searches for possibilities not yet exhausted, although this freedom takes place within categories already organized by the apparatus.</p>
+    <p>The image does not end at the moment of exposure. Apparatuses of distribution move it through different channels, and changes of channel can recode its meaning for the receiver.</p>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">tres cosas para conservar</div>
+  <div class="section-title" data-copy="en">three things to keep</div>
+
+  <div data-copy="es">
+    <div class="keep">Una cámara no sólo ejecuta decisiones: también delimita el campo dentro del cual esas decisiones pueden convertirse en fotografía.</div>
+    <div class="keep">La libertad del fotógrafo no desaparece, pero ocurre jugando con posibilidades previamente programadas.</div>
+    <div class="keep">La circulación forma parte de la producción de significado: una misma fotografía puede cambiar cuando cambia el canal que la recibe.</div>
+  </div>
+
+  <div data-copy="en">
+    <div class="keep">A camera does not only execute decisions: it also delimits the field within which those decisions can become photographs.</div>
+    <div class="keep">The photographer's freedom does not disappear, but it operates by playing with previously programmed possibilities.</div>
+    <div class="keep">Circulation participates in the production of meaning: the same photograph can change when the channel receiving it changes.</div>
+  </div>
+</section>
+
+<div class="threshold">
+<section class="grid" style="border-top:0">
+  <div class="section-title" data-copy="es">umbral / punto de presión</div>
+  <div class="section-title" data-copy="en">threshold / pressure point</div>
+
+  <div class="pressure" data-copy="es">
+    El arrastre de Didi-Huberman seguía la identidad de una imagen a través de huellas que se conservan, pérdidas y tiempos que vuelven a aparecer. Flusser desplaza el problema: una transformación no actúa sobre un terreno neutral, porque el aparato ya organiza un campo de posibilidades y el canal de distribución puede volver a codificar lo producido. La pregunta deja de ser solamente qué sobrevive y pasa también a qué pudo llegar a existir como imagen.
+  </div>
+
+  <div class="pressure" data-copy="en">
+    Didi-Huberman's carry followed the identity of an image through preserved traces, losses, and times that reappear. Flusser shifts the problem: a transformation does not act on neutral ground, because the apparatus already organizes a field of possibilities and the channel of distribution can recode what has been produced. The question is no longer only what survives, but also what was able to come into existence as an image.
+  </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">proposición incompleta</div>
+  <div class="section-title" data-copy="en">unfinished proposition</div>
+
+  <div class="incomplete" data-copy="es">Si cada aparato abre unas posibilidades y deja otras fuera, la historia de una imagen también contiene todo lo que…</div>
+  <div class="incomplete" data-copy="en">If each apparatus opens some possibilities and leaves others outside, the history of an image also contains everything that…</div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">bifurcación</div>
+  <div class="section-title" data-copy="en">bifurcation</div>
+
+  <div class="branches" data-copy="es">
+    <div class="branch">La identidad de una imagen está en las huellas visibles que sobreviven a sus transformaciones.</div>
+    <div class="branch">La identidad de una imagen también depende de los sistemas que hicieron posibles esas transformaciones y descartaron otras.</div>
+  </div>
+
+  <div class="branches" data-copy="en">
+    <div class="branch">The identity of an image lies in the visible traces that survive its transformations.</div>
+    <div class="branch">The identity of an image also depends on the systems that made those transformations possible while excluding others.</div>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">residuo</div>
+  <div class="section-title" data-copy="en">residue</div>
+
+  <div data-copy="es">
+    <div class="residue">Una operación puede hacer reaparecer una huella o un tiempo, pero esa aparición ocurre dentro de un campo técnico de posibilidades que no es neutral.</div>
+    <div class="residue">Cambiar de canal puede transformar el significado de una imagen sin cambiar necesariamente su superficie visible.</div>
+  </div>
+
+  <div data-copy="en">
+    <div class="residue">An operation can make a trace or a time reappear, but that appearance takes place within a technical field of possibilities that is not neutral.</div>
+    <div class="residue">Changing channels can transform the meaning of an image without necessarily changing its visible surface.</div>
+  </div>
+</section>
+</div>
+
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0">
+  <div class="section-title" data-copy="es">máquina de error</div>
+  <div class="section-title" data-copy="en">error machine</div>
+
+  <div class="error-card">
+    <div class="eyebrow" data-copy="es">contexto importado</div>
+    <div class="eyebrow" data-copy="en">imported context</div>
+    <div class="error-context" data-copy="es">DERECHO / TERRITORIO</div>
+    <div class="error-context" data-copy="en">LAW / TERRITORY</div>
+
+    <div class="eyebrow" data-copy="es">palabra importada</div>
+    <div class="eyebrow" data-copy="en">imported word</div>
+    <div class="error-word" data-copy="es">JURISDICCIÓN</div>
+    <div class="error-word" data-copy="en">JURISDICTION</div>
+
+    <div class="eyebrow" data-copy="es">colisión</div>
+    <div class="eyebrow" data-copy="en">collision</div>
+    <div class="error-collision" data-copy="es">programa × jurisdicción</div>
+    <div class="error-collision" data-copy="en">program × jurisdiction</div>
+
+    <div class="eyebrow" data-copy="es">error forzado</div>
+    <div class="eyebrow" data-copy="en">forced error</div>
+    <div class="error-statement" data-copy="es">Toda fotografía es legal dentro de la jurisdicción de su cámara.</div>
+    <div class="error-statement" data-copy="en">Every photograph is legal within the jurisdiction of its camera.</div>
+
+    <div class="eyebrow" data-copy="es">lo que se escapó</div>
+    <div class="eyebrow" data-copy="en">what escaped</div>
+    <div class="error-opening" data-copy="es">
+      El lenguaje jurídico vuelve demasiado rígido algo que en Flusser funciona como juego, programa y campo de virtualidades. Pero deja aparecer un límite: la cámara no sólo recibe una intención; su programa organiza qué puede realizarse como fotografía y qué queda fuera de ese repertorio.
+    </div>
+    <div class="error-opening" data-copy="en">
+      Legal language makes too rigid something that in Flusser operates as play, program, and a field of virtualities. But it exposes a limit: the camera does not merely receive an intention; its program organizes what can be realized as a photograph and what remains outside that repertoire.
+    </div>
+
+    <div class="eyebrow" data-copy="es">pregunta que queda</div>
+    <div class="eyebrow" data-copy="en">question left behind</div>
+    <div class="error-question" data-copy="es">¿Qué queda fuera de una imagen porque el aparato no lo ofrece como posibilidad?</div>
+    <div class="error-question" data-copy="en">What remains outside an image because the apparatus does not offer it as a possibility?</div>
+  </div>
+</section>
+
+<div class="reject">
+  <div class="reject-x">×</div>
+  <div>
+    <div class="eyebrow" data-copy="es">error que no produjo nada</div>
+    <div class="eyebrow" data-copy="en">error that produced nothing</div>
+    <div class="reject-text" data-copy="es">Las fotografías verdes contienen más información porque se parecen a un pepino.</div>
+    <div class="reject-text" data-copy="en">Green photographs contain more information because they resemble a cucumber.</div>
+    <div class="reject-note" data-copy="es">PEPINO. No abrió ninguna diferencia útil. Se descarta.</div>
+    <div class="reject-note" data-copy="en">CUCUMBER. It opened no useful difference. It is discarded.</div>
+  </div>
+</div>
+</div>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">arrastre</div>
+  <div class="section-title" data-copy="en">carry</div>
+  <div class="carry-rule" data-copy="es">Cada pregunta comprime las tensiones de su texto y de su Máquina de Error. Hereda contaminaciones anteriores para que el error se acumule y abra nuevas posibilidades.</div>
+  <div class="carry-rule" data-copy="en">Each question compresses the tensions of its text and its Error Machine. It inherits previous contaminations so error can accumulate and open new possibilities.</div>
+  <div class="carry-source" data-copy="es">¿Sigue siendo la misma imagen cuando cada sistema que atraviesa conserva unas huellas, borra otras, hace aparecer tiempos distintos y condiciona qué transformaciones pueden llegar a existir y cuáles quedan fuera de lo visible?</div>
+  <div class="carry-source" data-copy="en">Is it still the same image when each system it passes through preserves some traces, erases others, makes different times appear, and conditions which transformations can come into existence and which remain outside the visible?</div>
+  <div class="carry-flow">
+    <a class="carry-card incoming" href="../004-georges-didi-huberman-ante-el-tiempo/index.html">
+  <div class="carry-direction">
+    <span data-inline="es">← viene de 004 · Georges Didi-Huberman</span>
+    <span data-inline="en">← comes from 004 · Georges Didi-Huberman</span>
+  </div>
+  <div class="carry-question" data-copy="es">¿Sigue siendo la misma imagen cuando cada transformación conserva unas huellas, borra otras y hace aparecer tiempos que antes no reconocíamos en ella?</div>
+  <div class="carry-question" data-copy="en">Is it still the same image when each transformation preserves some traces, erases others, and makes times appear that we did not previously recognize within it?</div>
+</a>
+    <div class="carry-card current waiting">
+  <div class="carry-direction">
+    <span data-inline="es">hacia el próximo texto →</span>
+    <span data-inline="en">toward the next text →</span>
+  </div>
+  <div class="carry-question" data-copy="es">¿Sigue siendo la misma imagen cuando cada sistema que atraviesa conserva unas huellas, borra otras, hace aparecer tiempos distintos y condiciona qué transformaciones pueden llegar a existir y cuáles quedan fuera de lo visible?</div>
+  <div class="carry-question" data-copy="en">Is it still the same image when each system it passes through preserves some traces, erases others, makes different times appear, and conditions which transformations can come into existence and which remain outside the visible?</div>
+</div>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">sobre esta máquina</div>
+  <div class="section-title" data-copy="en">about this machine</div>
+
+  <div class="about-machine" data-copy="es">
+    Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.
+    <div class="identity">
+      <span>Kurt Wesp Yianatos</span>
+      <span>KWY-A⁰¹RTBORG</span>
+      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
+      <a href="https://www.kwydesign.com/">kwydesign.com</a>
+    </div>
+  </div>
+
+  <div class="about-machine" data-copy="en">
+    This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and deliberately forces errors, deviations and unlikely associations to open questions rather than close them. Each entry is reviewed and published manually.
+    <div class="identity">
+      <span>Kurt Wesp Yianatos</span>
+      <span>KWY-A⁰¹RTBORG</span>
+      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
+      <a href="https://www.kwydesign.com/">kwydesign.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</body>
+</html>
