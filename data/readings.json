@@ -48,5 +48,15 @@
     "date": "2026-09-03",
     "error_es": "jurisdicción",
     "error_en": "jurisdiction"
+  },
+  {
+    "number": 6,
+    "slug": "006-jussi-parikka-a-geology-of-media",
+    "author": "Jussi Parikka",
+    "title_es": "A Geology of Media",
+    "title_en": "A Geology of Media",
+    "date": "2026-09-03",
+    "error_es": "biopsia",
+    "error_en": "biopsy"
   }
 ]
