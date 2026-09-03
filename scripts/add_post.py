@@ -76,9 +76,52 @@ def update_sitemap(items):
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + '\n</urlset>\n'
     SITEMAP.write_text(xml, encoding="utf-8")
 
+def link_previous_carry(previous_slug, new_slug, new_number, new_author):
+    """Turn the previous post's ARRASTRE into navigation to the newly published post."""
+    p = READINGS / previous_slug / "index.html"
+    if not p.exists():
+        return
+
+    s = p.read_text(encoding="utf-8")
+
+    # Standardize the section label.
+    s = s.replace("arrastrar al próximo texto", "arrastre")
+    s = s.replace("carry into the next text", "carry")
+
+    # Remove an older navigation wrapper if this function is run again.
+    s = re.sub(
+        r'<a class="carry-link"[^>]*>\s*(<div class="carry" data-copy="es">.*?</div>\s*<div class="carry" data-copy="en">.*?</div>)\s*<div class="carry-next".*?</div>\s*</a>',
+        r'\1',
+        s,
+        flags=re.S
+    )
+
+    pair = re.search(
+        r'(<div class="carry" data-copy="es">.*?</div>\s*<div class="carry" data-copy="en">.*?</div>)',
+        s,
+        flags=re.S
+    )
+    if not pair:
+        return
+
+    rel = f"../{new_slug}/index.html"
+    nav = (
+        f'<a class="carry-link" href="{html.escape(rel)}" '
+        'style="display:block;color:inherit;text-decoration:none;cursor:pointer" '
+        f'aria-label="Ir a la lectura {new_number:03d}">\n'
+        + pair.group(1)
+        + '\n<div class="carry-next" style="margin-top:8px;text-align:right;font-size:11px;'
+          'letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">'
+        + f'<span data-inline="es">seguir → {new_number:03d} · {html.escape(new_author)}</span>'
+        + f'<span data-inline="en">continue → {new_number:03d} · {html.escape(new_author)}</span>'
+        + '</div>\n</a>'
+    )
+    s = s[:pair.start()] + nav + s[pair.end():]
+    p.write_text(s, encoding="utf-8")
+
 def git_push(title):
     if not (ROOT / ".git").exists():
-        print("\nPOST AGREGADO LOCALMENTE. Ejecuta primero PUBLICAR_PRIMERA_VEZ.command.")
+        print("\nPOST AGREGADO LOCALMENTE. Falta inicializar Git.")
         return
     subprocess.run(["git","add","-A"], cwd=ROOT)
     subprocess.run(["git","commit","-m","Add reading: " + title], cwd=ROOT)
@@ -96,6 +139,7 @@ def main():
         hp = pkg / "index.html"
         if not mf.exists() or not hp.exists():
             die("El paquete necesita manifest.json e index.html")
+
         m = json.loads(mf.read_text(encoding="utf-8"))
         required = ["author","title_es","title_en","date","slug","error_es","error_en"]
         for key in required:
@@ -103,11 +147,14 @@ def main():
                 die("Falta " + key + " en manifest.json")
 
         items = json.loads(DATA.read_text(encoding="utf-8")) if DATA.exists() else []
+        previous = max(items, key=lambda x: x["number"]) if items else None
+
         num = max([x["number"] for x in items], default=0) + 1
         slug = f"{num:03d}-{slugify(m['slug'])}"
         dest = READINGS / slug
         if dest.exists():
             die("Ya existe " + slug)
+
         dest.mkdir(parents=True)
         shutil.copy2(hp, dest/"index.html")
 
@@ -122,6 +169,17 @@ def main():
             "error_en": m["error_en"]
         }
         items.append(rec)
+
+        # The key behavior: only when the new post exists,
+        # the previous post's ARRASTRE becomes a link to it.
+        if previous:
+            link_previous_carry(
+                previous["slug"],
+                slug,
+                num,
+                m["author"]
+            )
+
         DATA.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
         update_home(items)
         update_sitemap(items)
@@ -129,6 +187,7 @@ def main():
 
         print("\nPOST %03d ✓" % num)
         print(m["author"] + " — " + m["title_es"])
+        print("ARRASTRE ANTERIOR → POST %03d ✓" % num)
         print("HOME ✓")
         print("SITEMAP ✓")
     finally:
