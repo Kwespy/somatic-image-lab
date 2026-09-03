@@ -211,7 +211,61 @@ a.carry-card:hover{border-color:var(--orange)}
   document.addEventListener("DOMContentLoaded",()=>setLang(initial));
 })();
 </script>
-</head>
+
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
+\n</head>
 <body>
 <div class="shell">
 
@@ -397,27 +451,29 @@ a.carry-card:hover{border-color:var(--orange)}
 <section class="grid">
   <div class="section-title" data-copy="es">arrastre</div>
   <div class="section-title" data-copy="en">carry</div>
-  <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
-  <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
-  <div class="carry-source" data-copy="es">¿Sigue siendo la misma imagen cuando cada sistema que atraviesa conserva unas huellas, borra otras, hace aparecer tiempos distintos y condiciona qué transformaciones pueden llegar a existir y cuáles quedan fuera de lo visible?</div>
-  <div class="carry-source" data-copy="en">Is it still the same image when each system it passes through preserves some traces, erases others, makes different times appear, and conditions which transformations can come into existence and which remain outside the visible?</div>
-  <div class="carry-flow">
-    <a class="carry-card incoming" href="../004-georges-didi-huberman-ante-el-tiempo/index.html">
-  <div class="carry-direction">
-    <span data-inline="es">← viene de 004 · Georges Didi-Huberman</span>
-    <span data-inline="en">← comes from 004 · Georges Didi-Huberman</span>
+
+  <div>
+    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
+    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+
+    <div class="reading-nav">
+      <a class="prev" href="../004-georges-didi-huberman-ante-el-tiempo/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">← viene de 004 · Georges Didi-Huberman</div>
+    <div class="nav-label" data-copy="en">← comes from 004 · Georges Didi-Huberman</div>
+    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen cuando cada transformación conserva unas huellas, borra otras y hace aparecer tiempos que antes no reconocíamos en ella?</div>
+    <div class="nav-q" data-copy="en">Is it still the same image when each transformation preserves some traces, erases others, and makes times appear that we did not previously recognize within it?</div>
   </div>
-  <div class="carry-question" data-copy="es">¿Sigue siendo la misma imagen cuando cada transformación conserva unas huellas, borra otras y hace aparecer tiempos que antes no reconocíamos en ella?</div>
-  <div class="carry-question" data-copy="en">Is it still the same image when each transformation preserves some traces, erases others, and makes times appear that we did not previously recognize within it?</div>
 </a>
-    <a class="carry-card current" href="../006-jussi-parikka-a-geology-of-media/index.html">
-  <div class="carry-direction">
-    <span data-inline="es">va hacia 006 · Jussi Parikka →</span>
-    <span data-inline="en">goes to 006 · Jussi Parikka →</span>
+      <a class="next" href="../006-jussi-parikka-a-geology-of-media/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">va hacia 006 · Jussi Parikka →</div>
+    <div class="nav-label" data-copy="en">goes to 006 · Jussi Parikka →</div>
+    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen cuando cada sistema que atraviesa conserva unas huellas, borra otras, hace aparecer tiempos distintos y condiciona qué transformaciones pueden llegar a existir y cuáles quedan fuera de lo visible?</div>
+    <div class="nav-q" data-copy="en">Is it still the same image when each system it passes through preserves some traces, erases others, makes different times appear, and conditions which transformations can come into existence and which remain outside the visible?</div>
   </div>
-  <div class="carry-question" data-copy="es">¿Sigue siendo la misma imagen cuando cada sistema que atraviesa conserva unas huellas, borra otras, hace aparecer tiempos distintos y condiciona qué transformaciones pueden llegar a existir y cuáles quedan fuera de lo visible?</div>
-  <div class="carry-question" data-copy="en">Is it still the same image when each system it passes through preserves some traces, erases others, makes different times appear, and conditions which transformations can come into existence and which remain outside the visible?</div>
 </a>
+    </div>
   </div>
 </section>
 

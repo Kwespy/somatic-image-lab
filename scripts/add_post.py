@@ -10,7 +10,63 @@ SITEMAP=ROOT/"sitemap.xml"
 DOMAIN="https://thesomaticimagelab.kurtwespyianatos.com"
 CARRY_NOTE_ES='Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.'
 CARRY_NOTE_EN='These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.'
-FLOW_CSS='\n.carry-rule{\n  margin:10px 0 18px;\n  max-width:760px;\n  font-size:11px;\n  line-height:1.45;\n  letter-spacing:.02em;\n  color:var(--muted);\n}\n.carry-source{display:none!important}\n.carry-flow{\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:14px;\n  grid-column:1 / -1;\n}\n.carry-card{\n  min-height:220px;\n  padding:22px;\n  border:1px solid var(--line);\n  display:flex;\n  flex-direction:column;\n  justify-content:space-between;\n  color:inherit;\n  text-decoration:none;\n  transition:border-color .15s ease;\n}\na.carry-card:hover{border-color:var(--orange)}\n.carry-card.current{border-color:var(--ink)}\n.carry-direction{\n  font-size:11px;\n  line-height:1.35;\n  letter-spacing:.09em;\n  text-transform:uppercase;\n  color:var(--muted);\n  margin-bottom:36px;\n}\n.carry-question{\n  font-size:clamp(22px,2.5vw,38px);\n  line-height:1.08;\n  letter-spacing:-.035em;\n}\n.carry-card.start .carry-question{\n  font-size:14px;\n  line-height:1.4;\n  letter-spacing:0;\n  color:var(--muted);\n}\n.carry-card.waiting .carry-direction::after{\n  content:"";\n}\n@media(max-width:760px){\n  .carry-flow{grid-template-columns:1fr}\n  .carry-card{min-height:180px}\n}\n'
+FLOW_STYLE_ID="tsil-carry-flow-v4"
+FLOW_CSS=r"""
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
+"""
+
 
 RANDOM_CSS="""
 .random-start{
@@ -100,21 +156,19 @@ def strip_tags(s):
     return re.sub(r'<[^>]+>','',s).strip()
 
 def own_carry(page):
-    # Preferred canonical hidden source used after the flow is rebuilt.
+    # Canonical design: the last visible nav-q is the outgoing question.
+    es_all=re.findall(r'<div class="nav-q" data-copy="es">(.*?)</div>',page,re.S)
+    en_all=re.findall(r'<div class="nav-q" data-copy="en">(.*?)</div>',page,re.S)
+    if es_all and en_all:
+        return strip_tags(es_all[-1]),strip_tags(en_all[-1])
+
+    # Compatibility with older versions.
     for cls in ("carry-source","carry"):
         es=re.search(rf'<div class="{cls}" data-copy="es">(.*?)</div>',page,re.S)
         en=re.search(rf'<div class="{cls}" data-copy="en">(.*?)</div>',page,re.S)
         if es and en:
             return strip_tags(es.group(1)),strip_tags(en.group(1))
 
-    # Compatibility with posts whose ARRASTRE already shows only two cards.
-    # The last nav-q is the outgoing question produced by the current reading.
-    es_all=re.findall(r'<div class="nav-q" data-copy="es">(.*?)</div>',page,re.S)
-    en_all=re.findall(r'<div class="nav-q" data-copy="en">(.*?)</div>',page,re.S)
-    if es_all and en_all:
-        return strip_tags(es_all[-1]),strip_tags(en_all[-1])
-
-    # Compatibility with already rebuilt carry-flow markup without carry-source.
     es_all=re.findall(r'<div class="carry-question" data-copy="es">(.*?)</div>',page,re.S)
     en_all=re.findall(r'<div class="carry-question" data-copy="en">(.*?)</div>',page,re.S)
     if es_all and en_all:
@@ -123,59 +177,70 @@ def own_carry(page):
     return None,None
 
 def ensure_css(page):
-    if ".carry-flow{" not in page:
-        page=page.replace("</style>",FLOW_CSS+"\n</style>",1)
+    # Always install the canonical carry CSS last in <head>.
+    page=re.sub(
+        r'<style id="tsil-carry-flow-v4">.*?</style>\\s*',
+        '',
+        page,
+        flags=re.S
+    )
+    if "</head>" in page:
+        page=page.replace("</head>",FLOW_CSS+"\\n</head>",1)
+    else:
+        page=page.replace("</style>",FLOW_CSS+"\\n",1)
     return page
 
 def carry_section(own_es,own_en,prev,nxt,prev_es,prev_en):
     if prev:
-        left=f"""<a class="carry-card incoming" href="../{html.escape(prev["slug"])}/index.html">
-  <div class="carry-direction">
-    <span data-inline="es">← viene de {int(prev["number"]):03d} · {html.escape(prev["author"])}</span>
-    <span data-inline="en">← comes from {int(prev["number"]):03d} · {html.escape(prev["author"])}</span>
+        left=f"""<a class="prev" href="../{html.escape(prev["slug"])}/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">← viene de {int(prev["number"]):03d} · {html.escape(prev["author"])}</div>
+    <div class="nav-label" data-copy="en">← comes from {int(prev["number"]):03d} · {html.escape(prev["author"])}</div>
+    <div class="nav-q" data-copy="es">{html.escape(prev_es)}</div>
+    <div class="nav-q" data-copy="en">{html.escape(prev_en)}</div>
   </div>
-  <div class="carry-question" data-copy="es">{html.escape(prev_es)}</div>
-  <div class="carry-question" data-copy="en">{html.escape(prev_en)}</div>
 </a>"""
     else:
-        left="""<div class="carry-card start">
-  <div class="carry-direction">
-    <span data-inline="es">inicio de la cadena</span>
-    <span data-inline="en">start of the chain</span>
+        left="""<div class="nav-block start">
+  <div>
+    <div class="nav-label" data-copy="es">inicio de la cadena</div>
+    <div class="nav-label" data-copy="en">start of the chain</div>
+    <div class="nav-q" data-copy="es">Esta lectura produce la primera pregunta de arrastre.</div>
+    <div class="nav-q" data-copy="en">This reading produces the first carry question.</div>
   </div>
-  <div class="carry-question" data-copy="es">Esta lectura produce la primera pregunta de arrastre.</div>
-  <div class="carry-question" data-copy="en">This reading produces the first carry question.</div>
 </div>"""
 
     if nxt:
-        right=f"""<a class="carry-card current" href="../{html.escape(nxt["slug"])}/index.html">
-  <div class="carry-direction">
-    <span data-inline="es">va hacia {int(nxt["number"]):03d} · {html.escape(nxt["author"])} →</span>
-    <span data-inline="en">goes to {int(nxt["number"]):03d} · {html.escape(nxt["author"])} →</span>
+        right=f"""<a class="next" href="../{html.escape(nxt["slug"])}/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">va hacia {int(nxt["number"]):03d} · {html.escape(nxt["author"])} →</div>
+    <div class="nav-label" data-copy="en">goes to {int(nxt["number"]):03d} · {html.escape(nxt["author"])} →</div>
+    <div class="nav-q" data-copy="es">{html.escape(own_es)}</div>
+    <div class="nav-q" data-copy="en">{html.escape(own_en)}</div>
   </div>
-  <div class="carry-question" data-copy="es">{html.escape(own_es)}</div>
-  <div class="carry-question" data-copy="en">{html.escape(own_en)}</div>
 </a>"""
     else:
-        right=f"""<div class="carry-card current waiting">
-  <div class="carry-direction">
-    <span data-inline="es">hacia el próximo texto →</span>
-    <span data-inline="en">toward the next text →</span>
+        right=f"""<div class="nav-block next pending">
+  <div>
+    <div class="nav-label" data-copy="es">hacia el próximo texto →</div>
+    <div class="nav-label" data-copy="en">toward the next text →</div>
+    <div class="nav-q" data-copy="es">{html.escape(own_es)}</div>
+    <div class="nav-q" data-copy="en">{html.escape(own_en)}</div>
   </div>
-  <div class="carry-question" data-copy="es">{html.escape(own_es)}</div>
-  <div class="carry-question" data-copy="en">{html.escape(own_en)}</div>
 </div>"""
 
     return f"""<section class="grid">
   <div class="section-title" data-copy="es">arrastre</div>
   <div class="section-title" data-copy="en">carry</div>
-  <div class="carry-rule" data-copy="es">{CARRY_NOTE_ES}</div>
-  <div class="carry-rule" data-copy="en">{CARRY_NOTE_EN}</div>
-  <div class="carry-source" data-copy="es">{html.escape(own_es)}</div>
-  <div class="carry-source" data-copy="en">{html.escape(own_en)}</div>
-  <div class="carry-flow">
-    {left}
-    {right}
+
+  <div>
+    <div class="carry-rule" data-copy="es">{CARRY_NOTE_ES}</div>
+    <div class="carry-rule" data-copy="en">{CARRY_NOTE_EN}</div>
+
+    <div class="reading-nav">
+      {left}
+      {right}
+    </div>
   </div>
 </section>"""
 
