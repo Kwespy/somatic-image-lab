@@ -418,6 +418,62 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   color:var(--muted);
 }
 
+
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.carry-source{display:none!important}
+.carry-flow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  grid-column:1 / -1;
+}
+.carry-card{
+  min-height:220px;
+  padding:22px;
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:inherit;
+  text-decoration:none;
+  transition:border-color .15s ease;
+}
+a.carry-card:hover{border-color:var(--orange)}
+.carry-card.current{border-color:var(--ink)}
+.carry-direction{
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:36px;
+}
+.carry-question{
+  font-size:clamp(22px,2.5vw,38px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.carry-card.start .carry-question{
+  font-size:14px;
+  line-height:1.4;
+  letter-spacing:0;
+  color:var(--muted);
+}
+.carry-card.waiting .carry-direction::after{
+  content:"";
+}
+@media(max-width:760px){
+  .carry-flow{grid-template-columns:1fr}
+  .carry-card{min-height:180px}
+}
+
 </style>
 <script>
 (function () {
@@ -637,14 +693,22 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   </div>
 
   <section class="grid">
-    <div class="section-title" data-copy="es">arrastre</div>
-    <div class="section-title" data-copy="en">carry</div>
-<div class="carry-rule" data-copy="es">Esta pregunta comprime las tensiones del texto y de su Máquina de Error. Hereda las contaminaciones anteriores para que el error se acumule y abra nuevas posibilidades.</div>
-<div class="carry-rule" data-copy="en">This question compresses the tensions of the text and its Error Machine. It inherits previous contaminations so error can accumulate and open new possibilities.</div>
-
-    <div class="carry" data-copy="es">¿Cuándo una imagen sigue siendo la misma si cada sistema que atraviesa también participa en transformarla?</div>
-    <div class="carry" data-copy="en">When does an image remain the same if every system it passes through also participates in transforming it?</div>
-  </section>
+  <div class="section-title" data-copy="es">arrastre</div>
+  <div class="section-title" data-copy="en">carry</div>
+  <div class="carry-rule" data-copy="es">Cada pregunta comprime las tensiones de su texto y de su Máquina de Error. Hereda contaminaciones anteriores para que el error se acumule y abra nuevas posibilidades.</div>
+  <div class="carry-rule" data-copy="en">Each question compresses the tensions of its text and its Error Machine. It inherits previous contaminations so error can accumulate and open new possibilities.</div>
+  <div class="carry-source" data-copy="es">¿Cuándo una imagen sigue siendo la misma si cada sistema que atraviesa también participa en transformarla?</div>
+  <div class="carry-source" data-copy="en">When does an image remain the same if every system it passes through also participates in transforming it?</div>
+  <div class="carry-flow"><a class="carry-card incoming" href="../001-peter-weibel/index.html">
+  <div class="carry-direction"><span data-inline="es">← viene de 001 · Peter Weibel</span><span data-inline="en">← comes from 001 · Peter Weibel</span></div>
+  <div class="carry-question" data-copy="es">¿La especificidad de una imagen pertenece a su soporte actual o a la historia de operaciones que la hicieron llegar hasta ahí?</div>
+  <div class="carry-question" data-copy="en">Does an image’s specificity belong to its current support, or to the history of operations that brought it there?</div>
+</a><div class="carry-card current waiting">
+  <div class="carry-direction"><span data-inline="es">hacia el próximo texto →</span><span data-inline="en">toward the next text →</span></div>
+  <div class="carry-question" data-copy="es">¿Cuándo una imagen sigue siendo la misma si cada sistema que atraviesa también participa en transformarla?</div>
+  <div class="carry-question" data-copy="en">When does an image remain the same if every system it passes through also participates in transforming it?</div>
+</div></div>
+</section>
 
   <section class="grid">
     <div class="section-title" data-copy="es">sobre esta máquina</div>
