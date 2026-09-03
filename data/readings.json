@@ -88,5 +88,15 @@
     "date": "2026-09-03",
     "error_es": "injerto",
     "error_en": "graft"
+  },
+  {
+    "number": 10,
+    "slug": "010-matthew-fuller-andrew-goffey-evil-media",
+    "author": "Matthew Fuller & Andrew Goffey",
+    "title_es": "Evil Media",
+    "title_en": "Evil Media",
+    "date": "2026-09-03",
+    "error_es": "dobladillo",
+    "error_en": "hem"
   }
 ]
