@@ -404,6 +404,19 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   .branches{grid-template-columns:1fr}
   .article-hero{padding:46px 0 38px}
 }
+
+.random-start{
+  margin:0 0 18px;display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:15px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)
+}
+.random-start button{
+  border:0;background:none;padding:0;color:var(--ink);font:inherit;
+  font-size:clamp(20px,2.2vw,29px);line-height:1.15;letter-spacing:-.025em;
+  cursor:pointer;text-align:left
+}
+.random-start button:hover{color:var(--orange)}
+.random-start .random-arrow{font-size:28px;transform:rotate(-7deg)}
+
 </style>
 
 
@@ -481,7 +494,30 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
     <div class="eyebrow" data-copy="en">readings</div>
 
     <div>
-      <!-- POSTS_START -->
+      <div class="random-start">
+  <button type="button" onclick="tsilRandomReading()">
+    <span data-inline="es">empezar en cualquier parte</span>
+    <span data-inline="en">start anywhere</span>
+  </button>
+  <div class="random-arrow">↝</div>
+</div>
+
+<!-- POSTS_START -->
+<a class="post-card" href="readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/index.html">
+  <div class="post-number">003</div>
+  <div>
+    <h2 class="post-title" data-copy="es">La memoria, la historia, el olvido</h2>
+    <h2 class="post-title" data-copy="en">Memory, History, Forgetting</h2>
+    <div class="post-author">Paul Ricœur</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: erosión</span>
+      <span class="error-pill" data-inline="en">forced error: erosion</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
 <a class="post-card" href="readings/002-karen-barad-meeting-the-universe-halfway/index.html">
   <div class="post-number">002</div>
   <div>
@@ -527,5 +563,13 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 </footer>
 
 </div>
+<script id="tsil-random-start">
+window.tsilRandomReading=function(){
+  const cards=Array.from(document.querySelectorAll('a.post-card'));
+  if(!cards.length)return;
+  const card=cards[Math.floor(Math.random()*cards.length)];
+  window.location.href=card.getAttribute('href');
+};
+</script>
 </body>
 </html>

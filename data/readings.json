@@ -18,5 +18,15 @@
     "date": "2026-09-03",
     "error_es": "fermentación",
     "error_en": "fermentation"
+  },
+  {
+    "number": 3,
+    "slug": "003-paul-ricoeur-la-memoria-la-historia-el-olvido",
+    "author": "Paul Ricœur",
+    "title_es": "La memoria, la historia, el olvido",
+    "title_en": "Memory, History, Forgetting",
+    "date": "2026-09-03",
+    "error_es": "erosión",
+    "error_en": "erosion"
   }
 ]
