@@ -68,5 +68,15 @@
     "date": "2026-09-03",
     "error_es": "rechazo",
     "error_en": "rejection"
+  },
+  {
+    "number": 8,
+    "slug": "008-mark-b-n-hansen-new-philosophy-for-new-media",
+    "author": "Mark B. N. Hansen",
+    "title_es": "New Philosophy for New Media",
+    "title_en": "New Philosophy for New Media",
+    "date": "2026-09-03",
+    "error_es": "aduana",
+    "error_en": "customs"
   }
 ]
