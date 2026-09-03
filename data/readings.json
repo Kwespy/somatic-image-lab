@@ -28,5 +28,15 @@
     "date": "2026-09-03",
     "error_es": "erosión",
     "error_en": "erosion"
+  },
+  {
+    "number": 4,
+    "slug": "004-georges-didi-huberman-ante-el-tiempo",
+    "author": "Georges Didi-Huberman",
+    "title_es": "Ante el tiempo",
+    "title_en": "Ante el tiempo",
+    "date": "2026-09-03",
+    "error_es": "injerto",
+    "error_en": "graft"
   }
 ]
