@@ -8,8 +8,8 @@ DATA=ROOT/"data"/"readings.json"
 HOME=ROOT/"index.html"
 SITEMAP=ROOT/"sitemap.xml"
 DOMAIN="https://thesomaticimagelab.kurtwespyianatos.com"
-CARRY_NOTE_ES='Cada pregunta comprime las tensiones de su texto y de su Máquina de Error. Hereda contaminaciones anteriores para que el error se acumule y abra nuevas posibilidades.'
-CARRY_NOTE_EN='Each question compresses the tensions of its text and its Error Machine. It inherits previous contaminations so error can accumulate and open new possibilities.'
+CARRY_NOTE_ES='Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.'
+CARRY_NOTE_EN='These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.'
 FLOW_CSS='\n.carry-rule{\n  margin:10px 0 18px;\n  max-width:760px;\n  font-size:11px;\n  line-height:1.45;\n  letter-spacing:.02em;\n  color:var(--muted);\n}\n.carry-source{display:none!important}\n.carry-flow{\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:14px;\n  grid-column:1 / -1;\n}\n.carry-card{\n  min-height:220px;\n  padding:22px;\n  border:1px solid var(--line);\n  display:flex;\n  flex-direction:column;\n  justify-content:space-between;\n  color:inherit;\n  text-decoration:none;\n  transition:border-color .15s ease;\n}\na.carry-card:hover{border-color:var(--orange)}\n.carry-card.current{border-color:var(--ink)}\n.carry-direction{\n  font-size:11px;\n  line-height:1.35;\n  letter-spacing:.09em;\n  text-transform:uppercase;\n  color:var(--muted);\n  margin-bottom:36px;\n}\n.carry-question{\n  font-size:clamp(22px,2.5vw,38px);\n  line-height:1.08;\n  letter-spacing:-.035em;\n}\n.carry-card.start .carry-question{\n  font-size:14px;\n  line-height:1.4;\n  letter-spacing:0;\n  color:var(--muted);\n}\n.carry-card.waiting .carry-direction::after{\n  content:"";\n}\n@media(max-width:760px){\n  .carry-flow{grid-template-columns:1fr}\n  .carry-card{min-height:180px}\n}\n'
 
 RANDOM_CSS="""
@@ -100,11 +100,26 @@ def strip_tags(s):
     return re.sub(r'<[^>]+>','',s).strip()
 
 def own_carry(page):
+    # Preferred canonical hidden source used after the flow is rebuilt.
     for cls in ("carry-source","carry"):
         es=re.search(rf'<div class="{cls}" data-copy="es">(.*?)</div>',page,re.S)
         en=re.search(rf'<div class="{cls}" data-copy="en">(.*?)</div>',page,re.S)
         if es and en:
             return strip_tags(es.group(1)),strip_tags(en.group(1))
+
+    # Compatibility with posts whose ARRASTRE already shows only two cards.
+    # The last nav-q is the outgoing question produced by the current reading.
+    es_all=re.findall(r'<div class="nav-q" data-copy="es">(.*?)</div>',page,re.S)
+    en_all=re.findall(r'<div class="nav-q" data-copy="en">(.*?)</div>',page,re.S)
+    if es_all and en_all:
+        return strip_tags(es_all[-1]),strip_tags(en_all[-1])
+
+    # Compatibility with already rebuilt carry-flow markup without carry-source.
+    es_all=re.findall(r'<div class="carry-question" data-copy="es">(.*?)</div>',page,re.S)
+    en_all=re.findall(r'<div class="carry-question" data-copy="en">(.*?)</div>',page,re.S)
+    if es_all and en_all:
+        return strip_tags(es_all[-1]),strip_tags(en_all[-1])
+
     return None,None
 
 def ensure_css(page):
@@ -198,6 +213,28 @@ def rebuild_carry_flow(items):
             print("AVISO: no encontré sección ARRASTRE en",it["slug"])
         p.write_text(page,encoding="utf-8")
 
+def _applescript_escape(s):
+    return str(s).replace("\\","\\\\").replace('"','\\"').replace("\n","\\n")
+
+def confirm_update(old,m):
+    num=f'{int(old["number"]):03d}'
+    msg=(
+        f'{num} ya existe.\\n\\n'
+        f'{m["author"]}\\n{m["title_en"]}\\n\\n'
+        '¿Quieres actualizar este post manteniendo su número y su URL?'
+    )
+    script=(
+        'display dialog "'+_applescript_escape(msg)+'" '
+        'buttons {"Cancelar","Actualizar"} '
+        'default button "Actualizar" cancel button "Cancelar" '
+        'with title "The Somatic Image Lab"'
+    )
+    r=subprocess.run(
+        ["/usr/bin/osascript","-e",script],
+        capture_output=True,text=True
+    )
+    return r.returncode==0 and "Actualizar" in r.stdout
+
 def update_sitemap(items):
     seq=sorted(items,key=lambda x:int(x["number"]))
     urls=[DOMAIN+"/"]+[DOMAIN+"/readings/"+x["slug"]+"/" for x in seq]
@@ -207,12 +244,26 @@ def update_sitemap(items):
         +"\n".join("  <url><loc>"+u+"</loc></url>" for u in urls)
         +'\n</urlset>\n',encoding="utf-8")
 
-def gitpush(title):
-    subprocess.run(["git","add","-A"],cwd=ROOT)
-    subprocess.run(["git","commit","-m","Add reading: "+title],cwd=ROOT)
+def gitpush(title,num,mode):
+    subprocess.run(["git","add","-A"],cwd=ROOT,check=False)
+
+    # Nothing changed: not an error.
+    staged=subprocess.run(["git","diff","--cached","--quiet"],cwd=ROOT)
+    if staged.returncode==0:
+        print("SIN CAMBIOS NUEVOS PARA GIT.")
+        return
+
+    verb="Update" if mode=="update" else "Add"
+    r=subprocess.run(
+        ["git","commit","-m",f"{verb} reading {num:03d}: {title}"],
+        cwd=ROOT
+    )
+    if r.returncode!=0:
+        die("Los archivos se prepararon, pero git commit falló.")
+
     r=subprocess.run(["git","push"],cwd=ROOT)
     if r.returncode!=0:
-        die("El post quedó creado, pero git push falló.")
+        die("El post quedó preparado y guardado en git, pero git push falló.")
 
 def main():
     src=sys.argv[1] if len(sys.argv)>1 else input("Ruta del ZIP:\n> ").strip().strip("'\"")
@@ -224,14 +275,63 @@ def main():
         items=json.loads(DATA.read_text(encoding="utf-8"))
 
         key=(m["author"].strip().casefold(),m["title_en"].strip().casefold())
+        existing=None
         for old in items:
             if (old["author"].strip().casefold(),old["title_en"].strip().casefold())==key:
-                die(f'YA EXISTE COMO {int(old["number"]):03d}. No se volvió a publicar.')
+                existing=old
+                break
 
+        # ──────────────────────────────────────────────────────────────
+        # UPDATE EXISTING POST
+        # Same author + title keeps number, slug and URL.
+        # ──────────────────────────────────────────────────────────────
+        if existing:
+            num=int(existing["number"])
+            slug=existing["slug"]
+
+            if not confirm_update(existing,m):
+                print(f"\nACTUALIZACIÓN {num:03d} CANCELADA. No se hicieron cambios.\n")
+                raise SystemExit(2)
+
+            dest=READINGS/slug
+            dest.mkdir(parents=True,exist_ok=True)
+
+            page=hp.read_text(encoding="utf-8")
+            page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
+            page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
+            (dest/"index.html").write_text(page,encoding="utf-8")
+
+            # Preserve number, slug and original publication date.
+            existing.update({
+                "author":m["author"],
+                "title_es":m["title_es"],
+                "title_en":m["title_en"],
+                "error_es":m["error_es"],
+                "error_en":m["error_en"]
+            })
+            if not existing.get("date"):
+                existing["date"]=m["date"]
+
+            DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2),encoding="utf-8")
+            update_home(items)
+            rebuild_carry_flow(items)
+            update_sitemap(items)
+            gitpush(m["title_en"],num,"update")
+
+            print(f"\nPOST {num:03d} ACTUALIZADO ✓")
+            print("MISMO NÚMERO Y URL ✓")
+            print("ARRASTRE DOBLE ✓")
+            print("HOME ✓")
+            print("SITEMAP ✓")
+            return
+
+        # ──────────────────────────────────────────────────────────────
+        # ADD NEW POST
+        # ──────────────────────────────────────────────────────────────
         num=max(int(x["number"]) for x in items)+1
         slug=f'{num:03d}-{slugify(m["slug"])}'
         dest=READINGS/slug
-        dest.mkdir(parents=True)
+        dest.mkdir(parents=True,exist_ok=True)
 
         page=hp.read_text(encoding="utf-8")
         page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
@@ -247,10 +347,12 @@ def main():
         update_home(items)
         rebuild_carry_flow(items)
         update_sitemap(items)
-        gitpush(m["title_en"])
-        print(f"\nPOST {num:03d} ✓")
+        gitpush(m["title_en"],num,"add")
+
+        print(f"\nPOST {num:03d} CREADO ✓")
         print("ARRASTRE DOBLE ✓")
         print("HOME ✓")
+        print("SITEMAP ✓")
     finally:
         if tmp: shutil.rmtree(tmp,ignore_errors=True)
 
