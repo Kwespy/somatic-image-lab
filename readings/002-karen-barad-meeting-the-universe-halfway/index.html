@@ -4,17 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Karen Barad — Meeting the Universe Halfway | The Somatic Image Lab | Kurt Wesp Yianatos</title>
-<meta name="description" content="AI-assisted research reading by Kurt Wesp Yianatos on Karen Barad's Meeting the Universe Halfway for The Somatic Image Lab: entanglement, intra-action, matter, meaning, and deliberate error.">
+<meta name="description" content="AI-assisted research reading by Kurt Wesp Yianatos on Karen Barad\'s Meeting the Universe Halfway: intra-action, apparatus, agential cuts, phenomena and deliberate error.">
 <meta name="author" content="Kurt Wesp Yianatos">
-<meta name="keywords" content="Kurt Wesp Yianatos, The Somatic Image Lab, Karen Barad, Meeting the Universe Halfway, entanglement, intra-action, matter and meaning, hybrid painting, artistic research">
 <meta name="robots" content="index,follow">
 <meta property="og:title" content="Karen Barad — Meeting the Universe Halfway">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:type" content="article">
 <link rel="author" href="https://www.kurtwespyianatos.com/">
-<script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Article", "headline": "Meeting the Universe Halfway — Karen Barad", "author": {"@type": "Person", "name": "Kurt Wesp Yianatos", "url": "https://www.kurtwespyianatos.com/", "alternateName": ["KWY", "KWY-A⁰¹RTBORG"]}, "publisher": {"@type": "Organization", "name": "The Somatic Image Lab"}, "about": ["Karen Barad", "Meeting the Universe Halfway", "entanglement", "intra-action", "matter and meaning", "artistic research", "hybrid painting", "deliberate AI error"], "inLanguage": ["es", "en"]}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Meeting the Universe Halfway — Karen Barad","author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab"},"about":["Karen Barad","Meeting the Universe Halfway","intra-action","apparatus","agential cut","phenomena","material-discursive practices","artistic research","deliberate AI error"],"inLanguage":["es","en"]}</script>
 <style>
 :root{
   --paper:#f2efe7;
@@ -42,459 +39,124 @@ html[data-lang="es"] [data-inline="es"],
 html[data-lang="en"] [data-inline="en"]{display:inline!important}
 [data-inline]{display:none!important}
 
-.shell{
-  width:min(var(--max), calc(100% - 40px));
-  margin:0 auto;
-}
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
 .topbar{
-  min-height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  border-bottom:1px solid var(--line);
-  font-size:11px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+  min-height:58px;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;border-bottom:1px solid var(--line);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase
 }
-.topbar a{
-  text-decoration:none;
-}
-.lang-switch{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.lang-switch button{
-  border:0;
-  background:none;
-  padding:2px 0;
-  color:var(--muted);
-  cursor:pointer;
-}
-.lang-switch button.active{
-  color:var(--ink);
-  border-bottom:1px solid currentColor;
-}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
 
-/* core visual language: misregistration rather than "glitch" */
-.misregister{
-  position:relative;
-  display:inline-block;
-  isolation:isolate;
-}
+.misregister{position:relative;display:inline-block;isolation:isolate}
 .misregister::after{
-  content:attr(data-text);
-  position:absolute;
-  inset:0;
-  transform:translate(6px,-3px);
-  color:transparent;
-  -webkit-text-stroke:1.2px var(--orange);
-  z-index:-1;
-  pointer-events:none;
+  content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);
+  color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none
 }
 
-.hero{
-  padding:76px 0 58px;
-}
-.hero h1{
-  margin:0;
-  font-size:clamp(62px,10.8vw,150px);
-  line-height:.79;
-  letter-spacing:-.075em;
-  font-weight:800;
-}
-.intro{
-  max-width:850px;
-  margin-top:44px;
-  font-size:clamp(22px,2.9vw,34px);
-  line-height:1.18;
-  letter-spacing:-.025em;
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(48px,8.8vw,112px);line-height:.84;letter-spacing:-.067em;font-weight:800}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{
+  max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);
+  line-height:1.2;letter-spacing:-.02em
 }
 
 .motion-line{
-  position:relative;
-  margin:0 0 72px;
-  padding:26px 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  overflow:hidden;
+  position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);overflow:hidden
 }
-.motion-line .text{
-  position:relative;
-  font-size:clamp(26px,4.3vw,56px);
-  line-height:1.02;
-  letter-spacing:-.045em;
-}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
 .motion-line .text::after{
-  content:attr(data-text);
-  position:absolute;
-  left:5px;
-  top:-2px;
-  color:var(--orange);
-  clip-path:inset(0 0 56% 0);
-  mix-blend-mode:multiply;
-  pointer-events:none;
+  content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);
+  clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:170px minmax(0,1fr);
-  gap:34px;
-  padding:25px 0 34px;
-  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;
+  padding:25px 0 34px;border-top:1px solid var(--line)
 }
-.eyebrow{
-  padding-top:4px;
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+.eyebrow,.section-title{
+  padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase
 }
-.copy{
-  max-width:760px;
-  font-size:18px;
-  line-height:1.48;
-}
-.copy p{margin:0 0 14px}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
 
-.post-card{
-  display:grid;
-  grid-template-columns:64px minmax(0,1fr) auto;
-  gap:18px;
-  align-items:start;
-  padding:22px 0 24px;
-  border-top:1px solid var(--ink);
-  border-bottom:1px solid var(--line);
-  text-decoration:none;
-}
-.post-number{
-  padding-top:5px;
-  font-size:11px;
-  color:var(--muted);
-}
-.post-title{
-  margin:0 0 7px;
-  font-size:clamp(32px,4.8vw,58px);
-  line-height:.98;
-  letter-spacing:-.05em;
-  font-weight:600;
-}
-.post-author{
-  font-size:14px;
-  color:var(--muted);
-}
-.post-meta{
-  margin-top:14px;
-  font-size:11px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.error-pill{
-  display:inline-block;
-  margin-left:5px;
-  padding:3px 7px;
-  background:var(--orange);
-  color:#000;
-  transform:rotate(-.7deg);
-}
-.post-arrow{
-  font-size:32px;
-  line-height:1;
-}
-.footer{
-  margin-top:48px;
-  padding:20px 0 52px;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  gap:24px;
-  flex-wrap:wrap;
-  font-size:11px;
-  color:var(--muted);
-}
-.footer a{
-  text-decoration:none;
-  border-bottom:1px solid currentColor;
-}
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
 
-/* post */
-.article-hero{
-  padding:64px 0 48px;
-}
-.article-kicker{
-  margin-bottom:14px;
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-}
-.article-title{
-  margin:0;
-  font-size:clamp(48px,8.8vw,112px);
-  line-height:.84;
-  letter-spacing:-.067em;
-  font-weight:800;
-}
-.article-author{
-  margin-top:16px;
-  font-size:18px;
-}
-.article-lead{
-  max-width:850px;
-  margin-top:36px;
-  font-size:clamp(21px,2.8vw,32px);
-  line-height:1.2;
-  letter-spacing:-.02em;
-}
-.section-title{
-  padding-top:4px;
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-}
-.large-copy{
-  font-size:clamp(22px,2.5vw,31px);
-  line-height:1.22;
-  letter-spacing:-.018em;
-}
-.large-copy p{
-  margin:0 0 18px;
-}
-.keep{
-  padding:13px 0;
-  border-top:1px solid var(--ink);
-  font-size:clamp(20px,2.2vw,28px);
-  line-height:1.22;
-}
-.threshold{
-  margin-top:18px;
-  padding:0 18px 18px;
-  background:rgba(0,0,0,.035);
-}
-.pressure{
-  border-left:4px solid var(--ink);
-  padding-left:16px;
-  font-size:clamp(25px,3vw,38px);
-  line-height:1.12;
-  letter-spacing:-.03em;
-}
-.incomplete{
-  padding:18px;
-  border:2px solid var(--ink);
-  font-size:clamp(26px,3.2vw,40px);
-  line-height:1.16;
-  letter-spacing:-.035em;
-}
-.branches{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.branch{
-  padding:15px;
-  border:1px solid var(--ink);
-  font-size:clamp(19px,2vw,26px);
-  line-height:1.25;
-}
-.residue{
-  margin-bottom:14px;
-  padding-left:15px;
-  border-left:2px solid var(--ink);
-  font-size:clamp(19px,2vw,27px);
-  line-height:1.25;
-}
-
-.error-zone{
-  margin-top:22px;
-  padding:30px 18px 24px;
-  background:var(--orange);
-}
-.error-card{
-  padding:22px;
-  background:var(--ink);
-  color:#fff;
-}
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
+.error-card{padding:22px;background:var(--ink);color:#fff}
 .error-card .eyebrow{color:#aaa}
-.error-context{
-  margin:3px 0 18px;
-  font-size:14px;
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+
+.carry{padding:18px;border:2px solid var(--ink);font-size:clamp(24px,2.8vw,36px);line-height:1.16;letter-spacing:-.028em}
+.carry-rule{margin:10px 0 18px;max-width:720px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{
+  min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;
+  display:flex;flex-direction:column;justify-content:space-between
 }
-.error-word{
-  margin:7px 0 21px;
-  font-size:clamp(56px,8vw,104px);
-  line-height:.82;
-  letter-spacing:-.065em;
-  font-weight:900;
-}
-.error-collision{
-  margin:5px 0 22px;
-  font-size:clamp(23px,2.6vw,34px);
-}
-.error-statement{
-  margin:6px 0 24px;
-  font-size:clamp(27px,3.4vw,43px);
-  line-height:1.07;
-  letter-spacing:-.035em;
-}
-.error-opening{
-  margin:6px 0 22px;
-  font-size:clamp(18px,2vw,24px);
-  line-height:1.34;
-}
-.error-question{
-  margin:6px 0 0;
-  font-size:clamp(21px,2.4vw,31px);
-  line-height:1.2;
-}
-.reject{
-  display:grid;
-  grid-template-columns:42px minmax(0,1fr);
-  gap:12px;
-  margin-top:22px;
-  padding-top:18px;
-  border-top:1px solid rgba(0,0,0,.45);
-}
-.reject-x{
-  font-size:50px;
-  line-height:1;
-}
-.reject-text{
-  font-size:clamp(19px,2vw,27px);
-  line-height:1.22;
-}
-.reject-note{
-  margin-top:8px;
-  font-size:12px;
-}
-.carry{
-  padding:18px;
-  border:2px solid var(--ink);
-  font-size:clamp(24px,2.8vw,36px);
-  line-height:1.16;
-  letter-spacing:-.028em;
-}
-.about-machine{
-  max-width:780px;
-  font-size:13px;
-  line-height:1.5;
-}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
 .identity{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px 12px;
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:11px;
+  display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--line);color:var(--muted);font-size:11px
 }
-.identity a{
-  color:var(--ink);
-  text-decoration:none;
-  border-bottom:1px solid currentColor;
-}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
 
 @media(max-width:760px){
-  .shell{width:min(var(--max), calc(100% - 24px))}
-  .hero{padding:48px 0 42px}
-  .hero h1{font-size:clamp(58px,19vw,110px)}
-  .intro{margin-top:32px}
+  .shell{width:min(var(--max),calc(100% - 24px))}
   .grid{grid-template-columns:1fr;gap:14px}
-  .post-card{grid-template-columns:42px minmax(0,1fr)}
-  .post-arrow{grid-column:2}
   .branches{grid-template-columns:1fr}
   .article-hero{padding:46px 0 38px}
 }
-
-.carry-rule{
-  margin:10px 0 18px;
-  max-width:720px;
-  font-size:11px;
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--muted);
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
 }
-
-
-.carry-rule{
-  margin:10px 0 18px;
-  max-width:760px;
-  font-size:11px;
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--muted);
-}
-.carry-source{display:none!important}
-.carry-flow{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  grid-column:1 / -1;
-}
-.carry-card{
-  min-height:220px;
-  padding:22px;
-  border:1px solid var(--line);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  color:inherit;
-  text-decoration:none;
-  transition:border-color .15s ease;
-}
-a.carry-card:hover{border-color:var(--orange)}
-.carry-card.current{border-color:var(--ink)}
-.carry-direction{
-  font-size:11px;
-  line-height:1.35;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:36px;
-}
-.carry-question{
-  font-size:clamp(22px,2.5vw,38px);
-  line-height:1.08;
-  letter-spacing:-.035em;
-}
-.carry-card.start .carry-question{
-  font-size:14px;
-  line-height:1.4;
-  letter-spacing:0;
-  color:var(--muted);
-}
-.carry-card.waiting .carry-direction::after{
-  content:"";
-}
-@media(max-width:760px){
-  .carry-flow{grid-template-columns:1fr}
-  .carry-card{min-height:180px}
-}
-
 </style>
 <script>
-(function () {
-  const saved = localStorage.getItem("tsil-lang");
-  const browser = (navigator.language || "en").toLowerCase();
-  const initial = saved || (browser.startsWith("es") ? "es" : "en");
-
-  function setLang(lang) {
-    document.documentElement.setAttribute("data-lang", lang);
-    document.documentElement.lang = lang;
-    localStorage.setItem("tsil-lang", lang);
-    document.querySelectorAll("[data-switch]").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.switch === lang);
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.switch===lang);
     });
   }
-
-  window.setTSILLang = setLang;
-  document.addEventListener("DOMContentLoaded", () => setLang(initial));
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
 })();
 </script>
-
 
 <style id="tsil-carry-flow-v4">
 .carry-rule{
@@ -565,190 +227,176 @@ a.carry-card:hover{border-color:var(--orange)}
 </header>
 
 <main>
-  <section class="article-hero">
-    <div class="article-kicker" data-copy="es">lectura / 002</div>
-    <div class="article-kicker" data-copy="en">reading / 002</div>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 002</div>
+  <div class="article-kicker" data-copy="en">reading / 002</div>
 
-    <h1 class="article-title" data-copy="es">
-      <span class="misregister" data-text="MEETING THE">MEETING THE</span><br>UNIVERSE HALFWAY
-    </h1>
-    <h1 class="article-title" data-copy="en">
-      <span class="misregister" data-text="MEETING THE">MEETING THE</span><br>UNIVERSE HALFWAY
-    </h1>
+  <h1 class="article-title" data-copy="es">
+    <span class="misregister" data-text="MEETING THE">MEETING THE</span><br>UNIVERSE<br>HALFWAY
+  </h1>
+  <h1 class="article-title" data-copy="en">
+    <span class="misregister" data-text="MEETING THE">MEETING THE</span><br>UNIVERSE<br>HALFWAY
+  </h1>
 
-    <div class="article-author">Karen Barad</div>
+  <div class="article-author">Karen Barad</div>
 
-    <div class="article-lead" data-copy="es">
-      Barad propone que las cosas no existen primero como entidades independientes y luego entran en relación. Individuos, límites y significados emergen dentro de relaciones materiales que los constituyen.
-    </div>
-    <div class="article-lead" data-copy="en">
-      Barad argues that things do not first exist as independent entities and only later enter into relation. Individuals, boundaries, and meanings emerge within material relations that constitute them.
-    </div>
-  </section>
+  <div class="article-lead" data-copy="es">
+    Barad propone que las cosas no existen primero como entidades independientes para luego relacionarse. Sus límites y propiedades se vuelven determinados dentro de intra-acciones específicas. Los aparatos participan materialmente en producir esas separaciones y, con ellas, los fenómenos que pueden aparecer.
+  </div>
+  <div class="article-lead" data-copy="en">
+    Barad proposes that things do not first exist as independent entities and then enter into relations. Their boundaries and properties become determinate within specific intra-actions. Apparatuses materially participate in producing those separations and, with them, the phenomena that can appear.
+  </div>
+</section>
 
-  <div class="motion-line">
-    <div class="text" data-text="entrelazamiento → intra-acción → materialización → devenir" data-copy="es">
-      entrelazamiento → intra-acción → materialización → devenir
-    </div>
-    <div class="text" data-text="entanglement → intra-action → materialization → becoming" data-copy="en">
-      entanglement → intra-action → materialization → becoming
-    </div>
+<div class="motion-line">
+  <div class="text" data-text="entanglement → apparatus → cut → phenomenon" data-copy="es">entanglement → apparatus → cut → phenomenon</div>
+  <div class="text" data-text="entanglement → apparatus → cut → phenomenon" data-copy="en">entanglement → apparatus → cut → phenomenon</div>
+</div>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">en 1 minuto</div>
+  <div class="section-title" data-copy="en">in 1 minute</div>
+
+  <div class="large-copy" data-copy="es">
+    <p>Barad distingue <em>intra-action</em> de interacción. Una interacción supone entidades separadas que existen antes de encontrarse; una intra-acción describe una situación en la que las entidades distinguibles emergen dentro de la relación misma.</p>
+    <p>El aparato tampoco es un instrumento neutral que observa una realidad ya delimitada. Es una configuración material que participa en producir un corte: establece, dentro de un fenómeno, qué puede aparecer como objeto, qué funciona como agencia de observación y qué propiedades llegan a ser determinadas.</p>
+    <p>Por eso diferentes configuraciones no ofrecen simplemente perspectivas distintas sobre una misma cosa intacta. Diferentes cortes pueden producir fenómenos diferentes. Conocer, medir y representar intervienen materialmente en aquello que llega a adquirir límites y significado.</p>
   </div>
 
-  <section class="grid">
-    <div class="section-title" data-copy="es">en 1 minuto</div>
-    <div class="section-title" data-copy="en">in 1 minute</div>
+  <div class="large-copy" data-copy="en">
+    <p>Barad distinguishes <em>intra-action</em> from interaction. Interaction assumes separate entities that exist before meeting; intra-action describes a situation in which distinguishable entities emerge within the relation itself.</p>
+    <p>The apparatus is also not a neutral instrument observing an already bounded reality. It is a material configuration that participates in producing a cut: within a phenomenon it establishes what can appear as object, what functions as an agency of observation, and which properties become determinate.</p>
+    <p>Different configurations therefore do not simply offer different perspectives on the same intact thing. Different cuts can produce different phenomena. Knowing, measuring, and representing materially participate in what comes to acquire boundaries and meaning.</p>
+  </div>
+</section>
 
-    <div class="large-copy" data-copy="es">
-      <p>Entrelazamiento no significa simplemente dos cosas separadas conectándose. Para Barad, las entidades no preexisten de forma completamente independiente a sus relaciones.</p>
-      <p>Materia y significado no son dos capas que después se combinan. El libro insiste en que no pueden separarse limpiamente.</p>
-      <p>Conocer tampoco ocurre desde afuera: ser, conocer y hacer quedan implicados en las prácticas mediante las cuales algo llega a importar y adquirir forma.</p>
-    </div>
-    <div class="large-copy" data-copy="en">
-      <p>Entanglement does not simply mean two separate things becoming connected. For Barad, entities do not fully preexist their relations as independent units.</p>
-      <p>Matter and meaning are not two layers that are later combined. The book insists that they cannot be cleanly separated.</p>
-      <p>Knowing does not happen from outside either: being, knowing, and doing are implicated in the practices through which something comes to matter and take form.</p>
-    </div>
-  </section>
+<section class="grid">
+  <div class="section-title" data-copy="es">tres cosas para conservar</div>
+  <div class="section-title" data-copy="en">three things to keep</div>
 
-  <section class="grid">
-    <div class="section-title" data-copy="es">tres cosas para conservar</div>
-    <div class="section-title" data-copy="en">three things to keep</div>
-
-    <div data-copy="es">
-      <div class="keep">Una relación no siempre ocurre entre términos ya terminados; puede participar en producirlos.</div>
-      <div class="keep">Materia y significado no llegan por caminos independientes.</div>
-      <div class="keep">Un límite puede ser un resultado de una práctica, no necesariamente su punto de partida.</div>
-    </div>
-    <div data-copy="en">
-      <div class="keep">A relation does not always occur between already finished terms; it can participate in producing them.</div>
-      <div class="keep">Matter and meaning do not arrive by independent routes.</div>
-      <div class="keep">A boundary can be an outcome of a practice rather than necessarily its starting point.</div>
-    </div>
-  </section>
-
-  <div class="threshold">
-    <section class="grid" style="border-top:0">
-      <div class="section-title" data-copy="es">umbral / punto de presión</div>
-      <div class="section-title" data-copy="en">threshold / pressure point</div>
-
-      <div class="pressure" data-copy="es">
-        El arrastre de Weibel preguntaba si la especificidad de una imagen pertenece al soporte o a la historia de operaciones que la llevó hasta ahí. Barad complica la alternativa: ¿y si imagen, soporte y operación no fueran términos completamente separados antes de relacionarse?
-      </div>
-      <div class="pressure" data-copy="en">
-        Weibel's carry asked whether an image's specificity belongs to its support or to the history of operations that brought it there. Barad complicates the alternative: what if image, support, and operation were not fully separate terms before entering into relation?
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="section-title" data-copy="es">proposición incompleta</div>
-      <div class="section-title" data-copy="en">unfinished proposition</div>
-
-      <div class="incomplete" data-copy="es">
-        Una imagen no cambia simplemente al pasar de un sistema a otro; quizá cada paso…
-      </div>
-      <div class="incomplete" data-copy="en">
-        An image does not simply change as it passes from one system to another; perhaps each passage…
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="section-title" data-copy="es">bifurcación</div>
-      <div class="section-title" data-copy="en">bifurcation</div>
-
-      <div class="branches" data-copy="es">
-        <div class="branch">La imagen atraviesa operaciones.</div>
-        <div class="branch">La imagen emerge de cada operación.</div>
-      </div>
-      <div class="branches" data-copy="en">
-        <div class="branch">The image passes through operations.</div>
-        <div class="branch">The image emerges from each operation.</div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="section-title" data-copy="es">residuo</div>
-      <div class="section-title" data-copy="en">residue</div>
-
-      <div data-copy="es">
-        <div class="residue">Si llevamos a Barad hacia la imagen, una traducción puede hacer algo más que modificar una imagen ya existente: puede participar en definir qué imagen hay.</div>
-        <div class="residue">La frontera entre soporte e imagen empieza a parecer menos estable cuando ambos se producen dentro de una misma operación.</div>
-      </div>
-      <div data-copy="en">
-        <div class="residue">If Barad is carried toward the image, a translation may do more than modify an already existing image: it may participate in defining what image there is.</div>
-        <div class="residue">The boundary between support and image begins to look less stable when both are produced within the same operation.</div>
-      </div>
-    </section>
+  <div data-copy="es">
+    <div class="keep">Las relaciones no conectan simplemente cosas ya formadas: las distinciones entre esas cosas pueden emerger dentro de la relación.</div>
+    <div class="keep">Un aparato es una práctica material de producción de límites, no sólo un instrumento transparente de observación.</div>
+    <div class="keep">Cambiar el corte puede cambiar el fenómeno; lo incluido y lo excluido participan en aquello que llega a existir de manera determinada.</div>
   </div>
 
-  <div class="error-zone">
-    <section class="grid" style="border-top:0;padding-top:0">
-      <div class="section-title" data-copy="es">máquina de error</div>
-      <div class="section-title" data-copy="en">error machine</div>
+  <div data-copy="en">
+    <div class="keep">Relations do not simply connect already formed things: distinctions between those things can emerge within the relation.</div>
+    <div class="keep">An apparatus is a material practice of boundary-making, not merely a transparent instrument of observation.</div>
+    <div class="keep">Changing the cut can change the phenomenon; what is included and excluded participates in what comes to exist determinately.</div>
+  </div>
+</section>
 
-      <div class="error-card">
-        <div class="eyebrow" data-copy="es">contexto importado</div>
-        <div class="eyebrow" data-copy="en">imported context</div>
-        <div class="error-context" data-copy="es">COCINA / CONSERVACIÓN</div>
-        <div class="error-context" data-copy="en">COOKING / PRESERVATION</div>
+<div class="threshold">
+<section class="grid" style="border-top:0">
+  <div class="section-title" data-copy="es">punto de arrastre</div>
+  <div class="section-title" data-copy="en">carry point</div>
 
-        <div class="eyebrow" data-copy="es">palabra importada</div>
-        <div class="eyebrow" data-copy="en">imported word</div>
-        <div class="error-word" data-copy="es">FERMENTACIÓN</div>
-        <div class="error-word" data-copy="en">FERMENTATION</div>
+  <div>
+    <div class="threshold-note" data-copy="es">Aquí entra la tensión heredada desde el reading anterior: trae una pregunta, intuición o problema previo y lo hace friccionar con la lectura actual.</div>
+    <div class="threshold-note" data-copy="en">Here the tension inherited from the previous reading enters: it brings a prior question, intuition or problem into friction with the current reading.</div>
 
-        <div class="eyebrow" data-copy="es">colisión</div>
-        <div class="eyebrow" data-copy="en">collision</div>
-        <div class="error-collision" data-copy="es">intra-acción × fermentación</div>
-        <div class="error-collision" data-copy="en">intra-action × fermentation</div>
+    <div class="pressure" data-copy="es">El arrastre de Hayles preguntaba por una imagen cuya transformación se distribuye recursivamente entre código, lenguaje, soporte y percepción, sin un nivel único que la determine. Barad empuja el problema más lejos: esos niveles tampoco tienen por qué ser entidades completamente delimitadas antes del encuentro. Una configuración material puede producir las fronteras que permiten distinguir qué cuenta como imagen, aparato, soporte u observador.</div>
 
-        <div class="eyebrow" data-copy="es">error forzado</div>
-        <div class="eyebrow" data-copy="en">forced error</div>
-        <div class="error-statement" data-copy="es">
-          La materia y el significado fermentan juntos hasta producir un fenómeno.
-        </div>
-        <div class="error-statement" data-copy="en">
-          Matter and meaning ferment together until they produce a phenomenon.
-        </div>
+    <div class="pressure" data-copy="en">Hayles's carry asked about an image whose transformation is recursively distributed among code, language, support, and perception, without a single level determining it. Barad pushes the problem further: those levels need not be fully bounded entities before the encounter either. A material configuration can produce the boundaries that allow image, apparatus, support, or observer to become distinguishable.</div>
+  </div>
+</section>
 
-        <div class="eyebrow" data-copy="es">lo que se escapó</div>
-        <div class="eyebrow" data-copy="en">what escaped</div>
-        <div class="error-opening" data-copy="es">
-          La afirmación no es justa con Barad, pero introduce una duración: algo puede no quedar constituido de una sola vez. Las condiciones de una relación pueden seguir modificando aquello que parece ya formado.
-        </div>
-        <div class="error-opening" data-copy="en">
-          The statement is not fair to Barad, but it introduces duration: something may not be constituted once and for all. The conditions of a relation may continue modifying what already appears formed.
-        </div>
+<section class="grid">
+  <div class="section-title" data-copy="es">proposición incompleta</div>
+  <div class="section-title" data-copy="en">unfinished proposition</div>
 
-        <div class="eyebrow" data-copy="es">pregunta que queda</div>
-        <div class="eyebrow" data-copy="en">question left behind</div>
-        <div class="error-question" data-copy="es">
-          ¿Una imagen termina alguna vez de producirse, o cada nueva captura, impresión o encuentro reactiva sus condiciones?
-        </div>
-        <div class="error-question" data-copy="en">
-          Does an image ever finish being produced, or does each new capture, print, or encounter reactivate its conditions?
-        </div>
-      </div>
-    </section>
+  <div class="incomplete" data-copy="es">Si cambiar el aparato puede cambiar el corte mediante el cual algo llega a ser una imagen determinada, entonces la misma imagen de origen podría dejar de ser “la misma” antes incluso de que…</div>
+  <div class="incomplete" data-copy="en">If changing the apparatus can change the cut through which something becomes a determinate image, then the same source image could cease to be “the same” even before…</div>
+</section>
 
-    <div class="reject">
-      <div class="reject-x">×</div>
-      <div>
-        <div class="eyebrow" data-copy="es">error que no produjo nada</div>
-        <div class="eyebrow" data-copy="en">error that produced nothing</div>
-        <div class="reject-text" data-copy="es">
-          El realismo agencial necesita luz verde para que la materia exista.
-        </div>
-        <div class="reject-text" data-copy="en">
-          Agential realism needs a green light for matter to exist.
-        </div>
-        <div class="reject-note" data-copy="es">SEMÁFORO. No produjo una diferencia interesante. Se descarta.</div>
-        <div class="reject-note" data-copy="en">TRAFFIC LIGHT. It produced no interesting difference. It is discarded.</div>
-      </div>
-    </div>
+<section class="grid">
+  <div class="section-title" data-copy="es">bifurcación</div>
+  <div class="section-title" data-copy="en">bifurcation</div>
+
+  <div class="branches" data-copy="es">
+    <div class="branch">Una imagen atraviesa distintos sistemas que modifican una identidad que, aunque inestable, continúa pasando de uno a otro.</div>
+    <div class="branch">Cada configuración puede volver a producir la frontera de aquello que contamos como “imagen”, haciendo que esa identidad no exista completamente antes de la operación.</div>
   </div>
 
-  <section class="grid">
+  <div class="branches" data-copy="en">
+    <div class="branch">An image passes through different systems that modify an identity which, although unstable, continues from one to another.</div>
+    <div class="branch">Each configuration can reproduce the boundary of what we count as “image,” meaning that this identity does not fully exist before the operation.</div>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">residuo</div>
+  <div class="section-title" data-copy="en">residue</div>
+
+  <div data-copy="es">
+    <div class="residue">La pregunta por si una imagen sigue siendo “la misma” presupone una frontera de identidad que quizá también sea producida por el sistema que la observa y transforma.</div>
+    <div class="residue">Una operación no sólo puede modificar propiedades de una imagen: puede participar en determinar qué pertenece a la imagen y qué queda como aparato, contexto o exterior.</div>
+  </div>
+
+  <div data-copy="en">
+    <div class="residue">Asking whether an image remains “the same” presupposes a boundary of identity that may itself be produced by the system observing and transforming it.</div>
+    <div class="residue">An operation may not only modify properties of an image: it can participate in determining what belongs to the image and what remains apparatus, context, or outside.</div>
+  </div>
+</section>
+</div>
+
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0">
+  <div class="section-title" data-copy="es">máquina de error</div>
+  <div class="section-title" data-copy="en">error machine</div>
+
+  <div class="error-card">
+    <div class="eyebrow" data-copy="es">contexto importado</div>
+    <div class="eyebrow" data-copy="en">imported context</div>
+    <div class="error-context" data-copy="es">TEATRO / CASTING</div>
+    <div class="error-context" data-copy="en">THEATRE / CASTING</div>
+
+    <div class="eyebrow" data-copy="es">palabra importada</div>
+    <div class="eyebrow" data-copy="en">imported word</div>
+    <div class="error-word" data-copy="es">REPARTO</div>
+    <div class="error-word" data-copy="en">CASTING</div>
+
+    <div class="eyebrow" data-copy="es">colisión</div>
+    <div class="eyebrow" data-copy="en">collision</div>
+    <div class="error-collision" data-copy="es">aparato × reparto</div>
+    <div class="error-collision" data-copy="en">apparatus × casting</div>
+
+    <div class="eyebrow" data-copy="es">error forzado</div>
+    <div class="eyebrow" data-copy="en">forced error</div>
+    <div class="error-statement" data-copy="es">Un aparato no observa una imagen: reparte partes del mundo en los papeles de objeto, instrumento y observador.</div>
+    <div class="error-statement" data-copy="en">An apparatus does not observe an image: it casts parts of the world into the roles of object, instrument, and observer.</div>
+
+    <div class="eyebrow" data-copy="es">lo que se escapó</div>
+    <div class="eyebrow" data-copy="en">what escaped</div>
+    <div class="error-opening" data-copy="es">
+      Un aparato no es un director de casting y las partes de un fenómeno no interpretan papeles teatrales. Pero la colisión permite aislar algo importante: las posiciones de “objeto” e “instrumento” no tienen por qué pertenecer naturalmente a entidades fijas. Una configuración específica puede producir esa distinción y otra configuración puede repartirla de otra manera.
+    </div>
+    <div class="error-opening" data-copy="en">
+      An apparatus is not a casting director, and parts of a phenomenon do not perform theatrical roles. But the collision isolates something important: the positions of “object” and “instrument” need not naturally belong to fixed entities. A specific configuration can produce that distinction, while another configuration can distribute it differently.
+    </div>
+
+    <div class="eyebrow" data-copy="es">pregunta que queda</div>
+    <div class="eyebrow" data-copy="en">question left behind</div>
+    <div class="error-question" data-copy="es">¿Qué cambia en una imagen cuando el mismo elemento pasa de ser parte del objeto a formar parte del aparato que la produce?</div>
+    <div class="error-question" data-copy="en">What changes in an image when the same element shifts from being part of the object to becoming part of the apparatus that produces it?</div>
+  </div>
+</section>
+
+<div class="reject">
+  <div class="reject-x">×</div>
+  <div>
+    <div class="eyebrow" data-copy="es">error que no produjo nada</div>
+    <div class="eyebrow" data-copy="en">error that produced nothing</div>
+    <div class="reject-text" data-copy="es">El universo es un escenario y todos los objetos son actores esperando instrucciones.</div>
+    <div class="reject-text" data-copy="en">The universe is a stage and all objects are actors waiting for instructions.</div>
+    <div class="reject-note" data-copy="es">ESCENARIO. Convierte la colisión en una metáfora total y vuelve a introducir un director externo. No abre el problema. Se descarta.</div>
+    <div class="reject-note" data-copy="en">STAGE. It turns the collision into a total metaphor and reintroduces an external director. It does not open the problem. Discarded.</div>
+  </div>
+</div>
+</div>
+
+<section class="grid">
   <div class="section-title" data-copy="es">arrastre</div>
   <div class="section-title" data-copy="en">carry</div>
 
@@ -769,39 +417,40 @@ a.carry-card:hover{border-color:var(--orange)}
   <div>
     <div class="nav-label" data-copy="es">va hacia 003 · Paul Ricœur →</div>
     <div class="nav-label" data-copy="en">goes to 003 · Paul Ricœur →</div>
-    <div class="nav-q" data-copy="es">¿Cuándo una imagen sigue siendo la misma si cada sistema que atraviesa también participa en transformarla?</div>
-    <div class="nav-q" data-copy="en">When does an image remain the same if every system it passes through also participates in transforming it?</div>
+    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si cada transformación no sólo modifica sus materiales, códigos, interfaces y modos de percepción, sino que también vuelve a producir la frontera que decide qué pertenece a la imagen, qué pertenece al aparato y qué queda fuera de ambos?</div>
+    <div class="nav-q" data-copy="en">Is it still the same image if each transformation not only modifies its materials, codes, interfaces, and modes of perception, but also reproduces the boundary deciding what belongs to the image, what belongs to the apparatus, and what remains outside both?</div>
   </div>
 </a>
     </div>
   </div>
 </section>
 
-  <section class="grid">
-    <div class="section-title" data-copy="es">sobre esta máquina</div>
-    <div class="section-title" data-copy="en">about this machine</div>
+<section class="grid">
+  <div class="section-title" data-copy="es">sobre esta máquina</div>
+  <div class="section-title" data-copy="en">about this machine</div>
 
-    <div class="about-machine" data-copy="es">
-      Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.
-      <div class="identity">
-        <span>Kurt Wesp Yianatos</span>
-        <span>KWY-A⁰¹RTBORG</span>
-        <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
-        <a href="https://www.kwydesign.com/">kwydesign.com</a>
-      </div>
+  <div class="about-machine" data-copy="es">
+    Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.
+    <div class="identity">
+      <span>Kurt Wesp Yianatos</span>
+      <span>KWY-A⁰¹RTBORG</span>
+      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
+      <a href="https://www.kwydesign.com/">kwydesign.com</a>
     </div>
-    <div class="about-machine" data-copy="en">
-      This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and deliberately forces errors, deviations and unlikely associations to open questions rather than close them. Each entry is reviewed and published manually.
-      <div class="identity">
-        <span>Kurt Wesp Yianatos</span>
-        <span>KWY-A⁰¹RTBORG</span>
-        <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
-        <a href="https://www.kwydesign.com/">kwydesign.com</a>
-      </div>
+  </div>
+
+  <div class="about-machine" data-copy="en">
+    This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and deliberately forces errors, deviations and unlikely associations to open questions rather than close them. Each entry is reviewed and published manually.
+    <div class="identity">
+      <span>Kurt Wesp Yianatos</span>
+      <span>KWY-A⁰¹RTBORG</span>
+      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
+      <a href="https://www.kwydesign.com/">kwydesign.com</a>
     </div>
-  </section>
+  </div>
+</section>
+
 </main>
-
 </div>
 </body>
 </html>

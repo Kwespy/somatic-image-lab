@@ -293,8 +293,8 @@ def _applescript_escape(s):
 def confirm_update(old,m):
     num=f'{int(old["number"]):03d}'
     msg=(
-        f'{num} ya existe.\\n\\n'
-        f'{m["author"]}\\n{m["title_en"]}\\n\\n'
+        f'{num} ya existe.\n\n'
+        f'{m["author"]}\n{m["title_en"]}\n\n'
         '¿Quieres actualizar este post manteniendo su número y su URL?'
     )
     script=(
@@ -318,117 +318,211 @@ def update_sitemap(items):
         +"\n".join("  <url><loc>"+u+"</loc></url>" for u in urls)
         +'\n</urlset>\n',encoding="utf-8")
 
-def gitpush(title,num,mode):
+def gitpush_batch(actions):
     subprocess.run(["git","add","-A"],cwd=ROOT,check=False)
 
-    # Nothing changed: not an error.
     staged=subprocess.run(["git","diff","--cached","--quiet"],cwd=ROOT)
     if staged.returncode==0:
         print("SIN CAMBIOS NUEVOS PARA GIT.")
         return
 
-    verb="Update" if mode=="update" else "Add"
-    r=subprocess.run(
-        ["git","commit","-m",f"{verb} reading {num:03d}: {title}"],
-        cwd=ROOT
-    )
+    nums=", ".join(f'{a["number"]:03d}' for a in actions)
+    added=sum(1 for a in actions if a["mode"]=="add")
+    updated=sum(1 for a in actions if a["mode"]=="update")
+    parts=[]
+    if added: parts.append(f"{added} add")
+    if updated: parts.append(f"{updated} update")
+    msg=f'Publish readings {nums} ({", ".join(parts)})'
+
+    r=subprocess.run(["git","commit","-m",msg],cwd=ROOT)
     if r.returncode!=0:
         die("Los archivos se prepararon, pero git commit falló.")
 
     r=subprocess.run(["git","push"],cwd=ROOT)
     if r.returncode!=0:
-        die("El post quedó preparado y guardado en git, pero git push falló.")
+        die("Los posts quedaron guardados en git, pero git push falló.")
+
+def batch_sort_key(src):
+    name=Path(src).name
+    m=re.search(r'POST[_ -]?(\d+)',name,re.I)
+    if m:
+        return (0,int(m.group(1)),name.casefold())
+    return (1,0,name.casefold())
 
 def main():
-    src=sys.argv[1] if len(sys.argv)>1 else input("Ruta del ZIP:\n> ").strip().strip("'\"")
-    pkg,tmp=unpack(src)
+    sources=sys.argv[1:]
+    if not sources:
+        raw=input("Rutas de ZIPs, una por línea:\n").strip()
+        sources=[x.strip().strip("'\"") for x in raw.splitlines() if x.strip()]
+
+    if not sources:
+        print("No se seleccionaron ZIPs.")
+        raise SystemExit(2)
+
+    # ZIPs named POST_013..., POST_014... are published in numeric order,
+    # regardless of the order returned by Finder.
+    sources=sorted(sources,key=batch_sort_key)
+
+    packages=[]
+    temps=[]
+    actions=[]
+    skipped=[]
+
     try:
-        mf=pkg/"manifest.json"; hp=pkg/"index.html"
-        if not mf.exists() or not hp.exists(): die("ERROR: paquete incompleto.")
-        m=json.loads(mf.read_text(encoding="utf-8"))
+        # Validate every package before changing the publication.
+        required={"author","title_es","title_en","date","slug","error_es","error_en"}
+        for src in sources:
+            pkg,tmp=unpack(src)
+            if tmp: temps.append(tmp)
+
+            mf=pkg/"manifest.json"
+            hp=pkg/"index.html"
+            if not mf.exists() or not hp.exists():
+                die("ERROR: paquete incompleto: "+Path(src).name)
+
+            try:
+                m=json.loads(mf.read_text(encoding="utf-8"))
+            except Exception as e:
+                die(f"ERROR en manifest.json de {Path(src).name}: {e}")
+
+            missing=sorted(required-set(m.keys()))
+            if missing:
+                die(
+                    "ERROR: faltan campos en "+Path(src).name+": "
+                    +", ".join(missing)
+                )
+
+            packages.append({
+                "src":src,
+                "pkg":pkg,
+                "manifest":m,
+                "html_path":hp
+            })
+
         items=json.loads(DATA.read_text(encoding="utf-8"))
 
-        key=(m["author"].strip().casefold(),m["title_en"].strip().casefold())
-        existing=None
-        for old in items:
-            if (old["author"].strip().casefold(),old["title_en"].strip().casefold())==key:
-                existing=old
-                break
+        for pack in packages:
+            src=pack["src"]
+            m=pack["manifest"]
+            hp=pack["html_path"]
 
-        # ──────────────────────────────────────────────────────────────
-        # UPDATE EXISTING POST
-        # Same author + title keeps number, slug and URL.
-        # ──────────────────────────────────────────────────────────────
-        if existing:
-            num=int(existing["number"])
-            slug=existing["slug"]
+            key=(m["author"].strip().casefold(),m["title_en"].strip().casefold())
+            existing=None
+            for old in items:
+                if (
+                    old["author"].strip().casefold(),
+                    old["title_en"].strip().casefold()
+                )==key:
+                    existing=old
+                    break
 
-            if not confirm_update(existing,m):
-                print(f"\nACTUALIZACIÓN {num:03d} CANCELADA. No se hicieron cambios.\n")
-                raise SystemExit(2)
+            if existing:
+                num=int(existing["number"])
+                slug=existing["slug"]
 
-            dest=READINGS/slug
-            dest.mkdir(parents=True,exist_ok=True)
+                if not confirm_update(existing,m):
+                    skipped.append(
+                        f'{num:03d} — {m["author"]} — {m["title_en"]}'
+                    )
+                    print(
+                        f'\nOMITIDO {num:03d}: '
+                        f'{m["author"]} — {m["title_en"]}\n'
+                    )
+                    continue
 
-            page=hp.read_text(encoding="utf-8")
-            page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
-            page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
-            (dest/"index.html").write_text(page,encoding="utf-8")
+                mode="update"
+                dest=READINGS/slug
+                dest.mkdir(parents=True,exist_ok=True)
 
-            # Preserve number, slug and original publication date.
-            existing.update({
+                page=hp.read_text(encoding="utf-8")
+                page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
+                page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
+                (dest/"index.html").write_text(page,encoding="utf-8")
+
+                # Keep existing number, slug and original publication date.
+                existing.update({
+                    "author":m["author"],
+                    "title_es":m["title_es"],
+                    "title_en":m["title_en"],
+                    "error_es":m["error_es"],
+                    "error_en":m["error_en"]
+                })
+                if not existing.get("date"):
+                    existing["date"]=m["date"]
+
+            else:
+                mode="add"
+                num=max(int(x["number"]) for x in items)+1
+                slug=f'{num:03d}-{slugify(m["slug"])}'
+                dest=READINGS/slug
+                dest.mkdir(parents=True,exist_ok=True)
+
+                page=hp.read_text(encoding="utf-8")
+                page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
+                page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
+                (dest/"index.html").write_text(page,encoding="utf-8")
+
+                items.append({
+                    "number":num,
+                    "slug":slug,
+                    "author":m["author"],
+                    "title_es":m["title_es"],
+                    "title_en":m["title_en"],
+                    "date":m["date"],
+                    "error_es":m["error_es"],
+                    "error_en":m["error_en"]
+                })
+
+            actions.append({
+                "mode":mode,
+                "number":num,
                 "author":m["author"],
-                "title_es":m["title_es"],
-                "title_en":m["title_en"],
-                "error_es":m["error_es"],
-                "error_en":m["error_en"]
+                "title":m["title_en"],
+                "source":Path(src).name
             })
-            if not existing.get("date"):
-                existing["date"]=m["date"]
 
-            DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2),encoding="utf-8")
-            update_home(items)
-            rebuild_carry_flow(items)
-            update_sitemap(items)
-            gitpush(m["title_en"],num,"update")
+            verb="ACTUALIZADO" if mode=="update" else "CREADO"
+            print(
+                f'{num:03d} {verb} ✓  '
+                f'{m["author"]} — {m["title_en"]}'
+            )
 
-            print(f"\nPOST {num:03d} ACTUALIZADO ✓")
-            print("MISMO NÚMERO Y URL ✓")
-            print("ARRASTRE DOBLE ✓")
-            print("HOME ✓")
-            print("SITEMAP ✓")
-            return
+        if not actions:
+            print("\nNO HUBO POSTS PARA PUBLICAR.")
+            raise SystemExit(2)
 
-        # ──────────────────────────────────────────────────────────────
-        # ADD NEW POST
-        # ──────────────────────────────────────────────────────────────
-        num=max(int(x["number"]) for x in items)+1
-        slug=f'{num:03d}-{slugify(m["slug"])}'
-        dest=READINGS/slug
-        dest.mkdir(parents=True,exist_ok=True)
-
-        page=hp.read_text(encoding="utf-8")
-        page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
-        page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
-        (dest/"index.html").write_text(page,encoding="utf-8")
-
-        items.append({
-            "number":num,"slug":slug,"author":m["author"],
-            "title_es":m["title_es"],"title_en":m["title_en"],
-            "date":m["date"],"error_es":m["error_es"],"error_en":m["error_en"]
-        })
-        DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2),encoding="utf-8")
+        # Rebuild everything only once for the whole batch.
+        DATA.write_text(
+            json.dumps(items,ensure_ascii=False,indent=2),
+            encoding="utf-8"
+        )
         update_home(items)
         rebuild_carry_flow(items)
         update_sitemap(items)
-        gitpush(m["title_en"],num,"add")
+        gitpush_batch(actions)
 
-        print(f"\nPOST {num:03d} CREADO ✓")
+        print("\nLOTE PUBLICADO ✓")
+        print(f"PROCESADOS: {len(actions)}")
+        if skipped:
+            print(f"OMITIDOS: {len(skipped)}")
         print("ARRASTRE DOBLE ✓")
         print("HOME ✓")
         print("SITEMAP ✓")
+        print("GIT PUSH ✓")
+
+        print("\nRESUMEN:")
+        for a in actions:
+            verb="actualizado" if a["mode"]=="update" else "creado"
+            print(
+                f'  {a["number"]:03d} — {a["author"]} — '
+                f'{a["title"]} ({verb})'
+            )
+        for s in skipped:
+            print("  OMITIDO — "+s)
+
     finally:
-        if tmp: shutil.rmtree(tmp,ignore_errors=True)
+        for tmp in temps:
+            shutil.rmtree(tmp,ignore_errors=True)
 
 if __name__=="__main__":
     main()
