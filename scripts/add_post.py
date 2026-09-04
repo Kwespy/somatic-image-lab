@@ -177,17 +177,26 @@ def own_carry(page):
     return None,None
 
 def ensure_css(page):
-    # Always install the canonical carry CSS last in <head>.
+    # Limpia artefactos literales "\\n" que versiones anteriores del
+    # publicador insertaron dentro de <head>. En HTML esos caracteres
+    # podían terminar renderizados al comienzo visible de la página.
+    head_end=page.find("</head>")
+    if head_end!=-1:
+        head=page[:head_end].replace("\\n","")
+        page=head+page[head_end:]
+
+    # Remove an older canonical carry style and install the definitive
+    # version at the end of <head>, now using a REAL line break.
     page=re.sub(
-        r'<style id="tsil-carry-flow-v4">.*?</style>\\s*',
+        r'<style id="tsil-carry-flow-v4">.*?</style>\s*',
         '',
         page,
         flags=re.S
     )
     if "</head>" in page:
-        page=page.replace("</head>",FLOW_CSS+"\\n</head>",1)
+        page=page.replace("</head>",FLOW_CSS+"\n</head>",1)
     else:
-        page=page.replace("</style>",FLOW_CSS+"\\n",1)
+        page=page.replace("</style>",FLOW_CSS+"\n",1)
     return page
 
 def carry_section(own_es,own_en,prev,nxt,prev_es,prev_en):
