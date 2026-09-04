@@ -1,0 +1,35 @@
+{
+  "reading": 9,
+  "title": {
+    "es": "My Mother Was a Computer",
+    "en": "My Mother Was a Computer"
+  },
+  "book_author": "N. Katherine Hayles",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/009-n-katherine-hayles-my-mother-was-a-computer/",
+  "description": {
+    "es": "Hayles propone pensar cuerpo, lenguaje, código y medios como sistemas que se transforman mutuamente.",
+    "en": "Hayles proposes thinking of body, language, code, and media as systems that transform one another. None functions as a single origin: digital texts and subjects emerge through recursive intermediations among material, human, and computational processes."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

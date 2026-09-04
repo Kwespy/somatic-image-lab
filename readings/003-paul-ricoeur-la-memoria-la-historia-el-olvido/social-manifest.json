@@ -1,0 +1,35 @@
+{
+  "reading": 3,
+  "title": {
+    "es": "La memoria, la historia, el olvido",
+    "en": "Memory, History, Forgetting"
+  },
+  "book_author": "Paul Ricœur",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/",
+  "description": {
+    "es": "Ricœur sigue el problema de cómo un pasado que ya no está puede, sin embargo, aparecer: primero en la memoria, luego en las operaciones de la historia y finalmente bajo la amenaza y la reserva del olvido.",
+    "en": "Ricœur follows the problem of how a past that is no longer present can nevertheless appear: first in memory, then through the operations of history, and finally under the threat and reserve of forgetting."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

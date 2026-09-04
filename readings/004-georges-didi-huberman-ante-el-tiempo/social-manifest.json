@@ -1,0 +1,35 @@
+{
+  "reading": 4,
+  "title": {
+    "es": "Ante el tiempo",
+    "en": "Ante el tiempo"
+  },
+  "book_author": "Georges Didi-Huberman",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/",
+  "description": {
+    "es": "Una imagen no pertenece limpiamente a un solo tiempo. Didi-Huberman propone atender a sus anacronismos: supervivencias, síntomas y encuentros entre temporalidades heterogéneas que una cronología ordenada tiende a borrar.",
+    "en": "An image does not belong cleanly to a single time. Didi-Huberman asks us to attend to its anachronisms: survivals, symptoms, and encounters between heterogeneous temporalities that an orderly chronology tends to erase."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "reading": 8,
+  "title": {
+    "es": "New Philosophy for New Media",
+    "en": "New Philosophy for New Media"
+  },
+  "book_author": "Mark B. N. Hansen",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/008-mark-b-n-hansen-new-philosophy-for-new-media/",
+  "description": {
+    "es": "Hansen desplaza la imagen digital desde el dispositivo hacia el cuerpo. La información digital no llega ya convertida en una imagen completa: el cuerpo selecciona, encuadra y actualiza ese flujo de información como experiencia perceptiva y afectiva.",
+    "en": "Hansen shifts the digital image from the device toward the body. Digital information does not arrive already converted into a complete image: the body selects, frames, and actualizes that flow of information as perceptual and affective experience."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

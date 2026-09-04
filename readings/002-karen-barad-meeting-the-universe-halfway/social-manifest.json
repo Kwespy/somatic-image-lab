@@ -1,0 +1,35 @@
+{
+  "reading": 2,
+  "title": {
+    "es": "Meeting the Universe Halfway",
+    "en": "Meeting the Universe Halfway"
+  },
+  "book_author": "Karen Barad",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/002-karen-barad-meeting-the-universe-halfway/",
+  "description": {
+    "es": "Barad propone que las cosas no existen primero como entidades independientes para luego relacionarse. Sus límites y propiedades se vuelven determinados dentro de intra-acciones específicas.",
+    "en": "Barad proposes that things do not first exist as independent entities and then enter into relations. Their boundaries and properties become determinate within specific intra-actions."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

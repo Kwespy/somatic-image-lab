@@ -1,0 +1,35 @@
+{
+  "reading": 5,
+  "title": {
+    "es": "Hacia una filosofía de la fotografía",
+    "en": "Towards a Philosophy of Photography"
+  },
+  "book_author": "Vilém Flusser",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/005-vilem-flusser-hacia-una-filosofia-de-la-fotografia/",
+  "description": {
+    "es": "Flusser toma la fotografía como modelo para pensar las imágenes técnicas.",
+    "en": "Flusser uses photography as a model for thinking about technical images."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

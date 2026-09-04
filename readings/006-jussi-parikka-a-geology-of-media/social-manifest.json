@@ -1,0 +1,35 @@
+{
+  "reading": 6,
+  "title": {
+    "es": "A Geology of Media",
+    "en": "A Geology of Media"
+  },
+  "book_author": "Jussi Parikka",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/006-jussi-parikka-a-geology-of-media/",
+  "description": {
+    "es": "Parikka desplaza la historia de los medios hacia abajo: antes del dispositivo están la mina, el mineral, la energía y el trabajo; después aparecen el residuo, la obsolescencia y el desecho electrónico.",
+    "en": "Parikka pushes media history downward: before the device there are mines, minerals, energy and labor; afterward come residue, obsolescence and electronic waste."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

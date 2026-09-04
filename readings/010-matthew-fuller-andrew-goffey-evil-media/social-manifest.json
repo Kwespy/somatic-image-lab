@@ -1,0 +1,35 @@
+{
+  "reading": 10,
+  "title": {
+    "es": "Evil Media",
+    "en": "Evil Media"
+  },
+  "book_author": "Matthew Fuller & Andrew Goffey",
+  "publication_author": "Kurt Wesp Yianatos",
+  "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/",
+  "description": {
+    "es": "Fuller y Goffey desplazan la atención hacia los medios que casi nunca parecen medios: bases de datos, workflows, formularios, métodos de planificación, protocolos e interfaces administrativas.",
+    "en": "Fuller and Goffey shift attention toward media that rarely look like media: databases, workflows, forms, planning methods, protocols, and administrative interfaces."
+  },
+  "assets": [
+    "share-story-es-01.png",
+    "share-story-es-02.png",
+    "share-story-es-03.png",
+    "share-story-es-04.png",
+    "share-story-es-05.png",
+    "share-story-es-06.png",
+    "share-story-es-07.png",
+    "share-story-es-08.png",
+    "share-story-en-01.png",
+    "share-story-en-02.png",
+    "share-story-en-03.png",
+    "share-story-en-04.png",
+    "share-story-en-05.png",
+    "share-story-en-06.png",
+    "share-story-en-07.png",
+    "share-story-en-08.png",
+    "share-post-es.png",
+    "share-post-en.png",
+    "share-og.png"
+  ]
+}

@@ -1,0 +1,14 @@
+TSIL SOCIAL — FIX BRAVE
+
+1. Si el instalador anterior sigue detenido, presiona Control + C en esa Terminal.
+2. Descomprime esta carpeta.
+3. Haz doble clic en ARREGLAR_Y_CONTINUAR_TSIL_SOCIAL_BRAVE.command
+4. El script usa Brave Browser primero.
+5. Los PNG que ya existan se saltan automáticamente.
+6. No hace git push si la migración falla.
+
+Ruta Brave prioritaria:
+ /Applications/Brave Browser.app/Contents/MacOS/Brave Browser
+
+Fallbacks:
+ Google Chrome / Chromium.
