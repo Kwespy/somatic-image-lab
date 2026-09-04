@@ -108,5 +108,15 @@
     "date": "2026-09-04",
     "error_es": "retenedor",
     "error_en": "retainer"
+  },
+  {
+    "number": 12,
+    "slug": "012-lev-manovich-the-language-of-new-media",
+    "author": "Lev Manovich",
+    "title_es": "The Language of New Media",
+    "title_en": "The Language of New Media",
+    "date": "2026-09-04",
+    "error_es": "boleto",
+    "error_en": "ticket"
   }
 ]
