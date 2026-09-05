@@ -3,6 +3,7 @@ from pathlib import Path
 import re, json, html as htmllib, subprocess, tempfile, shutil, zipfile
 
 DOMAIN = "https://thesomaticimagelab.kurtwespyianatos.com"
+SOCIAL_IMAGE = DOMAIN + "/assets/tsil-link-preview.png"
 AUTHOR_SITE = "https://www.kurtwespyianatos.com/"
 SITE_AUTHOR = "Kurt Wesp Yianatos"
 META_START = "<!-- TSIL_SOCIAL_META_START -->"
@@ -128,7 +129,7 @@ def meta_block(d):
     author = d['author']
     canonical = d['canonical']
     desc = d['description']['en'] or f"TSIL Reading {n:03d}: {title} by {author}. Bilingual ES / EN."
-    og = canonical + 'share-og.png'
+    og = SOCIAL_IMAGE
     keywords = []
     for x in [author, title, d['band']['en'], d['error_context']['en'], d['error_word']['en'], 'The Somatic Image Lab', SITE_AUTHOR]:
         if x:
@@ -144,11 +145,7 @@ def meta_block(d):
         'author': {'@type': 'Person', 'name': SITE_AUTHOR, 'url': AUTHOR_SITE, 'alternateName': ['KWY', 'KWY-A⁰¹RTBORG']},
         'publisher': {'@type': 'Organization', 'name': 'The Somatic Image Lab', 'url': DOMAIN + '/'},
         'isBasedOn': {'@type': 'Book', 'name': title, 'author': {'@type': 'Person', 'name': author}},
-        'image': [
-            {'@type': 'ImageObject', 'url': og, 'width': 1200, 'height': 630},
-            {'@type': 'ImageObject', 'url': canonical + 'share-post-en.png', 'width': 1080, 'height': 1350},
-            {'@type': 'ImageObject', 'url': canonical + 'share-post-es.png', 'width': 1080, 'height': 1350},
-        ],
+        'image': og,
         'about': [x for x in [d['band']['en'], d['error_context']['en'], d['error_word']['en']] if x],
     }
     schema = {k: v for k, v in schema.items() if v is not None}
@@ -159,6 +156,7 @@ def meta_block(d):
 <meta name="author" content="{SITE_AUTHOR}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="keywords" content="{esc(', '.join(keywords))}">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="{esc(canonical)}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
@@ -168,8 +166,6 @@ def meta_block(d):
 <meta property="og:image" content="{esc(og)}">
 <meta property="og:image:secure_url" content="{esc(og)}">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{esc('The Somatic Image Lab — Reading ' + f'{n:03d}' + ' — ' + title + ' — ' + author)}">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
@@ -202,87 +198,7 @@ SOCIAL_CSS = '''<!-- TSIL_SOCIAL_STYLE_START -->
 
 
 SOCIAL_JS = '''<!-- TSIL_SOCIAL_SCRIPT_START -->
-<script id="tsil-social-secret-runtime">
-(()=>{
-  const dataEl=document.getElementById('tsil-social-data');
-  if(!dataEl)return;
-  const D=JSON.parse(dataEl.textContent);
-  const pad=n=>String(n).padStart(2,'0');
-  const currentLang=()=>document.documentElement.getAttribute('data-lang')==='en'?'en':'es';
-  const randomStoryName=()=>`share-story-${currentLang()}-${pad(1+Math.floor(Math.random()*8))}.png`;
-  const postName=()=>`share-post-${currentLang()}.png`;
-  const abs=name=>new URL(name,location.href).href;
-
-  async function getFile(name){
-    const r=await fetch(abs(name),{cache:'no-store'});
-    if(!r.ok)throw new Error('asset unavailable: '+name);
-    const blob=await r.blob();
-    return new File([blob],name,{type:blob.type||'image/png'});
-  }
-  async function download(name){
-    try{
-      const file=await getFile(name);
-      const u=URL.createObjectURL(file);
-      const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
-      setTimeout(()=>URL.revokeObjectURL(u),2500);
-    }catch(e){window.open(abs(name),'_blank','noopener')}
-  }
-  async function shareAsset(name){
-    try{
-      const file=await getFile(name);
-      const lang=currentLang();
-      const title=(D.title?.[lang]||D.title?.en||'TSIL Reading');
-      const txt=`${title} — ${D.author} · The Somatic Image Lab`;
-      try{await navigator.clipboard?.writeText(D.canonical)}catch(e){}
-      if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
-        await navigator.share({files:[file],title:title,text:txt,url:D.canonical});
-      }else{
-        await download(name);
-      }
-    }catch(e){await download(name)}
-  }
-  async function copyLink(){try{await navigator.clipboard.writeText(D.canonical)}catch(e){}}
-
-  function ensurePanel(){
-    let panel=document.getElementById('tsil-secret-export');
-    if(panel)return panel;
-    panel=document.createElement('div');
-    panel.id='tsil-secret-export';
-    panel.innerHTML=`<div class="tsil-export-box" role="dialog" aria-modal="true" aria-label="TSIL export">
-      <div class="tsil-export-head"><span>TSIL / EXPORT</span><button class="tsil-export-close" type="button">×</button></div>
-      <div class="tsil-export-grid">
-        <button class="tsil-export-btn" data-action="story-download" type="button">DOWNLOAD STORY 9:16 · RANDOM ASCII</button>
-        <button class="tsil-export-btn" data-action="story-share" type="button">SHARE STORY 9:16 · RANDOM ASCII</button>
-        <button class="tsil-export-btn" data-action="post-download" type="button">DOWNLOAD INSTAGRAM POST 4:5</button>
-        <button class="tsil-export-btn" data-action="post-share" type="button">SHARE INSTAGRAM POST 4:5</button>
-        <button class="tsil-export-btn" data-action="og-download" type="button">DOWNLOAD LINK PREVIEW 1200×630</button>
-        <button class="tsil-export-btn" data-action="copy" type="button">COPY READING LINK</button>
-        <button class="tsil-export-btn" data-action="all" type="button">DOWNLOAD ALL SOCIAL ASSETS · ZIP</button>
-      </div>
-      <div class="tsil-export-note">Story uses the active ES / EN language and chooses one of eight ASCII variants at random.</div>
-    </div>`;
-    document.body.appendChild(panel);
-    const close=()=>panel.classList.remove('open');
-    panel.querySelector('.tsil-export-close').addEventListener('click',close);
-    panel.addEventListener('click',e=>{if(e.target===panel)close()});
-    panel.querySelector('[data-action="story-download"]').addEventListener('click',()=>download(randomStoryName()));
-    panel.querySelector('[data-action="story-share"]').addEventListener('click',()=>shareAsset(randomStoryName()));
-    panel.querySelector('[data-action="post-download"]').addEventListener('click',()=>download(postName()));
-    panel.querySelector('[data-action="post-share"]').addEventListener('click',()=>shareAsset(postName()));
-    panel.querySelector('[data-action="og-download"]').addEventListener('click',()=>download('share-og.png'));
-    panel.querySelector('[data-action="copy"]').addEventListener('click',copyLink);
-    panel.querySelector('[data-action="all"]').addEventListener('click',()=>download('tsil-social-assets.zip'));
-    return panel;
-  }
-  function openPanel(){ensurePanel().classList.add('open')}
-  document.querySelectorAll('.tsil-secret-story').forEach(el=>{
-    el.setAttribute('role','button');
-    el.setAttribute('tabindex','0');
-    el.addEventListener('click',openPanel);
-    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel()}});
-  });
-})();
-</script>
+<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
 <!-- TSIL_SOCIAL_SCRIPT_END -->'''
 
 
@@ -684,7 +600,7 @@ def generate_assets(reading_dir, d):
         z.write(manifest_path, manifest_path.name)
     print('         ✓ ' + zip_path.name, flush=True)
 
-def apply_social_to_reading(root, item, generate=True):
+def apply_social_to_reading(root, item, generate=False):
     root = Path(root)
     rd = root / 'readings' / item['slug']
     p = rd / 'index.html'

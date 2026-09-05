@@ -1,22 +1,113 @@
 THE SOMATIC IMAGE LAB
+Guía personal
 
-PRIMERA VEZ
-1. Crea en GitHub un repositorio vacío llamado: somatic-image-lab
-2. Ejecuta PUBLICAR_PRIMERA_VEZ.command
-3. Pega la URL HTTPS del repositorio
-4. En GitHub: Settings > Pages > Deploy from a branch > main / root
-5. Custom domain: thesomaticimagelab.kurtwespyianatos.com
+QUÉ ES ESTE PROYECTO
 
-PRÓXIMOS POSTS
-ChatGPT te entrega un ZIP con:
-- manifest.json
-- index.html
+Un sitio experimental para abrir preguntas sobre la imagen. Sus readings son
+máquinas de error: confrontan y tensionan textos de referencia que tengo en
+Google Drive. La idea sigue evolucionando: que estas lecturas se choquen, se
+mezclen y se contaminen para producir errores y abrir nuevas preguntas.
 
-Arrastras el ZIP encima de AGREGAR_POST.command.
+El diseño ya tiene una base. Se puede modificar la portada y la estructura,
+pero la prioridad es explorar cómo funciona esta idea.
 
-El script:
-- crea 002, 003...
-- agrega el post
-- actualiza la home
-- actualiza sitemap.xml
-- hace commit y push
+CÓMO TRABAJAMOS
+
+1. Propongo y discuto ideas en Codex, en español.
+2. Desarrollamos el experimento en este computador, con un punto de retorno
+   para recuperar el estado anterior si no funciona.
+3. Codex ejecuta las pruebas locales y revisa sus resultados. Revisamos el
+   funcionamiento, los idiomas y los cambios visuales que correspondan.
+4. Cuando esté listo y yo pida publicarlo, subimos los cambios seleccionados
+   a GitHub. Probar localmente siempre va antes de publicar.
+
+La máquina virtual todavía no existe. Su configuración y despliegue quedan
+pendientes para cuando decida retomar ese tema.
+
+IDIOMAS
+
+Esta guía es para mí y está en español. El sitio debe estar en español e inglés.
+La portada ya respeta la elección guardada del visitante; si no hay una, usa
+español para navegadores en español e inglés para los demás. El visitante puede
+cambiar el idioma con el selector. Los experimentos deben conservar este criterio
+y ofrecer sus contenidos y controles en ambos idiomas.
+
+VER EL SITIO EN ESTE COMPUTADOR
+
+Puedo pedir a Codex: «Abre el sitio localmente y comprueba los cambios».
+Codex inicia el servidor y revisa el resultado; no necesito copiar comandos.
+
+Referencia de ejecución desde la carpeta del proyecto:
+python3 -B scripts/local_server.py
+
+Con el servidor iniciado, la dirección es http://127.0.0.1:8001/.
+Esto permite probar el sitio sin publicarlo. No requiere compilación ni instalar
+un framework.
+
+DÓNDE ESTÁ CADA COSA
+
+- index.html: portada.
+- readings/: páginas de lecturas y sus recursos para redes.
+- data/readings.json: listado y datos de las lecturas.
+- scripts/add_post.py: importación de lecturas desde ZIP y actualización del sitio.
+- scripts/tsil_social.py: recursos sociales; usa Brave u otras alternativas de
+  navegador para generar imágenes.
+- scripts/migrate_social.py: actualización de recursos sociales de las lecturas.
+- social_templates/: plantillas para redes.
+- assets/favicon.svg: icono T.S.I.L que aparece en la pestaña del navegador.
+- sitemap.xml y robots.txt: información para buscadores.
+- CNAME: dominio previsto para GitHub Pages.
+- AGENTS.md: instrucciones para Codex al trabajar en este proyecto.
+
+AGREGAR LECTURAS: FUNCIONAMIENTO ACTUAL
+
+Los paquetes ZIP contienen manifest.json e index.html. El importador crea o
+actualiza lecturas, portada, navegación, sitemap y los datos para el panel social.
+Ya no genera los paquetes de imágenes ni hace commit o push automáticamente.
+Los lanzadores AGREGAR_POST.command y AGREGAR_POST_FINAL.command preparan el
+contenido localmente; después revisamos el resultado antes de publicar.
+
+GENERAR UNA IMAGEN PARA INSTAGRAM
+
+1. Pedir a Codex que abra el servicio local indicado arriba.
+2. Entrar en una lectura y pulsar la firma KWY-A⁰¹RTBORG.
+3. Elegir Story, Post o vista de enlace y el idioma de la imagen.
+4. Pulsar «Generar vista previa». Python usa las plantillas existentes y Brave
+   para renderizar únicamente esa imagen. Las stories eligen una variante ASCII
+   al azar; los posts usan el diseño aprobado y el enlace la plantilla fija en inglés.
+5. Revisarla y pulsar «Descargar imagen». Se descarga desde el navegador para
+   publicarla manualmente en Instagram. Generar otra sustituye la vista previa.
+
+El servicio debe permanecer abierto durante la generación. No necesita una
+máquina virtual. Los archivos de render son temporales y se eliminan al devolver
+la imagen; nada se añade a la carpeta de la lectura. Las imágenes antiguas siguen
+intactas. La web publicada no puede generar imágenes con este servicio local:
+para esta tarea se usa la dirección 127.0.0.1:8001 del computador.
+
+Los nuevos readings sin imagen social usan la imagen general del sitio como
+vista previa para enlaces. No se generan imágenes automáticamente para ello.
+
+La portada y todas las lecturas comparten la imagen fija
+assets/tsil-link-preview.png cuando se pega un enlace en redes o mensajería.
+Esta imagen no contiene una figura humana y usa letras con textura fototérmica.
+
+GITHUB Y PUBLICACIÓN
+
+Repositorio: https://github.com/Kwespy/somatic-image-lab
+Rama principal: main
+Dominio indicado en CNAME: thesomaticimagelab.kurtwespyianatos.com
+
+La guía anterior describía GitHub Pages desde main, en la raíz del repositorio.
+La configuración activa de Pages debe comprobarse antes de una próxima
+publicación; CNAME por sí solo no confirma el despliegue.
+
+Antes de subir cambios, revisar los archivos que se incluirán. Claude.dmg es
+un instalador dentro de esta carpeta y no forma parte del sitio: no debe subirse.
+Conservar los archivos existentes y no incluir cambios ajenos al experimento.
+
+VOLVER ATRÁS
+
+Antes de un experimento, Codex debe identificar el estado al que podemos volver
+y preservar cualquier trabajo pendiente. Si el resultado no funciona, puedo
+pedir: «Deshaz este experimento conservando los otros cambios».
+Codex revisará qué recuperar sin borrar trabajo no relacionado.

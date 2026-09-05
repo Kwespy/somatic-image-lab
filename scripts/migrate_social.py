@@ -11,8 +11,8 @@ def main():
         print('ERROR: no encuentro data/readings.json', flush=True)
         return 1
     items = json.loads(DATA.read_text(encoding='utf-8'))
-    print('Motor de render social:', selected_browser_label(), flush=True)
-    print('Brave tiene prioridad; Chrome/Chromium son solo fallback.\n', flush=True)
+    print('Navegador disponible para generación individual:', selected_browser_label(), flush=True)
+    print('Esta actualización solo prepara HTML y datos; no genera imágenes.\n', flush=True)
     ok = 0
     failed = []
     total = len(items)
@@ -20,11 +20,11 @@ def main():
         n = int(it['number'])
         print(f'\n=== READING {pos}/{total} · {n:03d} — {it["author"]} ===', flush=True)
         try:
-            if apply_social_to_reading(ROOT, it, generate=True):
+            if apply_social_to_reading(ROOT, it, generate=False):
                 ok += 1
                 print(f'✓ READING {n:03d} listo', flush=True)
         except KeyboardInterrupt:
-            print('\nCancelado por el usuario. Puedes volver a ejecutar y retomará los PNG ya creados.', flush=True)
+            print('\nCancelado por el usuario. Puedes volver a ejecutar para actualizar los datos pendientes.', flush=True)
             return 130
         except Exception as e:
             failed.append((n, str(e)))

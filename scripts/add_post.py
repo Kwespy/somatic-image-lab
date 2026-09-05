@@ -319,30 +319,6 @@ def update_sitemap(items):
         +"\n".join("  <url><loc>"+u+"</loc></url>" for u in urls)
         +'\n</urlset>\n',encoding="utf-8")
 
-def gitpush_batch(actions):
-    subprocess.run(["git","add","-A"],cwd=ROOT,check=False)
-
-    staged=subprocess.run(["git","diff","--cached","--quiet"],cwd=ROOT)
-    if staged.returncode==0:
-        print("SIN CAMBIOS NUEVOS PARA GIT.")
-        return
-
-    nums=", ".join(f'{a["number"]:03d}' for a in actions)
-    added=sum(1 for a in actions if a["mode"]=="add")
-    updated=sum(1 for a in actions if a["mode"]=="update")
-    parts=[]
-    if added: parts.append(f"{added} add")
-    if updated: parts.append(f"{updated} update")
-    msg=f'Publish readings {nums} ({", ".join(parts)})'
-
-    r=subprocess.run(["git","commit","-m",msg],cwd=ROOT)
-    if r.returncode!=0:
-        die("Los archivos se prepararon, pero git commit falló.")
-
-    r=subprocess.run(["git","push"],cwd=ROOT)
-    if r.returncode!=0:
-        die("Los posts quedaron guardados en git, pero git push falló.")
-
 def batch_sort_key(src):
     name=Path(src).name
     m=re.search(r'POST[_ -]?(\d+)',name,re.I)
@@ -506,18 +482,18 @@ def main():
         for it in items:
             if int(it["number"]) in action_numbers:
                 print(f'SOCIAL {int(it["number"]):03d} ...')
-                apply_social_to_reading(ROOT,it,generate=True)
+                apply_social_to_reading(ROOT,it,generate=False)
 
-        gitpush_batch(actions)
+        # Publication is a separate, explicit step after local review.
 
-        print("\nLOTE PUBLICADO ✓")
+        print("\nLOTE PREPARADO LOCALMENTE ✓")
         print(f"PROCESADOS: {len(actions)}")
         if skipped:
             print(f"OMITIDOS: {len(skipped)}")
         print("ARRASTRE DOBLE ✓")
         print("HOME ✓")
         print("SITEMAP ✓")
-        print("GIT PUSH ✓")
+        print("Sin commit ni push. Revisa el resultado local antes de publicar.")
 
         print("\nRESUMEN:")
         for a in actions:
