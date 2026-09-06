@@ -25,7 +25,7 @@ El sitio es un espacio experimental para abrir preguntas sobre la imagen. Sus re
 - Flujo: discutir y desarrollar en este computador, probar localmente, revisar y después publicar en GitHub cuando el autor lo solicite. No hacer push automáticamente durante pruebas o importaciones.
 - Es un sitio estático HTML/CSS/JavaScript con scripts Python para preparar lecturas y recursos sociales. Servir desde la raíz con: python3 -B scripts/local_server.py
 - Aplicar verificaciones proporcionales: sintaxis y datos, enlaces y recursos locales, e interacciones afectadas en navegador. Para cambios de interfaz, revisar también ambos idiomas y una pantalla estrecha. Informar de pruebas que no se pudieron realizar.
-- Los lanzadores AGREGAR_POST.command y AGREGAR_POST_FINAL.command llaman a scripts/add_post.py, que prepara las lecturas localmente sin generar imágenes, commit ni push. Mantener la publicación como paso separado.
+- El lanzador AGREGAR_POST.command llama a scripts/add_post.py, que prepara las lecturas localmente sin generar imágenes, commit ni push. Mantener la publicación como paso separado.
 - El botón secreto usa assets/social-export.js y el servicio scripts/local_server.py (puerto 8001). Renderizar solo la imagen solicitada en una carpeta temporal, sin escribir imágenes en readings/. Conservar los recursos antiguos hasta que el autor decida retirarlos.
 - Remoto configurado: https://github.com/Kwespy/somatic-image-lab.git. La documentación anterior describe GitHub Pages; no asumir que la configuración remota de Pages está verificada.
 - La máquina virtual todavía no existe. No preparar ni ejecutar despliegues a ella salvo que el autor retome expresamente ese trabajo.

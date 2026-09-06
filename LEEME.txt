@@ -64,8 +64,8 @@ AGREGAR LECTURAS: FUNCIONAMIENTO ACTUAL
 Los paquetes ZIP contienen manifest.json e index.html. El importador crea o
 actualiza lecturas, portada, navegación, sitemap y los datos para el panel social.
 Ya no genera los paquetes de imágenes ni hace commit o push automáticamente.
-Los lanzadores AGREGAR_POST.command y AGREGAR_POST_FINAL.command preparan el
-contenido localmente; después revisamos el resultado antes de publicar.
+El lanzador AGREGAR_POST.command prepara el contenido localmente; después
+revisamos el resultado antes de publicar.
 
 GENERAR UNA IMAGEN PARA INSTAGRAM
 
