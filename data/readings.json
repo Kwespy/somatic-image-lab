@@ -118,5 +118,15 @@
     "date": "2026-09-04",
     "error_es": "boleto",
     "error_en": "ticket"
+  },
+  {
+    "number": 13,
+    "slug": "013-friedrich-kittler-optical-media",
+    "author": "Friedrich Kittler",
+    "title_es": "Optical Media",
+    "title_en": "Optical Media",
+    "date": "2026-09-04",
+    "error_es": "triaje",
+    "error_en": "triage"
   }
 ]
