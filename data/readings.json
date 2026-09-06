@@ -128,5 +128,15 @@
     "date": "2026-09-04",
     "error_es": "triaje",
     "error_en": "triage"
+  },
+  {
+    "number": 14,
+    "slug": "014-yuk-hui-the-question-concerning-technology-in-china",
+    "author": "Yuk Hui",
+    "title_es": "The Question Concerning Technology in China: An Essay in Cosmotechnics",
+    "title_en": "The Question Concerning Technology in China: An Essay in Cosmotechnics",
+    "date": "2026-09-06",
+    "error_es": "naturalización",
+    "error_en": "naturalization"
   }
 ]
