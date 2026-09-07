@@ -148,5 +148,15 @@
     "date": "2026-09-04",
     "error_es": "habitación",
     "error_en": "room"
+  },
+  {
+    "number": 16,
+    "slug": "016-david-joselit-painting-beside-itself",
+    "author": "David Joselit",
+    "title_es": "Painting Beside Itself",
+    "title_en": "Painting Beside Itself",
+    "date": "2026-09-07",
+    "error_es": "precinto",
+    "error_en": "seal"
   }
 ]
