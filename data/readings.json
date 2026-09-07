@@ -138,5 +138,15 @@
     "date": "2026-09-06",
     "error_es": "naturalización",
     "error_en": "naturalization"
+  },
+  {
+    "number": 15,
+    "slug": "015-benjamin-h-bratton-the-stack-on-software-and-sovereignty",
+    "author": "Benjamin H. Bratton",
+    "title_es": "The Stack: On Software and Sovereignty",
+    "title_en": "The Stack: On Software and Sovereignty",
+    "date": "2026-09-04",
+    "error_es": "habitación",
+    "error_en": "room"
   }
 ]
