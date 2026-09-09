@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>W. J. T. Mitchell — What Do Pictures Want? | The Somatic Image Lab</title>
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.topbar{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
+.misregister{position:relative;display:inline-block;isolation:isolate;max-width:100%}
+.misregister::after{content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none}
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(38px,7.8vw,96px);line-height:.84;letter-spacing:-.067em;font-weight:800;overflow-wrap:anywhere}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em}
+.article-ante{max-width:850px;margin:28px 0 18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--muted);font-weight:400}
+.motion-line{position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
+.motion-line .text::after{content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none}
+.grid{display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;padding:25px 0 34px;border-top:1px solid var(--line)}
+.eyebrow,.section-title{padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
+.error-card{padding:22px;background:var(--ink);color:#fff}
+.error-card .eyebrow{color:#aaa}
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+.carry-rule{margin:10px 0 18px;max-width:760px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
+.identity{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+@media(max-width:760px){.shell{width:min(var(--max),calc(100% - 24px))}.grid{grid-template-columns:1fr;gap:14px}.branches{grid-template-columns:1fr}.article-hero{padding:46px 0 38px}}
+@media(max-width:600px){.reading-nav{grid-template-columns:1fr}.reading-nav .next{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<script>
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>btn.classList.toggle("active",btn.dataset.switch===lang));
+  }
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
+})();
+</script>
+<!-- TSIL_SOCIAL_META_START -->
+<meta name="description" content="Mitchell asks what changes when desire is provisionally located in pictures rather than only in artists or viewers. The question turns interpretation toward lack, address and the relation between image and beholder.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="keywords" content="W. J. T. Mitchell, What Do Pictures Want?, gaze → desire → lack → response, CONSENT FORM / USE AUTHORIZATION, SIGNATURE, The Somatic Image Lab, Kurt Wesp Yianatos">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/017-w-j-t-mitchell-what-do-pictures-want/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:title" content="What Do Pictures Want? — W. J. T. Mitchell">
+<meta property="og:description" content="Mitchell asks what changes when desire is provisionally located in pictures rather than only in artists or viewers. The question turns interpretation toward lack, address and the relation between image and beholder.">
+<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/017-w-j-t-mitchell-what-do-pictures-want/">
+<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="The Somatic Image Lab — Reading 017 — What Do Pictures Want? — W. J. T. Mitchell">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="article:published_time" content="2026-09-09">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Do Pictures Want? — W. J. T. Mitchell">
+<meta name="twitter:description" content="Mitchell asks what changes when desire is provisionally located in pictures rather than only in artists or viewers. The question turns interpretation toward lack, address and the relation between image and beholder.">
+<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta name="theme-color" content="#f2efe7">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/017-w-j-t-mitchell-what-do-pictures-want/"},"headline":"What Do Pictures Want? — W. J. T. Mitchell","description":"Mitchell asks what changes when desire is provisionally located in pictures rather than only in artists or viewers. The question turns interpretation toward lack, address and the relation between image and beholder.","datePublished":"2026-09-09","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Chapter","name":"What Do Pictures Want?","author":{"@type":"Person","name":"W. J. T. Mitchell"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["gaze → desire → lack → response","CONSENT FORM / USE AUTHORIZATION","SIGNATURE"]}</script>
+<script id="tsil-social-data" type="application/json">{"number":17,"slug":"017-w-j-t-mitchell-what-do-pictures-want","author":"W. J. T. Mitchell","date":"2026-09-09","canonical":"https://thesomaticimagelab.kurtwespyianatos.com/readings/017-w-j-t-mitchell-what-do-pictures-want/","title":{"es":"What Do Pictures Want?","en":"What Do Pictures Want?"},"parts":{"es":{"title":"What Do Pictures Want?","subtitle":""},"en":{"title":"What Do Pictures Want?","subtitle":""}},"lead":{"es":"Mitchell propone desplazar provisionalmente el deseo desde quienes producen o miran una imagen hacia la propia imagen. No afirma que las imágenes sean personas: usa esa ficción para preguntar por sus faltas, demandas y modos de dirigirse a alguien.","en":"Mitchell proposes provisionally shifting desire from those who produce or view an image to the image itself. He does not claim that images are persons: he uses that fiction to ask about their lacks, demands and ways of addressing someone."},"description":{"es":"Mitchell pregunta qué cambia cuando el deseo se sitúa provisionalmente en las imágenes y no sólo en artistas o espectadores. La interpretación se desplaza hacia la falta, la interpelación y la relación entre imagen y mirada.","en":"Mitchell asks what changes when desire is provisionally located in pictures rather than only in artists or viewers. The question turns interpretation toward lack, address and the relation between image and beholder."},"band":{"es":"mirada → deseo → falta → respuesta","en":"gaze → desire → lack → response"},"error_context":{"es":"FORMULARIO DE CONSENTIMIENTO / AUTORIZACIÓN DE USO","en":"CONSENT FORM / USE AUTHORIZATION"},"error_word":{"es":"FIRMA","en":"SIGNATURE"},"concepts":{"es":["FALTA","DESEO","MIRADA","FIRMA"],"en":["LACK","GAZE","DESIRE","SIGNATURE"]}}</script>
+<!-- TSIL_SOCIAL_META_END -->
+<!-- TSIL_SOCIAL_STYLE_START -->
+<style id="tsil-social-secret-style">
+.tsil-secret-story{cursor:default!important}
+.tsil-secret-story:focus{outline:none!important}
+#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}
+#tsil-secret-export.open{display:flex}
+#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}
+#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}
+#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
+#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}
+#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
+</style>
+<!-- TSIL_SOCIAL_STYLE_END -->
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div><a href="../../index.html">The Somatic Image Lab</a></div>
+  <div class="lang-switch">
+    <a href="../../index.html" data-inline="es">inicio</a>
+    <a href="../../index.html" data-inline="en">home</a>
+    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
+    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
+  </div>
+</header>
+<main>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 017</div><div class="article-kicker" data-copy="en">reading / 017</div>
+  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="WHAT DO">WHAT DO</span><br>PICTURES WANT?</h1>
+  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="WHAT DO">WHAT DO</span><br>PICTURES WANT?</h1>
+  <div class="article-author">W. J. T. Mitchell</div>
+  <div class="article-ante" data-copy="es">Una imagen nos mira. ¿Quién habla cuando decimos que quiere algo?</div>
+  <div class="article-ante" data-copy="en">An image looks at us. Who speaks when we say that it wants something?</div>
+  <div class="article-lead" data-copy="es">Mitchell propone desplazar provisionalmente el deseo desde quienes producen o miran una imagen hacia la propia imagen. No afirma que las imágenes sean personas: usa esa ficción para preguntar por sus faltas, demandas y modos de dirigirse a alguien.</div>
+  <div class="article-lead" data-copy="en">Mitchell proposes provisionally shifting desire from those who produce or view an image to the image itself. He does not claim that images are persons: he uses that fiction to ask about their lacks, demands and ways of addressing someone.</div>
+</section>
+<div class="motion-line"><div class="text" data-text="mirada → deseo → falta → respuesta" data-copy="es">mirada → deseo → falta → respuesta</div><div class="text" data-text="gaze → desire → lack → response" data-copy="en">gaze → desire → lack → response</div></div>
+<section class="grid">
+  <div class="section-title" data-copy="es">en 1 minuto</div><div class="section-title" data-copy="en">in 1 minute</div>
+  <div class="large-copy" data-copy="es">
+    <p>Las preguntas habituales buscan qué significan las imágenes y qué hacen con quienes las miran. El deseo suele localizarse en el artista o en el espectador. Mitchell ensaya otro punto de partida: preguntar qué quiere la imagen.</p>
+    <p>La pregunta no convierte a la imagen en un sujeto soberano. La trata provisionalmente como un cuasiagente débil, marcado por dependencias y carencias. Lo que parece pedir no coincide necesariamente con su mensaje, con el deseo del artista ni con el efecto que produce.</p>
+    <p>Mitchell propone detener la interpretación antes de dominar la imagen con una explicación ya preparada. Preguntar por lo que quiere vuelve visible la relación: a quién interpela, qué necesita, qué excluye y qué no puede mostrar. La respuesta también puede ser nada.</p>
+  </div>
+  <div class="large-copy" data-copy="en">
+    <p>The usual questions ask what images mean and what they do to those who see them. Desire is generally located in the artist or the beholder. Mitchell tries another starting point: asking what the picture wants.</p>
+    <p>The question does not turn the image into a sovereign subject. It provisionally treats it as a weak quasi-agent, marked by dependencies and lacks. What it seems to ask for does not necessarily coincide with its message, the artist's desire or the effect it produces.</p>
+    <p>Mitchell proposes pausing interpretation before mastering the image with a ready-made explanation. Asking what it wants makes the relation visible: whom it addresses, what it needs, what it excludes and what it cannot show. The answer may also be nothing.</p>
+  </div>
+</section>
+<section class="grid">
+  <div class="section-title" data-copy="es">tres cosas para conservar</div><div class="section-title" data-copy="en">three things to keep</div>
+  <div data-copy="es"><div class="keep">La imagen animada es una ficción de trabajo que interroga una relación; no una prueba de que el objeto posea vida interior.</div><div class="keep">Lo que una imagen parece querer no equivale a lo que dice, a lo que hace ni a lo que quiso su autor.</div><div class="keep">Una demanda visible puede encubrir una falta. Poder e impotencia se anudan en el encuentro con la imagen.</div></div>
+  <div data-copy="en"><div class="keep">The animated image is a working fiction that questions a relation, not proof that the object possesses an inner life.</div><div class="keep">What an image seems to want is not equivalent to what it says, what it does or what its maker intended.</div><div class="keep">A visible demand can conceal a lack. Power and impotence are knotted together in the encounter with the image.</div></div>
+</section>
+<div class="threshold">
+<section class="grid" style="border-top:0">
+  <div class="section-title" data-copy="es">punto de arrastre</div><div class="section-title" data-copy="en">carry point</div>
+  <div><div class="threshold-note" data-copy="es">Intervención del laboratorio: la pregunta heredada se pone a trabajar sobre el texto, sin atribuírsela a Mitchell.</div><div class="threshold-note" data-copy="en">A laboratory intervention: the inherited question is brought to bear on the text without attributing it to Mitchell.</div>
+  <div class="pressure" data-copy="es">El reading de Joselit pregunta cómo reconocer la misma imagen cuando cambian sus soportes y relaciones. Mitchell desplaza la prueba de identidad: una versión no sólo conserva o pierde rasgos, también se dirige de otro modo a quien la encuentra. Si el soporte, el montaje o la institución alteran lo que la imagen parece pedir, su continuidad ya no puede medirse únicamente por semejanza. La misma imagen puede llegar con otra demanda; dos imágenes distintas pueden hacernos ocupar la misma posición.</div>
+  <div class="pressure" data-copy="en">The Joselit reading asks how to recognize the same image when its supports and relations change. Mitchell shifts the test of identity: a version does not only preserve or lose traits; it also addresses whoever encounters it differently. If support, display or institution changes what the image seems to ask, its continuity can no longer be measured by resemblance alone. The same image may arrive with another demand; two different images may make us occupy the same position.</div></div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">proposición incompleta</div><div class="section-title" data-copy="en">unfinished proposition</div><div class="incomplete" data-copy="es">Si cada encuentro modifica lo que una imagen parece querer, reconocerla como la misma exigiría conservar no una demanda fija, sino la capacidad de…</div><div class="incomplete" data-copy="en">If every encounter changes what an image seems to want, recognizing it as the same would require preserving not a fixed demand, but the capacity to…</div></section>
+<section class="grid"><div class="section-title" data-copy="es">bifurcación</div><div class="section-title" data-copy="en">bifurcation</div>
+<div class="branches" data-copy="es"><div class="branch">El deseo de la imagen sería una pauta transportable: algo reconocible que atraviesa versiones y vuelve a interpelarnos.</div><div class="branch">El deseo no viajaría dentro de la imagen: aparecería entre soporte, mirada e institución cada vez que la relación se activa.</div></div>
+<div class="branches" data-copy="en"><div class="branch">The picture's desire would be a portable pattern: something recognizable that crosses versions and addresses us again.</div><div class="branch">Desire would not travel inside the image: it would emerge among support, gaze and institution whenever the relation is activated.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">residuo</div><div class="section-title" data-copy="en">residue</div>
+<div data-copy="es"><div class="residue">Preguntar qué quiere una imagen puede revelar su punto ciego, su falta y la posición que reserva para quien la mira.</div><div class="residue">La misma gramática puede borrar responsabilidades humanas: una imagen no elige por sí sola dónde circula, a quién expone ni bajo qué relato aparece.</div></div>
+  <div data-copy="en"><div class="residue">Asking what an image wants can reveal its blind spot, its lack and the position it reserves for whoever looks.</div><div class="residue">The same grammar can erase human responsibilities: an image does not choose by itself where it circulates, whom it exposes or within which narrative it appears.</div></div></section>
+</div>
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0"><div class="section-title" data-copy="es">máquina de error</div><div class="section-title" data-copy="en">error machine</div>
+<div class="error-card">
+<div class="eyebrow" data-copy="es">contexto importado</div><div class="eyebrow" data-copy="en">imported context</div><div class="error-context" data-copy="es">FORMULARIO DE CONSENTIMIENTO / AUTORIZACIÓN DE USO</div><div class="error-context" data-copy="en">CONSENT FORM / USE AUTHORIZATION</div>
+<div class="eyebrow" data-copy="es">palabra importada</div><div class="eyebrow" data-copy="en">imported word</div><div class="error-word" data-copy="es">FIRMA</div><div class="error-word" data-copy="en">SIGNATURE</div>
+<div class="eyebrow" data-copy="es">colisión</div><div class="eyebrow" data-copy="en">collision</div><div class="error-collision" data-copy="es">deseo pictórico × firma</div><div class="error-collision" data-copy="en">pictorial desire × signature</div>
+<div class="eyebrow" data-copy="es">error forzado</div><div class="eyebrow" data-copy="en">forced error</div><div class="error-statement" data-copy="es">Si la imagen no firma su autorización, no puede querer nada de nosotros.</div><div class="error-statement" data-copy="en">If the image does not sign its authorization, it cannot want anything from us.</div>
+<div class="eyebrow" data-copy="es">lo que se escapó</div><div class="eyebrow" data-copy="en">what escaped</div>
+<div class="error-opening" data-copy="es">El error exige a la imagen una capacidad jurídica que no posee y confunde una pregunta crítica con una declaración verificable. Pero la firma ausente deja un hueco útil: alguien autoriza, recorta, titula y pone a circular la imagen en su nombre. Negarle una voz literal no vuelve neutral ese reparto de decisiones. La ficción de Mitchell permite escuchar la demanda sin absolver a quienes construyen la situación donde parece surgir. «Firma», el formulario y esta consecuencia son intervenciones de TSIL, no conceptos propuestos por Mitchell.</div>
+<div class="error-opening" data-copy="en">The error demands a legal capacity the image does not possess and confuses a critical question with a verifiable declaration. Yet the missing signature leaves a useful gap: someone authorizes, crops, titles and circulates the image in its name. Denying it a literal voice does not make that distribution of decisions neutral. Mitchell's fiction lets us hear the demand without absolving those who construct the situation in which it seems to arise. “Signature,” the form and this consequence are TSIL interventions, not concepts proposed by Mitchell.</div>
+<div class="eyebrow" data-copy="es">pregunta que queda</div><div class="eyebrow" data-copy="en">question left behind</div><div class="error-question" data-copy="es">¿Quién queda responsable de una imagen cuando le atribuimos deseos que no puede confirmar ni rechazar?</div><div class="error-question" data-copy="en">Who remains responsible for an image when we attribute desires to it that it can neither confirm nor refuse?</div>
+</div></section>
+<div class="reject"><div class="reject-x">×</div><div><div class="eyebrow" data-copy="es">error que no produjo nada</div><div class="eyebrow" data-copy="en">error that produced nothing</div><div class="reject-text" data-copy="es">Toda imagen quiere, en secreto, ser vista.</div><div class="reject-text" data-copy="en">Every image secretly wants to be seen.</div><div class="reject-note" data-copy="es">VISIBILIDAD. Universaliza una respuesta y elimina la posibilidad de indiferencia, rechazo o ausencia de deseo. Mitchell insiste en que la respuesta puede ser «nada». Se descarta.</div><div class="reject-note" data-copy="en">VISIBILITY. It universalizes one answer and removes the possibility of indifference, refusal or absence of desire. Mitchell insists that the answer may be “nothing.” Discarded.</div></div></div>
+</div>
+<section class="grid">
+  <div class="section-title" data-copy="es">arrastre</div><div class="section-title" data-copy="en">carry</div>
+  <div>
+    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
+    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+    <div class="reading-nav">
+      <a class="prev" href="../016-david-joselit-painting-beside-itself/index.html"><div><div class="nav-label" data-copy="es">← viene de 016 · David Joselit</div><div class="nav-label" data-copy="en">← comes from 016 · David Joselit</div><div class="nav-q" data-copy="es">¿Qué permite reconocer la misma imagen a través de soportes, versiones y recorridos distintos, si conservar su superficie puede perder las relaciones que la hacían actuar y conservar esas relaciones exige transformar su presentación?</div><div class="nav-q" data-copy="en">What allows us to recognize the same image across different supports, versions and routes, if preserving its surface can lose the relations through which it acted, while preserving those relations requires transforming its presentation?</div></div></a>
+      <div class="nav-block next pending"><div><div class="nav-label" data-copy="es">hacia el próximo texto →</div><div class="nav-label" data-copy="en">toward the next text →</div><div class="nav-q" data-copy="es">¿Qué ocurre con la responsabilidad sobre una imagen cuando la tratamos como interlocutora capaz de demandar, carecer o negarse, aunque no pueda confirmar ninguna de esas atribuciones y cada soporte, mirada e institución modifique aquello que parece querer?</div><div class="nav-q" data-copy="en">What happens to responsibility for an image when we treat it as an interlocutor capable of demanding, lacking or refusing, even though it cannot confirm any of those attributions and every support, gaze and institution modifies what it seems to want?</div></div></div>
+    </div>
+  </div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">texto leído</div><div class="section-title" data-copy="en">source read</div><div class="about-machine">
+<p>W. J. T. Mitchell, “What Do Pictures Want?”, in <em>What Do Pictures Want? The Lives and Loves of Images</em> (University of Chicago Press, 2005), pp. 28–56.</p>
+<p data-copy="es">Lectura completa del capítulo en la transcripción del repositorio del autor. Pasajes de apoyo: desplazamiento del deseo hacia las imágenes, pp. 28–31; poder, debilidad y falta, pp. 32–36; ejemplos pictóricos, pp. 36–45; conclusiones y encuentro relacional, pp. 46–51; vida de las imágenes, pp. 51–55. «Firma», el formulario de consentimiento y las preguntas de responsabilidad son intervenciones de este laboratorio.</p>
+<p data-copy="en">The complete chapter was read in the transcription held in the site author's repository. Supporting passages: shifting desire toward pictures, pp. 28–31; power, weakness and lack, pp. 32–36; pictorial examples, pp. 36–45; conclusions and the relational encounter, pp. 46–51; the life of images, pp. 51–55. “Signature,” the consent form and the questions of responsibility are interventions by this laboratory.</p>
+</div></section>
+<section class="grid">
+  <div class="section-title" data-copy="es">sobre esta máquina</div><div class="section-title" data-copy="en">about this machine</div>
+  <div class="about-machine" data-copy="es">Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div>
+  <div class="about-machine" data-copy="en">This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and deliberately forces errors, deviations, and unlikely associations to open questions rather than close them. Each entry is reviewed and published manually.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div>
+</section>
+</main>
+</div>
+<!-- TSIL_SOCIAL_SCRIPT_START -->
+<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
+<!-- TSIL_SOCIAL_SCRIPT_END -->
+</body>
+</html>

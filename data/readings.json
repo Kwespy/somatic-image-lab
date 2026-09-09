@@ -158,5 +158,15 @@
     "date": "2026-09-07",
     "error_es": "precinto",
     "error_en": "seal"
+  },
+  {
+    "number": 17,
+    "slug": "017-w-j-t-mitchell-what-do-pictures-want",
+    "author": "W. J. T. Mitchell",
+    "title_es": "What Do Pictures Want?",
+    "title_en": "What Do Pictures Want?",
+    "date": "2026-09-09",
+    "error_es": "firma",
+    "error_en": "signature"
   }
 ]
