@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<title>Máquina del Error — The Somatic Image Lab</title>
+<meta name="description" content="Máquina del Error: las lecturas de The Somatic Image Lab, donde textos de referencia sobre la imagen chocan y se contaminan para producir errores que abren preguntas.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/maquina-del-error/">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:title" content="Máquina del Error — The Somatic Image Lab">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Las lecturas de The Somatic Image Lab: textos que chocan y se contaminan para producir errores que abren preguntas.">
+<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/maquina-del-error/">
+<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Máquina del Error — The Somatic Image Lab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Máquina del Error — The Somatic Image Lab">
+<meta name="twitter:description" content="Las lecturas de The Somatic Image Lab.">
+<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],
+html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],
+html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+
+.shell{
+  width:min(var(--max), calc(100% - 40px));
+  margin:0 auto;
+}
+.topbar{
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.topbar a{
+  text-decoration:none;
+}
+.lang-switch{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.lang-switch button{
+  border:0;
+  background:none;
+  padding:2px 0;
+  color:var(--muted);
+  cursor:pointer;
+}
+.lang-switch button.active{
+  color:var(--ink);
+  border-bottom:1px solid currentColor;
+}
+
+/* core visual language: misregistration rather than "glitch" */
+.misregister{
+  position:relative;
+  display:inline-block;
+  isolation:isolate;
+}
+.misregister::after{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  transform:translate(6px,-3px);
+  color:transparent;
+  -webkit-text-stroke:1.2px var(--orange);
+  z-index:-1;
+  pointer-events:none;
+}
+
+.hero{
+  padding:76px 0 58px;
+}
+.hero h1{
+  margin:0;
+  font-size:clamp(62px,10.8vw,150px);
+  line-height:.79;
+  letter-spacing:-.075em;
+  font-weight:800;
+}
+.intro{
+  max-width:850px;
+  margin-top:44px;
+  font-size:clamp(22px,2.9vw,34px);
+  line-height:1.18;
+  letter-spacing:-.025em;
+}
+
+.motion-line{
+  position:relative;
+  margin:0 0 72px;
+  padding:26px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.motion-line .text{
+  position:relative;
+  font-size:clamp(26px,4.3vw,56px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+.motion-line .text::after{
+  content:attr(data-text);
+  position:absolute;
+  left:5px;
+  top:-2px;
+  color:var(--orange);
+  clip-path:inset(0 0 56% 0);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  gap:34px;
+  padding:25px 0 34px;
+  border-top:1px solid var(--line);
+}
+.eyebrow{
+  padding-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.copy{
+  max-width:760px;
+  font-size:18px;
+  line-height:1.48;
+}
+.copy p{margin:0 0 14px}
+
+.post-card{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr) auto;
+  gap:18px;
+  align-items:start;
+  padding:22px 0 24px;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+}
+.post-number{
+  padding-top:5px;
+  font-size:11px;
+  color:var(--muted);
+}
+.post-title{
+  margin:0 0 7px;
+  font-size:clamp(32px,4.8vw,58px);
+  line-height:.98;
+  letter-spacing:-.05em;
+  font-weight:600;
+}
+.post-author{
+  font-size:14px;
+  color:var(--muted);
+}
+.post-meta{
+  margin-top:14px;
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.error-pill{
+  display:inline-block;
+  margin-left:5px;
+  padding:3px 7px;
+  background:var(--orange);
+  color:#000;
+  transform:rotate(-.7deg);
+}
+.post-arrow{
+  font-size:32px;
+  line-height:1;
+}
+.footer{
+  margin-top:48px;
+  padding:20px 0 52px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+  font-size:11px;
+  color:var(--muted);
+}
+.footer a{
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+
+/* post */
+.article-hero{
+  padding:64px 0 48px;
+}
+.article-kicker{
+  margin-bottom:14px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.article-title{
+  margin:0;
+  font-size:clamp(48px,8.8vw,112px);
+  line-height:.84;
+  letter-spacing:-.067em;
+  font-weight:800;
+}
+.article-author{
+  margin-top:16px;
+  font-size:18px;
+}
+.article-lead{
+  max-width:850px;
+  margin-top:36px;
+  font-size:clamp(21px,2.8vw,32px);
+  line-height:1.2;
+  letter-spacing:-.02em;
+}
+.section-title{
+  padding-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.large-copy{
+  font-size:clamp(22px,2.5vw,31px);
+  line-height:1.22;
+  letter-spacing:-.018em;
+}
+.large-copy p{
+  margin:0 0 18px;
+}
+.keep{
+  padding:13px 0;
+  border-top:1px solid var(--ink);
+  font-size:clamp(20px,2.2vw,28px);
+  line-height:1.22;
+}
+.threshold{
+  margin-top:18px;
+  padding:0 18px 18px;
+  background:rgba(0,0,0,.035);
+}
+.pressure{
+  border-left:4px solid var(--ink);
+  padding-left:16px;
+  font-size:clamp(25px,3vw,38px);
+  line-height:1.12;
+  letter-spacing:-.03em;
+}
+.incomplete{
+  padding:18px;
+  border:2px solid var(--ink);
+  font-size:clamp(26px,3.2vw,40px);
+  line-height:1.16;
+  letter-spacing:-.035em;
+}
+.branches{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.branch{
+  padding:15px;
+  border:1px solid var(--ink);
+  font-size:clamp(19px,2vw,26px);
+  line-height:1.25;
+}
+.residue{
+  margin-bottom:14px;
+  padding-left:15px;
+  border-left:2px solid var(--ink);
+  font-size:clamp(19px,2vw,27px);
+  line-height:1.25;
+}
+
+.error-zone{
+  margin-top:22px;
+  padding:30px 18px 24px;
+  background:var(--orange);
+}
+.error-card{
+  padding:22px;
+  background:var(--ink);
+  color:#fff;
+}
+.error-card .eyebrow{color:#aaa}
+.error-context{
+  margin:3px 0 18px;
+  font-size:14px;
+}
+.error-word{
+  margin:7px 0 21px;
+  font-size:clamp(56px,8vw,104px);
+  line-height:.82;
+  letter-spacing:-.065em;
+  font-weight:900;
+}
+.error-collision{
+  margin:5px 0 22px;
+  font-size:clamp(23px,2.6vw,34px);
+}
+.error-statement{
+  margin:6px 0 24px;
+  font-size:clamp(27px,3.4vw,43px);
+  line-height:1.07;
+  letter-spacing:-.035em;
+}
+.error-opening{
+  margin:6px 0 22px;
+  font-size:clamp(18px,2vw,24px);
+  line-height:1.34;
+}
+.error-question{
+  margin:6px 0 0;
+  font-size:clamp(21px,2.4vw,31px);
+  line-height:1.2;
+}
+.reject{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:12px;
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(0,0,0,.45);
+}
+.reject-x{
+  font-size:50px;
+  line-height:1;
+}
+.reject-text{
+  font-size:clamp(19px,2vw,27px);
+  line-height:1.22;
+}
+.reject-note{
+  margin-top:8px;
+  font-size:12px;
+}
+.carry{
+  padding:18px;
+  border:2px solid var(--ink);
+  font-size:clamp(24px,2.8vw,36px);
+  line-height:1.16;
+  letter-spacing:-.028em;
+}
+.about-machine{
+  max-width:780px;
+  font-size:13px;
+  line-height:1.5;
+}
+.identity{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 12px;
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:11px;
+}
+.identity a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+
+@media(max-width:760px){
+  .shell{width:min(var(--max), calc(100% - 24px))}
+  .hero{padding:48px 0 42px}
+  .hero h1{font-size:clamp(58px,19vw,110px)}
+  .intro{margin-top:32px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .post-card{grid-template-columns:42px minmax(0,1fr)}
+  .post-arrow{grid-column:2}
+  .branches{grid-template-columns:1fr}
+  .article-hero{padding:46px 0 38px}
+}
+
+.random-start{
+  margin:0 0 18px;display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:15px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)
+}
+.random-start button{
+  border:0;background:none;padding:0;color:var(--ink);font:inherit;
+  font-size:clamp(20px,2.2vw,29px);line-height:1.15;letter-spacing:-.025em;
+  cursor:pointer;text-align:left
+}
+.random-start button:hover{color:var(--orange)}
+.random-start .random-arrow{font-size:28px;transform:rotate(-7deg)}
+
+</style>
+
+<style>
+.mde-hero{
+  background:var(--orange);
+  margin:0 0 40px;
+  padding:56px 0 48px;
+}
+.mde-back{
+  display:inline-block;
+  margin-bottom:22px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#000;
+  border-bottom:1px solid currentColor;
+}
+.mde-title{
+  margin:0;
+  color:#000;
+  font-size:clamp(48px,9vw,120px);
+  line-height:.82;
+  letter-spacing:-.06em;
+  font-weight:900;
+}
+.mde-lead{
+  max-width:760px;
+  margin-top:24px;
+  color:#000;
+  font-size:clamp(19px,2.2vw,26px);
+  line-height:1.35;
+}
+</style>
+
+<script>
+(function () {
+  const saved = localStorage.getItem("tsil-lang");
+  const browser = (navigator.language || "en").toLowerCase();
+  const initial = saved || (browser.startsWith("es") ? "es" : "en");
+
+  function setLang(lang) {
+    document.documentElement.setAttribute("data-lang", lang);
+    document.documentElement.lang = lang;
+    localStorage.setItem("tsil-lang", lang);
+    document.querySelectorAll("[data-switch]").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.switch === lang);
+    });
+  }
+
+  window.setTSILLang = setLang;
+  document.addEventListener("DOMContentLoaded", () => setLang(initial));
+})();
+</script>
+
+</head>
+<body>
+<div class="mde-hero">
+  <div class="shell">
+    <a class="mde-back" href="../index.html">
+      <span data-inline="es">← volver a TSIL</span>
+      <span data-inline="en">← back to TSIL</span>
+    </a>
+    <h1 class="mde-title">
+      <span class="misregister" data-text="MÁQUINA DEL ERROR" data-copy="es">MÁQUINA DEL ERROR</span>
+      <span class="misregister" data-text="THE ERROR MACHINE" data-copy="en">THE ERROR MACHINE</span>
+    </h1>
+    <div class="mde-lead" data-copy="es">
+      Cada lectura confronta un texto de referencia sobre la imagen, lo hace chocar con otros y fuerza un error — una palabra, una frase — que abre una pregunta en vez de cerrar una conclusión.
+    </div>
+    <div class="mde-lead" data-copy="en">
+      Each reading confronts a reference text on the image, makes it collide with others, and forces an error — a word, a phrase — that opens a question rather than closing a conclusion.
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+<div class="copy" data-copy="es" style="margin-bottom:34px">
+  <p>The Somatic Image Lab observa qué hacen las imágenes y qué les ocurre cuando pasan entre cuerpos, máquinas, medios y sistemas. El sitio comienza con esta serie de lecturas y experimentaciones alrededor de textos sobre la imagen.</p>
+</div>
+<div class="copy" data-copy="en" style="margin-bottom:34px">
+  <p>The Somatic Image Lab looks at what images do and what happens to them as they move between bodies, machines, media and systems. The site begins with this series of readings and experiments around texts on the image.</p>
+</div>
+<main>
+  <section class="grid">
+    <div class="eyebrow" data-copy="es">lecturas</div>
+    <div class="eyebrow" data-copy="en">readings</div>
+
+    <div>
+<div class="random-start">
+  <button type="button" onclick="tsilRandomReading()">
+    <span data-inline="es">Lectura al azar</span>
+    <span data-inline="en">Random Reading</span>
+  </button>
+  <div class="random-arrow">⇝</div>
+</div>
+
+<!-- POSTS_START -->
+<a class="post-card" href="readings/017-w-j-t-mitchell-what-do-pictures-want/index.html">
+  <div class="post-number">017</div>
+  <div>
+    <h2 class="post-title" data-copy="es">What Do Pictures Want?</h2>
+    <h2 class="post-title" data-copy="en">What Do Pictures Want?</h2>
+    <div class="post-author">W. J. T. Mitchell</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: firma</span>
+      <span class="error-pill" data-inline="en">forced error: signature</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/016-david-joselit-painting-beside-itself/index.html">
+  <div class="post-number">016</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Painting Beside Itself</h2>
+    <h2 class="post-title" data-copy="en">Painting Beside Itself</h2>
+    <div class="post-author">David Joselit</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: precinto</span>
+      <span class="error-pill" data-inline="en">forced error: seal</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/index.html">
+  <div class="post-number">015</div>
+  <div>
+    <h2 class="post-title" data-copy="es">The Stack: On Software and Sovereignty</h2>
+    <h2 class="post-title" data-copy="en">The Stack: On Software and Sovereignty</h2>
+    <div class="post-author">Benjamin H. Bratton</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: habitación</span>
+      <span class="error-pill" data-inline="en">forced error: room</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/014-yuk-hui-the-question-concerning-technology-in-china/index.html">
+  <div class="post-number">014</div>
+  <div>
+    <h2 class="post-title" data-copy="es">The Question Concerning Technology in China: An Essay in Cosmotechnics</h2>
+    <h2 class="post-title" data-copy="en">The Question Concerning Technology in China: An Essay in Cosmotechnics</h2>
+    <div class="post-author">Yuk Hui</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: naturalización</span>
+      <span class="error-pill" data-inline="en">forced error: naturalization</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/013-friedrich-kittler-optical-media/index.html">
+  <div class="post-number">013</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Optical Media</h2>
+    <h2 class="post-title" data-copy="en">Optical Media</h2>
+    <div class="post-author">Friedrich Kittler</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: triaje</span>
+      <span class="error-pill" data-inline="en">forced error: triage</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/012-lev-manovich-the-language-of-new-media/index.html">
+  <div class="post-number">012</div>
+  <div>
+    <h2 class="post-title" data-copy="es">The Language of New Media</h2>
+    <h2 class="post-title" data-copy="en">The Language of New Media</h2>
+    <div class="post-author">Lev Manovich</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: boleto</span>
+      <span class="error-pill" data-inline="en">forced error: ticket</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html">
+  <div class="post-number">011</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Updating to Remain the Same: Habitual New Media</h2>
+    <h2 class="post-title" data-copy="en">Updating to Remain the Same: Habitual New Media</h2>
+    <div class="post-author">Wendy Hui Kyong Chun</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: retenedor</span>
+      <span class="error-pill" data-inline="en">forced error: retainer</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/010-matthew-fuller-andrew-goffey-evil-media/index.html">
+  <div class="post-number">010</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Evil Media</h2>
+    <h2 class="post-title" data-copy="en">Evil Media</h2>
+    <div class="post-author">Matthew Fuller &amp; Andrew Goffey</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: dobladillo</span>
+      <span class="error-pill" data-inline="en">forced error: hem</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/009-n-katherine-hayles-my-mother-was-a-computer/index.html">
+  <div class="post-number">009</div>
+  <div>
+    <h2 class="post-title" data-copy="es">My Mother Was a Computer</h2>
+    <h2 class="post-title" data-copy="en">My Mother Was a Computer</h2>
+    <div class="post-author">N. Katherine Hayles</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: injerto</span>
+      <span class="error-pill" data-inline="en">forced error: graft</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/008-mark-b-n-hansen-new-philosophy-for-new-media/index.html">
+  <div class="post-number">008</div>
+  <div>
+    <h2 class="post-title" data-copy="es">New Philosophy for New Media</h2>
+    <h2 class="post-title" data-copy="en">New Philosophy for New Media</h2>
+    <div class="post-author">Mark B. N. Hansen</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: aduana</span>
+      <span class="error-pill" data-inline="en">forced error: customs</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/007-alexander-r-galloway-the-interface-effect/index.html">
+  <div class="post-number">007</div>
+  <div>
+    <h2 class="post-title" data-copy="es">The Interface Effect</h2>
+    <h2 class="post-title" data-copy="en">The Interface Effect</h2>
+    <div class="post-author">Alexander R. Galloway</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: rechazo</span>
+      <span class="error-pill" data-inline="en">forced error: rejection</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/006-jussi-parikka-a-geology-of-media/index.html">
+  <div class="post-number">006</div>
+  <div>
+    <h2 class="post-title" data-copy="es">A Geology of Media</h2>
+    <h2 class="post-title" data-copy="en">A Geology of Media</h2>
+    <div class="post-author">Jussi Parikka</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: biopsia</span>
+      <span class="error-pill" data-inline="en">forced error: biopsy</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/005-vilem-flusser-hacia-una-filosofia-de-la-fotografia/index.html">
+  <div class="post-number">005</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Hacia una filosofía de la fotografía</h2>
+    <h2 class="post-title" data-copy="en">Towards a Philosophy of Photography</h2>
+    <div class="post-author">Vilém Flusser</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: jurisdicción</span>
+      <span class="error-pill" data-inline="en">forced error: jurisdiction</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/004-georges-didi-huberman-ante-el-tiempo/index.html">
+  <div class="post-number">004</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Ante el tiempo</h2>
+    <h2 class="post-title" data-copy="en">Ante el tiempo</h2>
+    <div class="post-author">Georges Didi-Huberman</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: injerto</span>
+      <span class="error-pill" data-inline="en">forced error: graft</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/index.html">
+  <div class="post-number">003</div>
+  <div>
+    <h2 class="post-title" data-copy="es">La memoria, la historia, el olvido</h2>
+    <h2 class="post-title" data-copy="en">Memory, History, Forgetting</h2>
+    <div class="post-author">Paul Ricœur</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: erosión</span>
+      <span class="error-pill" data-inline="en">forced error: erosion</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/002-karen-barad-meeting-the-universe-halfway/index.html">
+  <div class="post-number">002</div>
+  <div>
+    <h2 class="post-title" data-copy="es">Meeting the Universe Halfway</h2>
+    <h2 class="post-title" data-copy="en">Meeting the Universe Halfway</h2>
+    <div class="post-author">Karen Barad</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: reparto</span>
+      <span class="error-pill" data-inline="en">forced error: casting</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<a class="post-card" href="readings/001-peter-weibel/index.html">
+  <div class="post-number">001</div>
+  <div>
+    <h2 class="post-title" data-copy="es">La condición postmedial</h2>
+    <h2 class="post-title" data-copy="en">The Post-Media Condition</h2>
+    <div class="post-author">Peter Weibel</div>
+    <div class="post-meta">
+      <span data-inline="es">lectura / umbral /</span>
+      <span data-inline="en">reading / threshold /</span>
+      <span class="error-pill" data-inline="es">error forzado: aduana</span>
+      <span class="error-pill" data-inline="en">forced error: customs</span>
+    </div>
+  </div>
+  <div class="post-arrow">→</div>
+</a>
+<!-- POSTS_END -->
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>The Somatic Image Lab · Kurt Wesp Yianatos · KWY-A⁰¹RTBORG</div>
+  <div>
+    <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.kwydesign.com/">kwydesign.com</a>
+  </div>
+</footer>
+</div>
+
+<script id="tsil-random-start">
+window.tsilRandomReading=function(){
+  const cards=Array.from(document.querySelectorAll('a.post-card'));
+  if(!cards.length)return;
+  const card=cards[Math.floor(Math.random()*cards.length)];
+  window.location.href=card.getAttribute('href');
+};
+if(new URLSearchParams(window.location.search).get('random')==='1'){
+  document.addEventListener('DOMContentLoaded', () => { if (window.tsilRandomReading) window.tsilRandomReading(); });
+}
+</script>
+</body>
+</html>

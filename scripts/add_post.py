@@ -6,7 +6,7 @@ from tsil_social import apply_social_to_reading
 ROOT=Path(__file__).resolve().parents[1]
 READINGS=ROOT/"readings"
 DATA=ROOT/"data"/"readings.json"
-HOME=ROOT/"index.html"
+HOME=ROOT/"maquina-del-error"/"index.html"
 SITEMAP=ROOT/"sitemap.xml"
 DOMAIN="https://thesomaticimagelab.kurtwespyianatos.com"
 CARRY_NOTE_ES='Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.'
