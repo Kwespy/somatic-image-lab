@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trevor Paglen — Invisible Images (Your Pictures Are Looking at You) | The Somatic Image Lab</title>
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.topbar{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
+.misregister{position:relative;display:inline-block;isolation:isolate;max-width:100%}
+.misregister::after{content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none}
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(38px,7.8vw,96px);line-height:.84;letter-spacing:-.067em;font-weight:800;overflow-wrap:anywhere}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em}
+.article-ante{max-width:850px;margin:28px 0 18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--muted);font-weight:400}
+.motion-line{position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
+.motion-line .text::after{content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none}
+.grid{display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;padding:25px 0 34px;border-top:1px solid var(--line)}
+.eyebrow,.section-title{padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
+.error-card{padding:22px;background:var(--ink);color:#fff}
+.error-card .eyebrow{color:#aaa}
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+.carry-rule{margin:10px 0 18px;max-width:760px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
+.identity{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+@media(max-width:760px){.shell{width:min(var(--max),calc(100% - 24px))}.grid{grid-template-columns:1fr;gap:14px}.branches{grid-template-columns:1fr}.article-hero{padding:46px 0 38px}}
+@media(max-width:600px){.reading-nav{grid-template-columns:1fr}.reading-nav .next{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<script>
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>btn.classList.toggle("active",btn.dataset.switch===lang));
+  }
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
+})();
+</script>
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
+
+<!-- TSIL_SOCIAL_META_START -->
+<meta name="description" content="Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="keywords" content="Trevor Paglen, Invisible Images (Your Pictures Are Looking at You), readable → activation → classification → regulation, CADASTRAL REGISTRY / PROPERTY DECLARATION, CADASTRE, The Somatic Image Lab, Kurt Wesp Yianatos">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/018-trevor-paglen-invisible-images/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:title" content="Invisible Images (Your Pictures Are Looking at You) — Trevor Paglen">
+<meta property="og:description" content="Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon.">
+<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/018-trevor-paglen-invisible-images/">
+<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="The Somatic Image Lab — Reading 018 — Invisible Images (Your Pictures Are Looking at You) — Trevor Paglen">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="article:published_time" content="2026-09-10">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Invisible Images (Your Pictures Are Looking at You) — Trevor Paglen">
+<meta name="twitter:description" content="Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon.">
+<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta name="theme-color" content="#f2efe7">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/018-trevor-paglen-invisible-images/"},"headline":"Invisible Images (Your Pictures Are Looking at You) — Trevor Paglen","description":"Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon.","datePublished":"2026-09-10","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Invisible Images (Your Pictures Are Looking at You)","author":{"@type":"Person","name":"Trevor Paglen"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["readable → activation → classification → regulation","CADASTRAL REGISTRY / PROPERTY DECLARATION","CADASTRE"]}</script>
+<script id="tsil-social-data" type="application/json">{"number": 18, "slug": "018-trevor-paglen-invisible-images", "author": "Trevor Paglen", "date": "2026-09-10", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/018-trevor-paglen-invisible-images/", "title": {"es": "Invisible Images (Your Pictures Are Looking at You)", "en": "Invisible Images (Your Pictures Are Looking at You)"}, "parts": {"es": {"title": "Invisible Images (Your Pictures Are Looking at You)", "subtitle": ""}, "en": {"title": "Invisible Images (Your Pictures Are Looking at You)", "subtitle": ""}}, "lead": {"es": "Paglen sostiene que la mayoría de las imágenes ya no se dirigen a un ojo humano: son archivos que otras máquinas leen y sobre los que actúan. Cuando una imagen deja de representar y pasa a activar, clasificar y regular, las categorías con que aprendimos a mirar —significado, semiosis, espectáculo— dejan de alcanzar.", "en": "Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon. When an image stops representing and begins to activate, classify and regulate, the categories we learned to look with —meaning, semiosis, spectacle— no longer reach."}, "description": {"es": "Paglen sostiene que la mayoría de las imágenes ya no se dirigen a un ojo humano: son archivos que otras máquinas leen y sobre los que actúan.", "en": "Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon."}, "band": {"es": "legible → activación → clasificación → regulación", "en": "readable → activation → classification → regulation"}, "error_context": {"es": "REGISTRO CATASTRAL / DECLARACIÓN DE BIENES RAÍCES", "en": "CADASTRAL REGISTRY / PROPERTY DECLARATION"}, "error_word": {"es": "CATASTRO", "en": "CADASTRE"}, "concepts": {"es": ["LEGIBLE", "CATASTRO", "ACTIVACIÓN", "REGULACIÓN"], "en": ["READABLE", "CADASTRE", "ACTIVATION", "REGULATION"]}}</script>
+<!-- TSIL_SOCIAL_META_END -->
+<!-- TSIL_SOCIAL_STYLE_START -->
+<style id="tsil-social-secret-style">
+.tsil-secret-story{cursor:default!important}
+.tsil-secret-story:focus{outline:none!important}
+#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}
+#tsil-secret-export.open{display:flex}
+#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}
+#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}
+#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
+#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}
+#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
+</style>
+<!-- TSIL_SOCIAL_STYLE_END -->
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div><a href="../../index.html">The Somatic Image Lab</a></div>
+  <div class="lang-switch">
+    <a href="../../index.html" data-inline="es">inicio</a>
+    <a href="../../index.html" data-inline="en">home</a>
+    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
+    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
+  </div>
+</header>
+<main>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 018</div><div class="article-kicker" data-copy="en">reading / 018</div>
+  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="INVISIBLE">INVISIBLE</span><br>IMAGES</h1>
+  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="INVISIBLE">INVISIBLE</span><br>IMAGES</h1>
+  <div class="article-author">Trevor Paglen</div>
+  <div class="article-ante" data-copy="es">Subes una foto. Nadie la mira. Algo la leyó igual, y decidió sobre ti.</div>
+  <div class="article-ante" data-copy="en">You upload a photo. No one looks at it. Something read it anyway, and decided about you.</div>
+  <div class="article-lead" data-copy="es">Paglen sostiene que la mayoría de las imágenes ya no se dirigen a un ojo humano: son archivos que otras máquinas leen y sobre los que actúan. Cuando una imagen deja de representar y pasa a activar, clasificar y regular, las categorías con que aprendimos a mirar —significado, semiosis, espectáculo— dejan de alcanzar.</div>
+  <div class="article-lead" data-copy="en">Paglen argues that most images no longer address a human eye: they are files that other machines read and act upon. When an image stops representing and begins to activate, classify and regulate, the categories we learned to look with —meaning, semiosis, spectacle— no longer reach.</div>
+</section>
+<div class="motion-line"><div class="text" data-text="legible → activación → clasificación → regulación" data-copy="es">legible → activación → clasificación → regulación</div><div class="text" data-text="readable → activation → classification → regulation" data-copy="en">readable → activation → classification → regulation</div></div>
+<section class="grid">
+  <div class="section-title" data-copy="es">en 1 minuto</div><div class="section-title" data-copy="en">in 1 minute</div>
+  <div class="large-copy" data-copy="es">
+    <p>Durante casi toda su historia, las imágenes estuvieron hechas de materia dirigida a un ojo: pigmento, plata, gelatina, fósforo, cristal líquido. Paglen sostiene que en la última década eso dejó de ser la regla. La abrumadora mayoría de las imágenes son hoy producidas por máquinas para otras máquinas, sin que ningún humano intervenga en el circuito.</p>
+    <p>Una fotografía digital es antes que nada un archivo legible por una máquina. Solo aparece ante los ojos de manera temporal, cuando un programa y una pantalla la traducen. Pero no necesita esa traducción para funcionar: lectores de patentes, cámaras en tiendas, redes neuronales entrenadas con lo que subimos. La imagen actúa sin haber sido vista.</p>
+    <p>Criticar estos sistemas porque se equivocan resulta insuficiente. El problema no es la precisión sino que operan como palancas de regulación mientras se presentan como objetivos. Las tácticas visuales que servían contra la cultura humana —la ambigüedad, la contra-representación— pierden apoyo en un plano donde la ambigüedad simplemente no existe.</p>
+  </div>
+  <div class="large-copy" data-copy="en">
+    <p>For almost all of their history, images were made of matter addressed to an eye: pigment, silver, gelatin, phosphor, liquid crystal. Paglen argues that over the last decade this stopped being the rule. The overwhelming majority of images are now produced by machines for other machines, with no human anywhere in the loop.</p>
+    <p>A digital photograph is first of all a machine-readable file. It appears to human eyes only temporarily, when software and a screen translate it. But it does not need that translation in order to function: license plate readers, cameras in stores, neural networks trained on what we upload. The image acts without ever having been seen.</p>
+    <p>Criticizing these systems for getting things wrong is not enough. The problem is not accuracy but that they operate as levers of regulation while presenting themselves as objective. The visual tactics that worked against human culture —ambiguity, counter-representation— lose their footing on a plane where ambiguity simply does not exist.</p>
+  </div>
+</section>
+<section class="grid">
+  <div class="section-title" data-copy="es">tres cosas para conservar</div><div class="section-title" data-copy="en">three things to keep</div>
+  <div data-copy="es"><div class="keep">Una imagen puede intervenir en una vida sin que nadie la haya mirado nunca.</div><div class="keep">El error de clasificación no es una falla técnica pendiente de corrección: revela de quién aprendió a ver el sistema.</div><div class="keep">La ambigüedad, base de toda contra-lectura, se desvanece cuando la imagen se vuelve dato cuantificado.</div></div>
+  <div data-copy="en"><div class="keep">An image can intervene in a life without anyone ever having looked at it.</div><div class="keep">A classification error is not a technical fault awaiting correction: it reveals from whom the system learned to see.</div><div class="keep">Ambiguity, the ground of every counter-reading, dissolves once the image becomes quantified data.</div></div>
+</section>
+<div class="threshold">
+<section class="grid" style="border-top:0">
+  <div class="section-title" data-copy="es">punto de arrastre</div><div class="section-title" data-copy="en">carry point</div>
+  <div><div class="threshold-note" data-copy="es">Intervención del laboratorio: la pregunta heredada se pone a trabajar sobre el texto, sin atribuírsela a Paglen.</div><div class="threshold-note" data-copy="en">A laboratory intervention: the inherited question is brought to bear on the text without attributing it to Paglen.</div>
+  <div class="pressure" data-copy="es">El reading de Mitchell pregunta qué ocurre con la responsabilidad cuando tratamos a una imagen como interlocutora capaz de demandar, carecer o negarse. Paglen describe un régimen donde esa escena ya no ocurre: la imagen no interpela a nadie, no espera respuesta, ejecuta. La responsabilidad no desaparece con la mirada; se traslada hacia quienes etiquetan, entrenan y despliegan. Lo perturbador es que la consecuencia llega igual, sin haber existido ningún encuentro.</div>
+  <div class="pressure" data-copy="en">The Mitchell reading asks what happens to responsibility when we treat an image as an interlocutor capable of demanding, lacking or refusing. Paglen describes a regime where that scene no longer takes place: the image addresses no one, expects no answer, executes. Responsibility does not vanish along with the gaze; it shifts toward those who label, train and deploy. What unsettles is that the consequence arrives anyway, with no encounter having occurred.</div></div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">proposición incompleta</div><div class="section-title" data-copy="en">unfinished proposition</div><div class="incomplete" data-copy="es">Si una imagen puede actuar sobre una vida sin dirigirse a nadie, la responsabilidad ya no se rastrearía en la mirada sino en…</div><div class="incomplete" data-copy="en">If an image can act upon a life without addressing anyone, responsibility would no longer be traced in the gaze but in…</div></section>
+<section class="grid"><div class="section-title" data-copy="es">bifurcación</div><div class="section-title" data-copy="en">bifurcation</div>
+<div class="branches" data-copy="es"><div class="branch">La imagen operativa sería un caso extremo de la imagen de siempre: al final alguien decide qué se busca y qué se castiga.</div><div class="branch">La imagen operativa sería otra cosa: un umbral estadístico que nadie escribió del todo y que ningún autor podría reclamar.</div></div>
+<div class="branches" data-copy="en"><div class="branch">The operational image would be an extreme case of the image as always: in the end someone decides what is sought and what is punished.</div><div class="branch">The operational image would be something else: a statistical threshold no one fully wrote and no author could claim.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">residuo</div><div class="section-title" data-copy="en">residue</div>
+<div data-copy="es"><div class="residue">Nombrar la infraestructura vuelve discutible lo que se presenta como neutro: alguien eligió el conjunto de entrenamiento y alguien decidió qué clase valía la pena reconocer.</div><div class="residue">La misma descripción puede volver inevitable la vigilancia: si la máquina ya lo ve todo, cualquier resistencia parecería decorativa antes de intentarse.</div></div>
+  <div data-copy="en"><div class="residue">Naming the infrastructure makes debatable what presents itself as neutral: someone chose the training set and someone decided which class was worth recognizing.</div><div class="residue">The same description can render surveillance inevitable: if the machine already sees everything, any resistance would look decorative before being attempted.</div></div></section>
+</div>
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0"><div class="section-title" data-copy="es">máquina de error</div><div class="section-title" data-copy="en">error machine</div>
+<div class="error-card">
+<div class="eyebrow" data-copy="es">contexto importado</div><div class="eyebrow" data-copy="en">imported context</div><div class="error-context" data-copy="es">REGISTRO CATASTRAL / DECLARACIÓN DE BIENES RAÍCES</div><div class="error-context" data-copy="en">CADASTRAL REGISTRY / PROPERTY DECLARATION</div>
+<div class="eyebrow" data-copy="es">palabra importada</div><div class="eyebrow" data-copy="en">imported word</div><div class="error-word" data-copy="es">CATASTRO</div><div class="error-word" data-copy="en">CADASTRE</div>
+<div class="eyebrow" data-copy="es">colisión</div><div class="eyebrow" data-copy="en">collision</div><div class="error-collision" data-copy="es">imagen invisible × catastro</div><div class="error-collision" data-copy="en">invisible image × cadastre</div>
+<div class="eyebrow" data-copy="es">error forzado</div><div class="eyebrow" data-copy="en">forced error</div><div class="error-statement" data-copy="es">Toda imagen que una máquina lee queda inscrita en un catastro, y lo inscrito puede ser cobrado.</div><div class="error-statement" data-copy="en">Every image a machine reads is entered into a cadastre, and whatever is entered can be charged.</div>
+<div class="eyebrow" data-copy="es">lo que se escapó</div><div class="eyebrow" data-copy="en">what escaped</div>
+<div class="error-opening" data-copy="es">El error llama catastro a un registro que no tiene consulta pública ni límites verificables: nadie puede pedir la parcela que le fue asignada ni impugnar su avalúo. Pero el caso de las patentes leídas en Texas que relata Paglen muestra que la analogía no es del todo falsa: el reconocimiento automático produce cobros reales, y un recargo del veinticinco por ciento va a la empresa que instaló las cámaras. Lo que falla es la palabra propiedad: lo inscrito no es un bien que alguien posea, sino un perfil que se arrienda a terceros. «Catastro», el registro de bienes raíces y esta consecuencia son intervenciones de TSIL, no conceptos propuestos por Paglen.</div>
+<div class="error-opening" data-copy="en">The error calls cadastre a registry with no public access and no verifiable boundaries: no one can request the parcel assigned to them or dispute its valuation. Yet the Texas license plate case Paglen recounts shows the analogy is not entirely false: automated recognition produces real charges, and a twenty-five percent surcharge goes to the company that installed the cameras. What fails is the word property: what is entered is not a good someone owns but a profile leased to third parties. “Cadastre,” the property registry and this consequence are TSIL interventions, not concepts proposed by Paglen.</div>
+<div class="eyebrow" data-copy="es">pregunta que queda</div><div class="eyebrow" data-copy="en">question left behind</div><div class="error-question" data-copy="es">¿Quién puede impugnar una clasificación que nunca le fue notificada, si sus efectos ya se descontaron de su vida?</div><div class="error-question" data-copy="en">Who can dispute a classification never notified to them, once its effects have already been deducted from their life?</div>
+</div></section>
+<div class="reject"><div class="reject-x">×</div><div><div class="eyebrow" data-copy="es">error que no produjo nada</div><div class="eyebrow" data-copy="en">error that produced nothing</div><div class="reject-text" data-copy="es">Las máquinas ven mejor que nosotros.</div><div class="reject-text" data-copy="en">Machines see better than we do.</div><div class="reject-note" data-copy="es">PRECISIÓN. Sustituye una pregunta política por una comparación de rendimiento: exactamente el desplazamiento que Paglen rechaza. El problema no es que el sistema se equivoque, sino a quién sirve cuando acierta. Se descarta.</div><div class="reject-note" data-copy="en">ACCURACY. It replaces a political question with a performance comparison: exactly the displacement Paglen rejects. The problem is not that the system errs, but whom it serves when it is right. Discarded.</div></div></div>
+</div>
+<section class="grid">
+  <div class="section-title" data-copy="es">arrastre</div>
+  <div class="section-title" data-copy="en">carry</div>
+
+  <div>
+    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
+    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+
+    <div class="reading-nav">
+      <a class="prev" href="../017-w-j-t-mitchell-what-do-pictures-want/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">← viene de 017 · W. J. T. Mitchell</div>
+    <div class="nav-label" data-copy="en">← comes from 017 · W. J. T. Mitchell</div>
+    <div class="nav-q" data-copy="es">¿Qué ocurre con la responsabilidad sobre una imagen cuando la tratamos como interlocutora capaz de demandar, carecer o negarse, aunque no pueda confirmar ninguna de esas atribuciones y cada soporte, mirada e institución modifique aquello que parece querer?</div>
+    <div class="nav-q" data-copy="en">What happens to responsibility for an image when we treat it as an interlocutor capable of demanding, lacking or refusing, even though it cannot confirm any of those attributions and every support, gaze and institution modifies what it seems to want?</div>
+  </div>
+</a>
+      <div class="nav-block next pending">
+  <div>
+    <div class="nav-label" data-copy="es">hacia el próximo texto →</div>
+    <div class="nav-label" data-copy="en">toward the next text →</div>
+    <div class="nav-q" data-copy="es">¿Qué queda de la responsabilidad sobre una imagen cuando ya no interpela a nadie, cuando actúa sobre una vida sin ser vista y sus efectos se descuentan antes de que exista siquiera la posibilidad de mirarla o discutirla?</div>
+    <div class="nav-q" data-copy="en">What remains of responsibility for an image when it no longer addresses anyone, when it acts upon a life without being seen and its effects are deducted before there is even the possibility of looking at it or disputing it?</div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">texto leído</div><div class="section-title" data-copy="en">source read</div><div class="about-machine">
+<p>Trevor Paglen, “Invisible Images (Your Pictures Are Looking at You)”, <em>The New Inquiry</em>, 8 de diciembre de 2016.</p>
+<p data-copy="es">Lectura completa del ensayo en la versión guardada en el repositorio del autor del sitio. Pasajes de apoyo: cambio de forma de la cultura visual y visión máquina-máquina, secciones I y II; abstracciones internas, conjuntos de entrenamiento y sesgo, sección III; el caso Vigilant Solutions y la ideología de la objetividad, sección IV; límites de las tácticas visuales de resistencia, sección V. «Catastro», el registro de bienes raíces y las preguntas sobre impugnación son intervenciones de este laboratorio.</p>
+<p data-copy="en">The complete essay was read in the version held in the site author's repository. Supporting passages: the change of form in visual culture and machine-to-machine seeing, sections I and II; internal abstractions, training sets and bias, section III; the Vigilant Solutions case and the ideology of objectivity, section IV; limits of visual tactics of resistance, section V. “Cadastre,” the property registry and the questions about dispute are interventions by this laboratory.</p>
+</div></section>
+<section class="grid">
+  <div class="section-title" data-copy="es">sobre esta máquina</div><div class="section-title" data-copy="en">about this machine</div>
+  <div class="about-machine" data-copy="es">Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div>
+  <div class="about-machine" data-copy="en">This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and deliberately forces errors, deviations, and unlikely associations to open questions rather than close them. Each entry is reviewed and published manually.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div>
+</section>
+</main>
+</div>
+<!-- TSIL_SOCIAL_SCRIPT_START -->
+<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
+<!-- TSIL_SOCIAL_SCRIPT_END -->
+</body>
+</html>

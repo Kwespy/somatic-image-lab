@@ -168,5 +168,15 @@
     "date": "2026-09-09",
     "error_es": "firma",
     "error_en": "signature"
+  },
+  {
+    "number": 18,
+    "slug": "018-trevor-paglen-invisible-images",
+    "author": "Trevor Paglen",
+    "title_es": "Invisible Images (Your Pictures Are Looking at You)",
+    "title_en": "Invisible Images (Your Pictures Are Looking at You)",
+    "date": "2026-09-10",
+    "error_es": "catastro",
+    "error_en": "cadastre"
   }
 ]
