@@ -112,7 +112,7 @@ def unpack(src):
 
 def render_card(it):
     n=f'{int(it["number"]):03d}'
-    return f"""<a class="post-card" href="readings/{html.escape(it["slug"])}/index.html">
+    return f"""<a class="post-card" href="../readings/{html.escape(it["slug"])}/index.html">
   <div class="post-number">{n}</div>
   <div>
     <h2 class="post-title" data-copy="es">{html.escape(it["title_es"])}</h2>
