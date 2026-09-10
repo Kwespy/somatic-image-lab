@@ -61,7 +61,7 @@ class Handler(SimpleHTTPRequestHandler):
         rel = target.relative_to(ROOT)
         if any(part.startswith('.') for part in rel.parts):
             return self.send_error(404)
-        if rel.parts and rel.parts[0] not in ('readings', 'data', 'assets', 'index.html', 'robots.txt', 'sitemap.xml', 'The Somatic Image Lab.png'):
+        if rel.parts and rel.parts[0] not in ('readings', 'maquina-del-error', 'residencia', 'data', 'assets', 'index.html', 'robots.txt', 'sitemap.xml', 'CNAME', 'The Somatic Image Lab.png'):
             return self.send_error(404)
         if target.is_dir() and not (target / 'index.html').exists():
             return self.send_error(404)
