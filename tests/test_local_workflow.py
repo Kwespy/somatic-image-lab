@@ -30,7 +30,7 @@ class LocalWorkflowTests(unittest.TestCase):
     def test_import_without_images_or_git(self):
         with tempfile.TemporaryDirectory() as folder:
             dest=Path(folder)
-            for directory in ('scripts','data','assets'):
+            for directory in ('scripts','data','assets','maquina-del-error'):
                 shutil.copytree(ROOT/directory,dest/directory)
             for name in ('index.html','sitemap.xml'):
                 shutil.copy2(ROOT/name,dest/name)

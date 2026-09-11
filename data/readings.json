@@ -178,5 +178,15 @@
     "date": "2026-09-10",
     "error_es": "catastro",
     "error_en": "cadastre"
+  },
+  {
+    "number": 19,
+    "slug": "019-trevor-paglen-operational-images",
+    "author": "Trevor Paglen",
+    "title_es": "Operational Images",
+    "title_en": "Operational Images",
+    "date": "2026-09-12",
+    "error_es": "custodia",
+    "error_en": "custody"
   }
 ]
