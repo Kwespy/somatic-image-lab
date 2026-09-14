@@ -27,6 +27,13 @@ class LocalWorkflowTests(unittest.TestCase):
             self.assertEqual(render.call_args.args[2], (1080,1350))
             self.assertIn('The Post-Media', render.call_args.args[0])
 
+    def test_opening_text_story_is_rendered(self):
+        with patch('local_server.screenshot') as render:
+            local_server.render_one('018-trevor-paglen-invisible-images','story-question','es',0,Path('/tmp/unused.png'))
+            render.assert_called_once()
+            self.assertEqual(render.call_args.args[2], (1080,1920))
+            self.assertIn('Subes una foto.', render.call_args.args[0])
+
     def test_import_without_images_or_git(self):
         with tempfile.TemporaryDirectory() as folder:
             dest=Path(folder)

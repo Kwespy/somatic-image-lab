@@ -188,5 +188,15 @@
     "date": "2026-09-12",
     "error_es": "custodia",
     "error_en": "custody"
+  },
+  {
+    "number": 20,
+    "slug": "020-boris-groys-art-power",
+    "author": "Boris Groys",
+    "title_es": "Art Power",
+    "title_en": "Art Power",
+    "date": "2026-09-14",
+    "error_es": "poder que circula",
+    "error_en": "circulating power"
   }
 ]

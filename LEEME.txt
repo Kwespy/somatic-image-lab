@@ -40,6 +40,12 @@ Codex inicia el servidor y revisa el resultado; no necesito copiar comandos.
 Referencia de ejecución desde la carpeta del proyecto:
 python3 -B scripts/local_server.py
 
+También puedo hacer doble clic en ABRIR_TSIL_LOCAL.command dentro de esta
+carpeta. Abre la versión local del sitio y mantiene activo el generador de
+previews. Mientras la ventana de Terminal siga abierta, puedo usar la firma
+KWY-A⁰¹RTBORG y pulsar «Generar vista previa» para crear y descargar una
+imagen. Para cerrarlo, cierro esa ventana o pulso Control + C.
+
 Con el servidor iniciado, la dirección es http://127.0.0.1:8001/.
 Esto permite probar el sitio sin publicarlo. No requiere compilación ni instalar
 un framework.

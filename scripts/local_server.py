@@ -10,7 +10,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 
-from tsil_social import reading_data, story_html, post_html, approved_og_html, screenshot, ASCII_STYLES
+from tsil_social import reading_data, story_html, question_story_html, post_html, approved_og_html, screenshot, ASCII_STYLES
 
 ROOT = Path(__file__).resolve().parents[1]
 RENDER_LOCK = threading.Lock()
@@ -20,7 +20,7 @@ TOKEN = secrets.token_urlsafe(32)
 def render_one(slug, kind, lang, variant, output):
     items = json.loads((ROOT / 'data/readings.json').read_text())
     item = next((x for x in items if x['slug'] == slug), None)
-    if item is None or kind not in ('story', 'post', 'link') or lang not in ('es', 'en'):
+    if item is None or kind not in ('story', 'story-question', 'post', 'link') or lang not in ('es', 'en'):
         raise ValueError('Invalid reading, format or language')
     if type(variant) is not int or not 0 <= variant < len(ASCII_STYLES):
         raise ValueError('Invalid variant')
@@ -28,6 +28,8 @@ def render_one(slug, kind, lang, variant, output):
     d = reading_data(item, page)
     if kind == 'story':
         markup, size = story_html(d, lang, ASCII_STYLES[variant], render=True), (1080, 1920)
+    elif kind == 'story-question':
+        markup, size = question_story_html(d, lang, render=True), (1080, 1920)
     elif kind == 'post':
         markup, size = post_html(d, lang, 'dense', render=True), (1080, 1350)
     else:

@@ -95,6 +95,7 @@ def reading_data(item, page):
         'en': extract_class_lang(page, 'error-word', 'en') or item.get('error_en', ''),
     }
     lead = {lang: extract_class_lang(page, 'article-lead', lang) for lang in ('es', 'en')}
+    ante = {lang: extract_class_lang(page, 'article-ante', lang) for lang in ('es', 'en')}
     desc = {lang: short_description(lead[lang]) for lang in ('es', 'en')}
     titles = {'es': item['title_es'], 'en': item['title_en']}
     parts, concepts = {}, {}
@@ -111,6 +112,7 @@ def reading_data(item, page):
         'title': titles,
         'parts': parts,
         'lead': lead,
+        'ante': ante,
         'description': desc,
         'band': band,
         'error_context': err_ctx,
@@ -261,6 +263,37 @@ def story_html(d, lang, style, render=False):
     cls = 'render' if render else ''
     subtitle = f'<p class="subtitle">{esc(p["subtitle"])}</p>' if p['subtitle'] else ''
     return f'''<!doctype html><html class="{cls}" lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TSIL Story {d['number']:03d}</title><style>{STORY_STYLE}</style></head><body data-style="{style}"><article class="poster"><header class="header"><div>THE SOMATIC IMAGE LAB</div><div class="lang"><span>ES</span><span class="slash">/</span><span>EN</span></div></header><hr class="topline"><div class="reading">{esc(reading)}</div><div class="ascii-wrap">{bands}</div><div class="bottom-content"><section class="title-block"><h1 class="title">{esc(p['title'])}</h1>{subtitle}<p class="author">{esc(d['author'])}</p></section><section class="error"><p class="error-label">{esc(errlabel)}</p><p class="error-context">{esc(d['error_context'][lang])}</p><div class="error-word-row"><div class="error-arrow">→</div><div class="error-word">{esc(d['error_word'][lang])}</div></div></section></div><footer class="footer"><hr class="bottomline"><div class="footer-row"><div class="brand">THE SOMATIC IMAGE LAB</div><div class="footer-arrow">→</div></div></footer></article><script>{ASCII_JS}</script></body></html>'''
+
+
+QUESTION_STORY_STYLE = r'''
+:root{--paper:#f2efe7;--ink:#0a0a0a;--muted:#716c64;--line:#bbb4aa;--orange:#ff4b17}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:#292725;color:var(--ink);font-family:Arial,Helvetica,sans-serif;display:flex;align-items:flex-start;justify-content:center;padding:24px}.poster{width:min(100%,720px);aspect-ratio:1080/1920;background:var(--paper);padding:7.8% 6.5% 5.8%;display:flex;flex-direction:column;container-type:inline-size;overflow:hidden}.top{display:flex;align-items:center;justify-content:space-between;font-size:1.7cqw;letter-spacing:.17em}.rule{height:2px;background:var(--line);margin:2.6% 0 5.8%}.reading{color:var(--muted);font-size:1.85cqw;letter-spacing:.2em}.question{margin:6.4% 0 0;font-size:8.9cqw;line-height:.96;letter-spacing:-.065em;font-weight:500;font-style:italic}.signal{border-bottom:1.2cqw solid var(--orange);padding-bottom:.1cqw}.field{margin-top:auto;height:27cqw;position:relative;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden;background:repeating-linear-gradient(90deg,transparent 0 4cqw,rgba(0,0,0,.08) 4cqw 4.18cqw)}.field:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 4cqw,rgba(0,0,0,.08) 4cqw 4.18cqw)}.pixel{position:absolute;z-index:1;background:var(--ink)}.p1{left:0;top:3.8cqw;width:46%;height:3.8cqw}.p2{left:28%;top:7.6cqw;width:3.8cqw;height:7.6cqw}.p3{right:0;top:11.4cqw;width:57%;height:3.8cqw}.p4{right:20%;bottom:0;width:3.8cqw;height:10cqw}.p5{left:10%;bottom:3.8cqw;width:34%;height:3.8cqw}.field-note{position:absolute;z-index:2;right:1.6cqw;top:1.4cqw;background:var(--paper);padding:.7cqw .9cqw;font-size:1.45cqw;letter-spacing:.15em}.meta{margin-top:3.1cqw}.title{font-size:7.5cqw;line-height:.84;font-weight:800;letter-spacing:-.06em}.author{margin-top:1.4cqw;font-size:2.8cqw}.context{margin-top:3cqw;padding-top:1.7cqw;border-top:2px solid var(--line);display:flex;justify-content:space-between;gap:2cqw;color:var(--muted);font-size:1.45cqw;letter-spacing:.12em;line-height:1.35}.context b{color:var(--orange);font-weight:normal}.bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:end;font-size:1.6cqw;letter-spacing:.15em}.arrow{font-size:4cqw;letter-spacing:0}html.render body{padding:0;background:var(--paper)}html.render .poster{width:1080px;height:1920px;aspect-ratio:auto}
+'''
+
+
+def question_story_html(d, lang, render=False):
+    p = d['parts'][lang]
+    reading = ('LECTURA' if lang == 'es' else 'READING') + f" / {d['number']:03d}"
+    question = d['ante'][lang] or d['lead'][lang]
+    sentences = re.findall(r'[^.!?]+[.!?]+|[^.!?]+$', question)
+    if len(sentences) == 3:
+        # Some opening texts end with a final turn (", y …" / ", and …").
+        # Keeping it on its own line gives the final statement room to land.
+        tail = re.split(r'(?<=,)\s+(?=(?:y|and)\s)', sentences[-1], maxsplit=1)
+        if len(tail) == 2:
+            sentences[-1:] = tail
+    question_lines = []
+    for index, sentence in enumerate(sentences):
+        text = esc(sentence.strip())
+        # The third beat is the machine's intervention: it receives the orange mark.
+        question_lines.append(f'<span class="signal">{text}</span>' if index == 2 else text)
+    question_markup = '<br>'.join(question_lines) or esc(question)
+    display_title = re.sub(r'\s*\([^)]*\)', '', p['title']).strip()
+    field = 'IMAGEN OPERACIONAL' if lang == 'es' else 'OPERATIONAL IMAGE'
+    word_label = 'PALABRA IMPORTADA' if lang == 'es' else 'IMPORTED WORD'
+    cls = 'render' if render else ''
+    subtitle = f'<br>{esc(p["subtitle"])}' if p['subtitle'] else ''
+    return f'''<!doctype html><html class="{cls}" lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TSIL Story question {d['number']:03d}</title><style>{QUESTION_STORY_STYLE}</style></head><body><article class="poster"><header class="top"><span>THE SOMATIC IMAGE LAB</span><span>ES <b style="color:var(--orange)">/</b> EN</span></header><div class="rule"></div><div class="reading">{esc(reading)}</div><p class="question">{question_markup}</p><div class="field" aria-hidden="true"><span class="field-note">{field}</span><i class="pixel p1"></i><i class="pixel p2"></i><i class="pixel p3"></i><i class="pixel p4"></i><i class="pixel p5"></i></div><section class="meta"><div class="title">{esc(display_title)}{subtitle}</div><div class="author">{esc(d['author'])}</div></section><div class="context"><span>{word_label}<br><b>{esc(d['error_word'][lang])}</b></span><span style="text-align:right">{esc(d['error_context'][lang])}</span></div><footer class="bottom"><span>THE SOMATIC IMAGE LAB</span><span class="arrow">→</span></footer></article></body></html>'''
 
 
 POST_STYLE = r'''
