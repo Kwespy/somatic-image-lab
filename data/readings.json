@@ -198,5 +198,15 @@
     "date": "2026-09-14",
     "error_es": "poder que circula",
     "error_en": "circulating power"
+  },
+  {
+    "number": 21,
+    "slug": "021-paul-virilio-the-original-accident",
+    "author": "Paul Virilio",
+    "title_es": "El accidente original",
+    "title_en": "The Original Accident",
+    "date": "2026-09-15",
+    "error_es": "seguro",
+    "error_en": "insurance"
   }
 ]
