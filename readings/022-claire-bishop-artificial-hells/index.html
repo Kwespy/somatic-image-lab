@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claire Bishop — Artificial Hells | The Somatic Image Lab</title>
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.topbar{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
+.misregister{position:relative;display:inline-block;isolation:isolate;max-width:100%}
+.misregister::after{content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none}
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(38px,7.8vw,96px);line-height:.84;letter-spacing:-.067em;font-weight:800;overflow-wrap:anywhere}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em}
+.article-ante{max-width:850px;margin:28px 0 18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--muted);font-weight:400}
+.motion-line{position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
+.motion-line .text::after{content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none}
+.grid{display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;padding:25px 0 34px;border-top:1px solid var(--line)}
+.eyebrow,.section-title{padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
+.error-card{padding:22px;background:var(--ink);color:#fff}
+.error-card .eyebrow{color:#aaa}
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+.carry-rule{margin:10px 0 18px;max-width:760px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
+.identity{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+@media(max-width:760px){.shell{width:min(var(--max),calc(100% - 24px))}.grid{grid-template-columns:1fr;gap:14px}.branches{grid-template-columns:1fr}.article-hero{padding:46px 0 38px}}
+@media(max-width:600px){.reading-nav{grid-template-columns:1fr}.reading-nav .next{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<script>
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>btn.classList.toggle("active",btn.dataset.switch===lang));
+  }
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
+})();
+</script>
+
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
+
+<!-- TSIL_SOCIAL_META_START -->
+<meta name="description" content="Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="keywords" content="Claire Bishop, Artificial Hells, work → participation → spectator → conflict, ACCESS CONTROL / MAXIMUM CAPACITY, CAPACITY, The Somatic Image Lab, Kurt Wesp Yianatos">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/022-claire-bishop-artificial-hells/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:title" content="Artificial Hells — Claire Bishop">
+<meta property="og:description" content="Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking.">
+<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/022-claire-bishop-artificial-hells/">
+<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="The Somatic Image Lab — Reading 022 — Artificial Hells — Claire Bishop">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="article:published_time" content="2026-09-16">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Artificial Hells — Claire Bishop">
+<meta name="twitter:description" content="Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking.">
+<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta name="theme-color" content="#f2efe7">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/022-claire-bishop-artificial-hells/"},"headline":"Artificial Hells — Claire Bishop","description":"Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking.","datePublished":"2026-09-16","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Artificial Hells","author":{"@type":"Person","name":"Claire Bishop"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["work → participation → spectator → conflict","ACCESS CONTROL / MAXIMUM CAPACITY","CAPACITY"]}</script>
+<script id="tsil-social-data" type="application/json">{"number": 22, "slug": "022-claire-bishop-artificial-hells", "author": "Claire Bishop", "date": "2026-09-16", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/022-claire-bishop-artificial-hells/", "title": {"es": "Infiernos artificiales", "en": "Artificial Hells"}, "parts": {"es": {"title": "Infiernos artificiales", "subtitle": ""}, "en": {"title": "Artificial Hells", "subtitle": ""}}, "lead": {"es": "Claire Bishop cuestiona la idea de que toda colaboración artística es automáticamente política o democrática. Una obra participativa también puede organizar exclusiones, jerarquías y formas de mirar.", "en": "Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking."}, "ante": {"es": "Participar no garantiza que una obra se vuelva común.", "en": "Participation does not guarantee that a work becomes common."}, "description": {"es": "Claire Bishop cuestiona la idea de que toda colaboración artística es automáticamente política o democrática. Una obra participativa también puede organizar exclusiones, jerarquías y formas de mirar.", "en": "Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking."}, "band": {"es": "obra → participación → espectador → conflicto", "en": "work → participation → spectator → conflict"}, "error_context": {"es": "CONTROL DE ACCESO / CAPACIDAD MÁXIMA", "en": "ACCESS CONTROL / MAXIMUM CAPACITY"}, "error_word": {"es": "AFORO", "en": "CAPACITY"}, "concepts": {"es": ["OBRA", "AFORO", "CONFLICTO", "ESPECTADOR"], "en": ["WORK", "CONFLICT", "CAPACITY", "SPECTATOR"]}}</script>
+<!-- TSIL_SOCIAL_META_END -->
+<!-- TSIL_SOCIAL_STYLE_START -->
+<style id="tsil-social-secret-style">
+.tsil-secret-story{cursor:default!important}
+.tsil-secret-story:focus{outline:none!important}
+#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}
+#tsil-secret-export.open{display:flex}
+#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}
+#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}
+#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
+#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}
+#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
+</style>
+<!-- TSIL_SOCIAL_STYLE_END -->
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div><a href="../../index.html">The Somatic Image Lab</a></div>
+  <div class="lang-switch">
+    <a href="../../index.html" data-inline="es">inicio</a>
+    <a href="../../index.html" data-inline="en">home</a>
+    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
+    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
+  </div>
+</header>
+<main>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 022</div><div class="article-kicker" data-copy="en">reading / 022</div>
+  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="INFIERNOS">INFIERNOS</span><br>ARTIFICIALES</h1>
+  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="ARTIFICIAL">ARTIFICIAL</span><br>HELLS</h1>
+  <div class="article-author">Claire Bishop</div>
+  <div class="article-ante" data-copy="es">Participar no garantiza que una obra se vuelva común.</div>
+  <div class="article-ante" data-copy="en">Participation does not guarantee that a work becomes common.</div>
+  <div class="article-lead" data-copy="es">Claire Bishop cuestiona la idea de que toda colaboración artística es automáticamente política o democrática. Una obra participativa también puede organizar exclusiones, jerarquías y formas de mirar.</div>
+  <div class="article-lead" data-copy="en">Claire Bishop questions the idea that every artistic collaboration is automatically political or democratic. A participatory work can also organize exclusions, hierarchies and ways of looking.</div>
+</section>
+<div class="motion-line"><div class="text" data-text="obra → participación → espectador → conflicto" data-copy="es">obra → participación → espectador → conflicto</div><div class="text" data-text="work → participation → spectator → conflict" data-copy="en">work → participation → spectator → conflict</div></div>
+<section class="grid"><div class="section-title" data-copy="es">en 1 minuto</div><div class="section-title" data-copy="en">in 1 minute</div>
+<div class="large-copy" data-copy="es"><p>Bishop revisa prácticas artísticas que invitan al público a actuar, conversar o construir una situación. Su pregunta no es si el espectador participa, sino qué tipo de relación produce esa participación y quién puede sostenerla.</p><p>La colaboración puede producir afecto y comunidad, pero también puede convertirse en una norma moral: se celebra el estar juntos antes de preguntarse qué se hizo, qué se disputó o qué permaneció fuera. El desacuerdo no es necesariamente un fracaso de la obra.</p><p>Para Bishop, la calidad de una práctica no se mide solo por su intención social. Importa su forma, sus tensiones y las posiciones que hace visibles. La participación puede abrir una imagen, pero también puede administrar el modo en que se entra a ella.</p></div>
+<div class="large-copy" data-copy="en"><p>Bishop examines artistic practices that invite the public to act, converse or construct a situation. Her question is not whether the spectator participates, but what kind of relationship that participation produces and who can sustain it.</p><p>Collaboration can produce affect and community, but it can also become a moral norm: being together is celebrated before asking what was done, what was contested, or what remained outside. Disagreement is not necessarily the work's failure.</p><p>For Bishop, the quality of a practice is not measured only by its social intention. Its form, tensions and the positions it makes visible matter. Participation can open an image, but can also administer the way one enters it.</p></div></section>
+<section class="grid"><div class="section-title" data-copy="es">tres cosas para conservar</div><div class="section-title" data-copy="en">three things to keep</div>
+<div data-copy="es"><div class="keep">Participar no elimina las jerarquías de una situación.</div><div class="keep">El conflicto puede ser una forma de atención, no un error.</div><div class="keep">La intención social no reemplaza la forma de una obra.</div></div><div data-copy="en"><div class="keep">Participating does not eliminate a situation's hierarchies.</div><div class="keep">Conflict can be a form of attention, not an error.</div><div class="keep">Social intention does not replace a work's form.</div></div></section>
+<div class="threshold"><section class="grid" style="border-top:0"><div class="section-title" data-copy="es">punto de arrastre</div><div class="section-title" data-copy="en">carry point</div><div><div class="threshold-note" data-copy="es">Intervención del laboratorio: el accidente se contamina con la multitud que decide quién puede entrar a mirarlo.</div><div class="threshold-note" data-copy="en">A laboratory intervention: the accident is contaminated by the crowd that decides who may enter to see it.</div><div class="pressure" data-copy="es">El reading 021 dejó una invención cuyo accidente ya podía estar calculado antes de ocurrir. Bishop introduce otro problema: ¿quién forma parte del espacio donde esa falla se hace visible? La participación puede parecer una respuesta, pero también diseña un borde, asigna roles y produce espectadores de quienes participan.</div><div class="pressure" data-copy="en">Reading 021 left an invention whose accident may already be calculated before it occurs. Bishop introduces another problem: who forms part of the space where that failure becomes visible? Participation can seem like an answer, but it also designs an edge, assigns roles and produces spectators out of participants.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">proposición incompleta</div><div class="section-title" data-copy="en">unfinished proposition</div><div class="incomplete" data-copy="es">Si una obra participativa promete una comunidad, entonces esa promesa se vuelve visible cuando…</div><div class="incomplete" data-copy="en">If a participatory work promises a community, then that promise becomes visible when…</div></section>
+<section class="grid"><div class="section-title" data-copy="es">bifurcación</div><div class="section-title" data-copy="en">bifurcation</div><div class="branches" data-copy="es"><div class="branch">Una obra participativa distribuye la autoría y hace visible una relación.</div><div class="branch">Una obra participativa usa la colaboración como prueba de que ya no hay conflicto.</div></div><div class="branches" data-copy="en"><div class="branch">A participatory work distributes authorship and makes a relation visible.</div><div class="branch">A participatory work uses collaboration as proof that conflict no longer exists.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">residuo</div><div class="section-title" data-copy="en">residue</div>
+  <div data-copy="es"><div class="residue">El grupo no es el contrario del espectador: puede producir una nueva forma de mirar desde dentro.</div><div class="residue">La inclusión necesita una forma; de otro modo solo nombra una puerta abierta sin mirar su umbral.</div></div>
+  <div data-copy="en"><div class="residue">The group is not the opposite of the spectator: it can produce a new way of looking from within.</div><div class="residue">Inclusion needs a form; otherwise it only names an open door without looking at its threshold.</div></div>
+</section></div>
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0">
+  <div class="section-title" data-copy="es">máquina de error</div><div class="section-title" data-copy="en">error machine</div>
+  <div class="error-card">
+    <div class="eyebrow" data-copy="es">contexto importado</div><div class="eyebrow" data-copy="en">imported context</div>
+    <div class="error-context" data-copy="es">CONTROL DE ACCESO / CAPACIDAD MÁXIMA</div><div class="error-context" data-copy="en">ACCESS CONTROL / MAXIMUM CAPACITY</div>
+    <div class="eyebrow" data-copy="es">palabra importada</div><div class="eyebrow" data-copy="en">imported word</div>
+    <div class="error-word" data-copy="es">AFORO</div><div class="error-word" data-copy="en">CAPACITY</div>
+    <div class="eyebrow" data-copy="es">colisión</div><div class="eyebrow" data-copy="en">collision</div>
+    <div class="error-collision" data-copy="es">participación × aforo</div><div class="error-collision" data-copy="en">participation × capacity</div>
+    <div class="eyebrow" data-copy="es">error forzado</div><div class="eyebrow" data-copy="en">forced error</div>
+    <div class="error-statement" data-copy="es">Toda comunidad artística debe declarar su aforo antes de invitar a participar.</div><div class="error-statement" data-copy="en">Every artistic community must declare its capacity before inviting participation.</div>
+    <div class="eyebrow" data-copy="es">lo que se escapó</div><div class="eyebrow" data-copy="en">what escaped</div>
+    <div class="error-opening" data-copy="es">El aforo convierte una promesa de apertura en un límite declarado. Es una intervención de TSIL, no un concepto atribuido a Bishop. La colisión pregunta quién diseña el umbral, cómo se vuelve visible la exclusión y si participar equivale a decidir las reglas de entrada.</div><div class="error-opening" data-copy="en">Capacity turns a promise of openness into a declared limit. It is a TSIL intervention, not a concept attributed to Bishop. The collision asks who designs the threshold, how exclusion becomes visible, and whether participating is the same as deciding the rules of entry.</div>
+    <div class="eyebrow" data-copy="es">pregunta que queda</div><div class="eyebrow" data-copy="en">question left behind</div>
+    <div class="error-question" data-copy="es">¿Qué tipo de comunidad produce una obra cuando todos pueden entrar, pero no todos pueden decidir cómo se participa?</div><div class="error-question" data-copy="en">What kind of community does a work produce when everyone may enter, but not everyone can decide how participation happens?</div>
+  </div>
+</section>
+<div class="reject">
+  <div class="reject-x">×</div>
+  <div>
+    <div class="eyebrow" data-copy="es">error que no produjo nada</div><div class="eyebrow" data-copy="en">error that produced nothing</div>
+    <div class="reject-text" data-copy="es">Toda participación es democrática.</div><div class="reject-text" data-copy="en">Every participation is democratic.</div>
+    <div class="reject-note" data-copy="es">DEMOCRÁTICA. Confunde estar presente con tener capacidad de decidir. Bishop distingue la colaboración como hecho de la igualdad como forma y conflicto. Se descarta.</div><div class="reject-note" data-copy="en">DEMOCRATIC. It confuses being present with having the capacity to decide. Bishop distinguishes collaboration as a fact from equality as a form and conflict. Discarded.</div>
+  </div>
+</div>
+</div>
+<section class="grid">
+  <div class="section-title" data-copy="es">arrastre</div>
+  <div class="section-title" data-copy="en">carry</div>
+
+  <div>
+    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
+    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+
+    <div class="reading-nav">
+      <a class="prev" href="../021-paul-virilio-the-original-accident/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">← viene de 021 · Paul Virilio</div>
+    <div class="nav-label" data-copy="en">← comes from 021 · Paul Virilio</div>
+    <div class="nav-q" data-copy="es">¿Una invención sigue siendo progreso cuando su accidente ya fue calculado, repartido y aceptado antes de ocurrir?</div>
+    <div class="nav-q" data-copy="en">Does an invention remain progress when its accident has already been calculated, distributed and accepted before it occurs?</div>
+  </div>
+</a>
+      <div class="nav-block next pending">
+  <div>
+    <div class="nav-label" data-copy="es">hacia el próximo texto →</div>
+    <div class="nav-label" data-copy="en">toward the next text →</div>
+    <div class="nav-q" data-copy="es">¿Qué tipo de comunidad produce una obra cuando todos pueden entrar, pero no todos pueden decidir cómo se participa?</div>
+    <div class="nav-q" data-copy="en">What kind of community does a work produce when everyone may enter, but not everyone can decide how participation happens?</div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">sobre esta máquina</div><div class="section-title" data-copy="en">about this machine</div><div class="about-machine" data-copy="es">Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div><div class="about-machine" data-copy="en">This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and forces errors, deviations and unlikely associations to open questions rather than close them.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div></section>
+</main>
+</div>
+<!-- TSIL_SOCIAL_SCRIPT_START -->
+<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
+<!-- TSIL_SOCIAL_SCRIPT_END -->
+</body>
+</html>

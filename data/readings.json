@@ -208,5 +208,15 @@
     "date": "2026-09-15",
     "error_es": "seguro",
     "error_en": "insurance"
+  },
+  {
+    "number": 22,
+    "slug": "022-claire-bishop-artificial-hells",
+    "author": "Claire Bishop",
+    "title_es": "Infiernos artificiales",
+    "title_en": "Artificial Hells",
+    "date": "2026-09-16",
+    "error_es": "aforo",
+    "error_en": "capacity"
   }
 ]
