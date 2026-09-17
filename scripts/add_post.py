@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+from datetime import datetime, timezone
 import zipfile,tempfile,shutil,json,sys,re,subprocess,html
 from tsil_social import apply_social_to_reading
 
@@ -340,13 +341,40 @@ def confirm_update(old,m):
     )
     return r.returncode==0 and "Actualizar" in r.stdout
 
-def update_sitemap(items):
-    seq=sorted(items,key=lambda x:int(x["number"]))
-    urls=[DOMAIN+"/"]+[DOMAIN+"/readings/"+x["slug"]+"/" for x in seq]
+def update_sitemap(items=None):
+    """Generate the sitemap from the HTML actually published in the site.
+
+    This keeps static pages (not only readings) discoverable and means a new
+    reading is included automatically when the normal publish workflow runs.
+    Backups and local preview folders are intentionally excluded.
+    """
+    urls=[]
+    for html_path in sorted(ROOT.rglob("index.html")):
+        relative=html_path.relative_to(ROOT)
+        if any(part.startswith(".") or part.startswith("_") or
+               part.startswith("BACKUP") or part == "preview"
+               for part in relative.parts):
+            continue
+        if relative.parent == Path("."):
+            url=DOMAIN+"/"
+        else:
+            url=DOMAIN+"/"+relative.parent.as_posix()+"/"
+        urls.append((url,html_path.stat().st_mtime))
+
+    lines=[]
+    for url,mtime in urls:
+        modified=datetime.fromtimestamp(mtime,tz=timezone.utc).date().isoformat()
+        lines.append(
+            "  <url>\n"
+            f"    <loc>{url}</loc>\n"
+            f"    <lastmod>{modified}</lastmod>\n"
+            "  </url>"
+        )
+
     SITEMAP.write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        +"\n".join("  <url><loc>"+u+"</loc></url>" for u in urls)
+        +"\n".join(lines)
         +'\n</urlset>\n',encoding="utf-8")
 
 def batch_sort_key(src):
