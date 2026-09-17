@@ -12,6 +12,8 @@ DOMAIN="https://thesomaticimagelab.kurtwespyianatos.com"
 CARRY_NOTE_ES='Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.'
 CARRY_NOTE_EN='These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.'
 FLOW_STYLE_ID="tsil-carry-flow-v4"
+ERROR_MACHINE_INTRO_ES="La Máquina de Error fuerza una colisión entre el texto leído y una palabra ajena. No busca explicar mejor: busca producir una falla que abra otra pregunta sobre la imagen."
+ERROR_MACHINE_INTRO_EN="The Error Machine forces a collision between the text being read and an external word. It does not seek a better explanation: it produces a failure that opens another question about the image."
 FLOW_CSS=r"""
 <style id="tsil-carry-flow-v4">
 .carry-rule{
@@ -200,6 +202,34 @@ def ensure_css(page):
         page=page.replace("</style>",FLOW_CSS+"\n",1)
     return page
 
+def ensure_error_machine_intro(page):
+    if 'class="error-machine-intro"' in page:
+        return page
+
+    pattern=(
+        r'(?P<titles><div class="section-title" data-copy="es">máquina de error</div>\s*'
+        r'<div class="section-title" data-copy="en">error machine</div>\s*)'
+        r'(?P<card><div class="error-card">.*?</div>)'
+        r'(?P<tail>\s*</section>\s*<div class="reject")'
+    )
+    intro=(
+        '<div class="error-machine-content" style="display:grid;gap:14px">\n'
+        '  <div class="error-machine-intro" style="max-width:760px;color:#fff;font-size:12px;line-height:1.45;letter-spacing:.02em">\n'
+        f'    <div data-copy="es">{ERROR_MACHINE_INTRO_ES}</div>\n'
+        f'    <div data-copy="en">{ERROR_MACHINE_INTRO_EN}</div>\n'
+        '  </div>\n'
+    )
+    page,count=re.subn(
+        pattern,
+        lambda m:m.group("titles")+intro+m.group("card")+'\n</div>'+m.group("tail"),
+        page,
+        count=1,
+        flags=re.S
+    )
+    if not count:
+        print("AVISO: no encontré sección MÁQUINA DE ERROR")
+    return page
+
 def carry_section(own_es,own_en,prev,nxt,prev_es,prev_en):
     if prev:
         left=f"""<a class="prev" href="../{html.escape(prev["slug"])}/index.html">
@@ -268,7 +298,7 @@ def rebuild_carry_flow(items):
     for i,it in enumerate(seq):
         p=READINGS/it["slug"]/"index.html"
         if not p.exists(): continue
-        page=ensure_css(p.read_text(encoding="utf-8"))
+        page=ensure_error_machine_intro(ensure_css(p.read_text(encoding="utf-8")))
         own_es,own_en=questions.get(it["slug"],("",""))
         if not own_es: continue
         prev=seq[i-1] if i>0 else None
@@ -411,7 +441,7 @@ def main():
                 dest=READINGS/slug
                 dest.mkdir(parents=True,exist_ok=True)
 
-                page=hp.read_text(encoding="utf-8")
+                page=ensure_error_machine_intro(hp.read_text(encoding="utf-8"))
                 page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
                 page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
                 (dest/"index.html").write_text(page,encoding="utf-8")
@@ -434,7 +464,7 @@ def main():
                 dest=READINGS/slug
                 dest.mkdir(parents=True,exist_ok=True)
 
-                page=hp.read_text(encoding="utf-8")
+                page=ensure_error_machine_intro(hp.read_text(encoding="utf-8"))
                 page=re.sub(r'(lectura / )\d+',r'\g<1>'+f'{num:03d}',page)
                 page=re.sub(r'(reading / )\d+',r'\g<1>'+f'{num:03d}',page)
                 (dest/"index.html").write_text(page,encoding="utf-8")
