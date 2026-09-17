@@ -218,5 +218,15 @@
     "date": "2026-09-16",
     "error_es": "aforo",
     "error_en": "capacity"
+  },
+  {
+    "number": 23,
+    "slug": "023-joanna-zylinska-ai-art",
+    "author": "Joanna Zylinska",
+    "title_es": "Arte con IA",
+    "title_en": "AI Art: Machine Visions and Warped Dreams",
+    "date": "2026-09-17",
+    "error_es": "latencia",
+    "error_en": "latency"
   }
 ]
