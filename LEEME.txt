@@ -73,6 +73,33 @@ Ya no genera los paquetes de imágenes ni hace commit o push automáticamente.
 El lanzador AGREGAR_POST.command prepara el contenido localmente; después
 revisamos el resultado antes de publicar.
 
+REVISAR EL CONTENIDO DE UNA LECTURA
+
+Cada reading debe poder ser entendido sin haber leído el texto de origen.
+Antes de publicar, Codex debe revisar los TXT de Google Drive y comprobar que
+no se repitan autora, palabra de error ni conceptos centrales de los readings
+ya publicados.
+
+La lectura debe explicar sus ideas en este orden:
+
+1. «En 1 minuto» presenta el argumento con palabras claras. Si aparece un
+   concepto importante, debe decir qué significa y por qué ayuda a pensar una
+   imagen. No basta con nombrarlo.
+2. «Tres cosas para conservar» resume las ideas que el lector necesita para
+   seguir avanzando.
+3. El umbral desarrolla una consecuencia del argumento y explica su relación
+   con el reading anterior.
+4. La Máquina de Error introduce una palabra externa. Debe indicar que es una
+   intervención de TSIL, de qué campo proviene, cómo cambia la lectura y qué
+   pregunta abre. No debe atribuir esa palabra a la autora o al autor si no
+   aparece en el texto fuente.
+
+Una buena revisión consiste en preguntar: «¿Qué significa este concepto?»,
+«¿desde dónde aparece?» y «¿cómo llega al error?». Si el texto no puede
+responder con sus propias frases, hay que reescribirlo. Esta comprobación se
+hace en español e inglés y también sirve para detectar metáforas vagas,
+saltos de sentido o frases que suenan bien pero no explican nada.
+
 GENERAR UNA IMAGEN PARA INSTAGRAM
 
 1. Pedir a Codex que abra el servicio local indicado arriba.

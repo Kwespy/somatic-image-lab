@@ -10,6 +10,13 @@ El sitio es un espacio experimental para abrir preguntas sobre la imagen. Sus re
 - Preguntar solo por datos necesarios o decisiones conceptuales que no puedan inferirse de la conversación.
 - Si un experimento depende de textos de Google Drive, leer las referencias con el acceso disponible o pedir las que falten. No inventar su contenido ni atribuciones.
 
+## Contenido de los readings
+- Antes de preparar un reading, revisar los TXT disponibles en Google Drive y los readings publicados. No repetir autora, palabra de error ni conceptos centrales, salvo que la relación sea explícita y justificada.
+- Escribir para una persona que no conoce el texto de origen. Definir cada concepto central antes de usarlo: explicar qué nombra, de dónde surge en el texto y por qué importa para la imagen. No encadenar metáforas o términos teóricos sin volverlos concretos.
+- Mantener una secuencia legible: el apartado «en 1 minuto» presenta el argumento; «tres cosas para conservar» lo condensa; el umbral desarrolla una consecuencia; la Máquina de Error fuerza una intervención identificable. Cada sección debe poder entenderse desde la anterior.
+- Diferenciar con claridad lo que plantea la autora o el autor de la intervención de TSIL. Cuando el error introduce una palabra externa, explicar de qué campo viene, cómo se aplica al reading y qué pregunta abre.
+- Antes de publicar, hacer una lectura editorial en español e inglés: comprobar que una persona pueda responder con el propio texto qué significa cada concepto central y cómo se relaciona con el error. Corregir saltos de sentido, repeticiones y atribuciones imprecisas.
+
 ## Experimentos reversibles
 - Revisar Git y las instrucciones antes de editar. Conservar los cambios existentes y no sobrescribir trabajo ajeno.
 - Antes de un experimento, establecer un punto de retorno: commit existente si el estado está limpio, o copia de los archivos afectados si hay cambios pendientes. Preferir una rama codex/ para experimentos de alcance significativo.
