@@ -228,5 +228,15 @@
     "date": "2026-09-17",
     "error_es": "latencia",
     "error_en": "latency"
+  },
+  {
+    "number": 24,
+    "slug": "024-hito-steyerl-the-wretched-of-the-screen",
+    "author": "Hito Steyerl",
+    "title_es": "Los condenados de la pantalla",
+    "title_en": "The Wretched of the Screen",
+    "date": "2026-09-18",
+    "error_es": "desnivel",
+    "error_en": "unevenness"
   }
 ]
