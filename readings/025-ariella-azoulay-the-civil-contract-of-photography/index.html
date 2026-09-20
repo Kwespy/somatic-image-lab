@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ariella Azoulay — The Civil Contract of Photography | The Somatic Image Lab</title>
+<link rel="author" href="https://www.kurtwespyianatos.com/">
+<style>
+:root{
+  --paper:#f2efe7;
+  --ink:#0a0a0a;
+  --muted:#706b63;
+  --line:#bbb4aa;
+  --orange:#ff4b17;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+[data-copy]{display:none!important}
+html[data-lang="es"] [data-copy="es"],html[data-lang="en"] [data-copy="en"]{display:block!important}
+html[data-lang="es"] [data-inline="es"],html[data-lang="en"] [data-inline="en"]{display:inline!important}
+[data-inline]{display:none!important}
+.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.topbar{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.topbar a{text-decoration:none}
+.lang-switch{display:flex;gap:12px;align-items:center}
+.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
+.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
+.misregister{position:relative;display:inline-block;isolation:isolate;max-width:100%}
+.misregister::after{content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none}
+.article-hero{padding:64px 0 48px}
+.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.article-title{margin:0;font-size:clamp(38px,7.8vw,96px);line-height:.84;letter-spacing:-.067em;font-weight:800;overflow-wrap:anywhere}
+.article-author{margin-top:16px;font-size:18px}
+.article-lead{max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em}
+.article-ante{max-width:850px;margin:28px 0 18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--muted);font-weight:400}
+.motion-line{position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
+.motion-line .text::after{content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none}
+.grid{display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;padding:25px 0 34px;border-top:1px solid var(--line)}
+.eyebrow,.section-title{padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
+.large-copy p{margin:0 0 18px}
+.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
+.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
+.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
+.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
+.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
+.error-card{padding:22px;background:var(--ink);color:#fff}
+.error-card .eyebrow{color:#aaa}
+.error-context{margin:3px 0 18px;font-size:14px}
+.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
+.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
+.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
+.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
+.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
+.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
+.reject-x{font-size:50px;line-height:1}
+.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
+.reject-note{margin-top:8px;font-size:12px}
+.carry-rule{margin:10px 0 18px;max-width:760px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
+.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.reading-nav a,.reading-nav .nav-block{min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
+.nav-block.pending{border-style:dashed}
+.about-machine{max-width:780px;font-size:13px;line-height:1.5}
+.identity{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+@media(max-width:760px){.shell{width:min(var(--max),calc(100% - 24px))}.grid{grid-template-columns:1fr;gap:14px}.branches{grid-template-columns:1fr}.article-hero{padding:46px 0 38px}}
+@media(max-width:600px){.reading-nav{grid-template-columns:1fr}.reading-nav .next{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<script>
+(function(){
+  const saved=localStorage.getItem("tsil-lang");
+  const browser=(navigator.language||"en").toLowerCase();
+  const initial=saved||(browser.startsWith("es")?"es":"en");
+  function setLang(lang){
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.lang=lang;
+    localStorage.setItem("tsil-lang",lang);
+    document.querySelectorAll("[data-switch]").forEach(btn=>btn.classList.toggle("active",btn.dataset.switch===lang));
+  }
+  window.setTSILLang=setLang;
+  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
+})();
+</script>
+
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
+
+<!-- TSIL_SOCIAL_META_START -->
+<meta name="description" content="Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person.">
+<meta name="author" content="Kurt Wesp Yianatos">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="keywords" content="Ariella Azoulay, The Civil Contract of Photography, photograph → relation → spectator → obligation, CONSTRUCTION / SUPPORT, SCAFFOLD, The Somatic Image Lab, Kurt Wesp Yianatos">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/025-ariella-azoulay-the-civil-contract-of-photography/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Somatic Image Lab">
+<meta property="og:title" content="The Civil Contract of Photography — Ariella Azoulay">
+<meta property="og:description" content="Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person.">
+<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/025-ariella-azoulay-the-civil-contract-of-photography/">
+<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="The Somatic Image Lab — Reading 025 — The Civil Contract of Photography — Ariella Azoulay">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="article:published_time" content="2026-09-20">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Civil Contract of Photography — Ariella Azoulay">
+<meta name="twitter:description" content="Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person.">
+<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
+<meta name="theme-color" content="#f2efe7">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/025-ariella-azoulay-the-civil-contract-of-photography/"},"headline":"The Civil Contract of Photography — Ariella Azoulay","description":"Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person.","datePublished":"2026-09-20","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Civil Contract of Photography","author":{"@type":"Person","name":"Ariella Azoulay"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["photograph → relation → spectator → obligation","CONSTRUCTION / SUPPORT","SCAFFOLD"]}</script>
+<script id="tsil-social-data" type="application/json">{"number": 25, "slug": "025-ariella-azoulay-the-civil-contract-of-photography", "author": "Ariella Azoulay", "date": "2026-09-20", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/025-ariella-azoulay-the-civil-contract-of-photography/", "title": {"es": "El contrato civil de la fotografía", "en": "The Civil Contract of Photography"}, "parts": {"es": {"title": "El contrato civil de la fotografía", "subtitle": ""}, "en": {"title": "The Civil Contract of Photography", "subtitle": ""}}, "lead": {"es": "Ariella Azoulay propone que una fotografía reúne a quien fotografía, a quien aparece y a quien mira. Mirarla implica una relación y una responsabilidad con la persona fotografiada.", "en": "Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person."}, "ante": {"es": "Una fotografía no termina en el instante en que se toma.", "en": "A photograph does not end at the moment it is taken."}, "description": {"es": "Ariella Azoulay propone que una fotografía reúne a quien fotografía, a quien aparece y a quien mira. Mirarla implica una relación y una responsabilidad con la persona fotografiada.", "en": "Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person."}, "band": {"es": "fotografía → relación → espectador → obligación", "en": "photograph → relation → spectator → obligation"}, "error_context": {"es": "CONSTRUCCIÓN / SOPORTE", "en": "CONSTRUCTION / SUPPORT"}, "error_word": {"es": "ANDAMIO", "en": "SCAFFOLD"}, "concepts": {"es": ["ANDAMIO", "RELACIÓN", "ESPECTADOR", "FOTOGRAFÍA"], "en": ["RELATION", "SCAFFOLD", "SPECTATOR", "OBLIGATION"]}}</script>
+<!-- TSIL_SOCIAL_META_END -->
+<!-- TSIL_SOCIAL_STYLE_START -->
+<style id="tsil-social-secret-style">
+.tsil-secret-story{cursor:default!important}
+.tsil-secret-story:focus{outline:none!important}
+#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}
+#tsil-secret-export.open{display:flex}
+#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}
+#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}
+#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
+#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}
+#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
+</style>
+<!-- TSIL_SOCIAL_STYLE_END -->
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div><a href="../../index.html">The Somatic Image Lab</a></div>
+  <div class="lang-switch">
+    <a href="../../index.html" data-inline="es">inicio</a>
+    <a href="../../index.html" data-inline="en">home</a>
+    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
+    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
+  </div>
+</header>
+<main>
+<section class="article-hero">
+  <div class="article-kicker" data-copy="es">lectura / 025</div><div class="article-kicker" data-copy="en">reading / 025</div>
+  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="EL">EL</span><br>CONTRATO<br>CIVIL DE LA<br>FOTOGRAFÍA</h1>
+  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="THE">THE</span><br>CIVIL<br>CONTRACT OF<br>PHOTOGRAPHY</h1>
+  <div class="article-author">Ariella Azoulay</div>
+  <div class="article-ante" data-copy="es">Una fotografía no termina en el instante en que se toma.</div>
+  <div class="article-ante" data-copy="en">A photograph does not end at the moment it is taken.</div>
+  <div class="article-lead" data-copy="es">Ariella Azoulay propone que una fotografía reúne a quien fotografía, a quien aparece y a quien mira. Mirarla implica una relación y una responsabilidad con la persona fotografiada.</div>
+  <div class="article-lead" data-copy="en">Ariella Azoulay proposes that a photograph brings together the photographer, the person pictured and the spectator. Looking at it involves a relationship and a responsibility toward the photographed person.</div>
+</section>
+<div class="motion-line"><div class="text" data-text="fotografía → relación → espectador → obligación" data-copy="es">fotografía → relación → espectador → obligación</div><div class="text" data-text="photograph → relation → spectator → obligation" data-copy="en">photograph → relation → spectator → obligation</div></div>
+<section class="grid"><div class="section-title" data-copy="es">en 1 minuto</div><div class="section-title" data-copy="en">in 1 minute</div>
+<div class="large-copy" data-copy="es"><p>Azoulay llama contrato civil de la fotografía a la relación que una foto pone en marcha. No es un contrato firmado ni una ley existente. Es una manera de decir que la imagen no pertenece por completo al fotógrafo, al archivo o al medio: también compromete a la persona fotografiada y a quienes la reciben.</p><p>La espectadora no es alguien que mira desde afuera. Al ver a una persona en una situación de daño, despojo o violencia, recibe una demanda: prestar atención a lo que ocurrió y no convertir ese cuerpo en simple prueba, noticia o espectáculo.</p><p>Por eso, para Azoulay, el significado de una fotografía no está cerrado por su pie de foto ni por quien la publicó. Cambia cuando se reconstruyen las condiciones en que fue tomada, distribuida y vista. Mirar puede ser una forma de participar en el mundo que la imagen muestra.</p></div>
+<div class="large-copy" data-copy="en"><p>Azoulay calls the civil contract of photography the relationship a photograph sets in motion. It is not a signed contract or an existing law. It is a way of saying that an image does not fully belong to the photographer, archive or medium: it also involves the photographed person and the people who receive it.</p><p>The spectator is not someone looking from outside. When seeing a person in a situation of harm, dispossession or violence, the spectator receives a demand: to attend to what happened and not turn that body into mere evidence, news or spectacle.</p><p>For Azoulay, then, a photograph’s meaning is not settled by its caption or by whoever published it. It changes when we reconstruct the conditions in which it was taken, distributed and seen. Looking can be a way of taking part in the world the image shows.</p></div></section>
+<section class="grid"><div class="section-title" data-copy="es">tres cosas para conservar</div><div class="section-title" data-copy="en">three things to keep</div>
+<div data-copy="es"><div class="keep">Una foto reúne varias posiciones: quien toma la imagen, quien aparece y quien la mira después.</div><div class="keep">El contrato civil nombra la obligación de tratar a la persona fotografiada como alguien con voz, no como un objeto disponible.</div><div class="keep">Para entender una imagen hay que preguntar cómo fue producida, qué puede causar su circulación y qué reclama de sus espectadores.</div></div><div data-copy="en"><div class="keep">A photo gathers several positions: the person taking it, the person pictured and those who look later.</div><div class="keep">The civil contract names an obligation to treat the photographed person as someone with a voice, not an available object.</div><div class="keep">To understand an image, we must ask how it was produced, what its circulation can cause and what it asks of its spectators.</div></div></section>
+<div class="threshold"><section class="grid" style="border-top:0"><div class="section-title" data-copy="es">punto de arrastre</div><div class="section-title" data-copy="en">carry point</div><div><div class="threshold-note" data-copy="es">Aquí “obligación” no es una culpa privada: es la responsabilidad de considerar qué hace una imagen a la persona que muestra.</div><div class="threshold-note" data-copy="en">Here “obligation” is not private guilt: it is the responsibility to consider what an image does to the person it shows.</div><div class="pressure" data-copy="es">El reading 024 preguntó desde qué posición miramos una imagen que cambia de contexto. Azoulay desplaza la pregunta: cuando la imagen muestra a alguien expuesto a una situación desigual, ¿qué relación se establece entre esa persona y quien la mira? La fotografía no da una respuesta automática, pero obliga a no mirar como si nada estuviera en juego.</div><div class="pressure" data-copy="en">Reading 024 asked from which position we look at an image that changes context. Azoulay shifts the question: when an image shows someone exposed to an unequal situation, what relation is formed between that person and the spectator? Photography does not provide an automatic answer, but it asks us not to look as if nothing were at stake.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">proposición incompleta</div><div class="section-title" data-copy="en">unfinished proposition</div><div class="incomplete" data-copy="es">Si mirar una fotografía ya nos pone en relación con quien aparece, entonces mirar exige…</div><div class="incomplete" data-copy="en">If looking at a photograph already puts us in relation with the person pictured, then looking requires…</div></section>
+<section class="grid"><div class="section-title" data-copy="es">bifurcación</div><div class="section-title" data-copy="en">bifurcation</div><div class="branches" data-copy="es"><div class="branch">Reconstruir las condiciones de una foto permite preguntar qué puede reclamar la persona fotografiada.</div><div class="branch">Tratar la foto como información neutral borra la relación entre quien mira y quien fue expuesto.</div></div><div class="branches" data-copy="en"><div class="branch">Reconstructing a photo’s conditions lets us ask what the photographed person can claim.</div><div class="branch">Treating a photo as neutral information erases the relation between the spectator and the person exposed.</div></div></section>
+<section class="grid"><div class="section-title" data-copy="es">residuo</div><div class="section-title" data-copy="en">residue</div>
+  <div data-copy="es"><div class="residue">Una imagen puede seguir haciendo daño después de haber sido tomada si vuelve a exponer a la persona sin considerar su situación.</div><div class="residue">Mirar responsablemente no significa dejar de mirar; significa investigar qué relación propone y qué se puede hacer con ella.</div></div>
+  <div data-copy="en"><div class="residue">An image can continue doing harm after it is taken if it exposes the person again without considering their situation.</div><div class="residue">Looking responsibly does not mean refusing to look; it means investigating what relation the image proposes and what can be done with it.</div></div>
+</section></div>
+<div class="error-zone">
+<section class="grid" style="border-top:0;padding-top:0">
+  <div class="section-title" data-copy="es">máquina de error</div><div class="section-title" data-copy="en">error machine</div>
+  <div class="error-machine-content" style="display:grid;gap:14px">
+  <div class="error-machine-intro" style="max-width:760px;color:#fff;font-size:12px;line-height:1.45;letter-spacing:.02em">
+    <div data-copy="es">La Máquina de Error fuerza una colisión entre el texto leído y una palabra ajena. No busca explicar mejor: busca producir una falla que abra otra pregunta sobre la imagen.</div>
+    <div data-copy="en">The Error Machine forces a collision between the text being read and an external word. It does not seek a better explanation: it produces a failure that opens another question about the image.</div>
+  </div>
+<div class="error-card">
+    <div class="eyebrow" data-copy="es">contexto importado</div><div class="eyebrow" data-copy="en">imported context</div>
+    <div class="error-context" data-copy="es">CONSTRUCCIÓN / SOPORTE</div><div class="error-context" data-copy="en">CONSTRUCTION / SUPPORT</div>
+    <div class="eyebrow" data-copy="es">palabra importada</div><div class="eyebrow" data-copy="en">imported word</div>
+    <div class="error-word" data-copy="es">ANDAMIO</div><div class="error-word" data-copy="en">SCAFFOLD</div>
+    <div class="eyebrow" data-copy="es">colisión</div><div class="eyebrow" data-copy="en">collision</div>
+    <div class="error-collision" data-copy="es">contrato civil × andamio</div><div class="error-collision" data-copy="en">civil contract × scaffold</div>
+    <div class="eyebrow" data-copy="es">error forzado</div><div class="eyebrow" data-copy="en">forced error</div>
+    <div class="error-statement" data-copy="es">Toda fotografía necesita un andamio de responsabilidades.</div><div class="error-statement" data-copy="en">Every photograph needs a scaffold of responsibilities.</div>
+    <div class="eyebrow" data-copy="es">lo que se escapó</div><div class="eyebrow" data-copy="en">what escaped</div>
+    <div class="error-opening" data-copy="es">“Andamio” viene de la construcción y es una intervención de TSIL, no un concepto atribuido a Azoulay. Un andamio es una estructura temporal que permite trabajar en altura y, a la vez, delimita por dónde se puede pasar. Llevado a la fotografía, el error pregunta qué soportes hacen posible una mirada responsable: contexto, consentimiento, cuidado al publicar y posibilidades de respuesta para quien aparece. Si faltan, la relación que Azoulay llama contrato queda suspendida.</div><div class="error-opening" data-copy="en">“Scaffold” comes from construction and is a TSIL intervention, not a concept attributed to Azoulay. A scaffold is a temporary structure that makes work at height possible while also delimiting where one can move. Applied to photography, the error asks which supports make responsible looking possible: context, consent, care in publishing and ways for the person pictured to respond. Without them, the relation Azoulay calls a contract remains suspended.</div>
+    <div class="eyebrow" data-copy="es">pregunta que queda</div><div class="eyebrow" data-copy="en">question left behind</div>
+    <div class="error-question" data-copy="es">¿Qué soporte falta cuando una fotografía nos pide mirar, pero no nos deja responder a quien aparece en ella?</div><div class="error-question" data-copy="en">What support is missing when a photograph asks us to look but gives us no way to respond to the person in it?</div>
+  </div>
+</div>
+</section>
+<div class="reject">
+  <div class="reject-x">×</div>
+  <div>
+    <div class="eyebrow" data-copy="es">error que no produjo nada</div><div class="eyebrow" data-copy="en">error that produced nothing</div>
+    <div class="reject-text" data-copy="es">Toda fotografía de violencia debe dejar de circular.</div><div class="reject-text" data-copy="en">Every photograph of violence must stop circulating.</div>
+    <div class="reject-note" data-copy="es">DETENER. Es una salida automática: borra las condiciones distintas de cada imagen y puede silenciar la demanda de quien aparece. Azoulay propone reconstruir el caso antes de decidir. Se descarta.</div><div class="reject-note" data-copy="en">STOP. It is an automatic exit: it erases the distinct conditions of each image and can silence the claim of the person pictured. Azoulay proposes reconstructing the case before deciding. Discarded.</div>
+  </div>
+</div>
+</div>
+<section class="grid">
+  <div class="section-title" data-copy="es">arrastre</div>
+  <div class="section-title" data-copy="en">carry</div>
+
+  <div>
+    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
+    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+
+    <div class="reading-nav">
+      <a class="prev" href="../024-hito-steyerl-the-wretched-of-the-screen/index.html">
+  <div>
+    <div class="nav-label" data-copy="es">← viene de 024 · Hito Steyerl</div>
+    <div class="nav-label" data-copy="en">← comes from 024 · Hito Steyerl</div>
+    <div class="nav-q" data-copy="es">¿Quién queda arriba, abajo o fuera del mapa cuando una imagen cambia de plataforma?</div>
+    <div class="nav-q" data-copy="en">Who remains above, below or outside the map when an image changes platforms?</div>
+  </div>
+</a>
+      <div class="nav-block next pending">
+  <div>
+    <div class="nav-label" data-copy="es">hacia el próximo texto →</div>
+    <div class="nav-label" data-copy="en">toward the next text →</div>
+    <div class="nav-q" data-copy="es">¿Qué soporte falta cuando una fotografía nos pide mirar, pero no nos deja responder a quien aparece en ella?</div>
+    <div class="nav-q" data-copy="en">What support is missing when a photograph asks us to look but gives us no way to respond to the person in it?</div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="grid"><div class="section-title" data-copy="es">sobre esta máquina</div><div class="section-title" data-copy="en">about this machine</div><div class="about-machine" data-copy="es">Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div><div class="about-machine" data-copy="en">This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and forces errors, deviations and unlikely associations to open questions rather than close them.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div></section>
+</main>
+</div>
+<!-- TSIL_SOCIAL_SCRIPT_START -->
+<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
+<!-- TSIL_SOCIAL_SCRIPT_END -->
+</body>
+</html>

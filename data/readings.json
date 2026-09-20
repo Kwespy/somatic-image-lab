@@ -238,5 +238,15 @@
     "date": "2026-09-18",
     "error_es": "desnivel",
     "error_en": "unevenness"
+  },
+  {
+    "number": 25,
+    "slug": "025-ariella-azoulay-the-civil-contract-of-photography",
+    "author": "Ariella Azoulay",
+    "title_es": "El contrato civil de la fotografía",
+    "title_en": "The Civil Contract of Photography",
+    "date": "2026-09-20",
+    "error_es": "andamio",
+    "error_en": "scaffold"
   }
 ]
