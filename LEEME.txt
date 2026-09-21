@@ -87,9 +87,19 @@ La lectura debe explicar sus ideas en este orden:
    imagen. No basta con nombrarlo.
 2. «Tres cosas para conservar» resume las ideas que el lector necesita para
    seguir avanzando.
-3. El umbral desarrolla una consecuencia del argumento y explica su relación
-   con el reading anterior.
-4. La Máquina de Error introduce una palabra externa. Debe indicar que es una
+3. El «punto de arrastre» desarrolla una consecuencia del argumento y explica
+   su relación con el reading anterior. Cuando nombre ese reading, el número y
+   la palabra «reading» deben llevar a su enlace, en español e inglés.
+4. «Por ejemplo / For example» aterriza el concepto en una situación concreta.
+   Puede ser una imagen vista en un teléfono, una cámara, un mapa o una
+   interfaz. Debe distinguir entre el hecho que muestra una imagen y las
+   condiciones tecnológicas en que la encontramos: orden, encuadre, escala,
+   texto y tiempo de atención. No usamos «proposición incompleta» ni
+   «bifurcación». El ejemplo puede terminar con una pregunta breve que permita
+   probar la idea.
+5. «Residuo» deja consecuencias o preguntas que siguen abiertas después del
+   ejemplo.
+6. La Máquina de Error introduce una palabra externa. Debe indicar que es una
    intervención de TSIL, de qué campo proviene, cómo cambia la lectura y qué
    pregunta abre. No debe atribuir esa palabra a la autora o al autor si no
    aparece en el texto fuente.
