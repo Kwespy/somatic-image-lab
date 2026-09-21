@@ -248,5 +248,15 @@
     "date": "2026-09-20",
     "error_es": "andamio",
     "error_en": "scaffold"
+  },
+  {
+    "number": 26,
+    "slug": "026-nicholas-mirzoeff-an-introduction-to-visual-culture",
+    "author": "Nicholas Mirzoeff",
+    "title_es": "Introducción a la cultura visual",
+    "title_en": "An Introduction to Visual Culture",
+    "date": "2026-09-21",
+    "error_es": "desvío",
+    "error_en": "detour"
   }
 ]
