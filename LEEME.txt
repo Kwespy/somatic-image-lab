@@ -90,15 +90,15 @@ La lectura debe explicar sus ideas en este orden:
 3. El «punto de arrastre» desarrolla una consecuencia del argumento y explica
    su relación con el reading anterior. Cuando nombre ese reading, el número y
    la palabra «reading» deben llevar a su enlace, en español e inglés.
-4. «Por ejemplo / For example» aterriza el concepto en una imagen concreta o
-   en una imagen hipotética descrita con claridad. Reúne cuatro movimientos:
-   ejemplo, prueba de mirada, instrucción de uso y contra-lectura. Debe decir
-   qué se ve, preguntar qué queda fuera del encuadre, proponer revisar fuente,
-   fecha, secuencia o texto, y distinguir entre el hecho mostrado y las
-   condiciones tecnológicas en que encontramos la imagen: orden, encuadre,
-   escala, texto y tiempo de atención. No usamos «proposición incompleta» ni
-   «bifurcación». El ejemplo puede terminar con una pregunta breve que permita
-   probar la idea.
+4. «Por ejemplo / For example» aterriza el concepto en una imagen concreta,
+   una imagen hipotética descrita con claridad o una situación reconocible de
+   encuentro con una imagen. Reúne cuatro movimientos: ejemplo, prueba de
+   mirada, instrucción de uso y contra-lectura. Debe decir qué se ve o cómo
+   llega la imagen, proponer revisar encuadre, fuente, fecha, secuencia o
+   texto, y distinguir entre el hecho mostrado y las condiciones tecnológicas
+   en que encontramos la imagen: orden, encuadre, escala, texto y tiempo de
+   atención. No usamos «proposición incompleta» ni «bifurcación». El ejemplo
+   puede terminar con una pregunta breve que permita probar la idea.
 5. «Residuo» deja consecuencias o preguntas que siguen abiertas después del
    ejemplo.
 6. La Máquina de Error introduce una palabra externa. Debe indicar que es una
