@@ -258,5 +258,15 @@
     "date": "2026-09-21",
     "error_es": "desvío",
     "error_en": "detour"
+  },
+  {
+    "number": 27,
+    "slug": "027-laura-u-marks-the-skin-of-the-film",
+    "author": "Laura U. Marks",
+    "title_es": "La piel del film",
+    "title_en": "The Skin of the Film",
+    "date": "2026-09-22",
+    "error_es": "fricción",
+    "error_en": "friction"
   }
 ]
