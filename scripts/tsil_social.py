@@ -271,10 +271,11 @@ QUESTION_STORY_STYLE = r'''
 '''
 
 
-def question_story_html(d, lang, render=False):
+def question_story_html(d, lang, render=False, question_override=None):
     p = d['parts'][lang]
     reading = ('LECTURA' if lang == 'es' else 'READING') + f" / {d['number']:03d}"
-    question = d['ante'][lang] or d['lead'][lang]
+    question = (question_override if question_override is not None
+                else d['ante'][lang] or d['lead'][lang])
     sentences = re.findall(r'[^.!?]+[.!?]+|[^.!?]+$', question)
     if len(sentences) == 3:
         # Some opening texts end with a final turn (", y …" / ", and …").
@@ -449,37 +450,39 @@ def generic_social_html(d, kind='og'):
     fs_ascii = '82px'; margin_ascii = '42px 0 30px'; fs_h1 = '86px'; fs_h2 = '40px'; fs_author = '32px'; fs_idea = '29px'; err_margin = '34px'
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>:root{{--paper:#f2efe7;--ink:#0a0a0a;--muted:#787168;--line:#c5beb3;--orange:#ff5a1f}}*{{box-sizing:border-box}}html,body{{margin:0;width:{w}px;height:{h}px;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}}.card{{width:100%;height:100%;display:grid;{layout}}}.head{{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin:0 58px;padding:32px 0 20px;border-bottom:2px solid var(--line);font-size:16px;letter-spacing:.16em}}{extra}.reading{{font-size:18px;letter-spacing:.15em;color:var(--muted)}}.ascii-word{{font-family:Courier New,monospace;font-weight:900;font-size:{fs_ascii};letter-spacing:-.08em;margin:{margin_ascii};overflow:hidden;white-space:nowrap}}h1{{margin:0;font-size:{fs_h1};line-height:.86;letter-spacing:-.055em}}h2{{margin:12px 0 0;font-size:{fs_h2};font-weight:400;line-height:1}}.author{{margin-top:12px;font-size:{fs_author}}}.idea{{font-size:{fs_idea};line-height:1.22;letter-spacing:-.02em}}.error-label{{margin-top:{err_margin};font-size:16px;letter-spacing:.15em;color:var(--muted)}}.ctx{{margin-top:16px;font-size:20px;letter-spacing:.08em}}.err{{margin-top:14px;display:flex;gap:16px;align-items:center;color:var(--orange);font-size:36px}}.err b{{background:var(--orange);color:var(--ink);font:700 24px Courier New,monospace;padding:8px 13px}}.foot{{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin:0 58px;padding:18px 0 24px;border-top:2px solid var(--line);font-size:16px;letter-spacing:.14em}}</style></head><body><div class="card">{body}</div></body></html>'''
 
-def browser_bin():
+def browser_bin(prefer_chrome=False):
     """Return the first available Chromium-based browser.
 
-    Brave is intentionally preferred because it is the user's browser.
-    Chrome/Chromium are only fallbacks.
+    Brave stays preferred for the existing social-image workflow. Reels can
+    explicitly prefer Chrome because their long headless render can otherwise
+    disturb the user's Brave session.
     """
-    candidates = [
+    brave = [
         ('Brave Browser', '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'),
         ('Brave Browser', str(Path.home() / 'Applications/Brave Browser.app/Contents/MacOS/Brave Browser')),
-        ('Google Chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'),
-        ('Chromium', '/Applications/Chromium.app/Contents/MacOS/Chromium'),
         ('Brave Browser', '/usr/bin/brave-browser'),
         ('Brave Browser', '/usr/bin/brave'),
-        ('Chromium', '/usr/bin/chromium'),
+    ]
+    chrome = [
+        ('Google Chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'),
         ('Google Chrome', '/usr/bin/google-chrome'),
         ('Google Chrome', '/usr/bin/google-chrome-stable'),
     ]
+    chromium = [('Chromium', '/Applications/Chromium.app/Contents/MacOS/Chromium'), ('Chromium', '/usr/bin/chromium')]
+    candidates = (chrome + brave + chromium) if prefer_chrome else (brave + chrome + chromium)
     for name, p in candidates:
         if Path(p).exists():
             return p, name
     return None, None
 
 
-def screenshot(html_text, out, size):
+def screenshot(html_text, out, size, prefer_chrome=False, _attempt=0):
     """Render one HTML social asset with a Chromium-based browser.
 
-    Brave is preferred. The browser runs headlessly/invisibly and is terminated
-    as soon as the PNG is fully written, so helper processes do not make the
-    migration appear frozen.
+    The browser runs headlessly/invisibly and is terminated as soon as the PNG
+    is fully written, so helper processes do not make the migration appear frozen.
     """
-    browser, browser_name = browser_bin()
+    browser, browser_name = browser_bin(prefer_chrome=prefer_chrome)
     w, h = size
     out = Path(out).resolve()
     last_error = ''
@@ -555,6 +558,25 @@ def screenshot(html_text, out, size):
                     except Exception: pass
             shutil.rmtree(td, ignore_errors=True)
 
+    # A fresh temporary profile avoids inheriting a browser's crashed state.
+    # Re-try once before changing browser: the PNG renderer occasionally exits
+    # while its first headless process is still initialising.
+    if _attempt == 0:
+        import time
+        time.sleep(.6)
+        try:
+            if out.exists():
+                out.unlink()
+        except OSError:
+            pass
+        return screenshot(html_text, out, size, prefer_chrome=prefer_chrome, _attempt=1)
+
+    # Chrome is preferred for Reels, but a working Brave fallback is still
+    # better than returning a partial asset. Do not fall back before Chrome
+    # has had its own clean retry.
+    if prefer_chrome:
+        return screenshot(html_text, out, size, prefer_chrome=False, _attempt=1)
+
     # Fallback: Python Playwright, only when installed.
     try:
         from playwright.sync_api import sync_playwright
@@ -573,7 +595,7 @@ def screenshot(html_text, out, size):
     except Exception as e:
         last_error = (last_error + '\n' + str(e)).strip()
 
-    raise RuntimeError('No pude generar ' + str(out) + ' con Brave/Chromium. ' + last_error)
+    raise RuntimeError('No pude generar ' + str(out) + ' con el navegador local. ' + last_error)
 
 
 

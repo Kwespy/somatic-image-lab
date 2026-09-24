@@ -278,5 +278,15 @@
     "date": "2026-09-23",
     "error_es": "metadato",
     "error_en": "metadata"
+  },
+  {
+    "number": 29,
+    "slug": "029-gilles-deleuze-pintura-el-concepto-de-diagrama",
+    "author": "Gilles Deleuze",
+    "title_es": "Pintura: el concepto de diagrama",
+    "title_en": "Painting: The Concept of Diagram",
+    "date": "2026-09-23",
+    "error_es": "interferencia",
+    "error_en": "interference"
   }
 ]
