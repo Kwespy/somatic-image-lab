@@ -535,6 +535,14 @@ def main():
         rebuild_carry_flow(items)
         update_sitemap(items)
 
+        # Do not claim success if a new reading is missing from the public list,
+        # the sitemap, or the link from the preceding reading.
+        check_script=ROOT/"scripts"/"verify_reading_publish.py"
+        for number in sorted({int(a["number"]) for a in actions}):
+            result=subprocess.run([sys.executable,str(check_script),str(number)],cwd=ROOT)
+            if result.returncode:
+                die(f"ERROR: el paquete del reading {number:03d} quedó incompleto.")
+
         # Story + metadata + social images for created/updated posts.
         action_numbers={int(a["number"]) for a in actions}
         for it in items:

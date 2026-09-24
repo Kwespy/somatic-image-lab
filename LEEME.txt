@@ -21,6 +21,21 @@ CÓMO TRABAJAMOS
 4. Cuando esté listo y yo pida publicarlo, subimos los cambios seleccionados
    a GitHub. Probar localmente siempre va antes de publicar.
 
+ATAJO PARA UNA LECTURA COMPLETA
+
+Puedo escribirle a Codex: «haz read [autora, autor o texto]». Codex busca la
+fuente disponible, evita repeticiones con las lecturas anteriores, prepara la
+lectura en español e inglés, la prueba localmente y crea sus dos Stories, el
+Reel con pregunta inicial y el caption para Instagram. El resultado queda
+listo en este computador; no se publica ni se sube a GitHub hasta que escriba
+explícitamente «publica» o «haz read y publica».
+
+También puedo escribir «sgte read». En ese caso no necesito elegir autora o
+autor: Codex revisa los TXT disponibles en Google Drive, compara con las
+lecturas ya publicadas y selecciona una autora o autor que todavía no aparezca
+en TSIL. Luego prepara exactamente el mismo paquete local y espera mi orden de
+publicar.
+
 La máquina virtual todavía no existe. Su configuración y despliegue quedan
 pendientes para cuando decida retomar ese tema.
 
@@ -68,7 +83,8 @@ DÓNDE ESTÁ CADA COSA
 AGREGAR LECTURAS: FUNCIONAMIENTO ACTUAL
 
 Los paquetes ZIP contienen manifest.json e index.html. El importador crea o
-actualiza lecturas, portada, navegación, sitemap y los datos para el panel social.
+actualiza lecturas, la lista de la Máquina de Error, navegación, sitemap y los
+datos para el panel social.
 Ya no genera los paquetes de imágenes ni hace commit o push automáticamente.
 El lanzador AGREGAR_POST.command prepara el contenido localmente; después
 revisamos el resultado antes de publicar.
@@ -132,6 +148,24 @@ para esta tarea se usa la dirección 127.0.0.1:8001 del computador.
 Los nuevos readings sin imagen social usan la imagen general del sitio como
 vista previa para enlaces. No se generan imágenes automáticamente para ello.
 
+CREAR UN REEL EN UN CLIC
+
+Para no tener que editar videos cada vez, puedo hacer doble clic en
+CREAR_REEL.command. Solo escribo el numero de la lectura (por ejemplo 028) y
+elijo el idioma. El lanzador crea un Reel vertical de 14 segundos: comienza con
+la pregunta de apertura, la lleva a una falla tipografica y termina en la
+grafica final de esa lectura. Tambien abre el archivo en Finder y
+copia un texto breve para Instagram.
+
+El Reel se renderiza con Google Chrome en segundo plano para no interrumpir
+Brave. No tengo que cerrar ni configurar Brave para usar este lanzador.
+
+Despues solo hago esto en Instagram: subo el MP4, elijo musica, pego el texto
+y dejo el enlace de TSIL en la bio. Para que la visita sea directa, comparto
+ese Reel tambien en Stories y alli agrego el sticker de enlace a la lectura.
+El Reel no se publica automaticamente: asi puedo decidir musica, texto final,
+audiencia y fecha desde Instagram.
+
 La portada y todas las lecturas comparten la imagen fija
 assets/tsil-link-preview.png cuando se pega un enlace en redes o mensajería.
 Esta imagen no contiene una figura humana y usa letras con textura fototérmica.
@@ -149,6 +183,22 @@ publicación; CNAME por sí solo no confirma el despliegue.
 Antes de subir cambios, revisar los archivos que se incluirán. Claude.dmg es
 un instalador dentro de esta carpeta y no forma parte del sitio: no debe subirse.
 Conservar los archivos existentes y no incluir cambios ajenos al experimento.
+
+Para que una lectura aparezca en el sitio no basta con que exista su página:
+también necesita su tarjeta en Máquina de Error, su entrada en sitemap y el
+enlace desde el reading anterior. Antes de cada commit de publicación, Codex
+ejecuta esta comprobación sobre lo que realmente se seleccionó para subir:
+
+python3 scripts/verify_reading_publish.py 029 --staged
+
+Si falta una pieza, la publicación se detiene antes del push. Después del push,
+Codex revisa la URL de la lectura y la lista de Máquina de Error públicas.
+
+El lanzador publicar-nuevo.command también aplica esta comprobación. Solo se
+usa con los archivos rastreados sin cambios pendientes: así no mezcla un nuevo
+reading con trabajo local no relacionado. Para hacer push desde Codex, GitHub
+debe estar autenticado para este usuario de macOS mediante una credencial de
+GitHub o una clave SSH; no basta con tener el repositorio clonado.
 
 VOLVER ATRÁS
 

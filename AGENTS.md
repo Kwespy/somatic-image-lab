@@ -34,10 +34,29 @@ El sitio es un espacio experimental para abrir preguntas sobre la imagen. Sus re
 - Flujo: discutir y desarrollar en este computador, probar localmente, revisar y después publicar en GitHub cuando el autor lo solicite. No hacer push automáticamente durante pruebas o importaciones.
 - Es un sitio estático HTML/CSS/JavaScript con scripts Python para preparar lecturas y recursos sociales. Servir desde la raíz con: python3 -B scripts/local_server.py
 - Aplicar verificaciones proporcionales: sintaxis y datos, enlaces y recursos locales, e interacciones afectadas en navegador. Para cambios de interfaz, revisar también ambos idiomas y una pantalla estrecha. Informar de pruebas que no se pudieron realizar.
+- Antes de un commit de publicación, ejecutar `python3 scripts/verify_reading_publish.py NNN --staged`. Debe confirmar que el commit incluye la página del reading, su tarjeta en Máquina de Error, el sitemap y el enlace desde el reading anterior. No asumir que un push correcto basta: después de publicar, comprobar la página de Máquina de Error y el enlace individual en el sitio público.
 - El lanzador AGREGAR_POST.command llama a scripts/add_post.py, que prepara las lecturas localmente sin generar imágenes, commit ni push. Mantener la publicación como paso separado.
 - El botón secreto usa assets/social-export.js y el servicio scripts/local_server.py (puerto 8001). Renderizar solo la imagen solicitada en una carpeta temporal, sin escribir imágenes en readings/. Conservar los recursos antiguos hasta que el autor decida retirarlos.
 - Remoto configurado: https://github.com/Kwespy/somatic-image-lab.git. La documentación anterior describe GitHub Pages; no asumir que la configuración remota de Pages está verificada.
 - La máquina virtual todavía no existe. No preparar ni ejecutar despliegues a ella salvo que el autor retome expresamente ese trabajo.
+
+## Atajo: haz read
+Cuando el autor escriba `haz read` seguido de una autora, un texto o una referencia disponible, preparar el paquete completo de esa lectura sin pedir confirmaciones rutinarias:
+- Localizar y leer el TXT de referencia en Google Drive; si falta o hay mas de una fuente posible, pedir solo la aclaracion necesaria.
+- Revisar los readings publicados para no repetir autora, palabra de error ni conceptos centrales sin una relacion explicita.
+- Escribir y preparar el reading en espanol e ingles, con todas sus secciones editoriales y enlaces internos requeridos.
+- Integrarlo localmente al sitio, verificar datos, enlaces, los dos idiomas y una pantalla estrecha.
+- Preparar la Story-question y la Story grafica, generar el Reel vertical con pregunta inicial, falla tipografica, etiqueta completa de la Maquina de Error y grafica final breve.
+- Preparar un caption para Instagram en el idioma del Reel y revisar el MP4 resultante antes de entregarlo.
+- Antes de publicar, seleccionar todos los archivos que pide `verify_reading_publish.py` y ejecutar su comprobación con `--staged`; si falla, corregir el paquete antes del commit.
+- Dejar todo listo localmente, sin commit ni push. La publicacion solo ocurre cuando el autor escriba explicitamente `publica` o `haz read y publica`.
+
+## Atajo: sgte read
+Cuando el autor escriba `sgte read`, hacer el mismo paquete completo de `haz read`, pero elegir autonomamente la fuente:
+- Revisar los TXT disponibles en Google Drive y la lista de readings publicados.
+- Elegir una autora o autor que no haya sido publicado todavia. Excluir tambien palabras de error y conceptos centrales ya usados, salvo que una relacion explicita haga necesaria la repeticion.
+- Leer la fuente elegida antes de escribir. No inventar su contenido ni atribuciones.
+- Informar brevemente que fuente se eligio y despues preparar localmente el reading, Stories, Reel, caption y pruebas. No publicar sin una instruccion explicita posterior.
 
 ## Documentación
 Mantener LEEME.txt como guía personal en español, clara y acorde con el funcionamiento real. Distinguir capacidades existentes de ideas y mejoras pendientes.
