@@ -298,5 +298,15 @@
     "date": "2026-09-26",
     "error_es": "lastre",
     "error_en": "ballast"
+  },
+  {
+    "number": 31,
+    "slug": "031-donis-a-dondis-la-sintaxis-de-la-imagen",
+    "author": "Donis A. Dondis",
+    "title_es": "La sintaxis de la imagen",
+    "title_en": "A Primer of Visual Literacy",
+    "date": "2026-09-28",
+    "error_es": "sangría",
+    "error_en": "indent"
   }
 ]
