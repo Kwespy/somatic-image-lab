@@ -68,6 +68,21 @@
 }
 </style>
 
+<style id="tsil-028-mobile-error-fix">
+/* Mantiene la Máquina de Error contenida en pantallas estrechas. */
+html,body{max-width:100%;overflow-x:clip}
+.error-zone,.error-zone .grid,.error-zone .grid>div,.error-card{min-width:0;max-width:100%}
+.error-card{overflow-wrap:anywhere}
+@media(max-width:760px){
+  .error-zone{padding-inline:12px}
+  .error-zone>.grid>.section-title{display:none!important}
+  .error-card .word{font-size:clamp(38px,12vw,72px);letter-spacing:-.075em}
+  .error-card::before{display:block;margin:0 0 16px;color:#aaa;font-size:10px;letter-spacing:.15em;line-height:1.35;text-transform:uppercase}
+  html[data-lang="es"] .error-card::before{content:"máquina de error"}
+  html[data-lang="en"] .error-card::before{content:"error machine"}
+}
+</style>
+
 </head><body><div class="shell"><header class="topbar"><a href="../../index.html">The Somatic Image Lab</a><div class="lang-switch"><a href="../../index.html" data-inline="es">inicio</a><a href="../../index.html" data-inline="en">home</a><button data-switch="es" onclick="setTSILLang('es')">ES</button><button data-switch="en" onclick="setTSILLang('en')">EN</button></div></header><main>
 <section class="hero"><div class="kicker" data-copy="es">lectura / 028</div><div class="kicker" data-copy="en">reading / 028</div><h1 class="title" data-copy="es"><span class="mis" data-text="MARCOS">MARCOS</span><br>FAMILIARES</h1><h1 class="title" data-copy="en"><span class="mis" data-text="FAMILY">FAMILY</span><br>FRAMES</h1><div class="author">Marianne Hirsch</div><div class="article-ante ante" data-copy="es">Una fotografía heredada no recuerda sola.</div><div class="article-ante ante" data-copy="en">An inherited photograph does not remember by itself.</div><div class="article-lead lead" data-copy="es">Marianne Hirsch explica que una fotografía familiar adquiere sentido cuando una relación, un nombre o un relato la conecta con otras vidas.</div><div class="article-lead lead" data-copy="en">Marianne Hirsch explains that a family photograph acquires meaning when a relation, name or story connects it to other lives.</div></section>
 <div class="motion"><span data-copy="es">foto heredada → relato → relación → memoria</span><span data-copy="en">inherited photo → story → relation → memory</span></div>

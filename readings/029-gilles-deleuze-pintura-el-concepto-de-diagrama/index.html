@@ -61,6 +61,21 @@
 }
 </style>
 
+<style id="tsil-029-mobile-error-fix">
+/* Mantiene la Máquina de Error contenida en pantallas estrechas. */
+html,body{max-width:100%;overflow-x:clip}
+.error-zone,.error-zone .grid,.error-zone .grid>div,.error-card{min-width:0;max-width:100%}
+.error-card{overflow-wrap:anywhere}
+@media(max-width:760px){
+  .error-zone{padding-inline:12px}
+  .error-zone>.grid>.section-title{display:none!important}
+  .error-card .word{font-size:clamp(26px,8.5vw,72px);letter-spacing:-.075em}
+  .error-card::before{display:block;margin:0 0 16px;color:#aaa;font-size:10px;letter-spacing:.15em;line-height:1.35;text-transform:uppercase}
+  html[data-lang="es"] .error-card::before{content:"máquina de error"}
+  html[data-lang="en"] .error-card::before{content:"error machine"}
+}
+</style>
+
 <!-- TSIL_SOCIAL_META_START -->
 <meta name="description" content="Gilles Deleuze calls a diagram a material intervention that disrupts an image’s clichés so that a force, rather than merely a recognizable figure, can become visible.">
 <meta name="author" content="Kurt Wesp Yianatos">
