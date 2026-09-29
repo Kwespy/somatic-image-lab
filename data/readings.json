@@ -308,5 +308,15 @@
     "date": "2026-09-28",
     "error_es": "sangría",
     "error_en": "indent"
+  },
+  {
+    "number": 32,
+    "slug": "032-langdon-winner-do-artifacts-have-politics",
+    "author": "Langdon Winner",
+    "title_es": "¿Tienen política los artefactos?",
+    "title_en": "Do Artifacts Have Politics?",
+    "date": "2026-09-29",
+    "error_es": "bisagra",
+    "error_en": "hinge"
   }
 ]
