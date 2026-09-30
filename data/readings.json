@@ -318,5 +318,15 @@
     "date": "2026-09-29",
     "error_es": "bisagra",
     "error_en": "hinge"
+  },
+  {
+    "number": 33,
+    "slug": "033-ernst-gombrich-arte-e-ilusion",
+    "author": "Ernst H. Gombrich",
+    "title_es": "Arte e ilusión",
+    "title_en": "Art and Illusion",
+    "date": "2026-09-30",
+    "error_es": "párpado",
+    "error_en": "eyelid"
   }
 ]
