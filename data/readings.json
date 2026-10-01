@@ -328,5 +328,15 @@
     "date": "2026-09-30",
     "error_es": "párpado",
     "error_en": "eyelid"
+  },
+  {
+    "number": 34,
+    "slug": "034-john-dewey-el-arte-como-experiencia",
+    "author": "John Dewey",
+    "title_es": "El arte como experiencia",
+    "title_en": "Art as Experience",
+    "date": "2026-10-01",
+    "error_es": "interruptor",
+    "error_en": "switch"
   }
 ]
