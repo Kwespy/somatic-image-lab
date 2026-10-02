@@ -338,5 +338,15 @@
     "date": "2026-10-01",
     "error_es": "interruptor",
     "error_en": "switch"
+  },
+  {
+    "number": 35,
+    "slug": "035-john-berger-modos-de-ver",
+    "author": "John Berger",
+    "title_es": "Modos de ver",
+    "title_en": "Ways of Seeing",
+    "date": "2026-10-02",
+    "error_es": "epígrafe",
+    "error_en": "caption"
   }
 ]
