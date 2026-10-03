@@ -79,23 +79,6 @@ def render_label(magick, font, size, point_size, color, text, output, opaque=Fal
     ])
 
 
-def render_question_label(magick, font, text, output):
-    """Render a transparent, wrapped opening phrase over the fixed Story card."""
-    run([
-        magick,
-        "-background", "none",
-        "-fill", INK,
-        "-font", str(font),
-        "-style", "Italic",
-        "-pointsize", "104",
-        "-interline-spacing", "-12",
-        "-gravity", "northwest",
-        "-size", "900x410",
-        "caption:" + text,
-        str(output),
-    ])
-
-
 def title_words(title):
     words = title.upper().split()
     if not words:
@@ -140,8 +123,8 @@ def split_opening(text):
 
 
 def reel_filter():
-    # The question arrives in two readable beats. The collision only starts
-    # after both have landed; the final story has room to be inspected.
+    # The opening card never moves or gets cropped. Its five diagram bars are
+    # separate transparent objects that travel smoothly inside the field.
     return r"""
 color=c=#f2efe7:s=1080x1920:d=14[base];
 [base]drawgrid=x=0:y=0:w=54:h=54:color=0x0a0a0a@0.10:thickness=2:enable='between(t,7.0,12.0)',
@@ -150,23 +133,24 @@ drawbox=x=730:y=446:w=16:h=670:color=0x0a0a0a@1:t=fill:enable='between(t,7.15,12
 drawbox=x=220:y=1110:w=630:h=16:color=0x0a0a0a@1:t=fill:enable='between(t,7.45,12.0)',
 drawbox=x=220:y=1110:w=16:h=270:color=0x0a0a0a@1:t=fill:enable='between(t,7.45,12.0)'[grid];
 [0:v]scale=1080:1920,setsar=1[opening];
-[1:v]format=rgba[qone];
-[2:v]format=rgba[qtwo];
-[3:v]scale=1080:1920,setsar=1[story];
+[1:v]format=rgba[bar1];[2:v]format=rgba[bar2];[3:v]format=rgba[bar3];[4:v]format=rgba[bar4];[5:v]format=rgba[bar5];
+[6:v]scale=1080:1920,setsar=1[story];
 [story]split=5[band1source][band2source][band3source][band4source][storyfinal];
 [band1source]crop=1080:140:0:245,scale=1450:188[b1];
 [band2source]crop=1080:130:0:545,scale=1510:182[b2];
 [band3source]crop=1080:130:0:805,scale=1390:170[b3];
 [band4source]crop=1080:140:0:1090,scale=1480:192[b4];
 [storyfinal]format=rgba,fade=t=in:st=12.0:d=0.18:alpha=1[final];
-[4:v]format=rgba,split=4[word1a][word1bs][word1cs][word1ds];
+[7:v]format=rgba,split=4[word1a][word1bs][word1cs][word1ds];
 [word1bs]scale=1370:321[word1b];[word1cs]scale=920:215[word1c];[word1ds]scale=580:136[word1d];
-[5:v]format=rgba,split=4[word2a][word2bs][word2cs][word2ds];
+[8:v]format=rgba,split=4[word2a][word2bs][word2cs][word2ds];
 [word2bs]scale=1370:321[word2b];[word2cs]scale=920:215[word2c];[word2ds]scale=580:136[word2d];
-[base][opening]overlay=0:0:enable='between(t,0,7.0)'[card];
-[card][qone]overlay=70:270:enable='between(t,1.2,4.0)'[first];
-[first][qtwo]overlay=70:270:enable='between(t,4.0,7.0)'[intro];
-[grid][intro]overlay=0:0:enable='between(t,0,7.0)'[stage];
+[grid][opening]overlay=0:0:enable='between(t,0,7.0)'[card];
+[card][bar1]overlay=x='70+78*sin(2*PI*t/5.8)':y=963:enable='between(t,0,7.0)'[drift1];
+[drift1][bar2]overlay=x=333:y='1004+46*sin(2*PI*t/5.1+0.8)':enable='between(t,0,7.0)'[drift2];
+[drift2][bar3]overlay=x='474+94*sin(2*PI*t/6.4+1.5)':y=1045:enable='between(t,0,7.0)'[drift3];
+[drift3][bar4]overlay=x=781:y='1106+38*sin(2*PI*t/5.6+2.1)':enable='between(t,0,7.0)'[drift4];
+[drift4][bar5]overlay=x='164+70*sin(2*PI*t/4.9+2.8)':y=1132:enable='between(t,0,7.0)'[stage];
 [stage][word1a]overlay=x='1050-(t-7.0)*920':y=155:enable='between(t,7.0,8.35)'[a];
 [a][word2a]overlay=x='-920+(t-7.35)*960':y=600:enable='between(t,7.35,8.8)'[b];
 [b][word1b]overlay=x='-250+(t-7.1)*620':y=410:enable='between(t,7.1,8.65)'[c];
@@ -175,12 +159,12 @@ drawbox=x=220:y=1110:w=16:h=270:color=0x0a0a0a@1:t=fill:enable='between(t,7.45,1
 [e][word2c]overlay=x='-420+(t-7.4)*560':y=1180:enable='between(t,7.4,8.8)'[f];
 [f][word1d]overlay=x='45+(t-7.55)*180':y=1380:enable='between(t,7.55,8.7)'[g];
 [g][word2d]overlay=x='470-(t-7.5)*260':y=1490:enable='between(t,7.5,8.8)'[h];
-[h][6:v]overlay=x=95:y='820+(t-8.15)*80':enable='between(t,8.15,12.0)'[i];
+[h][9:v]overlay=x=95:y='820+(t-8.15)*80':enable='between(t,8.15,12.0)'[i];
 [i][b1]overlay=x='max(-1450\,min(-90\,(t-7.5)*1600-1450))':y=270:enable='between(t,7.5,8.85)'[j];
 [j][b2]overlay=x='min(1080\,max(-280\,1080-(t-7.75)*1500))':y=560:enable='between(t,7.75,9.0)'[k];
 [k][b3]overlay=x='max(-1390\,min(-110\,(t-7.95)*1650-1390))':y=875:enable='between(t,7.95,8.9)'[l];
 [l][b4]overlay=x='min(1080\,max(-300\,1100-(t-8.2)*1700))':y=1170:enable='between(t,8.2,9.1)'[m];
-[m][7:v]overlay=x=70:y=1450:enable='between(t,8.5,12.0)'[n];
+[m][10:v]overlay=x=70:y=1450:enable='between(t,8.5,12.0)'[n];
 [n][final]overlay=0:0:enable='gte(t,12.0)',format=yuv420p[video]
 """.replace("\n", "")
 
@@ -201,18 +185,28 @@ def create_reel(number, lang):
     with tempfile.TemporaryDirectory(prefix="tsil-reel-") as temp_dir:
         temp = Path(temp_dir)
         opening_path = temp / "opening.png"
-        question_one_path = temp / "question-one.png"
-        question_two_path = temp / "question-two.png"
         story_path = temp / "story.png"
+        bar_paths = [temp / f"bar-{index}.png" for index in range(1, 6)]
         first_path = temp / "word-one.png"
         second_path = temp / "word-two.png"
         number_path = temp / "number.png"
         error_path = temp / "error.png"
-        opening_one, opening_two = split_opening(data['ante'][lang] or data['lead'][lang])
-        screenshot(question_story_html(data, lang, render=True, question_override=''), opening_path, (1080, 1920), prefer_chrome=True)
-        render_question_label(magick, font, opening_one, question_one_path)
-        render_question_label(magick, font, opening_two, question_two_path)
-        screenshot(story_html(data, lang, "lines", render=True), story_path, (1080, 1920), prefer_chrome=True)
+        question_story = EXPORTS / f"tsil-{code}-{lang}-story-question.png"
+        graphic_story = EXPORTS / f"tsil-{code}-{lang}-story-graphic.png"
+        # Render the complete card without its five diagram bars. The bars
+        # are created below as clean shapes, so no slice of text or paper can
+        # move across the title.
+        opening_html = question_story_html(data, lang, render=True)
+        opening_html = opening_html.replace(
+            "</style>", ".pixel{display:none!important}</style>", 1
+        )
+        screenshot(opening_html, opening_path, (1080, 1920), prefer_chrome=True)
+        if graphic_story.exists():
+            shutil.copyfile(graphic_story, story_path)
+        else:
+            screenshot(story_html(data, lang, "lines", render=True), story_path, (1080, 1920), prefer_chrome=True)
+        for path, size in zip(bar_paths, ((432, 41), (41, 82), (536, 41), (41, 108), (320, 41))):
+            run([magick, "-size", f"{size[0]}x{size[1]}", f"xc:{INK}", str(path)])
         render_label(magick, font, "2050x480", 390, INK, first_word, first_path)
         render_label(magick, font, "2050x480", 390, ORANGE, second_word, second_path)
         render_label(magick, font, "880x580", 520, INK, code, number_path)
@@ -220,8 +214,7 @@ def create_reel(number, lang):
         run([
             ffmpeg, "-y",
             "-loop", "1", "-i", str(opening_path),
-            "-loop", "1", "-i", str(question_one_path),
-            "-loop", "1", "-i", str(question_two_path),
+            *sum((["-loop", "1", "-i", str(path)] for path in bar_paths), []),
             "-loop", "1", "-i", str(story_path),
             "-loop", "1", "-i", str(first_path),
             "-loop", "1", "-i", str(second_path),
