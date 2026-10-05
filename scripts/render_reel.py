@@ -80,6 +80,9 @@ def render_label(magick, font, size, point_size, color, text, output, opaque=Fal
 
 
 def title_words(title):
+    paired = re.split(r"\s+(?:and|y)\s+", title.upper(), maxsplit=1, flags=re.I)
+    if len(paired) == 2:
+        return tuple(re.sub(r"^(?:THE|LO|EL|LA)\s+", "", part) for part in paired)
     words = title.upper().split()
     if not words:
         return "READING", "READING"
@@ -135,36 +138,27 @@ drawbox=x=220:y=1110:w=16:h=270:color=0x0a0a0a@1:t=fill:enable='between(t,7.45,1
 [0:v]scale=1080:1920,setsar=1[opening];
 [1:v]format=rgba[bar1];[2:v]format=rgba[bar2];[3:v]format=rgba[bar3];[4:v]format=rgba[bar4];[5:v]format=rgba[bar5];
 [6:v]scale=1080:1920,setsar=1[story];
-[story]split=5[band1source][band2source][band3source][band4source][storyfinal];
-[band1source]crop=1080:140:0:245,scale=1450:188[b1];
-[band2source]crop=1080:130:0:545,scale=1510:182[b2];
-[band3source]crop=1080:130:0:805,scale=1390:170[b3];
-[band4source]crop=1080:140:0:1090,scale=1480:192[b4];
-[storyfinal]format=rgba,fade=t=in:st=12.0:d=0.18:alpha=1[final];
+[story]format=rgba[final];
 [7:v]format=rgba,split=4[word1a][word1bs][word1cs][word1ds];
 [word1bs]scale=1370:321[word1b];[word1cs]scale=920:215[word1c];[word1ds]scale=580:136[word1d];
 [8:v]format=rgba,split=4[word2a][word2bs][word2cs][word2ds];
 [word2bs]scale=1370:321[word2b];[word2cs]scale=920:215[word2c];[word2ds]scale=580:136[word2d];
 [grid][opening]overlay=0:0:enable='between(t,0,7.0)'[card];
-[card][bar1]overlay=x='70+78*sin(2*PI*t/5.8)':y=963:enable='between(t,0,7.0)'[drift1];
-[drift1][bar2]overlay=x=333:y='1004+46*sin(2*PI*t/5.1+0.8)':enable='between(t,0,7.0)'[drift2];
-[drift2][bar3]overlay=x='474+94*sin(2*PI*t/6.4+1.5)':y=1045:enable='between(t,0,7.0)'[drift3];
-[drift3][bar4]overlay=x=781:y='1106+38*sin(2*PI*t/5.6+2.1)':enable='between(t,0,7.0)'[drift4];
+[card][bar1]overlay=x='105+35*sin(2*PI*t/5.8)':y=963:enable='between(t,0,7.0)'[drift1];
+[drift1][bar2]overlay=x=333:y='1004+28*sin(2*PI*t/5.1+0.8)':enable='between(t,0,7.0)'[drift2];
+[drift2][bar3]overlay=x='420+50*sin(2*PI*t/6.4+1.5)':y=1034:enable='between(t,0,7.0)'[drift3];
+[drift3][bar4]overlay=x=786:y='1036+36*sin(2*PI*t/5.6+2.1)':enable='between(t,0,7.0)'[drift4];
 [drift4][bar5]overlay=x='164+70*sin(2*PI*t/4.9+2.8)':y=1132:enable='between(t,0,7.0)'[stage];
-[stage][word1a]overlay=x='1050-(t-7.0)*920':y=155:enable='between(t,7.0,8.35)'[a];
-[a][word2a]overlay=x='-920+(t-7.35)*960':y=600:enable='between(t,7.35,8.8)'[b];
-[b][word1b]overlay=x='-250+(t-7.1)*620':y=410:enable='between(t,7.1,8.65)'[c];
-[c][word2b]overlay=x='760-(t-7.15)*720':y=300:enable='between(t,7.15,8.7)'[d];
-[d][word1c]overlay=x='580-(t-7.3)*650':y=950:enable='between(t,7.3,8.65)'[e];
-[e][word2c]overlay=x='-420+(t-7.4)*560':y=1180:enable='between(t,7.4,8.8)'[f];
-[f][word1d]overlay=x='45+(t-7.55)*180':y=1380:enable='between(t,7.55,8.7)'[g];
-[g][word2d]overlay=x='470-(t-7.5)*260':y=1490:enable='between(t,7.5,8.8)'[h];
-[h][9:v]overlay=x=95:y='820+(t-8.15)*80':enable='between(t,8.15,12.0)'[i];
-[i][b1]overlay=x='max(-1450\,min(-90\,(t-7.5)*1600-1450))':y=270:enable='between(t,7.5,8.85)'[j];
-[j][b2]overlay=x='min(1080\,max(-280\,1080-(t-7.75)*1500))':y=560:enable='between(t,7.75,9.0)'[k];
-[k][b3]overlay=x='max(-1390\,min(-110\,(t-7.95)*1650-1390))':y=875:enable='between(t,7.95,8.9)'[l];
-[l][b4]overlay=x='min(1080\,max(-300\,1100-(t-8.2)*1700))':y=1170:enable='between(t,8.2,9.1)'[m];
-[m][10:v]overlay=x=70:y=1450:enable='between(t,8.5,12.0)'[n];
+[stage][word1a]overlay=x='1050-(t-7.0)*331.2':y=155:enable='gte(t,7.0)*lt(t,10.75)'[a];
+[a][word2a]overlay=x='-920+(t-7.9722)*345.6':y=600:enable='gte(t,7.9722)*lt(t,12)'[b];
+[b][word1b]overlay=x='-250+(t-7.2778)*223.2':y=410:enable='gte(t,7.2778)*lt(t,11.5833)'[c];
+[c][word2b]overlay=x='760-(t-7.4167)*259.2':y=300:enable='gte(t,7.4167)*lt(t,11.7222)'[d];
+[d][word1c]overlay=x='580-(t-7.8333)*234':y=950:enable='gte(t,7.8333)*lt(t,11.5833)'[e];
+[e][word2c]overlay=x='-420+(t-8.1111)*201.6':y=1180:enable='gte(t,8.1111)*lt(t,12)'[f];
+[f][word1d]overlay=x='45+(t-8.5278)*64.8':y=1380:enable='gte(t,8.5278)*lt(t,11.7222)'[g];
+[g][word2d]overlay=x='470-(t-8.3889)*93.6':y=1490:enable='gte(t,8.3889)*lt(t,12)'[h];
+[h][9:v]overlay=x=95:y=820:enable='gte(t,7.0)*lt(t,12.0)'[i];
+[i][10:v]overlay=x=70:y=1450:enable='gte(t,7.0)*lt(t,12.0)'[n];
 [n][final]overlay=0:0:enable='gte(t,12.0)',format=yuv420p[video]
 """.replace("\n", "")
 
@@ -205,7 +199,7 @@ def create_reel(number, lang):
             shutil.copyfile(graphic_story, story_path)
         else:
             screenshot(story_html(data, lang, "lines", render=True), story_path, (1080, 1920), prefer_chrome=True)
-        for path, size in zip(bar_paths, ((432, 41), (41, 82), (536, 41), (41, 108), (320, 41))):
+        for path, size in zip(bar_paths, ((432, 36), (36, 71), (536, 36), (36, 94), (320, 36))):
             run([magick, "-size", f"{size[0]}x{size[1]}", f"xc:{INK}", str(path)])
         render_label(magick, font, "2050x480", 390, INK, first_word, first_path)
         render_label(magick, font, "2050x480", 390, ORANGE, second_word, second_path)

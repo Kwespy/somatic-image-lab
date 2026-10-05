@@ -348,5 +348,15 @@
     "date": "2026-10-02",
     "error_es": "epígrafe",
     "error_en": "caption"
+  },
+  {
+    "number": 36,
+    "slug": "036-eugenio-trias-lo-bello-y-lo-siniestro",
+    "author": "Eugenio Trías",
+    "title_es": "Lo bello y lo siniestro",
+    "title_en": "The Beautiful and the Uncanny",
+    "date": "2026-10-05",
+    "error_es": "cortafuegos",
+    "error_en": "firewall"
   }
 ]
