@@ -65,6 +65,59 @@
 #tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
 </style>
 <!-- TSIL_SOCIAL_STYLE_END -->
+<style id="tsil-carry-flow-v4">
+.carry-rule{
+  margin:10px 0 18px;
+  max-width:760px;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.reading-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.reading-nav a,
+.reading-nav .nav-block{
+  min-height:126px;
+  padding:14px;
+  border:1px solid var(--line);
+  color:inherit;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.reading-nav a:hover{border-color:var(--orange)}
+.reading-nav .next{text-align:right}
+.nav-label{
+  font-size:10px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-q{
+  margin-top:20px;
+  font-size:15px;
+  line-height:1.28;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+.nav-block.pending{border-style:dashed}
+.nav-block.start .nav-q{
+  color:var(--muted);
+  font-size:13px;
+}
+.carry-source{display:none!important}
+@media(max-width:600px){
+  .reading-nav{grid-template-columns:1fr}
+  .reading-nav .next{text-align:left}
+}
+</style>
 </head>
 <body><div class="shell"><header class="topbar"><a href="../../index.html">The Somatic Image Lab</a><div class="lang"><a href="../../index.html" data-inline="es">inicio</a><a href="../../index.html" data-inline="en">home</a><button data-switch="es" onclick="setTSILLang('es')">ES</button><button data-switch="en" onclick="setTSILLang('en')">EN</button></div></header><main>
 <section class="hero"><div class="k" data-copy="es">lectura / 035</div><div class="k" data-copy="en">reading / 035</div><h1 class="title" data-copy="es"><span class="mis" data-text="MIRAR">MIRAR</span><br>NO ES NEUTRO</h1><h1 class="title" data-copy="en"><span class="mis" data-text="SEEING">SEEING</span><br>IS NOT NEUTRAL</h1><div class="author">John Berger</div><div class="ante" data-copy="es">¿Qué cambia en esta imagen cuando cambia el lugar desde donde la miras?</div><div class="ante" data-copy="en">What changes in this image when the place from which you see it changes?</div><div class="lead" data-copy="es">Para Berger, toda imagen conserva una manera de ver y cada reproducción la vuelve a situar en otro contexto.</div><div class="lead" data-copy="en">For Berger, every image preserves a way of seeing, and each reproduction places it in another context.</div></section>
