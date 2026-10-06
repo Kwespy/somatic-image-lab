@@ -115,17 +115,27 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   font-size:clamp(26px,4.3vw,56px);
   line-height:1.02;
   letter-spacing:-.045em;
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:.12em .28em;
 }
-.motion-line .text::after{
+.motion-line .concept{
+  position:relative;
+  display:inline-block;
+  isolation:isolate;
+}
+.motion-line .concept::after{
   content:attr(data-text);
   position:absolute;
-  left:5px;
-  top:-2px;
-  color:var(--orange);
-  clip-path:inset(0 0 56% 0);
-  mix-blend-mode:multiply;
+  inset:0;
+  transform:translate(4px,-2px);
+  color:transparent;
+  -webkit-text-stroke:1px var(--orange);
+  z-index:-1;
   pointer-events:none;
 }
+.motion-line .arrow{color:var(--ink)}
 
 .grid{
   display:grid;
@@ -273,6 +283,14 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   line-height:1.12;
   letter-spacing:-.03em;
 }
+.pressure a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
+.example-copy{
+  max-width:760px;
+  font-size:18px;
+  line-height:1.48;
+}
+.example-copy p{margin:0 0 14px}
+.example-copy strong{font-weight:700}
 .incomplete{
   padding:18px;
   border:2px solid var(--ink);
@@ -516,7 +534,7 @@ a.carry-card:hover{border-color:var(--orange)}
 
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory.">
+<meta name="description" content="Ricœur examines how memory makes an absent past present, how testimony passes into historical representation, and why forgetting is not simply an empty space.">
 <meta name="author" content="Kurt Wesp Yianatos">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="keywords" content="Paul Ricœur, Memory, History, Forgetting, memory → testimony → representation → forgetting, GEOLOGY / SURFACE, EROSION, The Somatic Image Lab, Kurt Wesp Yianatos">
@@ -525,7 +543,7 @@ a.carry-card:hover{border-color:var(--orange)}
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:title" content="Memory, History, Forgetting — Paul Ricœur">
-<meta property="og:description" content="Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory.">
+<meta property="og:description" content="Ricœur examines how memory makes an absent past present, how testimony passes into historical representation, and why forgetting is not simply an empty space.">
 <meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/">
 <meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
@@ -536,11 +554,11 @@ a.carry-card:hover{border-color:var(--orange)}
 <meta property="article:published_time" content="2026-09-03">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Memory, History, Forgetting — Paul Ricœur">
-<meta name="twitter:description" content="Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory.">
+<meta name="twitter:description" content="Ricœur examines how memory makes an absent past present, how testimony passes into historical representation, and why forgetting is not simply an empty space.">
 <meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta name="theme-color" content="#f2efe7">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/"},"headline":"Memory, History, Forgetting — Paul Ricœur","description":"Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Memory, History, Forgetting","author":{"@type":"Person","name":"Paul Ricœur"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["memory → testimony → representation → forgetting","GEOLOGY / SURFACE","EROSION"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 3, "slug": "003-paul-ricoeur-la-memoria-la-historia-el-olvido", "author": "Paul Ricœur", "date": "2026-09-03", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/", "title": {"es": "La memoria, la historia, el olvido", "en": "Memory, History, Forgetting"}, "parts": {"es": {"title": "La memoria, la historia, el olvido", "subtitle": ""}, "en": {"title": "Memory, History, Forgetting", "subtitle": ""}}, "lead": {"es": "Ricœur plantea que la historia no es simplemente lo que ocurrió: es lo que quedó registrado, lo que fue narrado, lo que alguien decidió conservar. Cada imagen es un acto de memoria selectiva. Ver una fotografía es siempre también reconocer lo que no está ahí, lo que se olvidó o fue borrado. La ausencia es tan activa como la presencia.", "en": "Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory. To see a photograph is always also to recognize what is not there, what was forgotten or erased. Absence is as active as presence."}, "ante": {"es": "¿Por qué no podemos mirar una imagen antigua sin preguntarnos qué falta en ella?", "en": "Why cannot we look at an old image without wondering what's missing from it?"}, "description": {"es": "Ricœur plantea que la historia no es simplemente lo que ocurrió: es lo que quedó registrado, lo que fue narrado, lo que alguien decidió conservar. Cada imagen es un acto de memoria selectiva.", "en": "Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory."}, "band": {"es": "recuerdo → testimonio → representación → olvido", "en": "memory → testimony → representation → forgetting"}, "error_context": {"es": "GEOLOGÍA / SUPERFICIE", "en": "GEOLOGY / SURFACE"}, "error_word": {"es": "EROSIÓN", "en": "EROSION"}, "concepts": {"es": ["OLVIDO", "EROSIÓN", "RECUERDO", "TESTIMONIO"], "en": ["MEMORY", "EROSION", "TESTIMONY", "FORGETTING"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/"},"headline":"Memory, History, Forgetting — Paul Ricœur","description":"Ricœur examines how memory makes an absent past present, how testimony passes into historical representation, and why forgetting is not simply an empty space.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Memory, History, Forgetting","author":{"@type":"Person","name":"Paul Ricœur"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["memory → testimony → representation → forgetting","GEOLOGY / SURFACE","EROSION"]}</script>
+<script id="tsil-social-data" type="application/json">{"number": 3, "slug": "003-paul-ricoeur-la-memoria-la-historia-el-olvido", "author": "Paul Ricœur", "date": "2026-09-03", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/003-paul-ricoeur-la-memoria-la-historia-el-olvido/", "title": {"es": "La memoria, la historia, el olvido", "en": "Memory, History, Forgetting"}, "parts": {"es": {"title": "La memoria, la historia, el olvido", "subtitle": ""}, "en": {"title": "Memory, History, Forgetting", "subtitle": ""}}, "lead": {"es": "El recuerdo presenta algo ausente como algo que ocurrió antes. La memoria no ofrece una prueba absoluta; formula una pretensión de fidelidad que pasa por el testimonio, el archivo y la escritura de la historia.", "en": "Memory presents something absent as something that happened before. It does not provide absolute proof; it makes a claim to fidelity that passes through testimony, archives, and historical writing."}, "ante": {"es": "¿Cómo puede una imagen hacer presente algo que ya no está?", "en": "How can an image make present something that is no longer there?"}, "description": {"es": "Ricœur examina cómo la memoria hace presente un pasado ausente, cómo el testimonio pasa a la representación histórica y por qué el olvido no es un simple vacío.", "en": "Ricœur examines how memory makes an absent past present, how testimony passes into historical representation, and why forgetting is not simply an empty space."}, "band": {"es": "recuerdo → testimonio → representación → olvido", "en": "memory → testimony → representation → forgetting"}, "error_context": {"es": "GEOLOGÍA / SUPERFICIE", "en": "GEOLOGY / SURFACE"}, "error_word": {"es": "EROSIÓN", "en": "EROSION"}, "concepts": {"es": ["OLVIDO", "EROSIÓN", "RECUERDO", "TESTIMONIO"], "en": ["MEMORY", "EROSION", "TESTIMONY", "FORGETTING"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
 <style id="tsil-social-secret-style">
@@ -557,6 +575,12 @@ a.carry-card:hover{border-color:var(--orange)}
 #tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
 </style>
 <!-- TSIL_SOCIAL_STYLE_END -->
+
+
+
+
+
+
 
 
 
@@ -642,22 +666,22 @@ a.carry-card:hover{border-color:var(--orange)}
 
     <div class="article-author">Paul Ricœur</div>
 
-    <div class="article-ante" data-copy="es">¿Por qué no podemos mirar una imagen antigua sin preguntarnos qué falta en ella?</div>
-    <div class="article-ante" data-copy="en">Why cannot we look at an old image without wondering what's missing from it?</div>
+    <div class="article-ante" data-copy="es">¿Cómo puede una imagen hacer presente algo que ya no está?</div>
+    <div class="article-ante" data-copy="en">How can an image make present something that is no longer there?</div>
     <div class="article-lead" data-copy="es">
-      Ricœur plantea que la historia no es simplemente lo que ocurrió: es lo que quedó registrado, lo que fue narrado, lo que alguien decidió conservar. Cada imagen es un acto de memoria selectiva. Ver una fotografía es siempre también reconocer lo que no está ahí, lo que se olvidó o fue borrado. La ausencia es tan activa como la presencia.
+      El problema central es preciso: el recuerdo presenta algo ausente como algo que ocurrió antes. La memoria no ofrece una prueba absoluta; formula una pretensión de fidelidad. Ricœur examina cómo esa pretensión pasa por el testimonio, el archivo y la escritura de la historia, y cómo el olvido puede interrumpirla o dejarla en reserva.
     </div>
     <div class="article-lead" data-copy="en">
-      Ricœur argues that history is not simply what happened: it is what was recorded, what was narrated, what someone decided to preserve. Each image is an act of selective memory. To see a photograph is always also to recognize what is not there, what was forgotten or erased. Absence is as active as presence.
+      The central problem is precise: memory presents something absent as something that happened before. Memory does not provide absolute proof; it makes a claim to fidelity. Ricœur examines how that claim passes through testimony, archives, and historical writing, and how forgetting may interrupt it or hold it in reserve.
     </div>
   </section>
 
   <div class="motion-line">
-    <div class="text" data-text="recuerdo → testimonio → representación → olvido" data-copy="es">
-      recuerdo → testimonio → representación → olvido
+    <div class="text" data-copy="es">
+      <span class="concept" data-text="recuerdo">recuerdo</span><span class="arrow">→</span><span class="concept" data-text="testimonio">testimonio</span><span class="arrow">→</span><span class="concept" data-text="representación">representación</span><span class="arrow">→</span><span class="concept" data-text="olvido">olvido</span>
     </div>
-    <div class="text" data-text="memory → testimony → representation → forgetting" data-copy="en">
-      memory → testimony → representation → forgetting
+    <div class="text" data-copy="en">
+      <span class="concept" data-text="memory">memory</span><span class="arrow">→</span><span class="concept" data-text="testimony">testimony</span><span class="arrow">→</span><span class="concept" data-text="representation">representation</span><span class="arrow">→</span><span class="concept" data-text="forgetting">forgetting</span>
     </div>
   </div>
 
@@ -666,14 +690,16 @@ a.carry-card:hover{border-color:var(--orange)}
     <div class="section-title" data-copy="en">in 1 minute</div>
 
     <div class="large-copy" data-copy="es">
-      <p>Ricœur parte de un enigma: el recuerdo puede hacer presente algo ausente y, al mismo tiempo, marcarlo como algo que ocurrió antes.</p>
-      <p>Cuando pasa de la memoria a la historia, ese pasado atraviesa testimonio, archivo, explicación y escritura. La representación no llega directamente al pasado; trabaja mediante operaciones.</p>
-      <p>El olvido tampoco aparece como un vacío simple: puede destruir huellas, pero también deja abierta la posibilidad de que algo permanezca en reserva y vuelva a ser recordado.</p>
+      <p>Un recuerdo presenta algo ausente como algo que ocurrió antes. Esta marca temporal lo distingue de una imagen simplemente inventada, aunque el recuerdo todavía puede ser inexacto.</p>
+      <p>Cuando una persona declara que algo ocurrió, su testimonio conecta la memoria individual con la investigación histórica. Para adquirir valor crítico, debe compararse con otros testimonios y documentos.</p>
+      <p>La historia investiga el pasado reuniendo archivos, contrastando fuentes, explicando relaciones y escribiendo una representación. No reproduce directamente lo ocurrido: construye una interpretación argumentada.</p>
+      <p>El olvido puede destruir una huella, volverla inaccesible o mantenerla latente. Por eso olvidar no significa siempre que todo rastro haya desaparecido.</p>
     </div>
     <div class="large-copy" data-copy="en">
-      <p>Ricœur begins with an enigma: memory can make something absent present while also marking it as something that happened before.</p>
-      <p>As memory passes into history, that past moves through testimony, archive, explanation, and writing. Representation does not reach the past directly; it works through operations.</p>
-      <p>Forgetting is not simply an empty space either: it can destroy traces, but it also leaves open the possibility that something remains in reserve, and can be remembered again.</p>
+      <p>A memory presents something absent as something that happened before. This temporal mark distinguishes it from a merely invented image, although the memory may still be inaccurate.</p>
+      <p>When a person states that something happened, their testimony connects individual memory with historical inquiry. To acquire critical value, it must be compared with other testimony and documents.</p>
+      <p>History investigates the past by gathering archives, comparing sources, explaining relations, and writing a representation. It does not directly reproduce what happened: it constructs an argued interpretation.</p>
+      <p>Forgetting may destroy a trace, make it inaccessible, or keep it latent. Forgetting therefore does not always mean that every trace has disappeared.</p>
     </div>
   </section>
 
@@ -682,53 +708,49 @@ a.carry-card:hover{border-color:var(--orange)}
     <div class="section-title" data-copy="en">three things to keep</div>
 
     <div data-copy="es">
-      <div class="keep">Recordar puede ser algo que aparece y también algo que buscamos activamente.</div>
-      <div class="keep">La representación del pasado atraviesa memoria, testimonio, historia y escritura.</div>
-      <div class="keep">El olvido puede destruir huellas, pero no equivale necesariamente a una desaparición total.</div>
+      <div class="keep">Una fotografía puede funcionar como huella del pasado, pero no recuerda ni explica por sí sola.</div>
+      <div class="keep">Un testimonio aporta evidencia cuando puede situarse, compararse y discutirse.</div>
+      <div class="keep">La ausencia de información indica incertidumbre; no demuestra automáticamente que hubo olvido.</div>
     </div>
     <div data-copy="en">
-      <div class="keep">Remembering can be something that appears, and also something we actively search for.</div>
-      <div class="keep">The representation of the past passes through memory, testimony, history, and writing.</div>
-      <div class="keep">Forgetting can destroy traces, but it does not necessarily amount to total disappearance.</div>
+      <div class="keep">A photograph may function as a trace of the past, but it neither remembers nor explains by itself.</div>
+      <div class="keep">Testimony provides evidence when it can be situated, compared, and challenged.</div>
+      <div class="keep">Missing information indicates uncertainty; it does not automatically prove that forgetting occurred.</div>
     </div>
   </section>
 
   <div class="threshold">
     <section class="grid" style="border-top:0">
-      <div class="section-title" data-copy="es">umbral / punto de presión</div>
-      <div class="section-title" data-copy="en">threshold / pressure point</div>
+      <div class="section-title" data-copy="es">punto de arrastre</div>
+      <div class="section-title" data-copy="en">drag point</div>
 
       <div class="pressure" data-copy="es">
-        El arrastre de Barad llega preguntando cuándo una imagen sigue siendo la misma si cada sistema que atraviesa también la transforma. Ricœur desplaza el problema hacia el pasado: una imagen puede permanecer precisamente porque hace aparecer algo que ya no está.
+        El <a href="../002-karen-barad-meeting-the-universe-halfway/index.html">reading 002</a> preguntaba qué conserva una imagen de los cortes que la hicieron visible y qué dejaron fuera esos cortes. Aquí la pregunta se desplaza al archivo. Seleccionar una fotografía también organiza qué pasado podrá investigarse. Ricœur añade una exigencia: la fotografía no basta. Hay que relacionarla con su procedencia, testimonios y otras fuentes antes de convertirla en evidencia histórica.
       </div>
       <div class="pressure" data-copy="en">
-        The carry arrives asking when an image remains the same if every system it passes through also transforms it. Ricœur shifts the problem toward the past: an image may persist precisely by making something appear that is no longer there.
+        <a href="../002-karen-barad-meeting-the-universe-halfway/index.html">Reading 002</a> asked what an image retains of the cuts that made it visible and what those cuts excluded. Here the question moves to the archive. Selecting a photograph also organizes which past can be investigated. Ricœur adds a requirement: the photograph is not enough. It must be related to its provenance, testimony, and other sources before it becomes historical evidence.
       </div>
     </section>
 
     <section class="grid">
-      <div class="section-title" data-copy="es">proposición incompleta</div>
-      <div class="section-title" data-copy="en">unfinished proposition</div>
+      <div class="section-title" data-copy="es">por ejemplo</div>
+      <div class="section-title" data-copy="en">for example</div>
 
-      <div class="incomplete" data-copy="es">
-        Una imagen puede seguir ligada a su pasado aunque ya no conserve…
+      <div class="example-copy" data-copy="es">
+        <p>Imagina una fotografía familiar encontrada en una caja: cuatro personas posan frente a una casa, pero no hay fecha, nombres ni inscripción al reverso.</p>
+        <p>La imagen permite describir cuatro cuerpos, una fachada, cierta ropa y desgaste en el papel. No permite afirmar todavía quiénes son, qué relación tienen ni por qué se tomó la fotografía. Esa diferencia entre descripción e interpretación es el punto de partida.</p>
+        <p>El frente de la fotografía no es la única fuente. El reverso, el soporte, el encuadre completo, el sobre, la secuencia y la procedencia de la caja pueden aportar información distinta. También importa saber quién conservó la imagen y en qué condiciones llegó hasta nosotros.</p>
+        <p>Al comparar la casa y los rostros con otras fotografías pueden aparecer fechas posibles y relaciones familiares. Los testimonios ayudan, pero deben contrastarse. Una conclusión prudente no dice «esta persona es…» si aún no puede demostrarlo; dice «podría tratarse de… porque…».</p>
+        <p>La forma de mostrar la fotografía también orienta su lectura. Un recorte puede convertir a una persona en protagonista; una ampliación puede hacer que el deterioro parezca el tema; el orden de un carrusel o un pie de foto puede cerrar una identidad todavía incierta. Estas decisiones organizan la atención, pero no convierten una hipótesis en un hecho.</p>
+        <p>Después de revisar la fuente, la fecha, el reverso, el marco completo, la secuencia, los testimonios y la presentación, todavía conviene distinguir lo observado, lo comprobado y lo incierto. ¿Qué puede sostenerse con la información disponible y qué debe permanecer abierto?</p>
       </div>
-      <div class="incomplete" data-copy="en">
-        An image can remain tied to its past even when it no longer preserves…
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="section-title" data-copy="es">bifurcación</div>
-      <div class="section-title" data-copy="en">bifurcation</div>
-
-      <div class="branches" data-copy="es">
-        <div class="branch">La continuidad está en las huellas que sobreviven.</div>
-        <div class="branch">La continuidad está en cómo reconocemos lo que falta.</div>
-      </div>
-      <div class="branches" data-copy="en">
-        <div class="branch">Continuity lies in the traces that survive.</div>
-        <div class="branch">Continuity lies in how we recognize what is missing.</div>
+      <div class="example-copy" data-copy="en">
+        <p>Imagine a family photograph found in a box: four people pose in front of a house, but there is no date, no names, and no writing on the back.</p>
+        <p>The image allows us to describe four bodies, a façade, certain clothes, and wear on the paper. It does not yet allow us to establish who the people are, how they are related, or why the photograph was taken. This difference between description and interpretation is the starting point.</p>
+        <p>The front of the photograph is not the only source. The back, support, full frame, envelope, sequence, and provenance of the box may each provide different information. It also matters who kept the image and under what conditions it reached us.</p>
+        <p>Comparing the house and faces with other photographs may suggest possible dates and family relations. Testimony helps, but it must be checked. A cautious conclusion does not say “this person is…” when that claim cannot yet be demonstrated; it says “this may be… because…”.</p>
+        <p>The way the photograph is shown also directs its reading. A crop may turn one person into the protagonist; enlargement may make deterioration seem like the subject; carousel order or a caption may fix an identity that remains uncertain. These decisions organize attention, but they do not turn a hypothesis into a fact.</p>
+        <p>After reviewing the source, date, back, full frame, sequence, testimony, and presentation, it is still useful to distinguish what was observed, what was verified, and what remains uncertain. What can be supported by the available information, and what must remain open?</p>
       </div>
     </section>
 
@@ -737,12 +759,12 @@ a.carry-card:hover{border-color:var(--orange)}
       <div class="section-title" data-copy="en">residue</div>
 
       <div data-copy="es">
-        <div class="residue">Una imagen puede mantener una relación con lo que fue sin permanecer idéntica a ello.</div>
-        <div class="residue">Cada transformación de una imagen también puede reorganizar qué parte de su pasado queda disponible para ser reconocida.</div>
+        <div class="residue">La fotografía es una huella que debe ser situada; no es una explicación autosuficiente del pasado.</div>
+        <div class="residue">Si faltan nombres o fechas, la conclusión correcta es «no lo sabemos todavía», no «esto fue olvidado».</div>
       </div>
       <div data-copy="en">
-        <div class="residue">An image can maintain a relation to what it was without remaining identical to it.</div>
-        <div class="residue">Each transformation of an image can also reorganize which part of its past remains available to recognition.</div>
+        <div class="residue">A photograph is a trace that must be situated; it is not a self-sufficient explanation of the past.</div>
+        <div class="residue">If names or dates are missing, the correct conclusion is “we do not know yet,” not “this was forgotten.”</div>
       </div>
     </section>
   </div>
@@ -754,8 +776,8 @@ a.carry-card:hover{border-color:var(--orange)}
 
       <div class="error-machine-content" style="display:grid;gap:14px">
   <div class="error-machine-intro" style="max-width:760px;color:#fff;font-size:12px;line-height:1.45;letter-spacing:.02em">
-    <div data-copy="es">La Máquina de Error fuerza una colisión entre el texto leído y una palabra ajena. No busca explicar mejor: busca producir una falla que abra otra pregunta sobre la imagen.</div>
-    <div data-copy="en">The Error Machine forces a collision between the text being read and an external word. It does not seek a better explanation: it produces a failure that opens another question about the image.</div>
+    <div data-copy="es">«Erosión» viene de la geología: nombra el desgaste y desplazamiento gradual de materiales por la acción del agua, el viento u otros agentes. TSIL la importa para probar qué ocurre si el olvido se imagina como una pérdida desigual de la superficie de una imagen.</div>
+    <div data-copy="en">“Erosion” comes from geology: it names the gradual wearing away and displacement of materials by water, wind, or other agents. TSIL imports it to test what happens when forgetting is imagined as an uneven loss across an image’s surface.</div>
   </div>
 <div class="error-card">
         <div class="eyebrow" data-copy="es">contexto importado</div>
@@ -785,19 +807,25 @@ a.carry-card:hover{border-color:var(--orange)}
         <div class="eyebrow" data-copy="es">lo que se escapó</div>
         <div class="eyebrow" data-copy="en">what escaped</div>
         <div class="error-opening" data-copy="es">
-          La equivalencia demasiado física introduce una pérdida desigual: algo puede desaparecer sin que desaparezca todo. Al perder unas huellas, otras pueden ganar relieve y terminar organizando lo que reconocemos del pasado.
+          <p>El deterioro del papel es visible. El olvido no lo es. Una superficie dañada no demuestra que una historia haya sido olvidada.</p>
+          <p>Es necesario distinguir el daño material del soporte, la desaparición de documentos y la dificultad para recuperar un recuerdo. Estas pérdidas pueden coincidir, pero no significan lo mismo.</p>
+          <p>La colisión puede probarse haciendo tres copias de la fotografía: una completa, otra sin la figura del borde y una tercera sin la casa. Si el tamaño, el pie de foto y el orden permanecen iguales, es posible observar con mayor precisión cómo cada ausencia favorece una interpretación distinta.</p>
+          <p>La comparación debe registrar qué elemento desapareció, cómo se redistribuyó la atención, qué afirmación cambió y si existe información externa que la sostenga. La intervención modifica la lectura; no modifica por sí sola el pasado.</p>
         </div>
         <div class="error-opening" data-copy="en">
-          The overly physical equivalence introduces uneven loss: something can disappear without everything disappearing. As some traces are lost, others can gain relief, and end up organizing what we recognize of the past.
+          <p>Damage to the paper is visible. Forgetting is not. A damaged surface does not prove that a history has been forgotten.</p>
+          <p>Material damage to the support, disappearance of documents, and difficulty retrieving a memory must be distinguished. These losses may coincide, but they do not mean the same thing.</p>
+          <p>The collision can be tested by making three copies of the photograph: one complete, another without the figure at the edge, and a third without the house. If size, caption, and order remain identical, it becomes easier to observe how each absence favors a different interpretation.</p>
+          <p>The comparison should record which element disappeared, how attention was redistributed, which claim changed, and whether external information supports it. The intervention changes the reading; it does not by itself change the past.</p>
         </div>
 
         <div class="eyebrow" data-copy="es">pregunta que queda</div>
         <div class="eyebrow" data-copy="en">question left behind</div>
         <div class="error-question" data-copy="es">
-          ¿Qué se vuelve más visible en una imagen cuando otra cosa se pierde?
+          ¿Qué relato parece más convincente cuando una huella desaparece, y qué evidencia permitiría discutirlo?
         </div>
         <div class="error-question" data-copy="en">
-          What becomes more visible in an image when something else is lost?
+          Which account seems more convincing when a trace disappears, and what evidence would allow us to challenge it?
         </div>
       </div>
 </div>
@@ -809,13 +837,13 @@ a.carry-card:hover{border-color:var(--orange)}
         <div class="eyebrow" data-copy="es">error que no produjo nada</div>
         <div class="eyebrow" data-copy="en">error that produced nothing</div>
         <div class="reject-text" data-copy="es">
-          La historia se abre exactamente a noventa grados porque tiene bisagras.
+          Toda fotografía deteriorada demuestra que su historia fue olvidada.
         </div>
         <div class="reject-text" data-copy="en">
-          History opens at exactly ninety degrees because it has hinges.
+          Every damaged photograph proves that its history was forgotten.
         </div>
-        <div class="reject-note" data-copy="es">BISAGRA. No produjo una diferencia interesante. Se descarta.</div>
-        <div class="reject-note" data-copy="en">HINGE. It produced no interesting difference. It is discarded.</div>
+        <div class="reject-note" data-copy="es">DETERIORO. Confunde el estado material del soporte con la situación de la memoria. Una imagen intacta puede carecer de contexto y una imagen dañada puede estar ampliamente documentada. Se descarta.</div>
+        <div class="reject-note" data-copy="en">DETERIORATION. This confuses the material state of the support with the condition of memory. An intact image may lack context, while a damaged image may be extensively documented. Discarded.</div>
       </div>
     </div>
   </div>
@@ -848,6 +876,18 @@ a.carry-card:hover{border-color:var(--orange)}
     </div>
   </div>
 </section>
+
+  <section class="grid">
+    <div class="section-title" data-copy="es">texto de referencia</div>
+    <div class="section-title" data-copy="en">source text</div>
+
+    <div class="about-machine" data-copy="es">
+      Paul Ricœur, <em>La memoria, la historia, el olvido</em> (2000; edición en español, Fondo de Cultura Económica, 2004). Este reading se concentra en el preámbulo, donde Ricœur presenta las tres partes de la obra y el problema común de la representación del pasado, y en «Memoria e imaginación», donde distingue el recuerdo de la ficción y formula la aspiración de fidelidad de la memoria. La fotografía familiar hipotética y la erosión son intervenciones de TSIL.
+    </div>
+    <div class="about-machine" data-copy="en">
+      Paul Ricœur, <em>Memory, History, Forgetting</em> (2000; English translation, 2004). This reading focuses on the preamble, where Ricœur presents the book’s three parts and their shared problem of representing the past, and on “Memory and Imagination,” where he distinguishes memory from fiction and formulates memory’s claim to fidelity. The hypothetical family photograph and erosion are TSIL interventions.
+    </div>
+  </section>
 
   <section class="grid">
     <div class="section-title" data-copy="es">sobre esta máquina</div>
