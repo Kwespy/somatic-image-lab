@@ -115,17 +115,28 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   font-size:clamp(26px,4.3vw,56px);
   line-height:1.02;
   letter-spacing:-.045em;
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:.12em .28em;
 }
-.motion-line .text::after{
+.motion-line .text::after{content:none}
+.motion-line .concept{
+  position:relative;
+  display:inline-block;
+  isolation:isolate;
+}
+.motion-line .concept::after{
   content:attr(data-text);
   position:absolute;
-  left:5px;
-  top:-2px;
-  color:var(--orange);
-  clip-path:inset(0 0 56% 0);
-  mix-blend-mode:multiply;
+  inset:0;
+  transform:translate(4px,-2px);
+  color:transparent;
+  -webkit-text-stroke:1px var(--orange);
+  z-index:-1;
   pointer-events:none;
 }
+.motion-line .arrow{color:var(--ink)}
 
 .grid{
   display:grid;
@@ -273,6 +284,13 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   line-height:1.12;
   letter-spacing:-.03em;
 }
+.pressure a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
+.example-copy{
+  max-width:760px;
+  font-size:18px;
+  line-height:1.48;
+}
+.example-copy p{margin:0 0 14px}
 .incomplete{
   padding:18px;
   border:2px solid var(--ink);
@@ -401,6 +419,21 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   .article-hero{padding:46px 0 38px}
 }
 
+.error-zone,.error-zone *{min-width:0}
+.error-word,.error-collision,.error-statement,.error-opening,.error-question,.reject-text,.reject-note{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:600px){
+  .error-zone{padding:24px 10px 20px}
+  .error-zone .grid{gap:10px;padding-bottom:22px}
+  .error-card{padding:18px 14px}
+  .error-word{font-size:clamp(30px,10vw,44px);line-height:.9;letter-spacing:-.055em}
+  .error-collision{font-size:clamp(20px,6.4vw,27px)}
+  .error-statement{font-size:clamp(25px,7.5vw,32px)}
+  .error-opening{font-size:18px;line-height:1.38}
+  .error-question{font-size:22px;line-height:1.22}
+  .reject{grid-template-columns:30px minmax(0,1fr);gap:8px}
+  .reject-x{font-size:40px}
+}
+
 .random-start{
   margin:0 0 18px;display:flex;align-items:center;justify-content:space-between;
   gap:20px;padding:15px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)
@@ -516,7 +549,7 @@ a.carry-card:hover{border-color:var(--orange)}
 
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap.">
+<meta name="description" content="For Didi-Huberman, an image's date does not exhaust its time: forms, uses, and memories from different periods may coexist within it.">
 <meta name="author" content="Kurt Wesp Yianatos">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="keywords" content="Georges Didi-Huberman, Ante el tiempo, anachronism → montage → survival → symptom, BOTANY / CULTIVATION, GRAFT, The Somatic Image Lab, Kurt Wesp Yianatos">
@@ -525,7 +558,7 @@ a.carry-card:hover{border-color:var(--orange)}
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:title" content="Ante el tiempo — Georges Didi-Huberman">
-<meta property="og:description" content="Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap.">
+<meta property="og:description" content="For Didi-Huberman, an image's date does not exhaust its time: forms, uses, and memories from different periods may coexist within it.">
 <meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/">
 <meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
@@ -536,11 +569,11 @@ a.carry-card:hover{border-color:var(--orange)}
 <meta property="article:published_time" content="2026-09-03">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ante el tiempo — Georges Didi-Huberman">
-<meta name="twitter:description" content="Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap.">
+<meta name="twitter:description" content="For Didi-Huberman, an image's date does not exhaust its time: forms, uses, and memories from different periods may coexist within it.">
 <meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta name="theme-color" content="#f2efe7">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/"},"headline":"Ante el tiempo — Georges Didi-Huberman","description":"Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Ante el tiempo","author":{"@type":"Person","name":"Georges Didi-Huberman"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["anachronism → montage → survival → symptom","BOTANY / CULTIVATION","GRAFT"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 4, "slug": "004-georges-didi-huberman-ante-el-tiempo", "author": "Georges Didi-Huberman", "date": "2026-09-03", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/", "title": {"es": "Ante el tiempo", "en": "Ante el tiempo"}, "parts": {"es": {"title": "Ante el tiempo", "subtitle": ""}, "en": {"title": "Ante el tiempo", "subtitle": ""}}, "lead": {"es": "Didi-Huberman rompe la idea de que una imagen es una ventana al pasado. Para él, el tiempo en una imagen es anacrónico: mezcla momentos, gestos de épocas diferentes, vestigios que se superponen. Mirar una imagen es experimentar una fricción temporal, es estar 'ante el tiempo' sin poder resolverlo en una cronología clara. Eso es donde habita la historia real.", "en": "Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap. To look at an image is to experience a temporal friction, to be 'before time' without being able to resolve it into clear chronology. That is where real history dwells."}, "ante": {"es": "Una imagen no nos mira en un solo tiempo. ¿Desde cuándo y hacia cuándo nos mira?", "en": "An image does not look at us in a single time. From when, and toward when does it look at us?"}, "description": {"es": "Didi-Huberman rompe la idea de que una imagen es una ventana al pasado. Para él, el tiempo en una imagen es anacrónico: mezcla momentos, gestos de épocas diferentes, vestigios que se superponen.", "en": "Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap."}, "band": {"es": "anacronismo → montaje → supervivencia → síntoma", "en": "anachronism → montage → survival → symptom"}, "error_context": {"es": "BOTÁNICA / CULTIVO", "en": "BOTANY / CULTIVATION"}, "error_word": {"es": "INJERTO", "en": "GRAFT"}, "concepts": {"es": ["MONTAJE", "SÍNTOMA", "INJERTO", "ANACRONISMO"], "en": ["GRAFT", "MONTAGE", "SYMPTOM", "SURVIVAL"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/"},"headline":"Ante el tiempo — Georges Didi-Huberman","description":"For Didi-Huberman, an image's date does not exhaust its time: forms, uses, and memories from different periods may coexist within it.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Ante el tiempo","author":{"@type":"Person","name":"Georges Didi-Huberman"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["anachronism → montage → survival → symptom","BOTANY / CULTIVATION","GRAFT"]}</script>
+<script id="tsil-social-data" type="application/json">{"number": 4, "slug": "004-georges-didi-huberman-ante-el-tiempo", "author": "Georges Didi-Huberman", "date": "2026-09-03", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/004-georges-didi-huberman-ante-el-tiempo/", "title": {"es": "Ante el tiempo", "en": "Ante el tiempo"}, "parts": {"es": {"title": "Una imagen tiene muchos tiempos", "subtitle": ""}, "en": {"title": "An image holds many times", "subtitle": ""}}, "lead": {"es": "Didi-Huberman cuestiona la idea de que la fecha de una imagen explique por completo su tiempo. Una imagen puede reunir formas, técnicas, usos y memorias de épocas distintas.", "en": "Didi-Huberman challenges the idea that an image's date fully explains its time. An image may gather forms, techniques, uses, and memories from different periods."}, "ante": {"es": "¿Qué tiempos distintos permanecen activos dentro de una misma imagen?", "en": "Which different times remain active within a single image?"}, "description": {"es": "La fecha de una imagen no agota su tiempo: formas, usos y memorias de distintas épocas pueden convivir en ella.", "en": "An image's date does not exhaust its time: forms, uses, and memories from different periods may coexist within it."}, "band": {"es": "anacronismo → montaje → supervivencia → síntoma", "en": "anachronism → montage → survival → symptom"}, "error_context": {"es": "BOTÁNICA / CULTIVO", "en": "BOTANY / CULTIVATION"}, "error_word": {"es": "INJERTO", "en": "GRAFT"}, "concepts": {"es": ["MONTAJE", "SÍNTOMA", "INJERTO", "ANACRONISMO"], "en": ["GRAFT", "MONTAGE", "SYMPTOM", "SURVIVAL"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
 <style id="tsil-social-secret-style">
@@ -557,6 +590,12 @@ a.carry-card:hover{border-color:var(--orange)}
 #tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
 </style>
 <!-- TSIL_SOCIAL_STYLE_END -->
+
+
+
+
+
+
 
 
 
@@ -632,37 +671,39 @@ a.carry-card:hover{border-color:var(--orange)}
 <section class="article-hero">
   <div class="article-kicker" data-copy="es">lectura / 004</div>
   <div class="article-kicker" data-copy="en">reading / 004</div>
-  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="ANTE EL">ANTE EL</span><br>TIEMPO</h1>
-  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="ANTE EL">ANTE EL</span><br>TIEMPO</h1>
+  <h1 class="article-title" data-copy="es"><span class="misregister" data-text="UNA IMAGEN">UNA IMAGEN</span><br>TIENE MUCHOS TIEMPOS</h1>
+  <h1 class="article-title" data-copy="en"><span class="misregister" data-text="AN IMAGE">AN IMAGE</span><br>HOLDS MANY TIMES</h1>
   <div class="article-author">Georges Didi-Huberman</div>
 
-    <div class="article-ante" data-copy="es">Una imagen no nos mira en un solo tiempo. ¿Desde cuándo y hacia cuándo nos mira?</div>
-    <div class="article-ante" data-copy="en">An image does not look at us in a single time. From when, and toward when does it look at us?</div>
+    <div class="article-ante" data-copy="es">¿Qué tiempos distintos permanecen activos dentro de una misma imagen?</div>
+    <div class="article-ante" data-copy="en">Which different times remain active within a single image?</div>
   <div class="article-lead" data-copy="es">
-      Didi-Huberman rompe la idea de que una imagen es una ventana al pasado. Para él, el tiempo en una imagen es anacrónico: mezcla momentos, gestos de épocas diferentes, vestigios que se superponen. Mirar una imagen es experimentar una fricción temporal, es estar 'ante el tiempo' sin poder resolverlo en una cronología clara. Eso es donde habita la historia real.
+      Didi-Huberman cuestiona la idea de que la fecha de una imagen explique por completo su tiempo. Una imagen puede reunir formas, técnicas, usos y memorias de épocas distintas. Mirarla históricamente exige reconocer ese montaje sin convertirlo en una cronología simple.
     </div>
   <div class="article-lead" data-copy="en">
-      Didi-Huberman breaks the idea that an image is a window to the past. For him, time in an image is anachronistic: it mixes moments, gestures from different eras, traces that overlap. To look at an image is to experience a temporal friction, to be 'before time' without being able to resolve it into clear chronology. That is where real history dwells.
+      Didi-Huberman challenges the idea that an image's date fully explains its time. An image may gather forms, techniques, uses, and memories from different periods. To look at it historically is to recognize this montage without reducing it to a simple chronology.
     </div>
 </section>
 
 <div class="motion-line">
-  <div class="text" data-text="anacronismo → montaje → supervivencia → síntoma" data-copy="es">anacronismo → montaje → supervivencia → síntoma</div>
-  <div class="text" data-text="anachronism → montage → survival → symptom" data-copy="en">anachronism → montage → survival → symptom</div>
+  <div class="text" data-copy="es"><span class="concept" data-text="anacronismo">anacronismo</span><span class="arrow">→</span><span class="concept" data-text="montaje">montaje</span><span class="arrow">→</span><span class="concept" data-text="supervivencia">supervivencia</span><span class="arrow">→</span><span class="concept" data-text="síntoma">síntoma</span></div>
+  <div class="text" data-copy="en"><span class="concept" data-text="anachronism">anachronism</span><span class="arrow">→</span><span class="concept" data-text="montage">montage</span><span class="arrow">→</span><span class="concept" data-text="survival">survival</span><span class="arrow">→</span><span class="concept" data-text="symptom">symptom</span></div>
 </div>
 
 <section class="grid">
   <div class="section-title" data-copy="es">en 1 minuto</div>
   <div class="section-title" data-copy="en">in 1 minute</div>
   <div class="large-copy" data-copy="es">
-    <p>Una imagen puede contener tiempos heterogéneos y discontinuos que se conectan entre sí. Su fecha de producción no agota su temporalidad.</p>
-    <p>El anacronismo no aparece solamente como un error que el historiador debe eliminar. Puede revelar la impureza temporal de la imagen y romper la linealidad de un relato histórico demasiado ordenado.</p>
-    <p>Supervivencia y síntoma permiten pensar aquello que reaparece a destiempo: formas, gestos o huellas que interrumpen la concordancia entre una imagen y el período al que intentamos fijarla.</p>
+    <p>La fecha de producción sitúa una imagen, pero no agota su temporalidad. En una misma obra pueden convivir una técnica reciente, una forma heredada y un uso ritual mucho más antiguo.</p>
+    <p>Didi-Huberman llama <em>anacronismo</em> a esta falta de concordancia entre tiempos. No la presenta simplemente como una equivocación del historiador: puede ser una condición interna de la imagen y una vía para interrogarla.</p>
+    <p>El <em>montaje</em> nombra la relación entre esos tiempos heterogéneos. La <em>supervivencia</em>, retomada de Aby Warburg, describe la capacidad de una forma o un gesto para reaparecer fuera del período en que surgió. El <em>síntoma</em> es la irrupción que interrumpe un relato histórico aparentemente continuo y obliga a revisar cómo fue construido.</p>
+    <p>La consecuencia es metodológica: hacer historia de una imagen no consiste solo en ubicarla en una época, sino en explicar qué tiempos actúan en ella y mediante qué relaciones pueden demostrarse.</p>
   </div>
   <div class="large-copy" data-copy="en">
-    <p>An image can contain heterogeneous, and discontinuous times that connect with one another. Its date of production does not exhaust its temporality.</p>
-    <p>Anachronism does not appear only as an error that the historian must remove. It can expose the temporal impurity of the image, and break the linearity of an overly ordered historical account.</p>
-    <p>Survival, and symptom offer ways to think about what reappears out of time: forms, gestures, or traces that interrupt the agreement between an image, and the period to which we try to fix it.</p>
+    <p>A production date situates an image, but it does not exhaust the image's temporality. A recent technique, an inherited form, and a much older ritual use may coexist within the same work.</p>
+    <p>Didi-Huberman calls this lack of agreement between times <em>anachronism</em>. He does not present it merely as a historian's mistake: it may be an internal condition of the image and a way of questioning it.</p>
+    <p><em>Montage</em> names the relation among these heterogeneous times. <em>Survival</em>, taken from Aby Warburg, describes a form or gesture's capacity to reappear outside the period in which it emerged. A <em>symptom</em> is an irruption that interrupts an apparently continuous historical account and forces us to reconsider how that account was built.</p>
+    <p>The methodological consequence is clear: writing an image's history involves more than assigning it to a period. It requires explaining which times operate within it and through which relations they can be demonstrated.</p>
   </div>
 </section>
 
@@ -670,42 +711,41 @@ a.carry-card:hover{border-color:var(--orange)}
   <div class="section-title" data-copy="es">tres cosas para conservar</div>
   <div class="section-title" data-copy="en">three things to keep</div>
   <div data-copy="es">
-    <div class="keep">Una imagen puede ser temporalmente impura.</div>
-    <div class="keep">Un desfase temporal puede producir conocimiento en vez de ser solamente un error.</div>
-    <div class="keep">Mirar históricamente una imagen también puede significar preguntar qué tiempos sobreviven dentro de ella.</div>
+    <div class="keep">La fecha de una imagen es necesaria, pero no basta para explicar todos los tiempos que contiene.</div>
+    <div class="keep">Un anacronismo adquiere valor cuando puede mostrarse qué relación histórica o formal vuelve legible.</div>
+    <div class="keep">Una forma que reaparece no repite intacto el pasado: cambia al entrar en otra imagen, otro uso y otra mirada.</div>
   </div>
   <div data-copy="en">
-    <div class="keep">An image can be temporally impure.</div>
-    <div class="keep">A temporal mismatch can produce knowledge rather than being only an error.</div>
-    <div class="keep">Looking at an image historically can also mean asking which times survive within it.</div>
+    <div class="keep">An image's date is necessary, but it is not enough to explain every time the image contains.</div>
+    <div class="keep">An anachronism becomes meaningful when the historical or formal relation it makes legible can be shown.</div>
+    <div class="keep">A form that reappears does not repeat the past unchanged: it changes within another image, use, and act of viewing.</div>
   </div>
 </section>
 
 <div class="threshold">
 <section class="grid" style="border-top:0">
-  <div class="section-title" data-copy="es">umbral / punto de presión</div>
-  <div class="section-title" data-copy="en">threshold / pressure point</div>
-  <div class="pressure" data-copy="es">El arrastre de Ricœur pregunta qué ocurre cuando una transformación conserva unas huellas del pasado y borra otras. Didi-Huberman complica la pregunta: las huellas que sobreviven no tienen por qué pertenecer al mismo tiempo. Y aparece una contaminación inesperada: la fermentación que entró como error en Barad reaparece, en la nota preliminar de este volumen, como un “fermento de irracionalidad” asociado al anacronismo.</div>
-  <div class="pressure" data-copy="en">Ricœur's carry asks what happens when a transformation preserves some traces of the past, and erases others. Didi-Huberman complicates the question: the traces that survive do not have to belong to the same time. An unexpected contamination also appears: the fermentation that entered as an error with Barad returns in this volume's preliminary note as a “ferment of irrationality” associated with anachronism.</div>
+  <div class="section-title" data-copy="es">punto de arrastre</div>
+  <div class="section-title" data-copy="en">carry point</div>
+  <div class="pressure" data-copy="es">El <a href="../003-paul-ricoeur-la-memoria-la-historia-el-olvido/index.html">reading 003</a> preguntó cómo una fotografía puede servir de huella sin explicar por sí sola el pasado. Retomamos esa pregunta porque Didi-Huberman desplaza la atención desde lo que la imagen conserva hacia los tiempos que conviven en su forma. Una huella no solo viene del pasado: puede reaparecer, cambiar de función y entrar en relación con elementos de otras épocas.</div>
+  <div class="pressure" data-copy="en"><a href="../003-paul-ricoeur-la-memoria-la-historia-el-olvido/index.html">Reading 003</a> asked how a photograph may serve as a trace without explaining the past by itself. We return to that question because Didi-Huberman shifts attention from what an image preserves to the times that coexist within its form. A trace does not merely come from the past: it may reappear, change function, and enter into relation with elements from other periods.</div>
 </section>
 
 <section class="grid">
-  <div class="section-title" data-copy="es">proposición incompleta</div>
-  <div class="section-title" data-copy="en">unfinished proposition</div>
-  <div class="incomplete" data-copy="es">Una imagen no contiene solamente restos de su pasado; también puede reunir…</div>
-  <div class="incomplete" data-copy="en">An image does not contain only remnants of its past; it can also bring together…</div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">bifurcación</div>
-  <div class="section-title" data-copy="en">bifurcation</div>
-  <div class="branches" data-copy="es">
-    <div class="branch">Las huellas pertenecen al tiempo en que fueron producidas.</div>
-    <div class="branch">Las huellas cambian de tiempo cuando vuelven a aparecer.</div>
+  <div class="section-title" data-copy="es">por ejemplo</div>
+  <div class="section-title" data-copy="en">for example</div>
+  <div class="example-copy" data-copy="es">
+    <p>Imagina una fotografía de cumpleaños compartida en un chat familiar. Una persona sopla las velas frente a una torta; detrás aparecen un retrato enmarcado y un mantel que la familia usa desde hace años. Debajo, el mensaje dice «hoy».</p>
+    <p>La fotografía reúne varios tiempos sin que todos sean visibles del mismo modo. Está el instante en que se tomó, la fecha en que circuló por el chat, el pasado del retrato y la repetición de un gesto —reunirse, encender velas, posar— que ya apareció en otros cumpleaños. Ese encuentro de tiempos permite pensar el montaje del que habla Didi-Huberman.</p>
+    <p>Para distinguirlos conviene abrir el archivo original, no quedarse con la captura de pantalla o el reenvío. La fecha del archivo, el encuadre completo, las imágenes anteriores y posteriores, el texto del mensaje y la identidad de quien la compartió aportan datos diferentes. Ninguno explica la imagen por sí solo, pero juntos permiten separar lo observado de lo supuesto.</p>
+    <p>La interfaz también organiza la lectura. En la miniatura del chat, la torta concentra la atención y el retrato puede desaparecer. Un recorte puede excluir el mantel. Si una fotografía antigua de otro cumpleaños aparece antes en un carrusel, la repetición del gesto se vuelve evidente; si aparece después o no aparece, quizá pase inadvertida. El encuadre, la escala, el orden y el tiempo de atención deciden qué relación temporal podemos reconocer.</p>
+    <p>Un filtro envejecido o un objeto antiguo no demuestran por sí solos una supervivencia. Para sostener esa relación hay que comprobar de dónde vienen el retrato, el mantel o el gesto y cómo fueron usados. ¿Qué tiempo de esta fotografía aparece solamente cuando vemos su marco completo y la secuencia en que circuló?</p>
   </div>
-  <div class="branches" data-copy="en">
-    <div class="branch">Traces belong to the time in which they were produced.</div>
-    <div class="branch">Traces change time when they reappear.</div>
+  <div class="example-copy" data-copy="en">
+    <p>Imagine a birthday photograph shared in a family chat. Someone blows out the candles in front of a cake; behind them are a framed portrait and a tablecloth the family has used for years. Beneath the image, the message says “today.”</p>
+    <p>The photograph gathers several times, although they are not all visible in the same way. There is the instant when it was taken, the date when it circulated through the chat, the portrait's past, and the repetition of a gesture—gathering, lighting candles, posing—that has appeared in other birthdays. This encounter among times makes Didi-Huberman's montage easier to understand.</p>
+    <p>To distinguish them, it helps to open the original file rather than relying on a screenshot or forwarded copy. The file date, full frame, preceding and following images, message text, and identity of the sender provide different kinds of information. None explains the image by itself, but together they help separate what is observed from what is assumed.</p>
+    <p>The interface also organizes the reading. In the chat thumbnail, the cake draws attention and the portrait may disappear. A crop may exclude the tablecloth. If an older photograph of another birthday comes first in a carousel, the repeated gesture becomes evident; if it appears later or not at all, the relation may go unnoticed. Framing, scale, order, and viewing time determine which temporal relation we can recognize.</p>
+    <p>An aged filter or an old object does not by itself demonstrate a survival. To support that relation, we need to establish where the portrait, tablecloth, or gesture came from and how it was used. Which time in this photograph appears only when we see its full frame and the sequence in which it circulated?</p>
   </div>
 </section>
 
@@ -713,12 +753,10 @@ a.carry-card:hover{border-color:var(--orange)}
   <div class="section-title" data-copy="es">residuo</div>
   <div class="section-title" data-copy="en">residue</div>
   <div data-copy="es">
-    <div class="residue">Una transformación puede borrar una huella y, al mismo tiempo, hacer sobrevivir otra fuera del tiempo al que parecía pertenecer.</div>
-    <div class="residue">Reconocer una imagen puede exigir aceptar que sus tiempos no coinciden.</div>
+    <div class="residue">Fechar una imagen la sitúa; reconocer el montaje de sus tiempos permite explicar por qué una forma puede pertenecer a una época y, al mismo tiempo, hacer actuar memorias de otras.</div>
   </div>
   <div data-copy="en">
-    <div class="residue">A transformation can erase one trace while allowing another to survive outside the time to which it seemed to belong.</div>
-    <div class="residue">Recognizing an image may require accepting that its times do not coincide.</div>
+    <div class="residue">Dating an image situates it; recognizing the montage of its times helps explain why a form may belong to one period while activating memories from others.</div>
   </div>
 </section>
 </div>
@@ -729,8 +767,8 @@ a.carry-card:hover{border-color:var(--orange)}
   <div class="section-title" data-copy="en">error machine</div>
   <div class="error-machine-content" style="display:grid;gap:14px">
   <div class="error-machine-intro" style="max-width:760px;color:#fff;font-size:12px;line-height:1.45;letter-spacing:.02em">
-    <div data-copy="es">La Máquina de Error fuerza una colisión entre el texto leído y una palabra ajena. No busca explicar mejor: busca producir una falla que abra otra pregunta sobre la imagen.</div>
-    <div data-copy="en">The Error Machine forces a collision between the text being read and an external word. It does not seek a better explanation: it produces a failure that opens another question about the image.</div>
+    <div data-copy="es">«Injerto» viene de la botánica: es la unión de una parte de una planta con otra para que sus tejidos crezcan juntos. TSIL importa esta palabra para preguntar si los tiempos de una imagen se agregan desde afuera o ya están implicados en su propia formación.</div>
+    <div data-copy="en">“Graft” comes from botany: it is the joining of part of one plant to another so that their tissues grow together. TSIL imports the word to ask whether an image's times are added from outside or already implicated in its formation.</div>
   </div>
 <div class="error-card">
     <div class="eyebrow" data-copy="es">contexto importado</div><div class="eyebrow" data-copy="en">imported context</div>
@@ -743,11 +781,11 @@ a.carry-card:hover{border-color:var(--orange)}
     <div class="error-statement" data-copy="es">Una imagen sólo se vuelve anacrónica cuando un tiempo posterior es injertado sobre una imagen anterior.</div>
     <div class="error-statement" data-copy="en">An image becomes anachronistic only when a later time is grafted onto an earlier image.</div>
     <div class="eyebrow" data-copy="es">lo que se escapó</div><div class="eyebrow" data-copy="en">what escaped</div>
-    <div class="error-opening" data-copy="es">La frase vuelve demasiado externa una temporalidad que el libro piensa de manera mucho más compleja. Pero deja aparecer otra posibilidad: una operación posterior puede reorganizar huellas que ya estaban allí y volver legible un tiempo que antes permanecía silencioso.</div>
-    <div class="error-opening" data-copy="en">The statement makes temporality too external for a book that treats it in a much more complex way. But another possibility escapes: a later operation can reorganize traces that were already there, and make a previously silent time legible.</div>
+    <div class="error-opening" data-copy="es"><p>El error consiste en imaginar que una imagen antigua recibe un tiempo nuevo como si ambos hubieran estado separados. En el caso de Fra Angelico, los tiempos ya conviven en la técnica, la función y las tradiciones que forman el fresco.</p><p>El injerto, sin embargo, permite ensayar una intervención de TSIL. Dos reproducciones pueden mantener la misma escena y alterar solo la franja inferior: una la cubre; la otra la muestra en toda su extensión. La comparación hace visible cómo ese fragmento reorganiza la atención y modifica la época que atribuimos a la imagen.</p><p>La intervención no demuestra por sí sola una supervivencia histórica. Señala dónde buscar relaciones y qué afirmaciones necesitan fuentes. El montaje aparece cuando la diferencia visual puede conectarse con técnicas, textos, usos o recorridos verificables.</p></div>
+    <div class="error-opening" data-copy="en"><p>The error lies in imagining that an old image receives a new time as if the two had previously been separate. In Fra Angelico's case, different times already coexist in the technique, function, and traditions that form the fresco.</p><p>Grafting nevertheless enables a TSIL intervention. Two reproductions may preserve the same scene while changing only the lower band: one covers it; the other shows it in full. Their comparison reveals how this fragment reorganizes attention and alters the period we attribute to the image.</p><p>The intervention does not by itself demonstrate a historical survival. It indicates where to look for relations and which claims require sources. Montage emerges when the visual difference can be connected to verifiable techniques, texts, uses, or historical paths.</p></div>
     <div class="eyebrow" data-copy="es">pregunta que queda</div><div class="eyebrow" data-copy="en">question left behind</div>
-    <div class="error-question" data-copy="es">¿Puede una operación nueva hacer visible un tiempo que ya estaba dentro de la imagen?</div>
-    <div class="error-question" data-copy="en">Can a new operation make visible a time that was already inside the image?</div>
+    <div class="error-question" data-copy="es">¿Qué tiempo de la imagen aparece cuando un fragmento deja de tratarse como decoración?</div>
+    <div class="error-question" data-copy="en">Which time within the image appears when a fragment is no longer treated as decoration?</div>
   </div>
 </div>
 </section>
@@ -756,10 +794,10 @@ a.carry-card:hover{border-color:var(--orange)}
   <div class="reject-x">×</div>
   <div>
     <div class="eyebrow" data-copy="es">error que no produjo nada</div><div class="eyebrow" data-copy="en">error that produced nothing</div>
-    <div class="reject-text" data-copy="es">Una imagen envejece siete años cada vez que la mira un perro.</div>
-    <div class="reject-text" data-copy="en">An image ages seven years every time a dog looks at it.</div>
-    <div class="reject-note" data-copy="es">EDAD CANINA. No produjo una diferencia interesante. Se descarta.</div>
-    <div class="reject-note" data-copy="en">DOG YEARS. It produced no interesting difference. It is discarded.</div>
+    <div class="reject-text" data-copy="es">Toda forma parecida a otra demuestra que una supervivencia histórica las conecta.</div>
+    <div class="reject-text" data-copy="en">Every form resembling another proves that a historical survival connects them.</div>
+    <div class="reject-note" data-copy="es">PARECIDO SIN HISTORIA. Una semejanza visual puede ser accidental. Sin fuentes, usos o recorridos que permitan discutir la relación, no prueba una supervivencia. Se descarta.</div>
+    <div class="reject-note" data-copy="en">RESEMBLANCE WITHOUT HISTORY. A visual similarity may be accidental. Without sources, uses, or paths through which the relation can be examined, it does not prove survival. Discarded.</div>
   </div>
 </div>
 </div>
@@ -791,6 +829,13 @@ a.carry-card:hover{border-color:var(--orange)}
 </a>
     </div>
   </div>
+</section>
+
+<section class="grid">
+  <div class="section-title" data-copy="es">texto de referencia</div>
+  <div class="section-title" data-copy="en">source text</div>
+  <div class="about-machine" data-copy="es">Georges Didi-Huberman, <em>Ante el tiempo. Historia del arte y anacronismo de las imágenes</em> (2000; edición en español, Adriana Hidalgo, 2011). Este reading se concentra en la apertura, donde el autor analiza la parte inferior de la <em>Virgen de las Sombras</em> de Fra Angelico y formula la imagen como un montaje de tiempos heterogéneos. La lectura también retoma las nociones de supervivencia y síntoma desarrolladas en su discusión de Aby Warburg, Walter Benjamin y Carl Einstein. El injerto y las dos reproducciones alteradas son intervenciones de TSIL.</div>
+  <div class="about-machine" data-copy="en">Georges Didi-Huberman, <em>Devant le temps: Histoire de l'art et anachronisme des images</em> (2000; Spanish edition consulted, 2011). This reading focuses on the opening, where the author analyzes the lower part of Fra Angelico's <em>Madonna of the Shadows</em> and describes the image as a montage of heterogeneous times. It also draws on the notions of survival and symptom developed through his discussion of Aby Warburg, Walter Benjamin, and Carl Einstein. The graft and the two altered reproductions are TSIL interventions.</div>
 </section>
 
 <section class="grid">
