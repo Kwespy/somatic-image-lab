@@ -358,5 +358,15 @@
     "date": "2026-10-05",
     "error_es": "cortafuegos",
     "error_en": "firewall"
+  },
+  {
+    "number": 37,
+    "slug": "037-susan-sontag-sobre-la-fotografia",
+    "author": "Susan Sontag",
+    "title_es": "Sobre la fotografía",
+    "title_en": "On Photography",
+    "date": "2026-10-10",
+    "error_es": "peaje",
+    "error_en": "toll"
   }
 ]
