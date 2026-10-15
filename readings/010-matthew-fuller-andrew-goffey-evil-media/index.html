@@ -1,505 +1,84 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Matthew Fuller &amp; Andrew Goffey—Evil Media | The Somatic Image Lab | Kurt Wesp Yianatos</title>
-<link rel="author" href="https://www.kurtwespyianatos.com/">
-<style>
-:root{
-  --paper:#f2efe7;
-  --ink:#0a0a0a;
-  --muted:#706b63;
-  --line:#bbb4aa;
-  --orange:#ff4b17;
-  --max:1120px;
-}
-*{box-sizing:border-box}
-html{background:var(--paper);color:var(--ink)}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:Arial,Helvetica,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit}
-button{font:inherit}
-[data-copy]{display:none!important}
-html[data-lang="es"] [data-copy="es"],
-html[data-lang="en"] [data-copy="en"]{display:block!important}
-html[data-lang="es"] [data-inline="es"],
-html[data-lang="en"] [data-inline="en"]{display:inline!important}
-[data-inline]{display:none!important}
-
-.shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
-.topbar{
-  min-height:58px;display:flex;align-items:center;justify-content:space-between;
-  gap:24px;border-bottom:1px solid var(--line);font-size:11px;
-  letter-spacing:.12em;text-transform:uppercase
-}
-.topbar a{text-decoration:none}
-.lang-switch{display:flex;gap:12px;align-items:center}
-.lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
-.lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
-
-.misregister{position:relative;display:inline-block;isolation:isolate}
-.misregister::after{
-  content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);
-  color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none
-}
-
-.article-hero{padding:64px 0 48px}
-.article-kicker{margin-bottom:14px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-.article-title{margin:0;font-size:clamp(48px,8.8vw,112px);line-height:.84;letter-spacing:-.067em;font-weight:800}
-.article-author{margin-top:16px;font-size:18px}
-.article-lead{
-  max-width:850px;margin-top:36px;font-size:clamp(21px,2.8vw,32px);
-  line-height:1.2;letter-spacing:-.02em
-}
-.article-ante{max-width:850px;margin-top:28px;margin-bottom:18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--muted);font-weight:400;}
-
-
-.motion-line{
-  position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);overflow:hidden
-}
-.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
-.motion-line .text::after{
-  content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);
-  clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none
-}
-
-.grid{
-  display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;
-  padding:25px 0 34px;border-top:1px solid var(--line)
-}
-.eyebrow,.section-title{
-  padding-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase
-}
-.large-copy{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}
-.large-copy p{margin:0 0 18px}
-.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
-
-.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
-.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
-.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
-.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
-.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
-.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
-
-.error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
-.error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
-.error-card{padding:22px;background:var(--ink);color:#fff}
-.error-card .eyebrow{color:#aaa}
-.error-context{margin:3px 0 18px;font-size:14px}
-.error-word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}
-.error-collision{margin:5px 0 22px;font-size:clamp(23px,2.6vw,34px)}
-.error-statement{margin:6px 0 24px;font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em}
-.error-opening{margin:6px 0 22px;font-size:clamp(18px,2vw,24px);line-height:1.34}
-.error-question{margin:6px 0 0;font-size:clamp(21px,2.4vw,31px);line-height:1.2}
-.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}
-.reject-x{font-size:50px;line-height:1}
-.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}
-.reject-note{margin-top:8px;font-size:12px}
-
-.carry{padding:18px;border:2px solid var(--ink);font-size:clamp(24px,2.8vw,36px);line-height:1.16;letter-spacing:-.028em}
-.carry-rule{margin:10px 0 18px;max-width:720px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
-.reading-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.reading-nav a,.reading-nav .nav-block{
-  min-height:126px;padding:14px;border:1px solid var(--line);color:inherit;text-decoration:none;
-  display:flex;flex-direction:column;justify-content:space-between
-}
-.reading-nav a:hover{border-color:var(--orange)}
-.reading-nav .next{text-align:right}
-.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.nav-q{margin-top:20px;font-size:15px;line-height:1.28;letter-spacing:-.01em;text-transform:none}
-.nav-block.pending{border-style:dashed}
-
-.about-machine{max-width:780px;font-size:13px;line-height:1.5}
-.identity{
-  display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;
-  border-top:1px solid var(--line);color:var(--muted);font-size:11px
-}
-.identity a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
-
-@media(max-width:760px){
-  .shell{width:min(var(--max),calc(100% - 24px))}
-  .grid{grid-template-columns:1fr;gap:14px}
-  .branches{grid-template-columns:1fr}
-  .article-hero{padding:46px 0 38px}
-}
-@media(max-width:600px){
-  .reading-nav{grid-template-columns:1fr}
-  .reading-nav .next{text-align:left}
-}
-</style>
-<script>
-(function(){
-  const saved=localStorage.getItem("tsil-lang");
-  const browser=(navigator.language||"en").toLowerCase();
-  const initial=saved||(browser.startsWith("es")?"es":"en");
-  function setLang(lang){
-    document.documentElement.setAttribute("data-lang",lang);
-    document.documentElement.lang=lang;
-    localStorage.setItem("tsil-lang",lang);
-    document.querySelectorAll("[data-switch]").forEach(btn=>{
-      btn.classList.toggle("active",btn.dataset.switch===lang);
-    });
-  }
-  window.setTSILLang=setLang;
-  document.addEventListener("DOMContentLoaded",()=>setLang(initial));
-})();
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Evil Media — Matthew Fuller &amp; Andrew Goffey</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root{--paper:#f2efe7;--ink:#0a0a0a;--muted:#706b63;--line:#bbb4aa;--orange:#ff4b17;--width:1120px}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}.shell{width:min(var(--width),calc(100% - 40px));margin:auto}a{color:inherit}[data-copy],[data-inline]{display:none!important}html[data-lang=es] [data-copy=es],html[data-lang=en] [data-copy=en]{display:block!important}html[data-lang=es] [data-inline=es],html[data-lang=en] [data-inline=en]{display:inline!important}
+    .topbar{min-height:58px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.topbar a{text-decoration:none}.lang{display:flex;gap:12px}.lang button{border:0;background:none;font:inherit;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);border-bottom:1px solid}
+    .hero{padding:64px 0 44px}.k,.section-title,.ey{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}.title{margin:14px 0 0;font-size:clamp(42px,8vw,96px);line-height:.84;letter-spacing:-.07em;font-weight:800}.mis,.concept{position:relative;isolation:isolate}.mis:after,.concept:after{content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1}.author{margin-top:18px;font-size:18px}.ante{max-width:850px;margin:28px 0 18px;font-size:clamp(16px,2.2vw,24px);line-height:1.4;font-style:italic;color:var(--muted)}.lead{max-width:850px;font-size:clamp(21px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em}
+    .band{padding:26px 0;margin-bottom:60px;border-block:1px solid var(--line);font-size:clamp(25px,4.1vw,52px);line-height:1.04;letter-spacing:-.045em;display:none!important;flex-wrap:wrap;align-items:baseline;gap:.12em .24em;overflow:hidden}html[data-lang=es] .band[data-copy=es],html[data-lang=en] .band[data-copy=en]{display:flex!important}.band .step{display:inline-flex;align-items:baseline;gap:.24em;white-space:nowrap;min-width:0}.band .arrow{color:var(--ink)}
+    .grid{display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;padding:25px 0 34px;border-top:1px solid var(--line)}.large{font-size:clamp(22px,2.5vw,31px);line-height:1.22;letter-spacing:-.018em}.large p{margin:0 0 17px}.keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}.pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}.residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
+    .error{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}.error .section-title,.error .ey{color:white}.error-card{margin-top:14px;padding:22px;background:var(--ink);color:#fff}.error-card .ey{margin-top:15px;color:#aaa}.error-card .ey:first-child{margin-top:0}.error-context{margin:3px 0 18px;font-size:14px}.word{margin:7px 0 21px;font-size:clamp(56px,8vw,104px);line-height:.82;letter-spacing:-.065em;font-weight:900}.collision{font-size:clamp(23px,2.6vw,34px);margin:5px 0 22px}.statement{font-size:clamp(27px,3.4vw,43px);line-height:1.07;letter-spacing:-.035em;margin:6px 0 24px}.opening{font-size:clamp(18px,2vw,24px);line-height:1.34;margin:6px 0 22px}.question{font-size:clamp(21px,2.4vw,31px);line-height:1.2}.reject{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.45)}.x{font-size:50px;line-height:1}.reject-text{font-size:clamp(19px,2vw,27px);line-height:1.22}.reject-note{margin-top:8px;font-size:12px;line-height:1.4}
+    .nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.nav a{min-height:126px;padding:14px;border:1px solid var(--line);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}.nav a:hover{border-color:var(--orange)}.nav .next{text-align:right}.nav-label{font-size:10px;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.nav-q{margin-top:20px;font-size:15px;line-height:1.28}.carry-rule{margin:10px 0 18px;max-width:760px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}.about{max-width:780px;font-size:13px;line-height:1.5}.identity{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.identity a{text-decoration:none}.tsil-secret-story{cursor:default!important}.tsil-secret-story:focus{outline:none!important}
+    .error,.error *{min-width:0}.word,.collision,.statement,.opening,.question,.reject-text,.reject-note{max-width:100%;overflow-wrap:anywhere}
+    @media(max-width:760px){.shell{width:calc(100% - 24px)}.grid{grid-template-columns:1fr;gap:14px}.hero{padding:46px 0 38px}}
+    @media(max-width:600px){.title{font-size:clamp(40px,14vw,62px)}.band{font-size:clamp(19px,6.3vw,28px);gap:.18em .28em}.concept:after{transform:translate(3px,-2px);-webkit-text-stroke:.9px var(--orange)}.error{padding:24px 10px 20px}.error .grid{gap:10px;padding-bottom:22px}.error-card{padding:18px 14px}.word{font-size:clamp(30px,10vw,44px);line-height:.9;letter-spacing:-.055em}.collision{font-size:clamp(20px,6.4vw,27px)}.statement{font-size:clamp(25px,7.5vw,32px)}.opening{font-size:18px;line-height:1.38}.question{font-size:22px;line-height:1.22}.reject{grid-template-columns:30px minmax(0,1fr);gap:8px}.x{font-size:40px}.nav{grid-template-columns:1fr}.nav .next{text-align:left}}
+  </style>
+  <script>function setTSILLang(lang){document.documentElement.dataset.lang=lang;document.documentElement.lang=lang;document.title='Evil Media — Matthew Fuller & Andrew Goffey';localStorage.setItem('tsil-lang',lang);document.querySelectorAll('[data-switch]').forEach(b=>b.classList.toggle('active',b.dataset.switch===lang))}document.addEventListener('DOMContentLoaded',()=>setTSILLang(localStorage.getItem('tsil-lang')||((navigator.language||'').startsWith('es')?'es':'en')))</script>
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="Fuller, and Goffey do not ask which media are &#x27;evil&#x27; in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur.">
-<meta name="author" content="Kurt Wesp Yianatos">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="keywords" content="Matthew Fuller &amp; Andrew Goffey, Evil Media, grayness → operation → stratagem → consequence, SEWING / GARMENT MAKING, HEM, The Somatic Image Lab, Kurt Wesp Yianatos">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Fuller and Goffey examine the ordinary systems that organize actions while barely attracting attention.">
+<meta name="author" content="Kurt Wesp Yianatos"><meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="keywords" content="Matthew Fuller, Andrew Goffey, Evil Media, gray media, operation, stratagem, opacity, side effects, ADHESIVES, glue, The Somatic Image Lab, Kurt Wesp Yianatos">
 <link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="The Somatic Image Lab">
-<meta property="og:title" content="Evil Media — Matthew Fuller &amp; Andrew Goffey">
-<meta property="og:description" content="Fuller, and Goffey do not ask which media are &#x27;evil&#x27; in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur.">
-<meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/">
-<meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
-<meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="The Somatic Image Lab — Reading 010 — Evil Media — Matthew Fuller &amp; Andrew Goffey">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="es_ES">
-<meta property="article:published_time" content="2026-09-03">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Evil Media — Matthew Fuller &amp; Andrew Goffey">
-<meta name="twitter:description" content="Fuller, and Goffey do not ask which media are &#x27;evil&#x27; in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur.">
-<meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
-<meta name="theme-color" content="#f2efe7">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/"},"headline":"Evil Media — Matthew Fuller & Andrew Goffey","description":"Fuller, and Goffey do not ask which media are 'evil' in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Evil Media","author":{"@type":"Person","name":"Matthew Fuller & Andrew Goffey"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["grayness → operation → stratagem → consequence","SEWING / GARMENT MAKING","HEM"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 10, "slug": "010-matthew-fuller-andrew-goffey-evil-media", "author": "Matthew Fuller & Andrew Goffey", "date": "2026-09-03", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/", "title": {"es": "Evil Media", "en": "Evil Media"}, "parts": {"es": {"title": "Evil Media", "subtitle": ""}, "en": {"title": "Evil Media", "subtitle": ""}}, "lead": {"es": "Fuller y Goffey no preguntan qué medios son 'malos' en sentido moral, sino cómo operan los medios grises: bases de datos, protocolos, formularios, workflows. Cosas aburridas, sin autor visible, que organizan quién accede a qué y qué puede ocurrir. Su fuerza está en no llamar la atención. 'Evil' aquí no es una acusación: es un modo de leer los medios desde sus maniobras, sus efectos laterales y sus errores.", "en": "Fuller, and Goffey do not ask which media are 'evil' in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur. Their power lies in not calling attention to themselves. 'Evil' here is not an accusation: it is a way of reading media through their maneuvers, their side effects, and their errors."}, "ante": {"es": "Todo medio tiene consecuencias que su diseñador no vio venir. ¿Cuáles son las consecuencias malvadas de una imagen?", "en": "Every medium has consequences its designer did not foresee. What are the evil consequences of an image?"}, "description": {"es": "Fuller y Goffey no preguntan qué medios son 'malos' en sentido moral, sino cómo operan los medios grises: bases de datos, protocolos, formularios, workflows.", "en": "Fuller, and Goffey do not ask which media are 'evil' in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur."}, "band": {"es": "grisura → operación → estratagema → consecuencia", "en": "grayness → operation → stratagem → consequence"}, "error_context": {"es": "COSTURA / CONFECCIÓN", "en": "SEWING / GARMENT MAKING"}, "error_word": {"es": "DOBLADILLO", "en": "HEM"}, "concepts": {"es": ["GRISURA", "OPERACIÓN", "DOBLADILLO", "ESTRATAGEMA"], "en": ["HEM", "GRAYNESS", "OPERATION", "STRATAGEM"]}}</script>
+<meta property="og:type" content="article"><meta property="og:site_name" content="The Somatic Image Lab"><meta property="og:title" content="Evil Media — Matthew Fuller &amp; Andrew Goffey"><meta property="og:description" content="Fuller and Goffey examine the ordinary systems that organize actions while barely attracting attention."><meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/"><meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png"><meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="The Somatic Image Lab — Reading 010 — Evil Media — Matthew Fuller &amp; Andrew Goffey"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="es_ES"><meta property="article:published_time" content="2026-09-03">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Evil Media — Matthew Fuller &amp; Andrew Goffey"><meta name="twitter:description" content="Fuller and Goffey examine the ordinary systems that organize actions while barely attracting attention."><meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png"><meta name="theme-color" content="#f2efe7">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/"},"headline":"Evil Media — Matthew Fuller & Andrew Goffey","description":"Fuller and Goffey examine the ordinary systems that organize actions while barely attracting attention.","datePublished":"2026-09-03","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"Evil Media","author":[{"@type":"Person","name":"Matthew Fuller"},{"@type":"Person","name":"Andrew Goffey"}]},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["gray media","operation","stratagem","opacity","side effects","glue"]}</script>
+<script id="tsil-social-data" type="application/json">{"number":10,"slug":"010-matthew-fuller-andrew-goffey-evil-media","author":"Matthew Fuller & Andrew Goffey","date":"2026-09-03","canonical":"https://thesomaticimagelab.kurtwespyianatos.com/readings/010-matthew-fuller-andrew-goffey-evil-media/","title":{"es":"Evil Media","en":"Evil Media"},"parts":{"es":{"title":"Evil Media","subtitle":""},"en":{"title":"Evil Media","subtitle":""}},"lead":{"es":"Fuller y Goffey llaman medios grises a herramientas ordinarias —bases de datos, formularios, protocolos y programas— que ordenan acciones sin llamar la atención. «Evil» no significa maldad: invita a observar cómo los medios intervienen, manipulan y producen consecuencias inesperadas.","en":"Fuller and Goffey call ordinary tools—databases, forms, protocols, and software—gray media when they organize actions without attracting attention. “Evil” does not mean moral evil: it invites us to observe how media intervene, manipulate, and produce unexpected consequences."},"ante":{"es":"¿Qué organiza tu encuentro con una imagen antes de que la mires?","en":"What organizes your encounter with an image before you see it?"},"description":{"es":"Fuller y Goffey estudian los sistemas ordinarios que organizan acciones casi sin llamar la atención.","en":"Fuller and Goffey examine the ordinary systems that organize actions while barely attracting attention."},"band":{"es":"grisura → operación → estratagema → efecto","en":"grayness → operation → stratagem → effect"},"error_context":{"es":"ADHESIVOS Y ENSAMBLAJE","en":"ADHESIVES AND ASSEMBLY"},"error_word":{"es":"PEGAMENTO","en":"GLUE"},"concepts":{"es":["GRISURA","OPERACIÓN","ESTRATAGEMA","PEGAMENTO"],"en":["GRAYNESS","OPERATION","STRATAGEM","GLUE"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
-<style id="tsil-social-secret-style">
-.tsil-secret-story{cursor:default!important}
-.tsil-secret-story:focus{outline:none!important}
-#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}
-#tsil-secret-export.open{display:flex}
-#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}
-#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
-#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}
-#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
-#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}
-#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
-</style>
+<style id="tsil-social-secret-style">#tsil-secret-export{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px}#tsil-secret-export.open{display:flex}#tsil-secret-export .tsil-export-box{width:min(420px,92vw);background:#f2efe7;color:#0a0a0a;border:1px solid #0a0a0a;padding:18px;font-family:Arial,Helvetica,sans-serif}#tsil-secret-export .tsil-export-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #bbb4aa;font-size:10px;letter-spacing:.14em;text-transform:uppercase}#tsil-secret-export .tsil-export-close{border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer}#tsil-secret-export .tsil-export-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}#tsil-secret-export .tsil-export-btn{border:1px solid #bbb4aa;background:transparent;color:inherit;padding:11px 12px;text-align:left;font:11px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}#tsil-secret-export .tsil-export-btn:hover{border-color:#ff4b17;color:#ff4b17}#tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}</style>
 <!-- TSIL_SOCIAL_STYLE_END -->
-
-
-
-<style id="tsil-carry-flow-v4">
-.carry-rule{
-  margin:10px 0 18px;
-  max-width:760px;
-  font-size:11px;
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--muted);
-}
-.reading-nav{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:16px;
-}
-.reading-nav a,
-.reading-nav .nav-block{
-  min-height:126px;
-  padding:14px;
-  border:1px solid var(--line);
-  color:inherit;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.reading-nav a:hover{border-color:var(--orange)}
-.reading-nav .next{text-align:right}
-.nav-label{
-  font-size:10px;
-  line-height:1.35;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-.nav-q{
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.28;
-  letter-spacing:-.01em;
-  text-transform:none;
-}
-.nav-block.pending{border-style:dashed}
-.nav-block.start .nav-q{
-  color:var(--muted);
-  font-size:13px;
-}
-.carry-source{display:none!important}
-@media(max-width:600px){
-  .reading-nav{grid-template-columns:1fr}
-  .reading-nav .next{text-align:left}
-}
-</style>
-
 </head>
-<body>
-<div class="shell">
+<body><div class="shell">
+  <header class="topbar"><a href="../../index.html">The Somatic Image Lab</a><div class="lang"><a href="../../index.html" data-inline="es">inicio</a><a href="../../index.html" data-inline="en">home</a><button data-switch="es" onclick="setTSILLang('es')">ES</button><button data-switch="en" onclick="setTSILLang('en')">EN</button></div></header>
+  <main>
+    <section class="hero">
+      <div class="k" data-copy="es">lectura / 010</div><div class="k" data-copy="en">reading / 010</div>
+      <h1 class="title" data-copy="es"><span class="mis" data-text="LO GRIS">LO GRIS</span><br>TAMBIÉN OPERA</h1>
+      <h1 class="title" data-copy="en"><span class="mis" data-text="GRAY MEDIA">GRAY MEDIA</span><br>ALSO OPERATE</h1>
+      <div class="author">Matthew Fuller &amp; Andrew Goffey</div>
+      <div class="ante article-ante" data-copy="es">¿Qué organiza tu encuentro con una imagen antes de que la mires?</div><div class="ante article-ante" data-copy="en">What organizes your encounter with an image before you see it?</div>
+      <div class="lead article-lead" data-copy="es">Fuller y Goffey llaman <em>medios grises</em> a herramientas ordinarias —bases de datos, formularios, protocolos y programas— que ordenan acciones sin llamar la atención. «Evil» no significa maldad: invita a observar cómo los medios intervienen, manipulan y producen consecuencias inesperadas.</div><div class="lead article-lead" data-copy="en">Fuller and Goffey call ordinary tools—databases, forms, protocols, and software—<em>gray media</em> when they organize actions without attracting attention. “Evil” does not mean moral evil: it invites us to observe how media intervene, manipulate, and produce unexpected consequences.</div>
+    </section>
 
-<header class="topbar">
-  <div><a href="../../index.html">The Somatic Image Lab</a></div>
-  <div class="lang-switch">
-    <a href="../../index.html" data-inline="es">inicio</a>
-    <a href="../../index.html" data-inline="en">home</a>
-    <button data-switch="es" onclick="setTSILLang('es')">ES</button>
-    <button data-switch="en" onclick="setTSILLang('en')">EN</button>
-  </div>
-</header>
+    <div class="band text" data-copy="es"><span class="concept" data-text="grisura">grisura</span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="operación">operación</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="estratagema">estratagema</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="efecto">efecto</span></span></div>
+    <div class="band text" data-copy="en"><span class="concept" data-text="grayness">grayness</span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="operation">operation</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="stratagem">stratagem</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="effect">effect</span></span></div>
 
-<main>
-<section class="article-hero">
-  <div class="article-kicker" data-copy="es">lectura / 010</div>
-  <div class="article-kicker" data-copy="en">reading / 010</div>
+    <section class="grid"><div class="section-title" data-copy="es">en 1 minuto</div><div class="section-title" data-copy="en">in 1 minute</div>
+      <div class="large" data-copy="es"><p>Cuando pensamos en medios, solemos imaginar pantallas, mensajes o imágenes. Fuller y Goffey amplían el campo: una base de datos, un formulario, un plan de trabajo o un protocolo también son medios porque conectan personas y cosas, distribuyen tareas y deciden qué puede ocurrir después.</p><p>La <em>grisura</em> no describe un color ni un secreto. Describe una forma de pasar inadvertido. Cuando una operación se vuelve rutinaria, dejamos de verla y también dejamos de preguntar quién definió sus categorías, sus tiempos o sus condiciones de acceso.</p><p>El libro se organiza mediante <em>estratagemas</em>: maniobras que aprovechan una situación concreta. No son instrucciones infalibles. Una misma operación puede alcanzar su objetivo, generar un efecto lateral o fracasar cuando cambian las relaciones que la hacían funcionar.</p><p>Por eso «evil» se usa fuera de la oposición entre bien y mal. Los medios no son simples herramientas neutrales: intervienen en aquello que conectan y pueden orientar una conducta sin que una sola persona controle el resultado completo.</p></div>
+      <div class="large" data-copy="en"><p>When we think of media, we often imagine screens, messages, or images. Fuller and Goffey widen the field: a database, form, work plan, or protocol is also a medium because it connects people and things, distributes tasks, and decides what can happen next.</p><p><em>Grayness</em> does not describe a color or a secret. It describes a way of passing unnoticed. When an operation becomes routine, we stop seeing it and also stop asking who defined its categories, timing, or conditions of access.</p><p>The book is organized through <em>stratagems</em>: maneuvers that exploit a specific situation. They are not infallible instructions. The same operation may reach its goal, generate a side effect, or fail when the relations that made it work change.</p><p>“Evil” is therefore used outside the opposition between good and bad. Media are not merely neutral tools: they intervene in what they connect and can steer behavior without any one person controlling the whole result.</p></div>
+    </section>
 
-  <h1 class="article-title" data-copy="es">
-    <span class="misregister" data-text="EVIL">EVIL</span><br>MEDIA
-  </h1>
-  <h1 class="article-title" data-copy="en">
-    <span class="misregister" data-text="EVIL">EVIL</span><br>MEDIA
-  </h1>
+    <section class="grid"><div class="section-title" data-copy="es">tres cosas para conservar</div><div class="section-title" data-copy="en">three things to keep</div><div data-copy="es"><div class="keep">Un sistema puede funcionar como medio aunque no muestre ningún mensaje.</div><div class="keep">Lo rutinario gana fuerza cuando dejamos de percibir que también toma decisiones.</div><div class="keep">Para entender una operación hay que observar tanto su objetivo como sus efectos imprevistos.</div></div><div data-copy="en"><div class="keep">A system can function as a medium even when it displays no message.</div><div class="keep">The routine gains force when we stop noticing that it also makes decisions.</div><div class="keep">To understand an operation, examine both its goal and its unintended effects.</div></div></section>
 
-  <div class="article-author">Matthew Fuller &amp; Andrew Goffey</div>
+    <section class="grid"><div class="section-title" data-copy="es">punto de arrastre</div><div class="section-title" data-copy="en">carry point</div><div class="pressure" data-copy="es">El <a href="../009-n-katherine-hayles-my-mother-was-a-computer/index.html">reading 009</a> mostró que cuerpos, textos y tecnologías cambian lo que cada uno puede hacer al relacionarse. Fuller y Goffey dirigen la atención hacia las operaciones discretas que organizan esa relación: una etiqueta, una regla de búsqueda o un formulario pueden orientar el encuentro con una imagen sin aparecer dentro de ella.</div><div class="pressure" data-copy="en"><a href="../009-n-katherine-hayles-my-mother-was-a-computer/index.html">Reading 009</a> showed that bodies, texts, and technologies change what each can do by entering into relation. Fuller and Goffey direct attention toward the quiet operations that organize that relation: a label, search rule, or form can steer an encounter with an image without appearing within it.</div></section>
 
-    <div class="article-ante" data-copy="es">Todo medio tiene consecuencias que su diseñador no vio venir. ¿Cuáles son las consecuencias malvadas de una imagen?</div>
-    <div class="article-ante" data-copy="en">Every medium has consequences its designer did not foresee. What are the evil consequences of an image?</div>
-  <div class="article-lead" data-copy="es">Fuller y Goffey no preguntan qué medios son 'malos' en sentido moral, sino cómo operan los medios grises: bases de datos, protocolos, formularios, workflows. Cosas aburridas, sin autor visible, que organizan quién accede a qué y qué puede ocurrir. Su fuerza está en no llamar la atención. 'Evil' aquí no es una acusación: es un modo de leer los medios desde sus maniobras, sus efectos laterales y sus errores.</div>
-  <div class="article-lead" data-copy="en">
-      Fuller, and Goffey do not ask which media are 'evil' in a moral sense, but how gray media operate: databases, protocols, forms, workflows. Boring things, with no visible author, that organize who accesses what, and what can occur. Their power lies in not calling attention to themselves. 'Evil' here is not an accusation: it is a way of reading media through their maneuvers, their side effects, and their errors.
-    </div>
-</section>
+    <section class="grid"><div class="section-title" data-copy="es">por ejemplo</div><div class="section-title" data-copy="en">for example</div>
+      <div class="large" data-copy="es"><p>Abre la galería de tu teléfono y busca «playa». Después localiza una fotografía conocida en el álbum cronológico y comprueba su fecha, ubicación, encuadre completo y texto asociado.</p><p>Vuelve a los resultados. Observa qué imágenes entraron, cuáles quedaron fuera, en qué orden aparecen y cómo las miniaturas recortan cada encuadre. Repite la búsqueda con una palabra cercana, como «mar». El archivo no cambió, pero la clasificación y la interfaz reorganizaron el acceso y la atención.</p><p>La prueba no demuestra que el sistema comprenda la fotografía ni que alguien haya elegido cada resultado. Allí pueden combinarse metadatos, modelos automáticos, valores predeterminados y errores. ¿Qué imagen volvió fácil de encontrar y cuál hizo desaparecer?</p></div>
+      <div class="large" data-copy="en"><p>Open your phone’s photo gallery and search for “beach.” Then locate a familiar photograph in the chronological album and check its date, location, full frame, and associated text.</p><p>Return to the results. Notice which images entered, which were left out, the order in which they appear, and how the thumbnails crop each frame. Repeat the search with a nearby word such as “sea.” The file did not change, but classification and interface reorganized access and attention.</p><p>The test does not prove that the system understands the photograph or that someone selected every result. Metadata, automated models, defaults, and errors may all be involved. Which image became easy to find, and which one disappeared?</p></div>
+    </section>
 
-<div class="motion-line">
-  <div class="text" data-text="grisura → operación → estratagema → consecuencia" data-copy="es">grisura → operación → estratagema → consecuencia</div>
-  <div class="text" data-text="grayness → operation → stratagem → consequence" data-copy="en">grayness → operation → stratagem → consequence</div>
+    <section class="grid"><div class="section-title" data-copy="es">residuo</div><div class="section-title" data-copy="en">residue</div><div class="residue" data-copy="es">Leer una imagen también exige seguir el sistema que la guarda, la clasifica y la hace llegar hasta nosotros.</div><div class="residue" data-copy="en">Reading an image also requires tracing the system that stores, classifies, and delivers it to us.</div></section>
+
+    <div class="error"><section class="grid" style="border-top:0;padding-top:0"><div class="section-title" data-copy="es">máquina de error</div><div class="section-title" data-copy="en">error machine</div><div><div class="error-card">
+      <div class="ey" data-copy="es">contexto importado</div><div class="ey" data-copy="en">imported context</div><div class="error-context" data-copy="es">ADHESIVOS Y ENSAMBLAJE</div><div class="error-context" data-copy="en">ADHESIVES AND ASSEMBLY</div>
+      <div class="ey" data-copy="es">palabra importada</div><div class="ey" data-copy="en">imported word</div><div class="word error-word" data-copy="es">PEGAMENTO</div><div class="word error-word" data-copy="en">GLUE</div>
+      <div class="ey" data-copy="es">colisión</div><div class="ey" data-copy="en">collision</div><div class="collision" data-copy="es">medio gris × pegamento</div><div class="collision" data-copy="en">gray medium × glue</div>
+      <div class="ey" data-copy="es">error forzado</div><div class="ey" data-copy="en">forced error</div><div class="statement" data-copy="es">Un medio gris es pegamento: mantiene unidos sistemas, personas e imágenes sin dejar visible la unión.</div><div class="statement" data-copy="en">A gray medium is glue: it holds systems, people, and images together without leaving the bond visible.</div>
+      <div class="ey" data-copy="es">lo que se escapó</div><div class="ey" data-copy="en">what escaped</div><div class="opening" data-copy="es"><p>Un <em>pegamento</em> une superficies mediante una adhesión material. TSIL importa la palabra para observar las conexiones discretas que mantienen funcionando un conjunto: no es un concepto de Fuller y Goffey.</p><p>La analogía fuerza un error porque supone que las partes ya estaban completas antes de ser unidas. Un medio gris no solo conecta elementos existentes: también puede clasificarlos, cambiar sus posibilidades y producir el orden en que actuarán. La unión no siempre está oculta ni permanece estable.</p></div><div class="opening" data-copy="en"><p><em>Glue</em> joins surfaces through material adhesion. TSIL imports the word to examine the quiet connections that keep an arrangement working: it is not a concept used by Fuller and Goffey.</p><p>The analogy forces an error because it assumes that the parts were already complete before they were joined. A gray medium does not merely connect existing elements: it can also classify them, change their possibilities, and produce the order in which they act. The bond is not always hidden or stable.</p></div>
+      <div class="ey" data-copy="es">pregunta que queda</div><div class="ey" data-copy="en">question left behind</div><div class="question" data-copy="es">¿Qué mantiene unidas las partes de esta imagen y qué cambia al unirlas?</div><div class="question" data-copy="en">What holds the parts of this image together, and what changes when they are joined?</div>
+    </div></div></section><div class="reject"><div class="x">×</div><div><div class="ey" data-copy="es">error que no produjo nada</div><div class="ey" data-copy="en">error that produced nothing</div><div class="reject-text" data-copy="es">Los medios grises contienen menos información porque el gris tiene menos colores.</div><div class="reject-text" data-copy="en">Gray media contain less information because gray has fewer colors.</div><div class="reject-note" data-copy="es">COLOR. Confunde la grisura con una propiedad cromática y no permite estudiar ninguna operación. Se descarta.</div><div class="reject-note" data-copy="en">COLOR. It confuses grayness with a chromatic property and does not help examine any operation. Discarded.</div></div></div></div>
+
+    <section class="grid"><div class="section-title" data-copy="es">arrastre</div><div class="section-title" data-copy="en">carry</div><div><div class="carry-rule" data-copy="es">La Máquina de Error condensa tensiones y hereda preguntas de otros readings para abrir relaciones que el texto no formula por sí solo.</div><div class="carry-rule" data-copy="en">The Error Machine condenses tensions and inherits questions from other readings to open relations the text does not formulate on its own.</div><div class="nav"><a class="prev" href="../009-n-katherine-hayles-my-mother-was-a-computer/index.html"><div><div class="nav-label" data-copy="es">← viene de 009 · N. Katherine Hayles</div><div class="nav-label" data-copy="en">← comes from 009 · N. Katherine Hayles</div><div class="nav-q" data-copy="es">¿Qué desaparece cuando imaginamos la información separada de los cuerpos que la producen?</div><div class="nav-q" data-copy="en">What disappears when we imagine information apart from the bodies that produce it?</div></div></a><a class="next" href="../011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html"><div><div class="nav-label" data-copy="es">va hacia 011 · Wendy Hui Kyong Chun →</div><div class="nav-label" data-copy="en">goes to 011 · Wendy Hui Kyong Chun →</div><div class="nav-q" data-copy="es">¿Qué cambia realmente cuando una actualización promete mantener todo funcionando igual?</div><div class="nav-q" data-copy="en">What actually changes when an update promises to keep everything working the same?</div></div></a></div></div></section>
+
+    <section class="grid"><div class="section-title" data-copy="es">sobre esta máquina</div><div class="section-title" data-copy="en">about this machine</div><div class="about" data-copy="es">Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div><div class="about" data-copy="en">This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings and forces errors, deviations, and unlikely associations to open questions rather than close them.<div class="identity"><span>Kurt Wesp Yianatos</span><span class="tsil-secret-story">KWY-A⁰¹RTBORG</span><a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a><a href="https://www.kwydesign.com/">kwydesign.com</a></div></div></section>
+  </main>
 </div>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">en 1 minuto</div>
-  <div class="section-title" data-copy="en">in 1 minute</div>
-
-  <div class="large-copy" data-copy="es">
-    <p>El libro llama <em>gray media</em> a dispositivos y técnicas ordinarias que operan lejos de las formas más visibles de comunicación: bases de datos, software colaborativo, planificación de proyectos, workflows, protocolos y procedimientos.</p>
-    <p>Su aparente banalidad es parte de su eficacia. Cuando una operación se estabiliza y deja de llamar la atención, puede organizar conductas, accesos, decisiones y relaciones sin aparecer como una intervención explícita.</p>
-    <p>Por eso Fuller y Goffey proponen mirar los medios desde sus operaciones y estratagemas, incluyendo efectos secundarios, errores, excepciones y pequeñas técnicas. El medio no es sólo aquello que transmite un mensaje: también es lo que configura silenciosamente las condiciones en las que algo puede suceder.</p>
-  </div>
-
-  <div class="large-copy" data-copy="en">
-    <p>The book calls <em>gray media</em> the ordinary devices, and techniques that operate far from the most visible forms of communication: databases, collaborative software, project planning, workflows, protocols, and procedures.</p>
-    <p>Their apparent banality is part of their efficacy. Once an operation stabilizes, and stops attracting attention, it can organize behavior, access, decisions, and relations without appearing as an explicit intervention.</p>
-    <p>Fuller, and Goffey therefore propose reading media through their operations, and stratagems, including secondary effects, errors, exceptions, and minor techniques. A medium is not only what carries a message: it is also what quietly configures the conditions under which something can happen.</p>
-  </div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">tres cosas para conservar</div>
-  <div class="section-title" data-copy="en">three things to keep</div>
-
-  <div data-copy="es">
-    <div class="keep">Una operación puede ser más influyente cuanto menos se percibe como operación.</div>
-    <div class="keep">Los medios incluyen procedimientos, formatos, bases de datos y workflows que organizan acciones sin necesitar una imagen visible.</div>
-    <div class="keep">El error y la excepción no son simplemente fallos externos al sistema: pueden revelar capacidades, zonas de indeterminación y formas de funcionamiento que el sistema normalmente mantiene opacas.</div>
-  </div>
-
-  <div data-copy="en">
-    <div class="keep">An operation can become more influential the less it is perceived as an operation.</div>
-    <div class="keep">Media include procedures, formats, databases, and workflows that organize action without requiring a visible image.</div>
-    <div class="keep">Error, and exception are not simply failures external to a system: they can reveal capacities, zones of indeterminacy, and modes of operation that the system normally keeps opaque.</div>
-  </div>
-</section>
-
-<div class="threshold">
-<section class="grid" style="border-top:0">
-  <div class="section-title" data-copy="es">punto de arrastre</div>
-  <div class="section-title" data-copy="en">carry point</div>
-
-  <div>
-    <div class="threshold-note" data-copy="es">Aquí entra la tensión heredada desde el reading anterior: trae una pregunta, intuición o problema previo y lo hace friccionar con la lectura actual.</div>
-    <div class="threshold-note" data-copy="en">Here the tension inherited from the previous reading enters: it brings a prior question, intuition or problem into friction with the current reading.</div>
-
-    <div class="pressure" data-copy="es">El arrastre de Hayles preguntaba por una imagen cuya forma emerge de intercambios recursivos entre código, lenguaje, soporte y percepción, sin un único nivel donde empiece o termine su transformación. Fuller y Goffey introducen un problema adicional: parte de esos intercambios puede operar como medio gris. Un workflow, una base de datos, un protocolo o una regla de clasificación puede organizar la aparición de la imagen sin hacerse visible dentro de ella.</div>
-
-    <div class="pressure" data-copy="en">Hayles's carry asked about an image whose form emerges from recursive exchanges among code, language, support, and perception, without a single level where its transformation begins or ends. Fuller, and Goffey introduce an additional problem: part of those exchanges can operate as gray media. A workflow, database, protocol, or sorting rule can organize the appearance of an image without becoming visible within it.</div>
-  </div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">proposición incompleta</div>
-  <div class="section-title" data-copy="en">unfinished proposition</div>
-
-  <div class="incomplete" data-copy="es">Si algunas de las operaciones que hacen aparecer una imagen son más eficaces precisamente cuando dejan de percibirse, entonces para encontrar el aparato habría que mirar no sólo lo que aparece sino también…</div>
-  <div class="incomplete" data-copy="en">If some of the operations that make an image appear are most effective precisely when they cease to be perceived, then finding the apparatus would require looking not only at what appears but also at…</div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">bifurcación</div>
-  <div class="section-title" data-copy="en">bifurcation</div>
-
-  <div class="branches" data-copy="es">
-    <div class="branch">El aparato se hace visible en la transformación que imprime sobre la imagen.</div>
-    <div class="branch">El aparato puede ser más decisivo cuando su operación se vuelve rutinaria, banal o invisible y sólo vemos sus consecuencias.</div>
-  </div>
-
-  <div class="branches" data-copy="en">
-    <div class="branch">The apparatus becomes visible in the transformation it inscribes on the image.</div>
-    <div class="branch">The apparatus may be most decisive when its operation becomes routine, banal, or invisible, and only its consequences remain visible.</div>
-  </div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">residuo</div>
-  <div class="section-title" data-copy="en">residue</div>
-
-  <div data-copy="es">
-    <div class="residue">La historia de una imagen puede incluir operaciones que no dejan una marca visual reconocible, pero sí modifican dónde aparece, cómo se ordena o qué puede hacerse con ella.</div>
-    <div class="residue">Buscar únicamente grandes aparatos técnicos puede ocultar una capa de procedimientos pequeños, repetitivos y administrativos que también producen condiciones de visibilidad.</div>
-  </div>
-
-  <div data-copy="en">
-    <div class="residue">The history of an image can include operations that leave no recognizable visual mark while still modifying where it appears, how it is ordered, or what can be done with it.</div>
-    <div class="residue">Looking only for large technical apparatuses can conceal a layer of small, repetitive, administrative procedures that also produce conditions of visibility.</div>
-  </div>
-</section>
-</div>
-
-<div class="error-zone">
-<section class="grid" style="border-top:0;padding-top:0">
-  <div class="section-title" data-copy="es">máquina de error</div>
-  <div class="section-title" data-copy="en">error machine</div>
-
-  <div class="error-machine-content" style="display:grid;gap:14px">
-  <div class="error-machine-intro" style="max-width:760px;color:#fff;font-size:12px;line-height:1.45;letter-spacing:.02em">
-    <div data-copy="es">La Máquina de Error fuerza una colisión entre el texto leído y una palabra ajena. No busca explicar mejor: busca producir una falla que abra otra pregunta sobre la imagen.</div>
-    <div data-copy="en">The Error Machine forces a collision between the text being read and an external word. It does not seek a better explanation: it produces a failure that opens another question about the image.</div>
-  </div>
-<div class="error-card">
-    <div class="eyebrow" data-copy="es">contexto importado</div>
-    <div class="eyebrow" data-copy="en">imported context</div>
-    <div class="error-context" data-copy="es">COSTURA / CONFECCIÓN</div>
-    <div class="error-context" data-copy="en">SEWING / GARMENT MAKING</div>
-
-    <div class="eyebrow" data-copy="es">palabra importada</div>
-    <div class="eyebrow" data-copy="en">imported word</div>
-    <div class="error-word" data-copy="es">DOBLADILLO</div>
-    <div class="error-word" data-copy="en">HEM</div>
-
-    <div class="eyebrow" data-copy="es">colisión</div>
-    <div class="eyebrow" data-copy="en">collision</div>
-    <div class="error-collision" data-copy="es">medio gris × dobladillo</div>
-    <div class="error-collision" data-copy="en">gray medium × hem</div>
-
-    <div class="eyebrow" data-copy="es">error forzado</div>
-    <div class="eyebrow" data-copy="en">forced error</div>
-    <div class="error-statement" data-copy="es">Un medio gris es un dobladillo: esconde sus operaciones en el borde para que la superficie parezca continua.</div>
-    <div class="error-statement" data-copy="en">A gray medium is a hem: it hides its operations at the edge so that the surface appears continuous.</div>
-
-    <div class="eyebrow" data-copy="es">lo que se escapó</div>
-    <div class="eyebrow" data-copy="en">what escaped</div>
-    <div class="error-opening" data-copy="es">
-      Un workflow o una base de datos no son una costura y sus operaciones no están literalmente dobladas detrás de una superficie. Pero el error obliga a buscar la junta: decisiones técnicas y administrativas pueden desaparecer de la experiencia visible una vez que están bien integradas. Lo que parece una superficie continua puede depender de muchas operaciones discretas que fueron desplazadas hacia el borde de nuestra atención.
-    </div>
-    <div class="error-opening" data-copy="en">
-      A workflow or database is not a seam, and its operations are not literally folded behind a surface. But the error forces us to look for the joint: technical, and administrative decisions can disappear from visible experience once they are well integrated. What appears to be a continuous surface may depend on many discrete operations displaced toward the edge of our attention.
-    </div>
-
-    <div class="eyebrow" data-copy="es">pregunta que queda</div>
-    <div class="eyebrow" data-copy="en">question left behind</div>
-    <div class="error-question" data-copy="es">¿Dónde habría que mirar para encontrar una operación que funciona precisamente porque ya no parece estar ahí?</div>
-    <div class="error-question" data-copy="en">Where would we have to look to find an operation that works precisely because it no longer seems to be there?</div>
-  </div>
-</div>
-</section>
-
-<div class="reject">
-  <div class="reject-x">×</div>
-  <div>
-    <div class="eyebrow" data-copy="es">error que no produjo nada</div>
-    <div class="eyebrow" data-copy="en">error that produced nothing</div>
-    <div class="reject-text" data-copy="es">Los medios grises contienen menos información porque el gris tiene menos colores.</div>
-    <div class="reject-text" data-copy="en">Gray media contain less information because gray has fewer colors.</div>
-    <div class="reject-note" data-copy="es">COLOR. Confunde “gray” con una propiedad cromática y no modifica ninguna tensión del texto. Se descarta.</div>
-    <div class="reject-note" data-copy="en">COLOR. It confuses “gray” with a chromatic property, and changes none of the text's tensions. Discarded.</div>
-  </div>
-</div>
-</div>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">arrastre</div>
-  <div class="section-title" data-copy="en">carry</div>
-
-  <div>
-    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
-    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
-
-    <div class="reading-nav">
-      <a class="prev" href="../009-n-katherine-hayles-my-mother-was-a-computer/index.html">
-  <div>
-    <div class="nav-label" data-copy="es">← viene de 009 · N. Katherine Hayles</div>
-    <div class="nav-label" data-copy="en">← comes from 009 · N. Katherine Hayles</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si aquello que puede aparecer depende de materiales, interfaces y cuerpos situados, pero su forma emerge además de intercambios recursivos entre código, lenguaje, soporte y percepción, sin un único nivel que determine dónde empieza o termina su transformación?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if what can appear depends on situated materials, interfaces, and bodies, while its form also emerges from recursive exchanges among code, language, support, and perception, with no single level determining where its transformation begins or ends?</div>
-  </div>
-</a>
-      <a class="next" href="../011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html">
-  <div>
-    <div class="nav-label" data-copy="es">va hacia 011 · Wendy Hui Kyong Chun →</div>
-    <div class="nav-label" data-copy="en">goes to 011 · Wendy Hui Kyong Chun →</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si aquello que puede aparecer depende de materiales, interfaces y cuerpos situados, y su forma emerge de intercambios recursivos entre código, lenguaje, soporte y percepción, cuando parte de esas transformaciones ocurre además en operaciones grises—protocolos, workflows, bases de datos—que organizan su aparición sin volverse visibles en ella?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if what can appear depends on situated materials, interfaces, and bodies, and its form emerges from recursive exchanges among code, language, support, and perception, when part of those transformations also occurs through gray operations—protocols, workflows, databases—that organize its appearance without becoming visible within it?</div>
-  </div>
-</a>
-    </div>
-  </div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">sobre esta máquina</div>
-  <div class="section-title" data-copy="en">about this machine</div>
-
-  <div class="about-machine" data-copy="es">
-    Esta máquina de lectura fue creada por Kurt Wesp Yianatos. Produce lecturas asistidas por inteligencia artificial y fuerza errores, desvíos y asociaciones improbables para abrir preguntas en lugar de cerrarlas. Cada entrada es revisada y publicada manualmente.
-    <div class="identity">
-      <span>Kurt Wesp Yianatos</span>
-      <span class="tsil-secret-story">KWY-A⁰¹RTBORG</span>
-      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
-      <a href="https://www.kwydesign.com/">kwydesign.com</a>
-    </div>
-  </div>
-
-  <div class="about-machine" data-copy="en">
-    This reading machine was created by Kurt Wesp Yianatos. It produces AI-assisted readings, and deliberately forces errors, deviations, and unlikely associations to open questions rather than close them. Each entry is reviewed, and published manually.
-    <div class="identity">
-      <span>Kurt Wesp Yianatos</span>
-      <span class="tsil-secret-story">KWY-A⁰¹RTBORG</span>
-      <a href="https://www.kurtwespyianatos.com/">kurtwespyianatos.com</a>
-      <a href="https://www.kwydesign.com/">kwydesign.com</a>
-    </div>
-  </div>
-</section>
-
-</main>
-</div>
-<!-- TSIL_SOCIAL_SCRIPT_START -->
-<script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script>
-<!-- TSIL_SOCIAL_SCRIPT_END -->
+<!-- TSIL_SOCIAL_SCRIPT_START --><script id="tsil-social-secret-runtime" src="../../assets/social-export.js" defer></script><!-- TSIL_SOCIAL_SCRIPT_END -->
 </body>
 </html>
