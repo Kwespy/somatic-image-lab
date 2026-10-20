@@ -43,8 +43,8 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 .lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
 .lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
 
-.misregister{position:relative;display:inline-block;isolation:isolate}
-.misregister::after{
+.misregister,.concept{position:relative;display:inline-block;isolation:isolate}
+.misregister::after,.concept::after{
   content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);
   color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none
 }
@@ -64,11 +64,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);overflow:hidden
 }
-.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
-.motion-line .text::after{
-  content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);
-  clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none
-}
+.motion-line .text{display:none!important;position:relative;font-size:clamp(25px,4.1vw,52px);line-height:1.04;letter-spacing:-.045em;flex-wrap:wrap;align-items:baseline;gap:.12em .24em}
+html[data-lang="es"] .motion-line .text[data-copy="es"],
+html[data-lang="en"] .motion-line .text[data-copy="en"]{display:flex!important}
+.motion-line .step{display:inline-flex;align-items:baseline;gap:.24em;white-space:nowrap;min-width:0}
+.motion-line .arrow{color:var(--ink)}
 
 .grid{
   display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;
@@ -81,15 +81,12 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 .large-copy p{margin:0 0 18px}
 .keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
 
-.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
 .pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
-.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
-.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
-.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
 .residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
 
 .error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone,.error-zone *{min-width:0}
+.error-word,.error-collision,.error-statement,.error-opening,.error-question,.reject-text,.reject-note{max-width:100%;overflow-wrap:anywhere}
 .error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
 .error-card{padding:22px;background:var(--ink);color:#fff}
 .error-card .eyebrow{color:#aaa}
@@ -127,10 +124,17 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 @media(max-width:760px){
   .shell{width:min(var(--max),calc(100% - 24px))}
   .grid{grid-template-columns:1fr;gap:14px}
-  .branches{grid-template-columns:1fr}
   .article-hero{padding:46px 0 38px}
 }
 @media(max-width:600px){
+  .article-title{font-size:clamp(40px,14vw,62px)}
+  .motion-line .text{font-size:clamp(19px,6.3vw,28px);gap:.18em .28em}
+  .concept::after{transform:translate(3px,-2px);-webkit-text-stroke:.9px var(--orange)}
+  .error-zone{padding:24px 10px 20px}
+  .error-card{padding:18px 14px}
+  .error-word{font-size:clamp(30px,10vw,44px);line-height:.9;letter-spacing:-.055em}
+  .reject{grid-template-columns:30px minmax(0,1fr);gap:8px}
+  .reject-x{font-size:40px}
   .reading-nav{grid-template-columns:1fr}
   .reading-nav .next{text-align:left}
 }
@@ -155,16 +159,16 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules.">
+<meta name="description" content="Manovich examines how computer media become programmable: data, modular parts, automated operations, and variable versions coexist with cultural forms.">
 <meta name="author" content="Kurt Wesp Yianatos">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="keywords" content="Lev Manovich, The Language of New Media, number → module → variation → transcoding, TRANSPORT / TRANSFER, TICKET, The Somatic Image Lab, Kurt Wesp Yianatos">
+<meta name="keywords" content="Lev Manovich, The Language of New Media, data, modularity, automation, variability, transcoding, window, The Somatic Image Lab, Kurt Wesp Yianatos">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:title" content="The Language of New Media — Lev Manovich">
-<meta property="og:description" content="Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules.">
+<meta property="og:description" content="Manovich examines how computer media become programmable: data, modular parts, automated operations, and variable versions coexist with cultural forms.">
 <meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/">
 <meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
@@ -175,11 +179,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 <meta property="article:published_time" content="2026-09-04">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Language of New Media — Lev Manovich">
-<meta name="twitter:description" content="Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules.">
+<meta name="twitter:description" content="Manovich examines how computer media become programmable: data, modular parts, automated operations, and variable versions coexist with cultural forms.">
 <meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta name="theme-color" content="#f2efe7">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/"},"headline":"The Language of New Media — Lev Manovich","description":"Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules.","datePublished":"2026-09-04","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Language of New Media","author":{"@type":"Person","name":"Lev Manovich"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["number → module → variation → transcoding","TRANSPORT / TRANSFER","TICKET"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 12, "slug": "012-lev-manovich-the-language-of-new-media", "author": "Lev Manovich", "date": "2026-09-04", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/", "title": {"es": "The Language of New Media", "en": "The Language of New Media"}, "parts": {"es": {"title": "The Language of New Media", "subtitle": ""}, "en": {"title": "The Language of New Media", "subtitle": ""}}, "lead": {"es": "Manovich propone que los nuevos medios funcionan como lenguajes: tienen estructuras, sintaxis, convenciones que podemos decodificar. Una imagen digital no es fotografía ni pintura; es un nuevo tipo de lenguaje con reglas propias. El cine sirvió de transición, pero la computadora introduce algo radicalmente distinto: modularidad, variabilidad, interactividad. Entender la imagen digital significa aprender su gramática específica, reconocer que cada interfaz, cada efecto, cada interacción es un enunciado en un idioma que aún estamos aprendiendo.", "en": "Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules. Cinema served as a transition, but the computer introduces something radically different: modularity, variability, interactivity. Understanding digital images means learning their specific grammar, recognizing that every interface, every effect, every interaction is a statement in a language we are still learning."}, "ante": {"es": "¿Tiene el cine un alfabeto? ¿Tiene la imagen digital su propia gramática?", "en": "Does cinema have an alphabet? Does digital image have its own grammar?"}, "description": {"es": "Manovich propone que los nuevos medios funcionan como lenguajes: tienen estructuras, sintaxis, convenciones que podemos decodificar. Una imagen digital no es fotografía ni pintura; es un nuevo tipo de lenguaje con reglas propias.", "en": "Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules."}, "band": {"es": "número → módulo → variación → transcodificación", "en": "number → module → variation → transcoding"}, "error_context": {"es": "TRANSPORTE / TRANSBORDO", "en": "TRANSPORT / TRANSFER"}, "error_word": {"es": "BOLETO", "en": "TICKET"}, "concepts": {"es": ["MÓDULO", "NÚMERO", "BOLETO", "VARIACIÓN"], "en": ["MODULE", "NUMBER", "TICKET", "VARIATION"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/"},"headline":"The Language of New Media — Lev Manovich","description":"Manovich examines how computer media become programmable: data, modular parts, automated operations, and variable versions coexist with cultural forms.","datePublished":"2026-09-04","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Language of New Media","author":{"@type":"Person","name":"Lev Manovich"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["data","modularity","automation","variability","transcoding","window"]}</script>
+<script id="tsil-social-data" type="application/json">{"number":12,"slug":"012-lev-manovich-the-language-of-new-media","author":"Lev Manovich","date":"2026-09-04","canonical":"https://thesomaticimagelab.kurtwespyianatos.com/readings/012-lev-manovich-the-language-of-new-media/","title":{"es":"The Language of New Media","en":"The Language of New Media"},"parts":{"es":{"title":"The Language of New Media","subtitle":""},"en":{"title":"The Language of New Media","subtitle":""}},"lead":{"es":"Manovich estudia qué ocurre cuando los medios se vuelven programables. Una imagen digital conserva significados culturales y, a la vez, funciona como datos que un programa puede calcular, separar, combinar y presentar en distintas versiones.","en":"Manovich examines what happens when media become programmable. A digital image retains cultural meanings while also functioning as data that a program can calculate, separate, combine, and present in different versions."},"ante":{"es":"¿Qué puede hacer una imagen cuando también es un conjunto de datos?","en":"What can an image do when it is also a set of data?"},"description":{"es":"Manovich estudia cómo los medios computacionales se vuelven programables: datos, partes modulares, operaciones automatizadas y versiones variables conviven con formas culturales.","en":"Manovich examines how computer media become programmable: data, modular parts, automated operations, and variable versions coexist with cultural forms."},"band":{"es":"datos → módulos → operaciones → versiones","en":"data → modules → operations → versions"},"error_context":{"es":"ARQUITECTURA Y ENCUADRE","en":"ARCHITECTURE AND FRAMING"},"error_word":{"es":"VENTANA","en":"WINDOW"},"concepts":{"es":["DATOS","MÓDULOS","OPERACIONES","VENTANA"],"en":["DATA","MODULES","OPERATIONS","WINDOW"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
 <style id="tsil-social-secret-style">
@@ -196,6 +200,12 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 #tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
 </style>
 <!-- TSIL_SOCIAL_STYLE_END -->
+
+
+
+
+
+
 
 
 
@@ -281,19 +291,19 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
   <div class="article-author">Lev Manovich</div>
 
-    <div class="article-ante" data-copy="es">¿Tiene el cine un alfabeto? ¿Tiene la imagen digital su propia gramática?</div>
-    <div class="article-ante" data-copy="en">Does cinema have an alphabet? Does digital image have its own grammar?</div>
+    <div class="article-ante" data-copy="es">¿Qué puede hacer una imagen cuando también es un conjunto de datos?</div>
+    <div class="article-ante" data-copy="en">What can an image do when it is also a set of data?</div>
   <div class="article-lead" data-copy="es">
-      Manovich propone que los nuevos medios funcionan como lenguajes: tienen estructuras, sintaxis, convenciones que podemos decodificar. Una imagen digital no es fotografía ni pintura; es un nuevo tipo de lenguaje con reglas propias. El cine sirvió de transición, pero la computadora introduce algo radicalmente distinto: modularidad, variabilidad, interactividad. Entender la imagen digital significa aprender su gramática específica, reconocer que cada interfaz, cada efecto, cada interacción es un enunciado en un idioma que aún estamos aprendiendo.
+      Manovich estudia qué ocurre cuando los medios se vuelven programables. Una imagen digital conserva significados culturales y, a la vez, funciona como datos que un programa puede calcular, separar, combinar y presentar en distintas versiones.
     </div>
   <div class="article-lead" data-copy="en">
-      Manovich proposes that new media function like languages: they have structures, syntax, conventions we can decode. A digital image is neither photography nor painting; it is a new kind of language with its own rules. Cinema served as a transition, but the computer introduces something radically different: modularity, variability, interactivity. Understanding digital images means learning their specific grammar, recognizing that every interface, every effect, every interaction is a statement in a language we are still learning.
+      Manovich examines what happens when media become programmable. A digital image retains cultural meanings while also functioning as data that a program can calculate, separate, combine, and present in different versions.
     </div>
 </section>
 
 <div class="motion-line">
-  <div class="text" data-text="número → módulo → variación → transcodificación" data-copy="es">número → módulo → variación → transcodificación</div>
-  <div class="text" data-text="number → module → variation → transcoding" data-copy="en">number → module → variation → transcoding</div>
+  <div class="text" data-copy="es"><span class="concept" data-text="datos">datos</span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="módulos">módulos</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="operaciones">operaciones</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="versiones">versiones</span></span></div>
+  <div class="text" data-copy="en"><span class="concept" data-text="data">data</span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="modules">modules</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="operations">operations</span></span> <span class="step"><span class="arrow">→</span><span class="concept" data-text="versions">versions</span></span></div>
 </div>
 
 <section class="grid">
@@ -301,15 +311,17 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">in 1 minute</div>
 
   <div class="large-copy" data-copy="es">
-    <p>Manovich propone cinco principios para pensar los nuevos medios: representación numérica, modularidad, automatización, variabilidad y transcodificación. Estos principios desplazan la imagen desde el objeto fijo hacia una estructura susceptible de cálculo y reorganización.</p>
-    <p>La variabilidad es central: un objeto de nuevos medios puede existir en muchas versiones. Sus elementos mantienen identidades separadas y pueden recombinarse bajo control del programa, en vez de quedar ensamblados de una vez y para siempre.</p>
-    <p>La transcodificación añade otro nivel. Cuando los medios se convierten en datos computacionales, las categorías culturales comienzan a convivir con la lógica propia del computador. La imagen sigue siendo legible culturalmente, pero también existe como datos, estructuras y operaciones.</p>
+    <p>Manovich describe cinco principios de los nuevos medios: representación numérica, modularidad, automatización, variabilidad y transcodificación. Los presenta como tendencias generales, no como leyes que toda obra digital deba cumplir.</p>
+    <p>La <em>representación numérica</em> significa que una imagen digital está codificada como datos. Por eso un programa puede describirla y modificarla mediante operaciones: cambiar el contraste, recortar una zona o buscar valores determinados. En este sentido, el medio se vuelve programable.</p>
+    <p>La <em>modularidad</em> permite que partes como píxeles, capas, texto o sonido conserven cierta independencia. Sobre ellas pueden actuar procesos automáticos. La <em>variabilidad</em> es una consecuencia de esta organización: un mismo objeto puede producir distintas versiones sin quedar fijado de una vez para siempre.</p>
+    <p>La <em>transcodificación</em> nombra la convivencia entre dos capas. En la cultural reconocemos un retrato, una noticia o un montaje; en la computacional operan archivos, metadatos, menús y bases de datos. Una capa no reemplaza a la otra: ambas participan en cómo la imagen se organiza y se vuelve accesible.</p>
   </div>
 
   <div class="large-copy" data-copy="en">
-    <p>Manovich proposes five principles for thinking about new media: numerical representation, modularity, automation, variability, and transcoding. These principles shift the image from a fixed object toward a structure open to calculation, and reorganization.</p>
-    <p>Variability is central: a new media object can exist in many versions. Its elements maintain separate identities, and can be recombined under program control rather than assembled once, and for all.</p>
-    <p>Transcoding adds another level. When media become computer data, cultural categories begin to coexist with the computer's own logic. The image remains culturally legible, but it also exists as data, structures, and operations.</p>
+    <p>Manovich describes five principles of new media: numerical representation, modularity, automation, variability, and transcoding. He presents them as general tendencies, not as laws that every digital work must obey.</p>
+    <p><em>Numerical representation</em> means that a digital image is encoded as data. A program can therefore describe and modify it through operations: changing contrast, cropping an area, or searching for particular values. In this sense, the medium becomes programmable.</p>
+    <p><em>Modularity</em> allows parts such as pixels, layers, text, or sound to retain a degree of independence. Automated processes can act on those parts. <em>Variability</em> follows from this organization: the same object can produce different versions instead of being fixed once and for all.</p>
+    <p><em>Transcoding</em> names the coexistence of two layers. In the cultural layer we recognize a portrait, a news image, or a montage; in the computer layer, files, metadata, menus, and databases operate. One layer does not replace the other: both participate in how an image is organized and made accessible.</p>
   </div>
 </section>
 
@@ -318,53 +330,41 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">three things to keep</div>
 
   <div data-copy="es">
-    <div class="keep">Una imagen digital puede ser una familia de versiones y no un objeto fijado de una vez para siempre.</div>
-    <div class="keep">La modularidad permite que elementos de una imagen conserven cierta independencia y sean recombinados mediante operaciones.</div>
-    <div class="keep">En el computador, una imagen existe simultáneamente dentro de una lógica cultural y una lógica computacional que pueden reorganizarse mutuamente.</div>
+    <div class="keep">Los datos hacen que una imagen sea programable, pero no determinan por sí solos lo que significa.</div>
+    <div class="keep">La modularidad permite actuar sobre partes sin convertir necesariamente todo el objeto en una sola pieza indivisible.</div>
+    <div class="keep">Una versión visible es un resultado posible de reglas, datos e interfaz; no agota todas las formas que el objeto puede tomar.</div>
   </div>
 
   <div data-copy="en">
-    <div class="keep">A digital image can be a family of versions rather than an object fixed once, and for all.</div>
-    <div class="keep">Modularity allows elements of an image to retain a degree of independence, and be recombined through operations.</div>
-    <div class="keep">In the computer, an image exists simultaneously within a cultural logic, and a computational logic that can reorganize one another.</div>
+    <div class="keep">Data make an image programmable, but do not determine its meaning on their own.</div>
+    <div class="keep">Modularity makes it possible to act on parts without necessarily turning the whole object into one indivisible piece.</div>
+    <div class="keep">A visible version is one possible result of rules, data, and interface; it does not exhaust every form the object can take.</div>
   </div>
 </section>
 
-<div class="threshold">
-<section class="grid" style="border-top:0">
+<section class="grid">
   <div class="section-title" data-copy="es">punto de arrastre</div>
   <div class="section-title" data-copy="en">carry point</div>
 
-  <div>
-    <div class="threshold-note" data-copy="es">Aquí entra la tensión heredada desde el reading anterior: trae una pregunta, intuición o problema previo y lo hace friccionar con la lectura actual.</div>
-    <div class="threshold-note" data-copy="en">Here the tension inherited from the previous reading enters: it brings a prior question, intuition or problem into friction with the current reading.</div>
+  <div class="pressure" data-copy="es">El <a href="../011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html">reading 011</a> mostró que una actualización puede sostener una rutina mientras modifica sus condiciones. Manovich permite mirar dentro de esa modificación: si la imagen es programable, el sistema puede reorganizar módulos y producir versiones. La continuidad ya no depende solo de lo que una persona reconoce, sino también de qué datos y operaciones siguen disponibles.</div>
 
-    <div class="pressure" data-copy="es">El arrastre de Chun preguntaba cuánto debe modificarse una imagen para poder seguir apareciendo como la misma, cuando hábitos y actualizaciones sostienen su continuidad. Manovich cambia el punto de partida: en los nuevos medios la variación no necesariamente altera un objeto originalmente estable, porque el objeto mismo puede estar constituido como conjunto de versiones posibles. La identidad podría residir menos en una forma final que en una estructura capaz de producir diferencias.</div>
-
-    <div class="pressure" data-copy="en">Chun's carry asked how much an image must be modified in order to keep appearing as the same when habits, and updates sustain its continuity. Manovich changes the starting point: in new media, variation does not necessarily alter an originally stable object, because the object itself can be constituted as a set of possible versions. Identity may reside less in a final form than in a structure capable of producing differences.</div>
-  </div>
+  <div class="pressure" data-copy="en"><a href="../011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html">Reading 011</a> showed that an update can sustain a routine while changing its conditions. Manovich lets us look inside that change: if the image is programmable, a system can reorganize modules and produce versions. Continuity no longer depends only on what a person recognizes, but also on which data and operations remain available.</div>
 </section>
 
 <section class="grid">
-  <div class="section-title" data-copy="es">proposición incompleta</div>
-  <div class="section-title" data-copy="en">unfinished proposition</div>
+  <div class="section-title" data-copy="es">por ejemplo</div>
+  <div class="section-title" data-copy="en">for example</div>
 
-  <div class="incomplete" data-copy="es">Si una imagen digital puede existir como múltiples versiones producidas desde una misma estructura, entonces llamar “original” a una de ellas significaría…</div>
-  <div class="incomplete" data-copy="en">If a digital image can exist as multiple versions produced from the same structure, then calling one of them the “original” would mean…</div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">bifurcación</div>
-  <div class="section-title" data-copy="en">bifurcation</div>
-
-  <div class="branches" data-copy="es">
-    <div class="branch">Las distintas versiones son transformaciones posteriores de una imagen que conserva una identidad anterior.</div>
-    <div class="branch">La imagen digital puede ser precisamente el sistema que permite generar esas versiones, sin que ninguna realización agote completamente su identidad.</div>
+  <div class="large-copy" data-copy="es">
+    <p>Toma una fotografía con el teléfono y abre su información. Anota dimensiones, tamaño, fecha y orientación; mira también el encuadre completo y las imágenes que aparecen antes y después en el álbum.</p>
+    <p>Envíatela por una aplicación de mensajería, descarga la copia y compara los mismos datos. Observa además la vista previa del chat: su escala, posible recorte, texto asociado y lugar en la secuencia. La interfaz organiza una lectura concreta aunque la fotografía parezca casi igual.</p>
+    <p>Si cambian el tamaño, los metadatos o el encuadre, puedes reconocer operaciones entre una versión y otra. Si no cambian, eso no prueba que no haya mediación: solo fija el límite de lo que esta comparación permite verificar. ¿Qué pertenece a los datos de la imagen y qué fue decidido por el programa y la interfaz?</p>
   </div>
 
-  <div class="branches" data-copy="en">
-    <div class="branch">Different versions are later transformations of an image that preserves an earlier identity.</div>
-    <div class="branch">The digital image may instead be the system that makes those versions possible, with no single realization exhausting its identity.</div>
+  <div class="large-copy" data-copy="en">
+    <p>Take a photograph with your phone and open its information. Note its dimensions, file size, date, and orientation; also look at the full frame and the images that come before and after it in the album.</p>
+    <p>Send it to yourself through a messaging app, download the copy, and compare the same details. Then examine the chat preview: its scale, possible crop, associated text, and place in the sequence. The interface organizes a particular reading even if the photograph looks almost the same.</p>
+    <p>If the file size, metadata, or frame changes, you can identify operations between one version and another. If they do not change, that does not prove there was no mediation; it only marks the limit of what this comparison can verify. What belongs to the image data, and what was decided by the program and interface?</p>
   </div>
 </section>
 
@@ -372,17 +372,10 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="es">residuo</div>
   <div class="section-title" data-copy="en">residue</div>
 
-  <div data-copy="es">
-    <div class="residue">La diferencia entre original y variante se vuelve inestable cuando la variabilidad forma parte de la estructura del objeto.</div>
-    <div class="residue">Una operación puede existir separada de los datos a los que se aplica; por eso una misma transformación puede circular entre imágenes diferentes.</div>
-  </div>
+  <div class="residue" data-copy="es">Para comprender una imagen digital no basta con mirar lo que aparece en pantalla: también hay que preguntar qué datos, módulos y operaciones hicieron posible esa versión.</div>
 
-  <div data-copy="en">
-    <div class="residue">The difference between original, and variant becomes unstable when variability is part of the object's structure.</div>
-    <div class="residue">An operation can exist separately from the data to which it is applied; the same transformation can therefore circulate among different images.</div>
-  </div>
+  <div class="residue" data-copy="en">To understand a digital image, looking at what appears on the screen is not enough: we must also ask which data, modules, and operations made that version possible.</div>
 </section>
-</div>
 
 <div class="error-zone">
 <section class="grid" style="border-top:0;padding-top:0">
@@ -397,37 +390,39 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 <div class="error-card">
     <div class="eyebrow" data-copy="es">contexto importado</div>
     <div class="eyebrow" data-copy="en">imported context</div>
-    <div class="error-context" data-copy="es">TRANSPORTE / TRANSBORDO</div>
-    <div class="error-context" data-copy="en">TRANSPORT / TRANSFER</div>
+    <div class="error-context" data-copy="es">ARQUITECTURA Y ENCUADRE</div>
+    <div class="error-context" data-copy="en">ARCHITECTURE AND FRAMING</div>
 
     <div class="eyebrow" data-copy="es">palabra importada</div>
     <div class="eyebrow" data-copy="en">imported word</div>
-    <div class="error-word" data-copy="es">BOLETO</div>
-    <div class="error-word" data-copy="en">TICKET</div>
+    <div class="error-word" data-copy="es">VENTANA</div>
+    <div class="error-word" data-copy="en">WINDOW</div>
 
     <div class="eyebrow" data-copy="es">colisión</div>
     <div class="eyebrow" data-copy="en">collision</div>
-    <div class="error-collision" data-copy="es">versión × boleto</div>
-    <div class="error-collision" data-copy="en">version × ticket</div>
+    <div class="error-collision" data-copy="es">versión × ventana</div>
+    <div class="error-collision" data-copy="en">version × window</div>
 
     <div class="eyebrow" data-copy="es">error forzado</div>
     <div class="eyebrow" data-copy="en">forced error</div>
-    <div class="error-statement" data-copy="es">Cada versión de una imagen digital necesita llevar el mismo boleto para seguir perteneciendo al mismo viaje.</div>
-    <div class="error-statement" data-copy="en">Every version of a digital image needs to carry the same ticket in order to remain part of the same journey.</div>
+    <div class="error-statement" data-copy="es">Cada versión de una imagen digital es una ventana abierta sobre el mismo conjunto de datos.</div>
+    <div class="error-statement" data-copy="en">Every version of a digital image is a window opened onto the same set of data.</div>
 
     <div class="eyebrow" data-copy="es">lo que se escapó</div>
     <div class="eyebrow" data-copy="en">what escaped</div>
     <div class="error-opening" data-copy="es">
-      Una imagen no viaja con un boleto y ninguna credencial única garantiza que dos versiones sean “la misma”. Pero el error fuerza una pregunta por aquello que mantiene juntas las variantes: ¿es el archivo de origen, una estructura modular, ciertos datos, una operación, una relación de procedencia o simplemente una decisión de clasificación? Cuando la forma visible puede variar mucho, la continuidad necesita desplazarse hacia otra parte.
+      <p>Una <em>ventana</em> arquitectónica abre una vista y, al mismo tiempo, la delimita mediante un marco. TSIL importa esta palabra para pensar cada versión como una forma parcial de acceso. No es uno de los cinco principios definidos por Manovich.</p>
+      <p>La comparación falla si supone que detrás de todas las ventanas existe un conjunto de datos intacto. Una operación puede recortar, comprimir, reordenar o eliminar información: la versión no solo muestra, también transforma. La interfaz decide además la escala, la secuencia y el contexto desde los que miramos.</p>
     </div>
     <div class="error-opening" data-copy="en">
-      An image does not travel with a ticket, and no single credential guarantees that two versions are “the same.” But the error forces a question about what holds variants together: is it the source file, a modular structure, certain data, an operation, a relation of provenance, or simply a classificatory decision? When visible form can vary widely, continuity has to move somewhere else.
+      <p>An architectural <em>window</em> opens a view while delimiting it through a frame. TSIL imports the word to think of each version as a partial form of access. It is not one of the five principles defined by Manovich.</p>
+      <p>The comparison fails if it assumes that an intact set of data lies behind every window. An operation can crop, compress, reorder, or remove information: a version does not merely display; it also transforms. The interface further determines the scale, sequence, and context from which we look.</p>
     </div>
 
     <div class="eyebrow" data-copy="es">pregunta que queda</div>
     <div class="eyebrow" data-copy="en">question left behind</div>
-    <div class="error-question" data-copy="es">¿Qué tiene que permanecer entre dos versiones para que todavía podamos decir que pertenecen a la misma imagen?</div>
-    <div class="error-question" data-copy="en">What has to remain between two versions for us still to say that they belong to the same image?</div>
+    <div class="error-question" data-copy="es">¿Qué deja fuera del marco la operación que produjo esta versión?</div>
+    <div class="error-question" data-copy="en">What does the operation that produced this version leave outside the frame?</div>
   </div>
 </div>
 </section>
@@ -437,10 +432,10 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div>
     <div class="eyebrow" data-copy="es">error que no produjo nada</div>
     <div class="eyebrow" data-copy="en">error that produced nothing</div>
-    <div class="reject-text" data-copy="es">Una imagen con más versiones necesita pagar más pasajes.</div>
-    <div class="reject-text" data-copy="en">An image with more versions needs to buy more fares.</div>
-    <div class="reject-note" data-copy="es">TARIFA. Convierte la variabilidad en cantidad de copias y no abre ninguna relación útil con la estructura del objeto. Se descarta.</div>
-    <div class="reject-note" data-copy="en">FARE. It reduces variability to a number of copies, and opens no useful relation to the object's structure. Discarded.</div>
+    <div class="reject-text" data-copy="es">Una imagen necesita una ventana para entrar al computador.</div>
+    <div class="reject-text" data-copy="en">An image needs a window to enter the computer.</div>
+    <div class="reject-note" data-copy="es">ENTRADA. Convierte la ventana en una puerta y no permite examinar cómo una versión encuadra o transforma sus datos. Se descarta.</div>
+    <div class="reject-note" data-copy="en">ENTRY. It turns the window into a door and does not help examine how a version frames or transforms its data. Discarded.</div>
   </div>
 </div>
 </div>
@@ -450,24 +445,24 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">carry</div>
 
   <div>
-    <div class="carry-rule" data-copy="es">Estas preguntas condensan las tensiones entre el texto leído y su Máquina de Error. Dialogan entre sí, avanzan o retroceden hacia readings de distintos autores y heredan contaminaciones previas para abrir preguntas que sin el error no aparecerían.</div>
-    <div class="carry-rule" data-copy="en">These questions condense the tensions between the reading and its Error Machine. They speak to one another, move forward or backward across readings by different authors, and inherit previous contaminations to open questions that would not appear without error.</div>
+    <div class="carry-rule" data-copy="es">La Máquina de Error condensa tensiones y hereda preguntas de otros readings para abrir relaciones que el texto no formula por sí solo.</div>
+    <div class="carry-rule" data-copy="en">The Error Machine condenses tensions and inherits questions from other readings to open relations the text does not formulate on its own.</div>
 
     <div class="reading-nav">
       <a class="prev" href="../011-wendy-hui-kyong-chun-updating-to-remain-the-same-habitual-new-media/index.html">
   <div>
     <div class="nav-label" data-copy="es">← viene de 011 · Wendy Hui Kyong Chun</div>
     <div class="nav-label" data-copy="en">← comes from 011 · Wendy Hui Kyong Chun</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si su aparición depende de materiales, interfaces, cuerpos, código y operaciones grises que actúan sin hacerse visibles, cuando su continuidad exige además hábitos y actualizaciones que la modifican repetidamente para que pueda seguir apareciendo como si permaneciera igual?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if its appearance depends on materials, interfaces, bodies, code, and gray operations that act without becoming visible, when its continuity also requires habits, and updates that repeatedly modify it so that it can keep appearing as if it remained the same?</div>
+    <div class="nav-q" data-copy="es">¿Qué hábito intenta conservar esta actualización y qué comportamiento nuevo exige?</div>
+    <div class="nav-q" data-copy="en">Which habit is this update trying to preserve, and which new behavior does it demand?</div>
   </div>
 </a>
       <a class="next" href="../013-friedrich-kittler-optical-media/index.html">
   <div>
     <div class="nav-label" data-copy="es">va hacia 013 · Friedrich Kittler →</div>
     <div class="nav-label" data-copy="en">goes to 013 · Friedrich Kittler →</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si su continuidad depende de materiales, interfaces, cuerpos, código, hábitos y operaciones invisibles, cuando además puede existir desde el comienzo como una estructura variable capaz de generar múltiples versiones sin que ninguna de ellas agote por completo aquello que llamamos “la imagen”?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if its continuity depends on materials, interfaces, bodies, code, habits, and invisible operations, when from the beginning it can also exist as a variable structure capable of generating multiple versions without any one of them fully exhausting what we call “the image”?</div>
+    <div class="nav-q" data-copy="es">Si una imagen depende de datos y operaciones para aparecer, ¿qué historia técnica hizo posibles esas operaciones?</div>
+    <div class="nav-q" data-copy="en">If an image depends on data and operations in order to appear, which technical history made those operations possible?</div>
   </div>
 </a>
     </div>
