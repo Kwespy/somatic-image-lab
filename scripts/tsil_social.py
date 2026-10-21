@@ -290,7 +290,9 @@ def question_story_html(d, lang, render=False, question_override=None):
         question_lines.append(f'<span class="signal">{text}</span>' if index == 2 else text)
     question_markup = '<br>'.join(question_lines) or esc(question)
     display_title = re.sub(r'\s*\([^)]*\)', '', p['title']).strip()
-    field = 'IMAGEN OPERACIONAL' if lang == 'es' else 'OPERATIONAL IMAGE'
+    band_steps = [step.strip().upper() for step in d['band'][lang].split('→') if step.strip()]
+    field = (band_steps[2] if len(band_steps) > 2
+             else ('IMAGEN' if lang == 'es' else 'IMAGE'))
     word_label = 'PALABRA IMPORTADA' if lang == 'es' else 'IMPORTED WORD'
     cls = 'render' if render else ''
     subtitle = f'<br>{esc(p["subtitle"])}' if p['subtitle'] else ''
