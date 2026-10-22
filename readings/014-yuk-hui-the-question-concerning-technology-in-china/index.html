@@ -43,8 +43,8 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 .lang-switch button{border:0;background:none;padding:2px 0;color:var(--muted);cursor:pointer}
 .lang-switch button.active{color:var(--ink);border-bottom:1px solid currentColor}
 
-.misregister{position:relative;display:inline-block;isolation:isolate}
-.misregister::after{
+.misregister,.concept{position:relative;display:inline-block;isolation:isolate}
+.misregister::after,.concept::after{
   content:attr(data-text);position:absolute;inset:0;transform:translate(6px,-3px);
   color:transparent;-webkit-text-stroke:1.2px var(--orange);z-index:-1;pointer-events:none
 }
@@ -64,11 +64,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   position:relative;margin:0 0 72px;padding:26px 0;border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);overflow:hidden
 }
-.motion-line .text{position:relative;font-size:clamp(26px,4.3vw,56px);line-height:1.02;letter-spacing:-.045em}
-.motion-line .text::after{
-  content:attr(data-text);position:absolute;left:5px;top:-2px;color:var(--orange);
-  clip-path:inset(0 0 56% 0);mix-blend-mode:multiply;pointer-events:none
-}
+.motion-line .text{display:none!important;position:relative;font-size:clamp(25px,4.1vw,52px);line-height:1.04;letter-spacing:-.045em;flex-wrap:wrap;align-items:baseline;gap:.12em .24em}
+html[data-lang="es"] .motion-line .text[data-copy="es"],
+html[data-lang="en"] .motion-line .text[data-copy="en"]{display:flex!important}
+.motion-line .step{display:inline-flex;align-items:baseline;gap:.24em;white-space:nowrap;min-width:0}
+.motion-line .arrow{color:var(--ink)}
 
 .grid{
   display:grid;grid-template-columns:170px minmax(0,1fr);gap:34px;
@@ -81,15 +81,12 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 .large-copy p{margin:0 0 18px}
 .keep{padding:13px 0;border-top:1px solid var(--ink);font-size:clamp(20px,2.2vw,28px);line-height:1.22}
 
-.threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
 .pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
-.threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
-.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
-.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
 .residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
 
 .error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
+.error-zone,.error-zone *{min-width:0}
+.error-word,.error-collision,.error-statement,.error-opening,.error-question,.reject-text,.reject-note{max-width:100%;overflow-wrap:anywhere}
 .error-zone .section-title,.error-zone .reject .eyebrow{color:#fff}
 .error-card{padding:22px;background:var(--ink);color:#fff}
 .error-card .eyebrow{color:#aaa}
@@ -127,10 +124,17 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 @media(max-width:760px){
   .shell{width:min(var(--max),calc(100% - 24px))}
   .grid{grid-template-columns:1fr;gap:14px}
-  .branches{grid-template-columns:1fr}
   .article-hero{padding:46px 0 38px}
 }
 @media(max-width:600px){
+  .article-title{font-size:clamp(40px,14vw,62px)}
+  .motion-line .text{font-size:clamp(19px,6.3vw,28px);gap:.18em .28em}
+  .concept::after{transform:translate(3px,-2px);-webkit-text-stroke:.9px var(--orange)}
+  .error-zone{padding:24px 10px 20px}
+  .error-card{padding:18px 14px}
+  .error-word{font-size:clamp(26px,9vw,40px);line-height:.9;letter-spacing:-.055em}
+  .reject{grid-template-columns:30px minmax(0,1fr);gap:8px}
+  .reject-x{font-size:40px}
   .reading-nav{grid-template-columns:1fr}
   .reading-nav .next{text-align:left}
 }
@@ -155,16 +159,16 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="For Yuk Hui, no universal technics exists. What Heidegger describes as &#x27;the essence&#x27; of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral).">
+<meta name="description" content="Yuk Hui defines cosmotechnics as the unification of cosmic and moral orders through technical activities, opening technology to histories and futures beyond a single universal path.">
 <meta name="author" content="Kurt Wesp Yianatos">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="keywords" content="Yuk Hui, The Question Concerning Technology in China: An Essay in Cosmotechnics, technics → cosmology → cosmotechnics → naturalization, IMMIGRATION LAW / CITIZENSHIP, NATURALIZATION, The Somatic Image Lab, Kurt Wesp Yianatos">
+<meta name="keywords" content="Yuk Hui, The Question Concerning Technology in China, cosmotechnics, cosmic order, moral order, Dao, qi, technical plurality, naturalization, The Somatic Image Lab, Kurt Wesp Yianatos">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:title" content="The Question Concerning Technology in China: An Essay in Cosmotechnics — Yuk Hui">
-<meta property="og:description" content="For Yuk Hui, no universal technics exists. What Heidegger describes as &#x27;the essence&#x27; of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral).">
+<meta property="og:description" content="Yuk Hui defines cosmotechnics as the unification of cosmic and moral orders through technical activities, opening technology to histories and futures beyond a single universal path.">
 <meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/">
 <meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
@@ -175,11 +179,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 <meta property="article:published_time" content="2026-09-06">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Question Concerning Technology in China: An Essay in Cosmotechnics — Yuk Hui">
-<meta name="twitter:description" content="For Yuk Hui, no universal technics exists. What Heidegger describes as &#x27;the essence&#x27; of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral).">
+<meta name="twitter:description" content="Yuk Hui defines cosmotechnics as the unification of cosmic and moral orders through technical activities, opening technology to histories and futures beyond a single universal path.">
 <meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta name="theme-color" content="#f2efe7">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/"},"headline":"The Question Concerning Technology in China: An Essay in Cosmotechnics — Yuk Hui","description":"For Yuk Hui, no universal technics exists. What Heidegger describes as 'the essence' of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral).","datePublished":"2026-09-06","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Question Concerning Technology in China: An Essay in Cosmotechnics","author":{"@type":"Person","name":"Yuk Hui"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["technics → cosmology → cosmotechnics → naturalization","IMMIGRATION LAW / CITIZENSHIP","NATURALIZATION"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 14, "slug": "014-yuk-hui-the-question-concerning-technology-in-china", "author": "Yuk Hui", "date": "2026-09-06", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/", "title": {"es": "The Question Concerning Technology in China: An Essay in Cosmotechnics", "en": "The Question Concerning Technology in China: An Essay in Cosmotechnics"}, "parts": {"es": {"title": "The Question Concerning Technology in China", "subtitle": "An Essay in Cosmotechnics"}, "en": {"title": "The Question Concerning Technology in China", "subtitle": "An Essay in Cosmotechnics"}}, "lead": {"es": "Para Yuk Hui, no existe técnica universal. Lo que Heidegger describe como 'la esencia' de la técnica moderna es en realidad una cosmotécnica: una fusión entre una lógica técnica y una visión del mundo (cósmica y moral). Occidente tiene la suya, pero China tiene otra, y otras culturas otras más. La pregunta no es qué es la técnica, sino cuál es la cosmotécnica detrás de lo que llamamos 'la' técnica.", "en": "For Yuk Hui, no universal technics exists. What Heidegger describes as 'the essence' of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral). The West has its own, but China has another—and other cultures have others still. The question is not what technics is, but which cosmotechnics lies behind what we call 'the' technics."}, "ante": {"es": "Una imagen viaja entre máquinas: se almacena, se transmite, se procesa. ¿Esas operaciones son neutrales, o ya son cosmotécnicas—es decir, formas particulares de ver el mundo?", "en": "An image travels between machines: it is stored, transmitted, processed. Are those technical operations neutral, or are they already cosmotechnics—that is, particular ways of seeing the world?"}, "description": {"es": "Para Yuk Hui, no existe técnica universal. Lo que Heidegger describe como 'la esencia' de la técnica moderna es en realidad una cosmotécnica: una fusión entre una lógica técnica y una visión del mundo (cósmica y moral).", "en": "For Yuk Hui, no universal technics exists. What Heidegger describes as 'the essence' of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral)."}, "band": {"es": "técnica → cosmología → cosmotécnica → naturalización", "en": "technics → cosmology → cosmotechnics → naturalization"}, "error_context": {"es": "DERECHO MIGRATORIO / CIUDADANÍA", "en": "IMMIGRATION LAW / CITIZENSHIP"}, "error_word": {"es": "NATURALIZACIÓN", "en": "NATURALIZATION"}, "concepts": {"es": ["TÉCNICA", "COSMOLOGÍA", "COSMOTÉCNICA", "NATURALIZACIÓN"], "en": ["TECHNICS", "COSMOLOGY", "COSMOTECHNICS", "NATURALIZATION"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/"},"headline":"The Question Concerning Technology in China: An Essay in Cosmotechnics — Yuk Hui","description":"Yuk Hui defines cosmotechnics as the unification of cosmic and moral orders through technical activities, opening technology to histories and futures beyond a single universal path.","datePublished":"2026-09-06","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Question Concerning Technology in China: An Essay in Cosmotechnics","author":{"@type":"Person","name":"Yuk Hui"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["cosmotechnics","cosmic order","moral order","Dao","qi","technical plurality","naturalization"]}</script>
+<script id="tsil-social-data" type="application/json">{"number":14,"slug":"014-yuk-hui-the-question-concerning-technology-in-china","author":"Yuk Hui","date":"2026-09-06","canonical":"https://thesomaticimagelab.kurtwespyianatos.com/readings/014-yuk-hui-the-question-concerning-technology-in-china/","title":{"es":"The Question Concerning Technology in China: An Essay in Cosmotechnics","en":"The Question Concerning Technology in China: An Essay in Cosmotechnics"},"parts":{"es":{"title":"The Question Concerning Technology in China","subtitle":"An Essay in Cosmotechnics"},"en":{"title":"The Question Concerning Technology in China","subtitle":"An Essay in Cosmotechnics"}},"lead":{"es":"Hui llama cosmotécnica a la unión de un orden cósmico y un orden moral mediante actividades técnicas. El concepto permite preguntar qué relaciones con el mundo sostienen una tecnología y abrir futuros técnicos que no sigan un único camino universal.","en":"Hui calls cosmotechnics the unification of a cosmic order and a moral order through technical activities. The concept asks which relations to the world sustain a technology and opens technical futures beyond a single universal path."},"ante":{"es":"Cuando una tecnología parece universal, ¿qué relación con el mundo ha conseguido ocultar?","en":"When a technology appears universal, which relation to the world has it managed to hide?"},"description":{"es":"Yuk Hui define la cosmotécnica como la unión de órdenes cósmicos y morales mediante actividades técnicas, y abre la tecnología a historias y futuros que no siguen un único camino universal.","en":"Yuk Hui defines cosmotechnics as the unification of cosmic and moral orders through technical activities, opening technology to histories and futures beyond a single universal path."},"band":{"es":"cosmos → moral → actividad técnica → pluralidad","en":"cosmos → moral → technical activity → plurality"},"error_context":{"es":"DERECHO MIGRATORIO / CIUDADANÍA","en":"IMMIGRATION LAW / CITIZENSHIP"},"error_word":{"es":"NATURALIZACIÓN","en":"NATURALIZATION"},"concepts":{"es":["COSMOS","MORAL","COSMOTÉCNICA","NATURALIZACIÓN"],"en":["COSMOS","MORAL","COSMOTECHNICS","NATURALIZATION"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
 <style id="tsil-social-secret-style">
@@ -196,62 +200,6 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 #tsil-secret-export .tsil-export-note{margin-top:12px;font-size:9px;line-height:1.4;color:#706b63}
 </style>
 <!-- TSIL_SOCIAL_STYLE_END -->
-
-
-
-<style id="tsil-carry-flow-v4">
-.carry-rule{
-  margin:10px 0 18px;
-  max-width:760px;
-  font-size:11px;
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--muted);
-}
-.reading-nav{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:16px;
-}
-.reading-nav a,
-.reading-nav .nav-block{
-  min-height:126px;
-  padding:14px;
-  border:1px solid var(--line);
-  color:inherit;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.reading-nav a:hover{border-color:var(--orange)}
-.reading-nav .next{text-align:right}
-.nav-label{
-  font-size:10px;
-  line-height:1.35;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-.nav-q{
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.28;
-  letter-spacing:-.01em;
-  text-transform:none;
-}
-.nav-block.pending{border-style:dashed}
-.nav-block.start .nav-q{
-  color:var(--muted);
-  font-size:13px;
-}
-.carry-source{display:none!important}
-@media(max-width:600px){
-  .reading-nav{grid-template-columns:1fr}
-  .reading-nav .next{text-align:left}
-}
-</style>
 
 </head>
 <body>
@@ -281,19 +229,29 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
   <div class="article-author">Yuk Hui</div>
 
-    <div class="article-ante" data-copy="es">Una imagen viaja entre máquinas: se almacena, se transmite, se procesa. ¿Esas operaciones son neutrales, o ya son cosmotécnicas—es decir, formas particulares de ver el mundo?</div>
-    <div class="article-ante" data-copy="en">An image travels between machines: it is stored, transmitted, processed. Are those technical operations neutral, or are they already cosmotechnics—that is, particular ways of seeing the world?</div>
+    <div class="article-ante" data-copy="es">Cuando una tecnología parece universal, ¿qué relación con el mundo ha conseguido ocultar?</div>
+    <div class="article-ante" data-copy="en">When a technology appears universal, which relation to the world has it managed to hide?</div>
   <div class="article-lead" data-copy="es">
-      Para Yuk Hui, no existe técnica universal. Lo que Heidegger describe como 'la esencia' de la técnica moderna es en realidad una cosmotécnica: una fusión entre una lógica técnica y una visión del mundo (cósmica y moral). Occidente tiene la suya, pero China tiene otra, y otras culturas otras más. La pregunta no es qué es la técnica, sino cuál es la cosmotécnica detrás de lo que llamamos 'la' técnica.
+      Hui llama cosmotécnica a la unión de un orden cósmico y un orden moral mediante actividades técnicas. El concepto permite preguntar qué relaciones con el mundo sostienen una tecnología y abrir futuros técnicos que no sigan un único camino universal.
     </div>
   <div class="article-lead" data-copy="en">
-      For Yuk Hui, no universal technics exists. What Heidegger describes as 'the essence' of modern technics is actually a cosmotechnics: a fusion between technical logic, and a worldview (both cosmic, and moral). The West has its own, but China has another—and other cultures have others still. The question is not what technics is, but which cosmotechnics lies behind what we call 'the' technics.
+      Hui calls cosmotechnics the unification of a cosmic order and a moral order through technical activities. The concept asks which relations to the world sustain a technology and opens technical futures beyond a single universal path.
     </div>
 </section>
 
 <div class="motion-line">
-  <div class="text" data-text="técnica → cosmología → cosmotécnica → naturalización" data-copy="es">técnica → cosmología → cosmotécnica → naturalización</div>
-  <div class="text" data-text="technics → cosmology → cosmotechnics → naturalization" data-copy="en">technics → cosmology → cosmotechnics → naturalization</div>
+  <div class="text" data-copy="es">
+    <span class="step"><span class="concept" data-text="cosmos">cosmos</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="moral">moral</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="actividad técnica">actividad técnica</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="pluralidad">pluralidad</span></span>
+  </div>
+  <div class="text" data-copy="en">
+    <span class="step"><span class="concept" data-text="cosmos">cosmos</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="moral">moral</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="technical activity">technical activity</span><span class="arrow">→</span></span>
+    <span class="step"><span class="concept" data-text="plurality">plurality</span></span>
+  </div>
 </div>
 
 <section class="grid">
@@ -301,15 +259,17 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">in 1 minute</div>
 
   <div class="large-copy" data-copy="es">
-    <p>Hui sostiene que la técnica nunca es antropológicamente universal ni neutra: siempre es "cosmotécnica", es decir, una unificación entre un orden cósmico y un orden moral lograda mediante actividades técnicas. No hay una técnica "en sí" por debajo de las culturas, sino tantas configuraciones posibles como cosmologías capaces de sostener esa unificación.</p>
-    <p>Por eso cuestiona la pregunta heideggeriana sobre la técnica: lo que Heidegger describe como la esencia moderna de la técnica—el mundo vuelto reserva disponible—no es universal sino la cosmotécnica griega, convertida en "internacional" y sin origen aparente, mientras solo el pensar seguía siendo, para él, propio de un pueblo.</p>
-    <p>Frente a esa pretensión de universalidad, Hui recupera la relación china entre Dao (道) y Qi (器)—el camino y el instrumento—y la imagen del cocinero Ding, cuyo cuchillo sigue el Dao sin que sus "órganos visuales" intervengan: una destreza que no domina un objeto sino que se armoniza con el cosmos.</p>
+    <p>Solemos hablar de la tecnología como si todas las sociedades avanzaran por una misma ruta. Hui pone en duda esa idea: herramientas semejantes pueden formar parte de relaciones distintas entre seres humanos, naturaleza y cosmos.</p>
+    <p><strong>Cosmotécnica</strong> nombra la unión de un orden cósmico —cómo se comprende el mundo— y un orden moral —cómo se debe vivir— mediante actividades técnicas. Una técnica no es solo un medio para alcanzar un fin; también participa en una forma de ordenar la existencia.</p>
+    <p>Para estudiar el pensamiento técnico en China, Hui sigue la relación cambiante entre <strong>Dao</strong>, el camino que orienta esa relación, y <strong>qi</strong>, los utensilios y objetos concretos. No afirma que exista una esencia china intacta: muestra una historia con continuidades, rupturas y transformaciones, especialmente después de las Guerras del Opio.</p>
+    <p>El objetivo tampoco es restaurar una tradición ni rechazar la tecnología moderna. Hui propone reinventar cosmotécnicas capaces de responder al presente. La pluralidad técnica, entonces, no consiste en decorar una tecnología universal con diferencias culturales, sino en volver pensables otras relaciones entre técnica, vida y cosmos.</p>
   </div>
 
   <div class="large-copy" data-copy="en">
-    <p>Hui argues that technics is never anthropologically universal or neutral: it is always "cosmotechnics"—the unification of a cosmic order, and a moral order achieved through technical activities. There is no technics "as such" beneath cultures, only as many possible configurations as there are cosmologies capable of sustaining that unification.</p>
-    <p>That is why he questions Heidegger's question concerning technology: what Heidegger describes as the modern essence of technics—the world turned into standing-reserve—is not universal but Greek cosmotechnics, made "international", and seemingly without origin, while for him only thinking remained proper to a people.</p>
-    <p>Against that claim to universality, Hui recovers the Chinese relation between Dao (道), and Qi (器)—the way, and the vessel—and the image of Cook Ding, whose blade follows the Dao without his "visual organs" intervening: a skill that does not master an object but harmonizes with the cosmos.</p>
+    <p>We often speak of technology as if every society were moving along the same path. Hui questions that assumption: similar tools can belong to different relations among humans, nature, and the cosmos.</p>
+    <p><strong>Cosmotechnics</strong> names the unification of a cosmic order—how the world is understood—and a moral order—how one ought to live—through technical activities. A technique is not only a means to an end; it also participates in a way of ordering existence.</p>
+    <p>To study technical thought in China, Hui follows the changing relation between <strong>Dao</strong>, the way that orients this relation, and <strong>qi</strong>, concrete tools and objects. He does not claim that an intact Chinese essence exists: he traces a history of continuities, ruptures, and transformations, especially after the Opium Wars.</p>
+    <p>Nor is the aim to restore a tradition or reject modern technology. Hui proposes reinventing cosmotechnics able to respond to the present. Technical plurality, then, is not a matter of decorating a universal technology with cultural differences, but of making other relations among technics, life, and cosmos thinkable.</p>
   </div>
 </section>
 
@@ -318,53 +278,41 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">three things to keep</div>
 
   <div data-copy="es">
-    <div class="keep">Toda técnica es siempre cosmotécnica: une un orden cósmico con un orden moral mediante actividades técnicas, y esa unión cambia de una cosmología a otra.</div>
-    <div class="keep">Lo que Heidegger presenta como la esencia universal de la técnica moderna es, según Hui, una cosmotécnica particular—la griega—vuelta "internacional" y sin origen aparente.</div>
-    <div class="keep">La destreza perfecta del cocinero Ding no es dominio instrumental de un objeto: es una intuición que sigue el Dao y prescinde de los "órganos visuales".</div>
+    <div class="keep">Una cosmotécnica une orden cósmico y orden moral mediante actividades técnicas.</div>
+    <div class="keep">La tecnología moderna tiene una historia situada; su expansión no la vuelve la única forma posible de técnica.</div>
+    <div class="keep">Recuperar la pluralidad no significa volver intactamente al pasado, sino inventar otras relaciones técnicas para el presente.</div>
   </div>
 
   <div data-copy="en">
-    <div class="keep">All technics is always cosmotechnics: it unifies a cosmic order with a moral order through technical activities, and that union changes from one cosmology to another.</div>
-    <div class="keep">What Heidegger presents as the universal essence of modern technics is, for Hui, one particular cosmotechnics—the Greek one—turned "international", and seemingly without origin.</div>
-    <div class="keep">Cook Ding's perfect skill is not the instrumental mastery of an object: it is an intuition that follows the Dao, and does without the "visual organs."</div>
+    <div class="keep">A cosmotechnics unifies cosmic and moral orders through technical activities.</div>
+    <div class="keep">Modern technology has a situated history; its expansion does not make it the only possible form of technics.</div>
+    <div class="keep">Recovering plurality does not mean returning intact to the past, but inventing other technical relations for the present.</div>
   </div>
 </section>
 
-<div class="threshold">
-<section class="grid" style="border-top:0">
+<section class="grid">
   <div class="section-title" data-copy="es">punto de arrastre</div>
   <div class="section-title" data-copy="en">carry point</div>
 
-  <div>
-    <div class="threshold-note" data-copy="es">Aquí entra la tensión heredada desde el reading anterior: trae una pregunta, intuición o problema previo y lo hace friccionar con la lectura actual.</div>
-    <div class="threshold-note" data-copy="en">Here the tension inherited from the previous reading enters: it brings a prior question, intuition or problem into friction with the current reading.</div>
+  <div class="pressure" data-copy="es">El <a href="../013-friedrich-kittler-optical-media/index.html">reading 013</a> reconstruyó una historia de aparatos y operaciones —almacenar, transmitir y procesar— que hacen posibles las imágenes. Conviene retomarla porque esas operaciones pueden parecer universales cuando se separan de la historia que las produjo. Hui desplaza la pregunta: ¿qué orden cósmico y moral hace que una operación cuente como técnica y que una historia técnica se presente como la historia de todas?</div>
 
-    <div class="pressure" data-copy="es">El arrastre de Kittler preguntaba si una imagen sigue siendo la misma cuando cada versión incorpora el recorrido técnico específico—almacenamiento, transmisión, procesamiento—por el que fue producida. Hui desplaza la pregunta un nivel más abajo: ese recorrido técnico no es neutral ni universal, sino el modo en que una cosmotécnica particular organiza la relación entre cosmos y técnica. Si la técnica es siempre cosmotécnica, preguntar por "el" recorrido técnico de una imagen ya supone que existe una sola gramática posible para almacenar, transmitir y procesar, cuando podría haber tantas como cosmologías capaces de unificar orden cósmico y orden moral mediante actividades técnicas.</div>
-
-    <div class="pressure" data-copy="en">Kittler's carry asked whether an image remains the same when each version incorporates the specific technical route—storage, transmission, processing—through which it was produced. Hui shifts the question one level down: that technical route is neither neutral nor universal, but the way a particular cosmotechnics organizes the relation between cosmos, and technics. If technics is always cosmotechnics, asking about "the" technical route of an image already assumes a single possible grammar for storing, transmitting, and processing, when there could be as many as there are cosmologies capable of unifying cosmic, and moral order through technical activities.</div>
-  </div>
+  <div class="pressure" data-copy="en">The <a href="../013-friedrich-kittler-optical-media/index.html">reading 013</a> reconstructed a history of apparatuses and operations—storage, transmission, and processing—that make images possible. It matters here because those operations can appear universal when detached from the history that produced them. Hui shifts the question: which cosmic and moral order makes an operation count as technical, and one technical history appear to be everyone’s history?</div>
 </section>
 
 <section class="grid">
-  <div class="section-title" data-copy="es">proposición incompleta</div>
-  <div class="section-title" data-copy="en">unfinished proposition</div>
+  <div class="section-title" data-copy="es">por ejemplo</div>
+  <div class="section-title" data-copy="en">for example</div>
 
-  <div class="incomplete" data-copy="es">Si toda técnica es cosmotécnica, entonces quizá una imagen no viaje solamente entre aparatos sino entre cosmologías que la hacen posible de maneras distintas, y lo que llamamos "la misma imagen" sea en realidad…</div>
-  <div class="incomplete" data-copy="en">If all technics is cosmotechnics, then perhaps an image does not travel only between apparatuses but between cosmologies that make it possible in different ways, and what we call "the same image" may actually be…</div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">bifurcación</div>
-  <div class="section-title" data-copy="en">bifurcation</div>
-
-  <div class="branches" data-copy="es">
-    <div class="branch">La imagen pertenece a una gramática técnica única y universal—almacenar, transmitir, procesar—que distintas culturas simplemente heredan o adoptan con mayor o menor retraso.</div>
-    <div class="branch">La imagen pertenece siempre a una cosmotécnica particular: lo que parece "la misma" operación técnica puede unificar cosmos y moral de maneras irreductibles entre sí según la cosmología que la sostiene.</div>
+  <div class="large-copy" data-copy="es">
+    <p>Abre en una aplicación de mapas un lugar que conozcas bien: tu barrio, una plaza o un cerro. Haz una captura de pantalla y compárala con una fotografía tomada allí durante una feria, una protesta o una celebración familiar.</p>
+    <p>Antes de decidir qué imagen describe mejor el lugar, revisa la fuente y la fecha de cada una. En el mapa, cambia la escala, mira la leyenda y observa qué negocios, rutas o límites aparecen primero. En la fotografía, comprueba el encuadre, el pie de foto y qué ocurrió antes y después.</p>
+    <p>El mapa organiza el lugar como distancia, dirección y destino; la fotografía puede organizarlo como encuentro, memoria o conflicto. Esto no prueba que una imagen sea más auténtica ni que cada cultura posea una técnica pura. Muestra que una interfaz vuelve operativas ciertas relaciones y deja otras fuera. ¿Qué mundo desaparece cuando la ruta más rápida parece la única descripción útil del lugar?</p>
   </div>
 
-  <div class="branches" data-copy="en">
-    <div class="branch">The image belongs to a single, universal technical grammar—storing, transmitting, processing—that different cultures simply inherit or adopt with greater or lesser delay.</div>
-    <div class="branch">The image always belongs to a particular cosmotechnics: what looks like "the same" technical operation can unify cosmos, and morality in mutually irreducible ways depending on the cosmology that sustains it.</div>
+  <div class="large-copy" data-copy="en">
+    <p>Open a place you know well in a map app: your neighborhood, a square, or a hill. Take a screenshot and compare it with a photograph made there during a street market, a protest, or a family celebration.</p>
+    <p>Before deciding which image describes the place better, check the source and date of each one. On the map, change the scale, read the legend, and notice which businesses, routes, or boundaries appear first. In the photograph, check the framing, caption, and what happened immediately before and after.</p>
+    <p>The map organizes the place as distance, direction, and destination; the photograph may organize it as encounter, memory, or conflict. This does not prove that one image is more authentic or that each culture possesses a pure technics. It shows that an interface makes some relations operational and leaves others out. Which world disappears when the fastest route appears to be the place’s only useful description?</p>
   </div>
 </section>
 
@@ -373,16 +321,15 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">residue</div>
 
   <div data-copy="es">
-    <div class="residue">Cuando Heidegger llama "internacional" a la ciencia y a la técnica modernas, ya ha naturalizado una cosmotécnica particular como si no perteneciera a ningún lugar; solo el pensar sigue siendo, para él, propio de un pueblo.</div>
-    <div class="residue">El cocinero Ding no mira el buey con los ojos: su cuchillo sigue el Dao. Ninguna cosmotécnica que reduzca la destreza a dominio instrumental del objeto podría explicar ese corte.</div>
+    <div class="residue">Una tecnología puede circular por todo el planeta sin dejar de llevar consigo una forma situada de ordenar el mundo.</div>
+    <div class="residue">La pluralidad cosmotécnica no conserva mundos cerrados: exige inventar relaciones técnicas capaces de responder a un presente compartido.</div>
   </div>
 
   <div data-copy="en">
-    <div class="residue">When Heidegger calls modern science, and technology "international", he has already naturalized one particular cosmotechnics as though it belonged nowhere; for him, only thinking remained proper to a people.</div>
-    <div class="residue">Cook Ding does not look at the ox with his eyes: his blade follows the Dao. No cosmotechnics that reduces skill to the instrumental mastery of an object could account for that cut.</div>
+    <div class="residue">A technology can circulate across the planet while still carrying a situated way of ordering the world.</div>
+    <div class="residue">Cosmotechnical plurality does not preserve sealed worlds: it requires inventing technical relations able to respond to a shared present.</div>
   </div>
 </section>
-</div>
 
 <div class="error-zone">
 <section class="grid" style="border-top:0;padding-top:0">
@@ -412,22 +359,22 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
     <div class="eyebrow" data-copy="es">error forzado</div>
     <div class="eyebrow" data-copy="en">forced error</div>
-    <div class="error-statement" data-copy="es">Toda cosmotécnica naturaliza su propia técnica: la convierte en ciudadana legítima de un cosmos y declara extranjera cualquier otra.</div>
-    <div class="error-statement" data-copy="en">Every cosmotechnics naturalizes its own technics: it turns it into a legitimate citizen of a cosmos, and declares every other technics foreign.</div>
+    <div class="error-statement" data-copy="es">Una interfaz naturaliza una cosmotécnica cuando hace que un modo situado de ordenar el mundo parezca el funcionamiento normal de toda tecnología.</div>
+    <div class="error-statement" data-copy="en">An interface naturalizes a cosmotechnics when it makes one situated way of ordering the world appear to be the normal operation of all technology.</div>
 
     <div class="eyebrow" data-copy="es">lo que se escapó</div>
     <div class="eyebrow" data-copy="en">what escaped</div>
     <div class="error-opening" data-copy="es">
-      La naturalización jurídica convierte a una persona extranjera en ciudadana mediante un acto legal reconocible; una cosmotécnica no tramita expedientes ni concede documentos. Pero el error fuerza a mirar cómo una técnica llega a parecer nativa de un cosmos—evidente, sin origen, "internacional"—mientras otra queda marcada como foránea, atrasada o folclórica. Esa naturalización no es neutral: decide qué técnicas cuentan como universales y cuáles necesitan explicarse, traducirse, disculparse.
+      En el derecho migratorio, la naturalización es el procedimiento por el que un Estado concede ciudadanía a una persona extranjera. Es una palabra externa a Hui: una interfaz no entrega pasaportes y una cosmotécnica no es una nación. La colisión sirve para preguntar cómo estándares, categorías y diseños adquieren otra clase de ciudadanía: dejan de parecer decisiones históricas y pasan a sentirse inevitables. El mapa del ejemplo naturaliza una relación cuando "llegar rápido" organiza por defecto lo que importa del lugar.
     </div>
     <div class="error-opening" data-copy="en">
-      Legal naturalization turns a foreign person into a citizen through a recognizable legal act; a cosmotechnics does not process files or issue documents. But the error forces us to look at how one technics comes to seem native to a cosmos—self-evident, without origin, "international"—while another remains marked as foreign, backward, or folkloric. That naturalization is not neutral: it decides which technics count as universal, and which need to be explained, translated, apologized for.
+      In immigration law, naturalization is the procedure through which a state grants citizenship to a foreign person. The word is external to Hui: an interface does not issue passports, and a cosmotechnics is not a nation. The collision asks how standards, categories, and designs acquire another kind of citizenship: they stop looking like historical decisions and begin to feel inevitable. The map in the example naturalizes a relation when “getting there quickly” organizes what matters about the place by default.
     </div>
 
     <div class="eyebrow" data-copy="es">pregunta que queda</div>
     <div class="eyebrow" data-copy="en">question left behind</div>
-    <div class="error-question" data-copy="es">¿Qué cosmotécnica queda sin nombre cuando llamamos "la imagen" o "la técnica" a secas a lo que en realidad es solo la cosmotécnica que logró naturalizarse como universal?</div>
-    <div class="error-question" data-copy="en">Which cosmotechnics goes unnamed when we call "the image" or "technics" as such what is in fact only the cosmotechnics that managed to naturalize itself as universal?</div>
+    <div class="error-question" data-copy="es">¿Qué orden del mundo adquiere ciudadanía técnica cuando una interfaz decide qué puede verse, medirse y recorrerse?</div>
+    <div class="error-question" data-copy="en">Which order of the world acquires technical citizenship when an interface decides what can be seen, measured, and traversed?</div>
   </div>
 </div>
 </section>
@@ -437,10 +384,10 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div>
     <div class="eyebrow" data-copy="es">error que no produjo nada</div>
     <div class="eyebrow" data-copy="en">error that produced nothing</div>
-    <div class="reject-text" data-copy="es">Las cosmotécnicas no occidentales deberían adoptar cuanto antes la cosmotécnica moderna para alcanzar el mismo nivel de desarrollo técnico.</div>
-    <div class="reject-text" data-copy="en">Non-Western cosmotechnics should adopt the modern cosmotechnics as soon as possible in order to reach the same level of technical development.</div>
-    <div class="reject-note" data-copy="es">DESARROLLO. Convierte la diferencia cosmológica en atraso cronológico y repite exactamente el gesto que el libro cuestiona: tratar una cosmotécnica particular como la meta universal de todas las demás. Se descarta.</div>
-    <div class="reject-note" data-copy="en">DEVELOPMENT. It turns cosmological difference into chronological backwardness, and repeats exactly the gesture the book questions: treating one particular cosmotechnics as the universal goal of all the others. Discarded.</div>
+    <div class="reject-text" data-copy="es">Cada cultura necesita su propia aplicación de mapas.</div>
+    <div class="reject-text" data-copy="en">Every culture needs its own map app.</div>
+    <div class="reject-note" data-copy="es">IDENTIDAD. Cambia una marca por otra, convierte las culturas en recipientes cerrados y no transforma la relación técnica con el lugar. Se descarta.</div>
+    <div class="reject-note" data-copy="en">IDENTITY. It swaps one brand for another, turns cultures into sealed containers, and does not transform the technical relation to place. Discarded.</div>
   </div>
 </div>
 </div>
@@ -458,16 +405,16 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div>
     <div class="nav-label" data-copy="es">← viene de 013 · Friedrich Kittler</div>
     <div class="nav-label" data-copy="en">← comes from 013 · Friedrich Kittler</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si puede existir como una estructura variable de múltiples versiones y su continuidad depende de materiales, interfaces, cuerpos, código, hábitos y operaciones invisibles, cuando cada versión incorpora además el recorrido técnico específico mediante el cual fue almacenada, transmitida o procesada?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if it can exist as a variable structure of multiple versions, and its continuity depends on materials, interfaces, bodies, code, habits, and invisible operations, when each version also incorporates the specific technical route through which it was stored, transmitted, or processed?</div>
+    <div class="nav-q" data-copy="es">Si toda imagen depende de una historia técnica, ¿esa historia puede considerarse universal?</div>
+    <div class="nav-q" data-copy="en">If every image depends on a technical history, can that history be considered universal?</div>
   </div>
 </a>
       <a class="next" href="../015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/index.html">
   <div>
     <div class="nav-label" data-copy="es">va hacia 015 · Benjamin H. Bratton →</div>
     <div class="nav-label" data-copy="en">goes to 015 · Benjamin H. Bratton →</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si puede existir como una estructura variable de múltiples versiones, su continuidad depende de materiales, interfaces, cuerpos, código, hábitos y operaciones invisibles, y cada versión incorpora el recorrido técnico específico mediante el cual fue almacenada, transmitida o procesada, cuando ese mismo recorrido técnico solo es reconocible como tal dentro de la cosmotécnica particular que unifica su cosmos y su moral?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if it can exist as a variable structure of multiple versions, its continuity depends on materials, interfaces, bodies, code, habits, and invisible operations, and each version incorporates the specific technical route through which it was stored, transmitted, or processed, when that very technical route is only recognizable as such within the particular cosmotechnics that unifies its cosmos, and its morality?</div>
+    <div class="nav-q" data-copy="es">Si una tecnología organiza una relación con el mundo, ¿qué infraestructura gobierna esa organización?</div>
+    <div class="nav-q" data-copy="en">If a technology organizes a relation to the world, which infrastructure governs that organization?</div>
   </div>
 </a>
     </div>
