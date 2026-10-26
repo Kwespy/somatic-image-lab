@@ -368,5 +368,15 @@
     "date": "2026-10-10",
     "error_es": "peaje",
     "error_en": "toll"
+  },
+  {
+    "number": 38,
+    "slug": "038-hans-belting-antropologia-de-la-imagen",
+    "author": "Hans Belting",
+    "title_es": "Antropología de la imagen",
+    "title_en": "An Anthropology of Images",
+    "date": "2026-10-26",
+    "error_es": "huésped",
+    "error_en": "guest"
   }
 ]
