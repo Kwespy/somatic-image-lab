@@ -378,5 +378,15 @@
     "date": "2026-10-26",
     "error_es": "tabaco",
     "error_en": "tobacco"
+  },
+  {
+    "number": 39,
+    "slug": "039-aby-warburg-atlas-mnemosyne",
+    "author": "Aby Warburg",
+    "title_es": "Atlas Mnemosyne",
+    "title_en": "Mnemosyne Atlas",
+    "date": "2026-10-27",
+    "error_es": "velcro",
+    "error_en": "Velcro"
   }
 ]
