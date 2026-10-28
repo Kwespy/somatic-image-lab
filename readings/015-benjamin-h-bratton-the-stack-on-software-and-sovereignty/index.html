@@ -84,9 +84,6 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 .threshold{margin-top:18px;padding:0 18px 18px;background:rgba(0,0,0,.035)}
 .pressure{border-left:4px solid var(--ink);padding-left:16px;font-size:clamp(25px,3vw,38px);line-height:1.12;letter-spacing:-.03em}
 .threshold-note{max-width:760px;margin:0 0 18px;font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--muted)}
-.incomplete{padding:18px;border:2px solid var(--ink);font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em}
-.branches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.branch{padding:15px;border:1px solid var(--ink);font-size:clamp(19px,2vw,26px);line-height:1.25}
 .residue{margin-bottom:14px;padding-left:15px;border-left:2px solid var(--ink);font-size:clamp(19px,2vw,27px);line-height:1.25}
 
 .error-zone{margin-top:22px;padding:30px 18px 24px;background:var(--orange)}
@@ -127,7 +124,6 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 @media(max-width:760px){
   .shell{width:min(var(--max),calc(100% - 24px))}
   .grid{grid-template-columns:1fr;gap:14px}
-  .branches{grid-template-columns:1fr}
   .article-hero{padding:46px 0 38px}
 }
 @media(max-width:600px){
@@ -154,7 +150,7 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 </script>
 
 <!-- TSIL_SOCIAL_META_START -->
-<meta name="description" content="Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers.">
+<meta name="description" content="Bratton models planetary computation as six interdependent layers that distribute access, identification, and power.">
 <meta name="author" content="Kurt Wesp Yianatos">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="keywords" content="Benjamin H. Bratton, The Stack: On Software and Sovereignty, planet → layer → address → governance, HOTEL / RECEPTION, ROOM, The Somatic Image Lab, Kurt Wesp Yianatos">
@@ -163,7 +159,7 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="The Somatic Image Lab">
 <meta property="og:title" content="The Stack: On Software and Sovereignty — Benjamin H. Bratton">
-<meta property="og:description" content="Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers.">
+<meta property="og:description" content="Bratton models planetary computation as six interdependent layers that distribute access, identification, and power.">
 <meta property="og:url" content="https://thesomaticimagelab.kurtwespyianatos.com/readings/015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/">
 <meta property="og:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta property="og:image:secure_url" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
@@ -174,11 +170,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 <meta property="article:published_time" content="2026-09-04">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Stack: On Software and Sovereignty — Benjamin H. Bratton">
-<meta name="twitter:description" content="Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers.">
+<meta name="twitter:description" content="Bratton models planetary computation as six interdependent layers that distribute access, identification, and power.">
 <meta name="twitter:image" content="https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png">
 <meta name="theme-color" content="#f2efe7">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://thesomaticimagelab.kurtwespyianatos.com/readings/015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/"},"headline":"The Stack: On Software and Sovereignty — Benjamin H. Bratton","description":"Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers.","datePublished":"2026-09-04","inLanguage":["en","es"],"author":{"@type":"Person","name":"Kurt Wesp Yianatos","url":"https://www.kurtwespyianatos.com/","alternateName":["KWY","KWY-A⁰¹RTBORG"]},"publisher":{"@type":"Organization","name":"The Somatic Image Lab","url":"https://thesomaticimagelab.kurtwespyianatos.com/"},"isBasedOn":{"@type":"Book","name":"The Stack: On Software and Sovereignty","author":{"@type":"Person","name":"Benjamin H. Bratton"}},"image":"https://thesomaticimagelab.kurtwespyianatos.com/assets/tsil-link-preview.png","about":["planet → layer → address → governance","HOTEL / RECEPTION","ROOM"]}</script>
-<script id="tsil-social-data" type="application/json">{"number": 15, "slug": "015-benjamin-h-bratton-the-stack-on-software-and-sovereignty", "author": "Benjamin H. Bratton", "date": "2026-09-04", "canonical": "https://thesomaticimagelab.kurtwespyianatos.com/readings/015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/", "title": {"es": "The Stack: On Software and Sovereignty", "en": "The Stack: On Software and Sovereignty"}, "parts": {"es": {"title": "The Stack", "subtitle": "On Software and Sovereignty"}, "en": {"title": "The Stack", "subtitle": "On Software and Sovereignty"}}, "lead": {"es": "Bratton propone pensar la computación a escala planetaria como una megastructura accidental formada por capas interdependientes. Tierra, nube, ciudad, dirección, interfaz y usuario no son sistemas separados: juntos producen una arquitectura que organiza circulación, identificación, acceso y gobierno.", "en": "Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers. Earth, Cloud, City, Address, Interface, and User are not separate systems: together they produce an architecture that organizes circulation, identification, access, and governance."}, "ante": {"es": "¿Cuántas capas de infraestructura hay entre tu pantalla y el planeta?", "en": "How many layers of infrastructure lie between your screen, and the planet?"}, "description": {"es": "Bratton propone pensar la computación a escala planetaria como una megastructura accidental formada por capas interdependientes.", "en": "Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers."}, "band": {"es": "planeta → capa → dirección → gobierno", "en": "planet → layer → address → governance"}, "error_context": {"es": "HOTELERÍA / RECEPCIÓN", "en": "HOTEL / RECEPTION"}, "error_word": {"es": "HABITACIÓN", "en": "ROOM"}, "concepts": {"es": ["CAPA", "PLANETA", "GOBIERNO", "DIRECCIÓN"], "en": ["ROOM", "LAYER", "PLANET", "ADDRESS"]}}</script>
+<script id="tsil-social-data" type="application/json">{"number":15,"slug":"015-benjamin-h-bratton-the-stack-on-software-and-sovereignty","author":"Benjamin H. Bratton","date":"2026-09-04","canonical":"https://thesomaticimagelab.kurtwespyianatos.com/readings/015-benjamin-h-bratton-the-stack-on-software-and-sovereignty/","title":{"es":"The Stack: On Software and Sovereignty","en":"The Stack: On Software and Sovereignty"},"parts":{"es":{"title":"The Stack","subtitle":"On Software and Sovereignty"},"en":{"title":"The Stack","subtitle":"On Software and Sovereignty"}},"lead":{"es":"Bratton propone pensar la computación planetaria como una megastructura accidental. Sus seis capas enlazan materia, plataformas y personas, y también distribuyen acceso, identificación y poder.","en":"Bratton describes planetary computation as an accidental megastructure. Its six layers connect matter, platforms, and people while distributing access, identification, and power."},"ante":{"es":"¿Qué infraestructura debe actuar antes de que una imagen aparezca en tu pantalla?","en":"What infrastructure must act before an image appears on your screen?"},"description":{"es":"Bratton modela la computación planetaria como seis capas interdependientes que distribuyen acceso, identificación y poder.","en":"Bratton models planetary computation as six interdependent layers that distribute access, identification, and power."},"band":{"es":"planeta → capa → dirección → gobierno","en":"planet → layer → address → governance"},"error_context":{"es":"HOTELERÍA / RECEPCIÓN","en":"HOTEL / RECEPTION"},"error_word":{"es":"HABITACIÓN","en":"ROOM"},"concepts":{"es":["HABITACIÓN","CAPA","PLANETA","DIRECCIÓN"],"en":["ROOM","LAYER","PLANET","ADDRESS"]}}</script>
 <!-- TSIL_SOCIAL_META_END -->
 <!-- TSIL_SOCIAL_STYLE_START -->
 <style id="tsil-social-secret-style">
@@ -198,59 +194,11 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
 
 
-<style id="tsil-carry-flow-v4">
-.carry-rule{
-  margin:10px 0 18px;
-  max-width:760px;
-  font-size:11px;
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--muted);
-}
-.reading-nav{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:16px;
-}
-.reading-nav a,
-.reading-nav .nav-block{
-  min-height:126px;
-  padding:14px;
-  border:1px solid var(--line);
-  color:inherit;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.reading-nav a:hover{border-color:var(--orange)}
-.reading-nav .next{text-align:right}
-.nav-label{
-  font-size:10px;
-  line-height:1.35;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-.nav-q{
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.28;
-  letter-spacing:-.01em;
-  text-transform:none;
-}
-.nav-block.pending{border-style:dashed}
-.nav-block.start .nav-q{
-  color:var(--muted);
-  font-size:13px;
-}
-.carry-source{display:none!important}
-@media(max-width:600px){
-  .reading-nav{grid-template-columns:1fr}
-  .reading-nav .next{text-align:left}
-}
-</style>
+
+
+
+
+
 
 </head>
 <body>
@@ -280,13 +228,13 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
   <div class="article-author">Benjamin H. Bratton</div>
 
-    <div class="article-ante" data-copy="es">¿Cuántas capas de infraestructura hay entre tu pantalla y el planeta?</div>
-    <div class="article-ante" data-copy="en">How many layers of infrastructure lie between your screen, and the planet?</div>
+  <div class="article-ante" data-copy="es">¿Qué infraestructura debe actuar antes de que una imagen aparezca en tu pantalla?</div>
+  <div class="article-ante" data-copy="en">What infrastructure must act before an image appears on your screen?</div>
   <div class="article-lead" data-copy="es">
-    Bratton propone pensar la computación a escala planetaria como una megastructura accidental formada por capas interdependientes. Tierra, nube, ciudad, dirección, interfaz y usuario no son sistemas separados: juntos producen una arquitectura que organiza circulación, identificación, acceso y gobierno.
+    Bratton propone pensar la computación planetaria como una megastructura accidental. Sus seis capas —Tierra, Nube, Ciudad, Dirección, Interfaz y Usuario— enlazan materia, plataformas y personas, y también distribuyen acceso, identificación y poder.
   </div>
   <div class="article-lead" data-copy="en">
-    Bratton proposes thinking of planetary-scale computation as an accidental megastructure composed of interdependent layers. Earth, Cloud, City, Address, Interface, and User are not separate systems: together they produce an architecture that organizes circulation, identification, access, and governance.
+    Bratton describes planetary computation as an accidental megastructure. Its six layers—Earth, Cloud, City, Address, Interface, and User—connect matter, platforms, and people while distributing access, identification, and power.
   </div>
 </section>
 
@@ -300,15 +248,15 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">in 1 minute</div>
 
   <div class="large-copy" data-copy="es">
-    <p>Bratton reúne infraestructuras que suelen pensarse por separado—cloud platforms, smart grids, ciudades, interfaces, sistemas de dirección, usuarios y automatización—y las modela como una única megastructura computacional a escala planetaria: The Stack.</p>
-    <p>El modelo está organizado en seis capas: Earth, Cloud, City, Address, Interface y User. Cada capa tiene funciones propias, pero sólo adquiere sentido dentro de relaciones verticales y transversales con las demás. Sistemas materiales, computacionales, sociales y humanos quedan así entrelazados dentro de una misma arquitectura.</p>
-    <p>La importancia del Stack no es solamente técnica. Bratton lo entiende también como una arquitectura de gobierno: direcciones, plataformas, interfaces y usuarios distribuyen posiciones, accesos y capacidades de acción. La computación no ocurre sobre el planeta desde afuera; reorganiza activamente su geografía.</p>
+    <p>Bratton llama <em>The Stack</em> a un modelo para comprender juntas infraestructuras que solemos separar: redes energéticas, plataformas en la nube, ciudades, direcciones, interfaces, usuarios y máquinas. No afirma que alguien haya diseñado este conjunto como una sola obra; por eso lo llama una megastructura accidental.</p>
+    <p>El modelo distingue seis capas. <strong>Tierra</strong> reúne materiales, energía y sistemas de detección; <strong>Nube</strong>, las grandes plataformas; <strong>Ciudad</strong>, los espacios urbanizados; <strong>Dirección</strong>, aquello que vuelve localizables objetos y personas; <strong>Interfaz</strong>, los medios de acceso; y <strong>Usuario</strong>, cualquier agente humano o no humano capaz de ocupar una posición y actuar.</p>
+    <p>Las capas no son pisos físicos ni funcionan solas. Una operación atraviesa varias y, al hacerlo, asigna lugares, permisos y capacidades. Por eso <em>The Stack</em> también es una arquitectura política: la computación planetaria no sólo transporta información, sino que reorganiza quién puede encontrar algo, verlo y actuar sobre ello.</p>
   </div>
 
   <div class="large-copy" data-copy="en">
-    <p>Bratton gathers infrastructures usually thought of separately—cloud platforms, smart grids, cities, interfaces, addressing systems, users, and automation—and models them as a single planetary-scale computational megastructure: The Stack.</p>
-    <p>The model is organized into six layers: Earth, Cloud, City, Address, Interface, and User. Each layer has its own functions, but only makes sense through vertical, and transversal relations with the others. Material, computational, social, and human systems are thus entangled within the same architecture.</p>
-    <p>The significance of the Stack is not only technical. Bratton also understands it as an architecture of governance: addresses, platforms, interfaces, and users distribute positions, access, and capacities for action. Computation does not simply take place on the planet from outside; it actively reorganizes its geography.</p>
+    <p>Bratton calls <em>The Stack</em> a model for understanding together infrastructures we usually separate: energy grids, cloud platforms, cities, addresses, interfaces, users, and machines. He does not claim that anyone designed this ensemble as a single work; that is why he calls it an accidental megastructure.</p>
+    <p>The model distinguishes six layers. <strong>Earth</strong> gathers materials, energy, and sensing systems; <strong>Cloud</strong>, large-scale platforms; <strong>City</strong>, urbanized spaces; <strong>Address</strong>, what makes objects and people locatable; <strong>Interface</strong>, the means of access; and <strong>User</strong>, any human or nonhuman agent able to occupy a position and act.</p>
+    <p>The layers are not physical floors, and none works alone. An operation crosses several layers and, in doing so, assigns positions, permissions, and capacities. <em>The Stack</em> is therefore also a political architecture: planetary computation does not merely transport information; it reorganizes who can find something, see it, and act upon it.</p>
   </div>
 </section>
 
@@ -317,15 +265,15 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">three things to keep</div>
 
   <div data-copy="es">
-    <div class="keep">Una operación computacional aparentemente local puede depender de una arquitectura que atraviesa escalas desde la materia terrestre hasta la interfaz y el usuario.</div>
-    <div class="keep">Las capas no son pisos aislados: forman una estructura modular cuyas relaciones producen capacidades que ninguna capa posee por sí sola.</div>
-    <div class="keep">Direccionar algo no es solamente nombrarlo; la dirección participa en hacerlo localizable y operable dentro de una red de relaciones.</div>
+    <div class="keep"><em>The Stack</em> es un modelo de la computación planetaria, no el nombre de un único aparato.</div>
+    <div class="keep">Sus seis capas distinguen funciones, pero una operación concreta depende de sus relaciones.</div>
+    <div class="keep">Localizar y mostrar algo también distribuye permisos: la infraestructura participa en el gobierno.</div>
   </div>
 
   <div data-copy="en">
-    <div class="keep">An apparently local computational operation can depend on an architecture spanning scales from terrestrial matter to interface, and user.</div>
-    <div class="keep">Layers are not isolated floors: they form a modular structure whose relations produce capacities that no layer possesses on its own.</div>
-    <div class="keep">Addressing something is not merely naming it; an address participates in making it locatable, and operable within a network of relations.</div>
+    <div class="keep"><em>The Stack</em> is a model of planetary computation, not the name of a single device.</div>
+    <div class="keep">Its six layers distinguish functions, but any concrete operation depends on their relations.</div>
+    <div class="keep">Locating and displaying something also distributes permissions: infrastructure participates in governance.</div>
   </div>
 </section>
 
@@ -335,35 +283,27 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">carry point</div>
 
   <div>
-    <div class="threshold-note" data-copy="es">Aquí entra la tensión heredada desde el reading anterior: trae una pregunta, intuición o problema previo y lo hace friccionar con la lectura actual.</div>
-    <div class="threshold-note" data-copy="en">Here the tension inherited from the previous reading enters: it brings a prior question, intuition or problem into friction with the current reading.</div>
+    <div class="threshold-note" data-copy="es">El <a href="../014-yuk-hui-the-question-concerning-technology-in-china/index.html">reading 014</a> preguntó por qué no existe una sola relación universal entre técnica, cosmos y moral. Esta pregunta importa aquí porque permite leer la escala planetaria sin confundirla con una tecnología neutral o inevitable.</div>
+    <div class="threshold-note" data-copy="en">The <a href="../014-yuk-hui-the-question-concerning-technology-in-china/index.html">reading 014</a> asked why there is no single universal relation between technics, cosmos, and morality. That question matters here because it lets us read the planetary scale without treating it as neutral or inevitable technology.</div>
 
-    <div class="pressure" data-copy="es">El arrastre de Kittler preguntaba cuándo el recorrido técnico de una señal deja de ser transporte y empieza a convertirse en transformación de la imagen. Bratton amplía radicalmente ese recorrido: una operación puede atravesar capas materiales, cloud infrastructures, sistemas de dirección, interfaces y usuarios. La ruta ya no pertenece a un único aparato; forma parte de una arquitectura planetaria que determina dónde algo puede ser localizado, procesado y presentado.</div>
+    <div class="pressure" data-copy="es">Yuk Hui abre la posibilidad de múltiples cosmotécnicas; Bratton muestra el problema que ya tenemos delante: infraestructuras heterogéneas se han ensamblado a escala planetaria y producen formas concretas de gobierno. Juntos obligan a preguntar no sólo cómo funciona esta arquitectura, sino desde qué valores podría rediseñarse.</div>
 
-    <div class="pressure" data-copy="en">Kittler's carry asked when the technical route of a signal stops being transport, and begins to become a transformation of the image. Bratton radically expands that route: an operation can pass through material layers, cloud infrastructures, addressing systems, interfaces, and users. The route no longer belongs to a single apparatus; it forms part of a planetary architecture determining where something can be located, processed, and presented.</div>
+    <div class="pressure" data-copy="en">Yuk Hui opens the possibility of multiple cosmotechnics; Bratton shows the problem already before us: heterogeneous infrastructures have assembled at planetary scale and produce concrete forms of governance. Together they force us to ask not only how this architecture works, but from which values it might be redesigned.</div>
   </div>
 </section>
 
 <section class="grid">
-  <div class="section-title" data-copy="es">proposición incompleta</div>
-  <div class="section-title" data-copy="en">unfinished proposition</div>
+  <div class="section-title" data-copy="es">por ejemplo</div>
+  <div class="section-title" data-copy="en">for example</div>
 
-  <div class="incomplete" data-copy="es">Si una imagen sólo puede aparecer después de atravesar varias capas que la localizan, procesan y presentan, entonces su lugar no estaría únicamente en el archivo o la pantalla sino distribuido entre…</div>
-  <div class="incomplete" data-copy="en">If an image can appear only after passing through several layers that locate, process, and present it, then its place would not be only in the file or on the screen but distributed among…</div>
-</section>
-
-<section class="grid">
-  <div class="section-title" data-copy="es">bifurcación</div>
-  <div class="section-title" data-copy="en">bifurcation</div>
-
-  <div class="branches" data-copy="es">
-    <div class="branch">La imagen es un objeto que atraviesa una infraestructura compuesta por distintas capas técnicas.</div>
-    <div class="branch">La imagen que aparece puede ser un efecto temporal de ese recorrido entre capas, de modo que la infraestructura participe en aquello que identificamos como imagen.</div>
+  <div class="large-copy" data-copy="es">
+    <p>Envías por mensajería una fotografía tomada con el teléfono. En la pantalla parece un gesto directo entre dos personas, pero la imagen activa varias capas: minerales y energía sostienen los dispositivos y centros de datos; una plataforma recibe el archivo; redes urbanas lo transportan; cuentas y direcciones identifican origen y destino; la interfaz decide su escala, orden y texto visible; y usuarios humanos o automáticos pueden abrirlo, clasificarlo o reenviarlo.</p>
+    <p>Para comprobarlo, compara la misma fotografía en la galería del teléfono y en el chat. Revisa el archivo, la fecha, la cuenta que la envía, el orden de la conversación y cualquier recorte o compresión. Los píxeles pueden parecer iguales, pero cambian las condiciones que permiten encontrar la imagen, atenderla y actuar sobre ella. ¿Quién gobierna ese recorrido cuando ninguna capa lo controla por completo?</p>
   </div>
 
-  <div class="branches" data-copy="en">
-    <div class="branch">The image is an object that passes through an infrastructure composed of different technical layers.</div>
-    <div class="branch">The image that appears may be a temporary effect of that route across layers, so that infrastructure participates in what we identify as the image.</div>
+  <div class="large-copy" data-copy="en">
+    <p>You send a phone photograph through a messaging app. On screen it looks like a direct gesture between two people, yet the image activates several layers: minerals and energy sustain devices and data centres; a platform receives the file; urban networks carry it; accounts and addresses identify source and destination; the interface decides its scale, order, and visible text; and human or automated users may open, classify, or forward it.</p>
+    <p>To test this, compare the same photograph in the phone gallery and in the chat. Check the file, date, sending account, conversational order, and any crop or compression. The pixels may look identical, but the conditions for finding the image, attending to it, and acting upon it have changed. Who governs that route when no layer controls it completely?</p>
   </div>
 </section>
 
@@ -372,13 +312,13 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div class="section-title" data-copy="en">residue</div>
 
   <div data-copy="es">
-    <div class="residue">Una imagen visible en una pantalla puede depender de procesos que ocurren simultáneamente en escalas materiales, geográficas y computacionales muy alejadas de esa pantalla.</div>
-    <div class="residue">Cambiar la dirección, plataforma o capa por la que circula un objeto puede modificar sus posibilidades de acceso y operación incluso si sus píxeles permanecen iguales.</div>
+    <div class="residue">La pantalla vuelve cercano un proceso cuya materia, energía y administración están distribuidas a escala planetaria.</div>
+    <div class="residue">Una imagen no cambia sólo por sus píxeles: también cambia su capacidad de aparecer, circular y ser utilizada.</div>
   </div>
 
   <div data-copy="en">
-    <div class="residue">An image visible on a screen can depend on processes occurring simultaneously at material, geographical, and computational scales far removed from that screen.</div>
-    <div class="residue">Changing the address, platform, or layer through which an object circulates can alter its possibilities of access, and operation even if its pixels remain identical.</div>
+    <div class="residue">The screen makes intimate a process whose matter, energy, and administration are distributed at planetary scale.</div>
+    <div class="residue">An image changes not only through its pixels, but also through its capacity to appear, circulate, and be used.</div>
   </div>
 </section>
 </div>
@@ -411,22 +351,22 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
 
     <div class="eyebrow" data-copy="es">error forzado</div>
     <div class="eyebrow" data-copy="en">forced error</div>
-    <div class="error-statement" data-copy="es">Toda imagen que entra al Stack recibe un número de habitación para que las demás capas sepan dónde encontrarla.</div>
-    <div class="error-statement" data-copy="en">Every image entering the Stack receives a room number so that the other layers know where to find it.</div>
+    <div class="error-statement" data-copy="es">Cada imagen ocupa una habitación privada dentro de <em>The Stack</em>.</div>
+    <div class="error-statement" data-copy="en">Every image occupies a private room inside <em>The Stack</em>.</div>
 
     <div class="eyebrow" data-copy="es">lo que se escapó</div>
     <div class="eyebrow" data-copy="en">what escaped</div>
     <div class="error-opening" data-copy="es">
-      Una dirección computacional no es una habitación y los objetos no se hospedan dentro de una red. Pero el error vuelve concreta una función abstracta: para que un sistema pueda encontrar, contactar o actuar sobre algo necesita alguna forma de direccionabilidad. La dirección no describe simplemente dónde está un objeto; participa en establecer las relaciones mediante las cuales ese objeto puede entrar en operaciones distintas.
+      «Habitación» viene de la hotelería: un espacio numerado que se asigna, se abre con una llave y depende de recepción, limpieza y servicios compartidos. La imagen digital no habita un cuarto privado. El error, sin embargo, vuelve visible que su aparente intimidad depende de direcciones, permisos, interfaces y plataformas administradas por otros. Ser localizable no equivale a ser soberano sobre el lugar que se ocupa.
     </div>
     <div class="error-opening" data-copy="en">
-      A computational address is not a room, and objects do not stay as guests inside a network. But the error makes an abstract function concrete: for a system to find, contact, or act upon something, it needs some form of addressability. An address does not simply describe where an object is; it participates in establishing the relations through which that object can enter different operations.
+      “Room” comes from hospitality: a numbered space that is assigned, opened with a key, and dependent on reception, cleaning, and shared services. A digital image does not inhabit a private chamber. Yet the error reveals that its apparent intimacy depends on addresses, permissions, interfaces, and platforms administered by others. Being locatable is not the same as being sovereign over the place one occupies.
     </div>
 
     <div class="eyebrow" data-copy="es">pregunta que queda</div>
     <div class="eyebrow" data-copy="en">question left behind</div>
-    <div class="error-question" data-copy="es">¿Una imagen cambia cuando cambia la dirección mediante la cual un sistema puede encontrarla y actuar sobre ella?</div>
-    <div class="error-question" data-copy="en">Does an image change when the address through which a system can find, and act upon it changes?</div>
+    <div class="error-question" data-copy="es">¿Quién administra la habitación cuando el acceso a una imagen depende de todas las demás capas?</div>
+    <div class="error-question" data-copy="en">Who manages the room when access to an image depends on every other layer?</div>
   </div>
 </div>
 </section>
@@ -436,10 +376,10 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div>
     <div class="eyebrow" data-copy="es">error que no produjo nada</div>
     <div class="eyebrow" data-copy="en">error that produced nothing</div>
-    <div class="reject-text" data-copy="es">Las imágenes alojadas en pisos más altos del Stack tardan más en bajar a la pantalla.</div>
-    <div class="reject-text" data-copy="en">Images staying on higher floors of the Stack take longer to come down to the screen.</div>
-    <div class="reject-note" data-copy="es">ASCENSOR. Confunde las capas del modelo con pisos físicos y convierte la arquitectura en una jerarquía espacial literal. Se descarta.</div>
-    <div class="reject-note" data-copy="en">ELEVATOR. It confuses the model's layers with physical floors, and turns the architecture into a literal spatial hierarchy. Discarded.</div>
+    <div class="reject-text" data-copy="es">Las imágenes de los pisos altos tardan más en bajar a la pantalla.</div>
+    <div class="reject-text" data-copy="en">Images on the upper floors take longer to descend to the screen.</div>
+    <div class="reject-note" data-copy="es">ASCENSOR. Toma las capas como pisos físicos y pierde sus relaciones funcionales. Se descarta.</div>
+    <div class="reject-note" data-copy="en">ELEVATOR. It treats layers as physical floors and loses their functional relations. Discarded.</div>
   </div>
 </div>
 </div>
@@ -465,8 +405,8 @@ html[data-lang="en"] [data-inline="en"]{display:inline!important}
   <div>
     <div class="nav-label" data-copy="es">va hacia 016 · David Joselit →</div>
     <div class="nav-label" data-copy="en">goes to 016 · David Joselit →</div>
-    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen si puede existir como una estructura variable de múltiples versiones y su continuidad depende de materiales, interfaces, cuerpos, código, hábitos y operaciones invisibles, cuando cada versión incorpora un recorrido de almacenamiento, transmisión y procesamiento que a su vez atraviesa una arquitectura planetaria de capas capaz de decidir dónde puede existir, quién puede encontrarla y cómo puede aparecer?</div>
-    <div class="nav-q" data-copy="en">Is it still the same image if it can exist as a variable structure of multiple versions, and its continuity depends on materials, interfaces, bodies, code, habits, and invisible operations, when each version incorporates a route of storage, transmission, and processing that itself passes through a planetary architecture of layers capable of determining where it can exist, who can find it, and how it can appear?</div>
+    <div class="nav-q" data-copy="es">¿Sigue siendo la misma imagen cuando una arquitectura planetaria decide dónde existe, quién la encuentra y cómo aparece?</div>
+    <div class="nav-q" data-copy="en">Is it still the same image when a planetary architecture decides where it exists, who finds it, and how it appears?</div>
   </div>
 </a>
     </div>
