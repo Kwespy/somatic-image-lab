@@ -388,5 +388,15 @@
     "date": "2026-10-27",
     "error_es": "velcro",
     "error_en": "Velcro"
+  },
+  {
+    "number": 40,
+    "slug": "040-safiya-umoja-noble-algorithms-of-oppression",
+    "author": "Safiya Umoja Noble",
+    "title_es": "Algoritmos de opresión",
+    "title_en": "Algorithms of Oppression",
+    "date": "2026-11-11",
+    "error_es": "molinete",
+    "error_en": "turnstile"
   }
 ]
