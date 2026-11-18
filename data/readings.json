@@ -398,5 +398,15 @@
     "date": "2026-11-11",
     "error_es": "desierto",
     "error_en": "desert"
+  },
+  {
+    "number": 41,
+    "slug": "041-gottfried-boehm-el-giro-iconico",
+    "author": "Gottfried Boehm",
+    "title_es": "El giro icónico",
+    "title_en": "The Iconic Turn",
+    "date": "2026-11-18",
+    "error_es": "termómetro",
+    "error_en": "thermometer"
   }
 ]
