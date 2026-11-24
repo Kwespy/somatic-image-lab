@@ -408,5 +408,15 @@
     "date": "2026-11-18",
     "error_es": "termómetro",
     "error_en": "thermometer"
+  },
+  {
+    "number": 42,
+    "slug": "042-donna-haraway-cyborgs",
+    "author": "Donna Haraway",
+    "title_es": "Un manifiesto para cyborgs",
+    "title_en": "A Cyborg Manifesto",
+    "date": "2026-11-24",
+    "error_es": "hierba",
+    "error_en": "grass"
   }
 ]
