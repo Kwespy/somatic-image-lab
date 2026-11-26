@@ -418,5 +418,15 @@
     "date": "2026-11-24",
     "error_es": "hierba",
     "error_en": "grass"
+  },
+  {
+    "number": 43,
+    "slug": "043-andy-clark-supersizing-the-mind",
+    "author": "Andy Clark",
+    "title_es": "La mente extendida",
+    "title_en": "Supersizing the Mind",
+    "date": "2026-11-26",
+    "error_es": "plástico",
+    "error_en": "plastic"
   }
 ]
