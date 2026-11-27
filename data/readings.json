@@ -428,5 +428,15 @@
     "date": "2026-11-26",
     "error_es": "plástico",
     "error_en": "plastic"
+  },
+  {
+    "number": 44,
+    "slug": "044-don-ihde-postphenomenology-and-technoscience",
+    "author": "Don Ihde",
+    "title_es": "Postfenomenología y tecnociencia",
+    "title_en": "Postphenomenology and Technoscience",
+    "date": "2026-11-27",
+    "error_es": "presupuesto",
+    "error_en": "budget"
   }
 ]
