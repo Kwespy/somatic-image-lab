@@ -438,5 +438,15 @@
     "date": "2026-11-27",
     "error_es": "deuda",
     "error_en": "debt"
+  },
+  {
+    "number": 45,
+    "slug": "045-erwin-panofsky-la-perspectiva-como-forma-simbolica",
+    "author": "Erwin Panofsky",
+    "title_es": "La perspectiva como forma simbólica",
+    "title_en": "Perspective as Symbolic Form",
+    "date": "2026-11-28",
+    "error_es": "testigo",
+    "error_en": "witness"
   }
 ]
